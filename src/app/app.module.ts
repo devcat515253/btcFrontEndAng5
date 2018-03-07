@@ -18,6 +18,7 @@ import { TableHistoryReviewsComponent } from './table-history-reviews/table-hist
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { SettingsComponent } from './settings/settings.component';
+import { DiscountComponent } from './discount/discount.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SettingsComponent } from './settings/settings.component';
     TableHistoryReviewsComponent,
     TestimonialsComponent,
     TransactionsComponent,
-    SettingsComponent
+    SettingsComponent,
+    DiscountComponent
   ],
   imports: [
     BrowserModule,
