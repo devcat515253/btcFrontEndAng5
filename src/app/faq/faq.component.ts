@@ -49,7 +49,7 @@ export class FaqComponent implements OnInit, AfterViewInit {
 
 
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.initDropdown();
   }
 
