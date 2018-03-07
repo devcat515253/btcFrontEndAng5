@@ -12,6 +12,11 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { FeesDiscountComponent } from './fees-discount/fees-discount.component';
 import { LandingMagazineComponent } from './landing-magazine/landing-magazine.component';
 import { NewsComponent } from './news/news.component';
+import { PartnersComponent } from './partners/partners.component';
+import { TableHistoryComponent } from './table-history/table-history.component';
+import { TableHistoryReviewsComponent } from './table-history-reviews/table-history-reviews.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 
 @NgModule({
@@ -24,7 +29,12 @@ import { NewsComponent } from './news/news.component';
     ContactsComponent,
     FeesDiscountComponent,
     LandingMagazineComponent,
-    NewsComponent
+    NewsComponent,
+    PartnersComponent,
+    TableHistoryComponent,
+    TableHistoryReviewsComponent,
+    TestimonialsComponent,
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,

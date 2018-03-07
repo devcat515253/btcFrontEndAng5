@@ -1,0 +1,187 @@
+<div class="main transcations inner-large">
+  <div class="container">
+
+    <header class="content__header">
+      <div class="title title-single"><h1 class="h1">Transaction Detail</h1></div>
+    </header>
+
+    <div class="main__wrapper">
+      <div class="content">
+
+        <div class="blank tape-top">
+          <div class="blank-content">
+            <div class="transcations-status">Waiting for payment</div>
+
+            <div class="transcations-process">
+              <div class="step">
+                <div class="step-header">
+                  <h2 class="h2">You send</h2>
+                </div>
+                <div class="step-content">
+                  <label class="input-exchange">
+                    <div class="input">
+                      <input type="text" value="150.00">
+                      <span class="currency">USD</span>
+                    </div>
+
+                    <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="step-info">
+                <div class="line-sides">ID transakce</div>
+
+                <div class="step-info__title">ADVUSD-PM-1031</div>
+
+                <div class="step-info__direction">
+                  <img src="../assets/img/svg/arrow-big.svg" alt="">
+                </div>
+              </div>
+
+              <div class="step step-to">
+                <div class="step-header">
+                  <h2 class="h2">You receive</h2>
+                </div>
+                <div class="step-content">
+                  <label class="input-exchange">
+                    <div class="input">
+                      <input type="text" value="0.08040">
+                      <span class="currency">BTC</span>
+                    </div>
+
+                    <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
+                  </label>
+                </div>
+              </div>
+
+
+              <div class="switch">
+                <div class="currencies currencies_small">
+                  <div class="item">
+                    <div class="item-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
+                    <div class="item-value" value="Advanced Cash">Advanced Cash</div>
+                  </div>
+
+                  <div class="switch-stats">
+                    <div class="tape">Fee: 1.00 %</div>
+                    <div class="tape tape-accent">Discount: 0.00 %</div>
+                  </div>
+
+                  <div class="item">
+                    <div class="item-icons" style="background-image: url(../assets/img/bitcoin.png);"></div>
+                    <div class="item-value" value="Bitcoin">Bitcoin</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="transcations-info">
+              <div class="line-sides">Informace o platbě</div>
+
+              <div class="exchange">
+                <table class="exchange-info__direction">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <span>Your wallet ID:</span>
+                      <b><strong>1BvBMSEYstWetqTFn5Au4</strong></b>
+                    </td>
+
+                    <td>
+                      <span>Our Bitcoin address:</span>
+                      <b><strong>1GoBTCTiC8TEVoLmr</strong></b>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span>Your e-mail:</span>
+                      <b><strong>john.doe@gmail.com</strong></b>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="line-sides">Aktuální status</div>
+
+              <div class="stages">
+                <div class="progress-bar green animate">
+                  <span style="width: 80%"><span statusText="2 of 3 confirmations"></span></span>
+                </div>
+
+                <div class="progress-bar red">
+                  <span style="width: 100%"><span statusText="Error"></span></span>
+                </div>
+
+                <div class="item">
+                  <b class="item-title">1. Done</b>
+                  <div class="item-descr">
+                    <i class="ic ic-success"></i>
+                    <p class="p_small">Yout payment was successfuly accepted</p>
+                  </div>
+                </div>
+
+                <div class="item">
+                  <b class="item-title">2. Pending</b>
+                  <div class="item-descr">
+                    <div class="loader"><div class="loader-inside"></div></div>
+                    <p class="p_small">
+                      Checking the transaction
+                      <small>Should be completed in <b>7 minutes</b> while online</small>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="item">
+                  <b class="item-title">1. Failed</b>
+                  <div class="item-descr">
+                    <i class="ic ic-warning">!</i>
+                    <p class="p_small">Transaction failed - <a href="#" class="link">contact us!</a></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn-wrapper text-center">
+                <a href="#" class="btn btn-accentSecond rippler rippler-default">Go back</a>
+              </div>
+
+              <div class="review">
+                <form class="form">
+                  <div class="rating">
+                    <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                    <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                    <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                    <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                    <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                  </div>
+
+                  <label class="form-group">
+                    <span class="form-title">Your comment</span>
+                    <textarea class="form-control" placeholder="Lorem ipsum dolor sit amet, consectetuer adipiscing elit aenean id metu…"></textarea>
+                    <span class="error-label">Not valid phone number format</span>
+                  </label>
+
+                  <div class="form-btn">
+                    <label class="text-center">
+                      <a href="#" class="btn btn-accentSecond rippler rippler-default">Send rating and go back</a>
+                      <input type="submit" hidden="">
+                    </label>
+                  </div>
+
+                  <div class="mobile-only text-center">
+                    <a href="#" class="btn btn-accentSecond rippler rippler-default">Nová směna</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fixed-head desktop-only">
+          <a href="#" class="btn btn-accentSecond rippler rippler-default">Nová směna</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

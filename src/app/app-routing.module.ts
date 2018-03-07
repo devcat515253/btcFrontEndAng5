@@ -6,6 +6,11 @@ import {ContactsComponent} from './contacts/contacts.component';
 import {FeesDiscountComponent} from './fees-discount/fees-discount.component';
 import {NewsComponent} from './news/news.component';
 import {LandingMagazineComponent} from './landing-magazine/landing-magazine.component';
+import {PartnersComponent} from './partners/partners.component';
+import {TableHistoryComponent} from './table-history/table-history.component';
+import {TableHistoryReviewsComponent} from './table-history-reviews/table-history-reviews.component';
+import {TestimonialsComponent} from './testimonials/testimonials.component';
+import {TransactionsComponent} from './transactions/transactions.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +20,11 @@ const routes: Routes = [
   { path: 'faq', component: FaqComponent},
   { path: 'feesdiscount', component: FeesDiscountComponent},
   { path: 'landingmagazine', component: LandingMagazineComponent},
+  { path: 'partners', component: PartnersComponent},
+  { path: 'tablehistory', component: TableHistoryComponent},
+  { path: 'tablehistoryreviews', component: TableHistoryReviewsComponent},
+  { path: 'testimonials', component: TestimonialsComponent},
+  { path: 'transactions', component: TransactionsComponent},
   // { path: 'account', component: UserAccountComponent,
   //   children: [
   //     { path: '', redirectTo: '/account/dashboard', pathMatch: 'full'},
