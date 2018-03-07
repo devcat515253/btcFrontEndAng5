@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { FaqComponent } from './faq/faq.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { FeesDiscountComponent } from './fees-discount/fees-discount.component';
+import { LandingMagazineComponent } from './landing-magazine/landing-magazine.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FeesDiscountComponent } from './fees-discount/fees-discount.component';
     HomeComponent,
     FaqComponent,
     ContactsComponent,
-    FeesDiscountComponent
+    FeesDiscountComponent,
+    LandingMagazineComponent
   ],
   imports: [
     BrowserModule,
