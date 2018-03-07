@@ -1,0 +1,93 @@
+@import "vars"
+
+.paginator
+  font-family: $nunito
+  font-size: 1.7rem
+  line-height: 2.3rem
+  display: flex
+  justify-content: space-between
+  align-items: center
+  &__wr
+    margin-bottom: 3.5rem
+    width: 100%
+  .pages
+    display: flex
+  .page
+    border: 1px solid $borderGrey
+    border-right: 1px solid transparent
+    background-color: #FFFFFF
+    padding: .5rem 1.53rem
+    display: flex
+    align-items: center
+    justify-content: center
+    cursor: pointer
+    transition: background-color .2s linear, border .2s linear
+    a
+      color: $colorAccentSecond
+      font-family: $nunito
+      font-size: 1.7rem
+      line-height: 2.3rem
+    &:first-child
+      border-radius: 3px 0 0 3px
+    &:last-child
+      border-radius: 0 3px 3px 0
+      border-right: 1px solid $borderGrey
+    &.is-selected
+      background-color: $colorAccentSecond
+      border-left: 1px solid transparent
+      border-top: 1px solid $colorAccentSecond
+      border-bottom: 1px solid $colorAccentSecond
+      a
+        color: #FFFFFF
+      & + .page
+        border-left: 1px solid transparent
+      &:hover
+        background-color: $colorAccentSecond
+        color: #ffffff
+    &.is-skip
+      color: #939393
+      font-size: 2.2rem
+      line-height: 3rem
+      border-top: 1px solid transparent
+      border-bottom: 1px solid transparent
+      pointer-events: none
+    &:hover
+      background: lighten($colorAccentSecond, 75%)
+    &.is-disabled
+      opacity: 1
+      pointer-events: none
+      a
+        @extend .is-disabled
+
+
+
+@media only screen and (max-width : 991px)
+  .paginator
+    flex-direction: column
+    &__status
+      margin-bottom: 2rem
+
+@media only screen and (max-width : 639px)
+  .paginator
+    align-items: flex-start
+    .pages
+      flex-wrap: wrap
+      justify-content: center
+      .page
+        margin-bottom: 1rem
+    .pages_desktop
+      display: none
+    &__wr
+      display: flex
+      justify-content: center
+
+@media only screen and (min-width : 640px)
+  .paginator
+    .pages_mobile
+      display: none
+
+
+@media only screen and (max-width : 479px)
+  .paginator
+    .page
+      padding: .5rem 1.2rem

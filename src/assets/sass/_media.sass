@@ -1,0 +1,1164 @@
+@import "vars"
+
+/*==========  Desktop First  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1440px)
+	.header-lang
+		position: relative
+		top: auto
+		transform: none
+		right: auto
+		margin-left: 1.5rem
+	.header-logo
+		margin-right: auto
+	.header-btn
+		margin-left: 3rem
+	.header .transform-to-mobile
+		flex: none
+@media only screen and (max-width : 1440px)  and (min-width : 1201px)
+	.transcations-status
+		left: 11rem
+		top: -7rem
+	.blank.tape-top
+		padding-top: 8.6rem
+@media only screen and (max-width : 1200px)
+	.container
+		width: 970px
+	html
+		font-size: 9px
+	.header-lang .dropdown-data
+		left: auto
+		right: 0
+		transform: none
+		&:after
+			margin-left: 4px
+			transform: translateY(-50%) translateX(-50%) rotate(-45deg)
+	.header-menu .menu>li
+		margin-right: 3rem
+	.header-btn
+		margin-left: 3rem
+	.magazine .item-image img
+		max-width: 110%
+	.header-menu .nav-menu>li
+		margin-right: 4rem
+	.input-exchange .input
+		padding: 1.5rem 2rem
+	.subblock-content .btns .item
+		padding: 1rem
+	.exchange .column
+		flex: 1
+		flex-shrink: 0
+	.error-label
+		position: relative
+	.input-exchange
+		.error-label
+			position: absolute
+	.input-exchange.has-error
+		margin-bottom: 9rem
+	.exchange .column, .exchange .column:nth-child(2)
+		min-width: 33.33%
+	.steps .btn-border
+		min-width: 10rem
+	.form-control
+		padding: 0 2rem
+	.exchange .process__content
+		padding-left: 3rem
+		padding-right: 3rem
+	.form-group, .steps .btn
+		margin-top: 3.2rem
+	.phone-send .btn, .upload-file .btn
+		margin-top: 0
+	.steps .tip-link
+		margin: 1.5rem 0
+	.form .checkbox
+		margin-top: 2.5rem
+	.currencies .item
+		padding-left: 2rem
+	.inner
+		&:after
+			height: 300px
+	.inner-single:after
+		height: 222px
+	.invite .col
+		width: 100%
+		padding-left: 0
+		padding-right: 0
+		.title-inner:first-child
+			margin-top: 0
+	.invite .col:first-child
+		border-right: none
+		padding-right: 0
+		margin-bottom: 3rem
+	.title-status
+		font-size: 2.4rem
+	.settings-tip br
+		display: none
+	.transcations-status
+		top: -5.5rem;
+		left: 11rem;
+	.transcations-process
+		margin-top: 5rem
+@media only screen and (max-width : 1100px)
+	.inner .main__wrapper
+		.navbars
+			margin-left: 1rem
+			width: 230px
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 991px)
+	.mobile-only
+		display: block !important
+	.header
+		z-index: 100
+	//triangls
+	.exchange .process-wr:after , .exchange .process-wr:before
+		display: none
+	.exchange .process-wr
+		border-left: none
+		border-right: none
+	.exchange .process:after, .exchange .process:before
+		width: 30px
+		height: 30px
+		background-color: white
+		z-index: 4
+	.exchange .process:before
+		left: -13px
+	.exchange .process:after
+		right: 8px
+	.transcations-process
+		margin-top: 2rem
+	.inner .main__wrapper .navbars
+		display: none
+	.inner
+		
+		.main__wrapper
+			flex-wrap: wrap
+		&:after
+			height: 240px
+
+		.navbars
+			margin-top: 7rem
+	.main.inner-large
+		&:after
+			height: 480px
+	.exchange
+		flex-wrap: wrap
+	.container
+		width: 100%
+		padding: 0 20px
+	.h1
+		font-size: 4.2rem
+		line-height: 4.8rem
+	.header
+		height: 8.5rem
+	.header-menu, .header-lang
+		display: none
+	.header-lang .dropdown-data
+		right: auto
+	.header .transform-to-mobile .hamburger
+		display: block
+		margin-left: 2.5rem
+	.header-lang
+		display: block
+		position: fixed
+		top: 0
+		left: 0
+		z-index: 999
+		padding: 2.5rem 2rem
+		display: none
+		margin-left: 0
+		.dropdown-data:after
+			left: 0
+			margin-left: 0
+			transform: translateY(-50%) translateX(100%) rotate(-45deg)
+	body.menu-mobile__opened .header-lang
+		font-size: 2.2rem
+	.header-menu .nav-menu>li
+		margin-right: 0
+	.header
+		.nav-menu>li .dropdown-data
+			position: relative
+			height: 0
+			padding: 0
+			margin: 0 auto
+			left: 0
+			top: 0
+			background-color: transparent
+			transition: padding-top .5s ease, opacity .5s ease, transform .5s ease
+			transform: translateY(30px)
+			font-family: $serif
+			box-shadow: none
+			&:before, &:after
+				display: none
+			& > *
+				height: 0
+				+mt(.25s)
+			li
+				opacity: 0
+				transition: opacity .5s ease
+				&:last-child
+					position: relative
+					&:after
+						content: '...'
+						position: absolute
+						bottom: -40px
+						left: 0
+						width: 100%
+						text-align: center
+						color: #fff
+						font-size: 3.5rem
+						display: block
+						transform: none
+		.header-menu .dropdown._opened 
+			.dropdown-link
+				margin-right: 0
+				font-weight: bold
+			.dropdown-data
+				width: 100%
+				height: auto
+				background-color: transparent
+				padding-top: 0
+				margin-top: 0
+				transform: translateY(0)
+				padding-bottom: 6rem
+				& > *
+					height: auto
+				li
+					opacity: 1
+					a
+						color: #fff
+	.header-menu
+		position: fixed
+		top: 0
+		left: 0
+		width: 100%
+		height: 100vh
+		padding: 8.5rem 3.5rem 0
+		background-color: #fff
+		background-color: rgba(0,0,0,0.75)
+		z-index: 999
+		overflow: scroll
+		.nav-menu
+			li
+				display: block
+				width: 100%
+				text-align: center
+				font-size: 2.8rem
+				line-height: 5rem
+				a.active
+					&:before
+						right: -15px
+						left: auto
+						margin-bottom: -7px
+						bottom: 50%
+						+transY
+	.transform-to-mobile.sub-opened .nav-menu
+		& > li
+			display: none
+		& > li.dropdown._opened
+			display: block
+	.header-mobile
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		align-items: center
+		margin-left: 2.5rem
+	.header .transform-to-mobile .hamburger
+		z-index: 999
+		position: relative
+	body
+		&.menu-mobile__opened
+			position: relative
+			.page__footer, .header-btn, .header-logo, .header:after,
+			.page__content, .page__footer
+				filter: blur(2px)
+			.header-menu
+				display: block
+			.header-lang
+				position: absolute
+				display: block
+	
+	// footer
+	.footer
+		padding: 4.5rem 0
+		&__logo
+			display: inline-block
+			margin-right: 0
+			margin-bottom: 3.5rem
+		&__content
+			.item
+				flex: 1
+				&:last-child
+					padding-right: 0
+		.share__content .ic
+			margin-right: 1rem
+	.footer__content
+		margin-left: auto
+	
+
+	// INNER
+	.magazine .item-image, .magazine .item_reverse .item-image
+		flex: none
+		width: 100%
+	.landing-page .magazine .blank-self .blank-self__head
+		margin-bottom: 2rem
+	.magazine .item .h2 br
+			display: none
+	.magazine .item-image img, .magazine .item_reverse .item-image img
+		position: relative
+		max-width: 100%
+		left: auto
+		right: auto
+	.magazine .item-info, .magazine .item_reverse .item-info
+		order: 3
+		width: 100%
+		margin-top: 3rem
+	.advantages .item-icons
+		width: 5.5rem
+		height: 5.5rem
+	.landing-page .magazine .blank-self:first-child
+		margin-top: 7rem
+	.blank-self
+		margin-bottom: 7rem
+		padding: 5rem
+	.blank
+		padding: 5rem
+	.magazine .item .btn-wrapper
+		margin-top: 4rem
+	.exchange .column, .exchange .column:nth-child(2)
+		min-width: 100%
+	.subblock .subblock-content .currencies .item
+		display: none
+		&:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4)
+			display: block
+	.exchange .process
+		background-color: #fff
+		border: none
+	.exchange
+		position: relative
+		&:before
+			content: ''
+			position: absolute
+			top: 60px
+			left: 12px
+			width: 1px
+			height: calc(100% - 60px)
+			border-left: 1px solid #b7bece;
+			z-index: 3
+		&:after
+			content: ''
+			position: absolute
+			top: 60px
+			right: 12px
+			width: 1px
+			height: calc(100% - 60px)
+			border-right: 1px solid #b7bece;
+			z-index: 3
+	.transcations-info .exchange
+		&:before, &:after
+			display: none
+	.exchange .process__content
+		padding-right: 4.3rem
+		padding-left: 4.3rem
+	.steps .reduced-width
+		width: 100%
+	.exchange
+		padding-top: 1.7rem
+	.exchange .column
+		padding-top: 2.4rem
+	.exchange .column .column__head
+		padding-top: 0
+	.main:after
+		height: 350px
+	.main-single:after
+		height: 212px
+	.desktop-only
+		display: none !important
+	.settings-tip.mobile-only
+		display: block !important
+	.transcations-process
+		justify-content: space-between
+	.transcations-process .step
+		width: 100%
+		order: 2
+		max-width: 45%
+	.transcations-process .step-info
+		order: 1
+		max-width: 100%
+		width: 100%
+		position: relative
+	.transcations-process .switch
+		order: 3
+	.transcations-process .switch .switch-stats
+		position: relative
+		top: auto
+		right: auto
+		left: auto
+		transform: none
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		align-items: center
+		justify-content: center
+		margin-bottom: 0
+		margin-top: 2.5rem
+		width: 100%
+		order: 2
+	.transcations-process .switch .item
+		margin-top: 0
+		order: 1
+	.transcations-process .switch
+		margin-top: 2rem
+	.transcations-process .switch .currencies
+		flex-wrap: wrap
+	.transcations-process .switch .switch-stats .tape
+		margin: 0 1.5rem
+	.transcations-process .step-info
+		margin-top: 0
+	.hard-table.hz-scroll
+		width: 100%
+		overflow-x: auto;
+		overflow-y: hidden;
+		table
+			width: 1160px
+	.gratitude .img-left
+		position: absolute
+		top: -6rem
+		left: 10rem
+		width: 7.4rem
+		height: 7.4rem
+	.gratitude .img-right
+		position: absolute
+		top: -6rem
+		right: 10rem
+		width: 7.5rem
+	.gratitude
+		margin-top: 8rem
+	.discounts .main__wrapper .content
+		margin-bottom: 7rem
+	.discounts .content__header .sub-title
+		margin-bottom: 4rem
+	.settings-tip
+		max-width: 100%
+		margin-left: 0
+		margin-top: 5px
+@media only screen and (max-width : 991px) and (min-width : 640px)
+	.switch-btn
+		margin: 2.5rem auto 2rem
+	.steps .captcha
+		margin-top: 2.5rem
+	.steps .btn-border
+		min-width: 15rem
+	.form .double .form-group:last-child
+		width: 25%
+	.form .double .form-group:first-child
+		width: 65%
+/* Small Devices, Tablets */
+@media only screen and (max-width : 767px)
+	.inner
+		.items .item__head
+			flex-direction: column
+			align-items: flex-start
+			margin-bottom: 2.5rem
+			&:before
+				margin-bottom: 2rem
+		.blank-self .items .item__content
+			padding-left: 0
+		.list-numeric.drop
+			.item__content
+				padding-left: calc(1.8rem + 34px)
+			.item__head
+				flex-direction: row
+				position: relative
+				padding-right: 4rem
+				&:before
+					margin-bottom: 0
+				&:after
+					top: 7px
+					right: 2rem
+					position: absolute
+				&.opened
+					&:after
+						top: 12px
+		.items
+			.item:last-child
+				.item__head
+					margin-bottom: 1.6rem
+	.settings-tip
+		max-width: 100%
+		text-align: left
+		margin-left: 0
+		margin-top: 2rem
+		br
+			display: none
+	.container
+		width: 100%
+	// footer
+	.footer .container
+		display: block
+	.footer__logo
+		display: block
+		width: 100%
+		text-align: center
+	.advantages .item-icons
+		width: 5.5rem
+		height: 5.5rem
+	.h1
+		font-size: 4rem;
+		line-height: 4.6rem;
+	.h2
+		font-size: 2.8rem
+		line-height: 3.8rem
+	.blank-self, .blank
+		padding: 5rem 3.5rem
+	.advantages
+		padding-bottom: 3.5rem
+	.advantages .item-title
+		font-size: 16px
+		line-height: 22px
+	.inner .items .item
+		margin-bottom: 2.5rem
+		&:last-child
+			margin-bottom: 0
+	.transcations .fixed-head
+		position: relative
+		top: auto
+		right: auto
+		text-align: center
+		.btn
+			margin-top: 3.6rem
+	.contact-page .content__header .sub-title
+		margin-bottom: 5rem
+@media only screen and (max-width : 639px)
+	html
+		font-size: 10px
+	.h1
+		font-size: 3.6rem
+		line-height: 4.2rem
+	.h2
+		font-size: 2.6rem
+		line-height: 3.2rem
+	.settings .title-status
+		font-size: 2rem
+		line-height: 2.7rem
+	.header-btn
+		display: none
+	body.menu-mobile__opened .header-lang
+		font-size: 2rem
+	.header-logo
+		position: absolute
+		left: 50%
+		transform: translateX(-50%)
+		.logo
+			height: 4rem
+	.header .container
+		justify-content: flex-end
+	.header .hamburger
+		margin-left: auto
+		z-index: 1000
+		position: relative
+	.header
+		height: 6rem
+	.header .transform-to-mobile
+		align-items: flex-start
+		align-content: flex-start
+	.transform-to-mobile.sub-opened .header-btn
+		display: none
+	.header .transform-to-mobile .hamburger
+		position: absolute
+		top: 1.8rem
+		right: 2rem
+	.header-lang
+		padding: 1.7rem 2rem
+	body.menu-mobile__opened
+		.header .transform-to-mobile
+			position: fixed
+			top: 0
+			left: 0
+			width: 100%
+			height: 100vh
+			padding: 8.5rem 3rem 0
+			background-color: rgba(0,0,0,0.75)
+			z-index: 999
+			overflow: scroll
+		.header-menu
+			position: relative
+			top: auto
+			right: auto
+			background-color: transparent
+			width: 100%
+			height: auto
+			z-index: 1
+			overflow: hidden
+			display: block
+			padding: 0
+		.header-btn
+			filter: blur(0px)
+			display: -webkit-flex
+			display: -moz-flex
+			display: -ms-flex
+			display: -o-flex
+			display: flex
+			justify-content: center
+			width: 100%
+			text-align: center
+			margin: 1rem auto 0
+			.dropdown-data
+				right: 0
+				left: auto
+				transform: none
+				&:after
+					left: 83%
+	.settings .blank-self .list-numeric .desktop-only
+		display: none
+	.settings .blank-self .list-numeric .mobile-only
+		display: block !important
+	.settings .between-children .form-btn
+		width: 100%
+
+	// FOOTER
+	.footer__content .item
+		flex: none
+		width: auto
+		margin: 0 auto 1rem
+		&:first-child
+			padding-left: 5px
+		&:nth-child(2)
+			padding-right: 0
+		&:last-child
+			width: 100%
+			padding: 0 2.5rem
+			text-align: center
+			margin-top: 0
+	.footer__content
+		flex-wrap: wrap
+	.footer__logo
+		margin-bottom: 3rem
+
+	// INNER
+	.advantages .item-icons
+		width: 4.5rem
+		height: 4.5rem
+	.tape-top
+		border-top-width: 1.8rem
+	.landing-page .magazine .blank-self:first-child
+		margin-top: 5.5rem
+	.blank-self
+		margin-bottom: 5.5rem
+		padding: 3rem
+	.blank
+		padding: 3rem
+	.footer
+		padding-bottom: 1.5rem
+	.magazine
+		padding-bottom: 2rem
+
+	.title-inner
+		font-size: 1.8rem
+		line-height: 2.5rem
+	.hz-scroll
+		overflow-x: auto
+		overflow-y: hidden
+		margin-right: -2.5rem
+		table
+			width: 135%
+	.settings .hz-scroll table
+		width: 670px
+	.invite .col:first-child
+		border-bottom: 1px solid $borderGrey
+		padding-bottom: 4.2rem
+		margin-bottom: 3.2rem
+	.copy-input
+		font-size: 15px
+		line-height: 2rem
+		padding-right: 0
+	.inner .items .item__head:before
+		margin-bottom: 1.2rem
+	.settings .form:last-child
+		margin-bottom: 0
+	.transcations-process
+		padding-top: 1.5rem
+		.input-exchange .input
+			border: none
+			padding: 0
+		.input-exchange
+			&:before, &:after
+				display: none
+		.input-exchange input
+			flex: 1
+		.input-exchange .currency
+			flex: 1
+	.transcations-process .step-to
+		text-align: right
+		.input-exchange input
+			flex: 2
+			text-align: right
+		.input-exchange .currency
+			flex: 1
+	.transcations-process .step-header
+		margin-bottom: 0
+	.transcations-process .switch .currencies
+		display: block
+	.transcations-process .currencies .item
+		margin: 0 auto
+	.transcations-process .switch .switch-stats
+		margin: 1.8rem auto
+	.exchange-info__direction tr
+		flex-wrap: wrap
+	.transcations-info .stages .progress-bar,
+	.transcations-info .review
+		width: 100%
+	.transcations-info .stages .item
+		padding-left: 0
+	.transcations-info .stages .item-descr .p_small
+		font-size: 15px
+		line-height: 22px
+	.transcations-info .review .rating
+		margin: 3rem auto 2.5rem
+	.transcations .content
+		margin-top: 4rem
+	.transcations-process .switch .switch-stats .tape
+		margin: 0
+	.transcations-process .currencies .item
+		width: 100%
+	.transcations-process .switch .switch-stats
+		justify-content: space-between
+	.transcations-info .exchange
+		padding-top: 0
+	.transcations-info .line-sides
+		margin-bottom: 2.5rem
+	.gratitude
+		.h2 
+			white-space: normal
+			font-size: 1.8rem
+		hr
+			margin: 3.2rem auto
+	.gratitude .img-right
+		width: 6.4rem
+		right: 0
+		top: -5rem
+	.gratitude .img-left
+		width: 6.4rem
+		left: 0
+		top: -4rem
+		height: auto
+	.gratitude
+		margin-top: 0
+	.gratitude hr
+		margin-top: 0
+	.discounts:after
+		height: 312px
+	.exchange .process__content
+		padding-left: 4.1rem;
+		padding-right: 4.1rem;
+	.ic-percent
+		background-size: 85%
+@media only screen and (max-width : 539px)
+	.container
+		padding: 0 12px
+	.title-inner
+		font-size: 2rem
+		line-height: 2.7rem
+
+	.inner:after
+		height: 340px
+
+	.inner .list-numeric.drop .item__head
+		padding-right: 3rem
+		&:after
+			right: 1rem
+	.inner
+		.blank-self__head
+			margin-bottom: 2.5rem
+		.list-numeric.drop	.title-inner
+			font-size: 1.7rem
+			line-height: 2.3rem
+		.list-numeric.drop  .item__head:before
+			font-size: 2rem!important
+			line-height: 2.7rem
+		.items .item__head:before
+			min-width: 85px
+		.blank-self .list-numeric .item__head:before
+			min-width: 34px
+	.title-great_smaller
+		font-size: 2.7rem
+		line-height: 3.7rem
+
+	.blank-self.tape-top, .blank.tape-top
+		padding-top: 3rem
+
+	.h1
+		font-size: 3.2rem
+		line-height: 3.8rem
+	.main .content__header .title
+		margin-bottom: 1.7rem
+	.p_large
+		font-size: 1.8rem
+		line-height: 2.6rem
+	.advantages
+		padding-top: 3rem
+		padding-bottom: 1.5rem
+	.advantages .item
+		flex: none
+		width: 100%
+		padding: 3.2rem 0
+		&:first-child
+			padding-top: 0
+	.advantages .item:after
+		width: calc(100% - 50px)
+		height: 1px
+		left: 50%
+		+transX
+		top: auto
+		bottom: 0
+		right: auto
+	.advantages .item-icons
+		width: 6.4rem
+		height: 6.4rem
+	.advantages .item-title
+		font-size: 2rem
+		line-height: 2.7rem
+	.h2
+		font-size: 2.4rem
+		line-height: 2.8rem
+	.magazine .item-info, .magazine .item_reverse .item-info
+		order: 3
+		margin-top: 3rem
+	.magazine .item .blank-self__head, .magazine .item_reverse .blank-self__head
+		order: 2
+		margin-bottom: 0
+		margin-top: 3.5rem
+	.magazine .item-image, .magazine .item_reverse .item-image
+		order: 1
+		margin-left: -3rem;
+		width: calc(100% + 6rem);
+	.footer
+		font-size: 18px
+		line-height: 24px
+	.steps .step hr.full-width,
+	.steps .step:before
+		margin-left: 0
+		width: 100%
+	.main .content__header
+		padding-top: 3.6rem
+	.steps
+		.form-group, .steps .btn
+			margin-top: 3.6rem
+	.steps .btn-border
+		min-width: 14rem
+	.or+.btn
+		margin-top: 2.7rem
+	.steps .btn
+		min-width: 14rem
+	.phone-send .btn, .upload-file .btn
+		margin-top: 0
+	.copy-btn
+		display: none
+	.settings .between-children .form-btn label
+		width: 100%
+		justify-content: center
+	.inner .items .item__head
+		margin-bottom: 0
+	.footer .dropdown-up .dropdown-data
+		left: 0
+		right: auto
+		transform: none
+		&:after
+			left: 25%
+	.footer .dropdown._opened .dropdown-link:after
+		margin-top: 3px
+	.transcations-process
+		padding-top: 3.5rem
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 479px)
+	.tape-top
+		border-top-width: 1.3rem;
+	.footer
+		border-top-width: 1.3rem
+		padding: 3rem 0
+		li
+			a
+				font-size: 1.8rem
+				line-height: 2.4rem
+				padding: .6rem 2.1rem
+				padding-left: 2.7rem
+		.footer__logo
+			margin-bottom: 3.7rem
+		.ic-socials__title
+			font-size: 1.8rem
+			line-height: 2.4rem
+	.footer__content .item
+		padding: 0 2.5rem
+	.h1
+		font-size: 2.8rem
+		line-height: 3.7rem
+	.h2
+		font-size: 2rem
+		line-height: 2.7rem
+	.main .content__header .sub-title p br
+		display: none
+	.footer__content .item:first-child
+		padding-left: 0
+	.landing-page .magazine .blank-self:first-child
+		margin-top: 3.5rem
+	.main .content__header .sub-title
+		margin-bottom: 4.5rem
+	.steps .reduced-width
+		width: 25rem
+	.phone-send .btn, .upload-file .btn
+		min-width: 11rem
+
+	.form .double .form-group:last-child
+		width: 12rem	
+	.settings .form .form-group
+		max-width: 100%
+	.transcations-process .step
+		max-width: 49%
+	.transcations-status
+		left: 12rem
+	.transcations-process .input-exchange .input input
+		font-size: 2.2rem
+	.gratitude .img-right
+		width: 5.4rem
+		top: -4rem
+		right: 1rem
+	.gratitude .img-left
+		left: 1rem
+	.gratitude
+		margin-bottom: 5rem
+	.gratitude-text
+		margin-left: -2rem;
+		width: calc(100% + 4rem);
+	.pre-line
+		white-space: normal
+	.popup
+		max-width: 346px
+		padding: 3rem 2rem
+		.mobile-small
+			font-size: 16px
+			line-height: 20px
+			white-space: normal
+			padding: 0 4rem
+			.link
+				font-size: 16px
+				line-height: 20px
+	.popup .h2
+		font-size: 2.2rem
+		line-height: 2.9rem
+	.popup .btn-wrapper br
+		display: none
+	.popup .btn-wrapper .btn
+		width: 16rem
+		font-size: 2rem
+		line-height: 2.7rem
+		padding-right: 0
+		padding-left: 0
+		text-align: center
+		margin: 0
+	.popup-error .btn-wrapper, .popup-success .btn-wrapper
+		margin: 2.4rem auto
+		.btn
+			width: 20rem
+	.popup .popup-content
+		margin-top: 3.6rem
+	.popup .link
+		word-break: break-word
+		text-align: left
+		display: inline-block;
+		text-decoration: underline;
+		&:after
+			display: none
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 374px)
+	html
+		font-size: 9px
+	body.menu-mobile__opened .header .transform-to-mobile
+		padding: 8.5rem 2rem 0
+	.footer
+		text-align: center
+		.content__one
+			margin-bottom: 3rem
+		li a
+			font-size: 2rem
+			line-height: 2.6rem
+		.content__two
+			margin-bottom: 3rem
+			&:before
+				display: none
+	.blank-self, .blank
+		padding: 2.5rem
+	.magazine .item-image, .magazine .item_reverse .item-image
+		margin-left: -2.5rem
+		width: calc(100% + 5rem)
+	.header-menu .nav-menu li
+		font-size: 2.6rem
+	.steps .btn-border
+		min-width: 12rem
+	.phone-send .btn
+		min-width: 9rem
+	.steps .btn
+		margin-top: 3rem
+	.form-group
+		margin-top: 2.5rem
+	.btn
+		padding: 0.9rem 2.5rem 1rem
+	.currencies .item
+		font-size: 16px
+	.currencies .item-icons
+		width: 5rem
+		height: 5rem
+		right: 1.5rem
+		background-size: 5rem
+	.currencies .item
+		height: 4.5rem
+		line-height: 4.5rem
+	.form-control
+		height: 5rem
+	.phone-send .btn, .upload-file .btn
+		margin-top: 0
+	.footer
+		text-align: center
+		.content__one
+			margin-bottom: 3rem
+		li a
+			font-size: 2rem
+			line-height: 2.6rem
+		.content__two
+			margin-bottom: 3rem
+			&:before
+				display: none
+	.footer
+		&__content
+			flex-wrap: wrap
+		.item
+			width: 100%
+			flex: none
+			text-align: center
+			padding: 0
+			margin-bottom: 3rem
+		.item:nth-child(2)
+			border: none
+			padding-left: 0
+		.item:last-child
+			margin-bottom: 0
+			margin-top: 2rem
+			padding: 0 2.5rem
+			.share
+				width: 100%
+				padding: 0
+				text-align: center
+		.nav-menu>li .dropdown-data
+			position: relative
+			height: 0
+			padding: 0
+			margin: 0 auto
+			left: 0
+			top: 0
+			background-color: transparent
+			transition: padding-top .5s ease, opacity .5s ease, transform .5s ease
+			transform: translateY(30px)
+			box-shadow: none
+			font-family: $serif
+			&:before, &:after
+				display: none
+			& > *
+				height: 0
+				+mt(.25s)
+			li
+				opacity: 0
+				transition: opacity .5s ease
+				font-size: 2rem
+				line-height: 2.7rem
+				position: relative
+				&:last-child
+					&:after
+						content: '...'
+						position: absolute
+						bottom: -30px
+						left: 0
+						width: 100%
+						text-align: center
+						color: #fff
+						font-size: 3.5rem
+						display: block
+						transform: none
+			&:after
+				content: '...'
+				color: #fff
+				font-size: 2rem
+		.dropdown._opened
+			.dropdown-link
+				margin-right: 0
+				font-weight: bold
+			.dropdown-data
+				width: 100%
+				height: auto
+				background-color: transparent
+				padding-top: 0
+				margin-top: 0
+				transform: translateY(0)
+				padding-bottom: 2rem
+				& > *
+					height: auto
+				li
+					opacity: 1
+					a
+						color: #fff
+	.step .p_small br
+		display: none
+	.error-label
+		padding: 0.5rem 1rem 0.5rem 1rem
+		font-size: 13px
+	.checkbox-icons
+		width: 2.8rem
+		height: 2.8rem
+	.checkbox-icons:after
+		height: 8px;
+		width: 17px;
+	.input-exchange .input
+		padding: 1.3rem 2rem
+	.input-exchange .currency
+		font-size: 2.2rem
+	.invite .commission strong
+		display: block
+		width: 100%
+		margin-right: 0
+		margin-bottom: 1rem
+	.hz-scroll
+		margin-right: -2rem
+	.transcations-info .stages .item-title
+		width: 100%
+		margin-bottom: 1.5rem
+	.transcations-process .input-exchange .input input
+		font-size: 2rem
+/*==========  Mobile First  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px)
+	/**/
+
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px)
+	/**/
+
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px)
+	/**/
+
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px)
+	/**/
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px)
+	/**/
+

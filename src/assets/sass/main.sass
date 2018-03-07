@@ -1,0 +1,2198 @@
+@import "fonts"
+@import "libs"
+@import "vars"
+@import "animations"
+
+*
+	-webkit-box-sizing: border-box
+	-moz-box-sizing: border-box
+	box-sizing: border-box
+	&:before, &:after
+		-webkit-box-sizing: border-box
+		-moz-box-sizing: border-box
+		box-sizing: border-box
+
+*::-webkit-input-placeholder
+	color: #666
+	opacity: 1
+
+*:-moz-placeholder
+	color: #666
+	opacity: 1
+
+*::-moz-placeholder
+	color: #666
+	opacity: 1
+
+*:-ms-input-placeholder
+	color: #666
+	opacity: 1
+
+::selection
+	background-color: $colorAccentOne
+	color: #fff
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid
+	color: #666
+body input:required:valid,
+body textarea:required:valid
+	color: #666
+html
+	font-size: 10px
+
+html, body
+	height: 100%
+
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	font-size: 2rem
+	line-height: 2.7rem
+	font-family: $serif
+	overflow-x: hidden
+	color: $main
+	&.menu-mobile__opened
+		overflow: hidden
+
+.effects-blur
+	filter: blur(2px)
+
+
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+
+.text-center
+	text-align: center
+
+
+.container
+	width: 1160px
+	margin: 0 auto
+
+.mobile-only
+	display: none !important
+
+// ELEMENTS
+ul
+	margin: 0
+	padding: 0
+	list-style-type: none
+h1,h2,h3,h4,h4
+	margin: 0
+	font-weight: normal
+*
+	outline: none !important
+a, a:hover, a:focus
+	text-decoration: none
+img
+	max-width: 100%
+	height: auto
+input, textarea, button
+	transition: border-color .25s ease,background-color .25s ease, color .25s ease
+	outline: none
+svg path
+	transition: all .25s ease
+a, span	
+	transition: color .25s ease
+p
+	margin: 0
+img
+	max-width: 100%
+	height: auto
+.btn-wrapper
+	display: block
+	width: 100%
+.ic
+	display: inline-block
+	vertical-align: middle
+	background-repeat: no-repeat
+	background-position: center
+	background-size: contain
+	text-align: center
+	&-success
+		height: 24px;
+		width: 24px;
+		flex-shrink: 0
+		border-radius: 50%
+		background-color: #00AC6C
+		margin-right: 7px
+		position: relative
+		&:after
+			content: ''
+			position: absolute
+			top: 2px;
+			left: 50%;
+			height: 7px;
+			width: 14px;
+			border: 2px solid #fff
+			transform: rotate(-45deg) translateX(-50%)
+			border-width: 0 0 2px 2px
+			margin-left: -2px
+	&-warning
+		height: 24px;
+		width: 24px
+		flex-shrink: 0
+		line-height: 24px
+		text-align: center
+		font-weight: normal
+		font-style: normal
+		border-radius: 16px;
+		background-color: #D01D02
+		color: #fff
+		margin-right: 7px
+	&-fb
+		height: 41.89px
+		width: 41.89px
+		background-image: url(../img/svg/facebook-logo.svg)
+	&-gplus
+		height: 41.89px
+		width: 41.89px
+		background-image: url(../img/svg/google-plus-social-logotype.svg)
+	&-vk
+		height: 41.89px
+		width: 41.89px
+		background-image: url(../img/svg/vk-social-logotype.svg)
+	&-unicash
+		height: 47.52px
+		width: 110px
+		background-image: url(../img/svg/unicash-logotype.svg)
+		border-radius: 0
+	&-percent
+		background:  url(../img/discount.png) no-repeat center
+		height: 100px
+		width: 100px
+		background-size: 100px 100px
+		display: inline-block
+	&-mail
+		background:  url(../img/mail-icon.png) no-repeat center
+		background-size: 26px 20px
+		height: 20px
+		width: 26px
+	&-skype
+		background:  url(../img/skype-icon.png) no-repeat center
+		background-size: 26px 26px
+		height: 26px
+		width: 26px
+	&-fbook
+		background:  url(../img/fb-icon.png) no-repeat center
+		background-size: 26px 26px
+		height: 26px
+		width: 26px
+	&-insta
+		background:  url(../img/insta-icon.png) no-repeat center
+		background-size: 26px 26px
+		height: 26px
+		width: 26px
+	&-phone
+		background:  url(../img/phone-icon.png) no-repeat center
+		background-size: 26px 26px
+		height: 26px
+		width: 26px
+	&-card
+		background:  url(../img/card-icon.png) no-repeat center
+		height: 100px
+		width: 100px
+		background-size: contain
+		display: inline-block
+
+.circle
+	display: inline-block
+	width: 8px
+	height: 8px
+	border-radius: 50%
+	&-green
+		background-color: #7ED321
+	&-red
+		background-color: #D01D02
+
+.accentColor
+	color: $colorAccentOne
+.redColor
+	color: $errorColor
+
+table tr td, table tr th
+	&[align=left], th[align=left]
+		text-align: left
+	&[align=center]
+		text-align: center
+hr 
+	display: block
+	width: 100%
+	border-top: 1px solid $borderGrey
+
+.link
+	font-size: 1.6rem
+	line-height: 2.4rem
+	color: $colorAccentSecondDark
+	position: relative
+	&:after
+		content: ''
+		position: absolute
+		bottom: 0
+		left: 0
+		width: 100%
+		height: 1px
+		background-color: $bgAccentSecondDark
+		transition: opacity .25s ease
+	&:hover
+		color: $colorAccentSecond
+		&:after
+			opacity: 0
+
+
+.logout
+	color: $colorAccentOne
+	padding-left: 25px
+	font-size: 1.7rem
+	line-height: 4rem
+	background-image: url('../img/svg/logout-icon.svg')
+	background-repeat: no-repeat
+	background-position: left calc(50% + -2px)
+	background-size: contain
+	&:hover
+		color: $colorAccentOne
+
+.btn
+	display: inline-block
+	padding: 1.1rem 2.5rem 1.2rem
+	border-radius: 4px
+	color: #fff
+	text-align: center
+	border: 1px solid transparent
+	transition: background-color .25s ease, color .25s ease, border-color .25s ease
+	&:hover, &:focus
+		color: #fff
+	&-border
+		color: $colorAccentOne
+		border: 1px solid #D2A884
+		background-color: rgba(255,255,255,0.06)
+		&:hover
+			background-color: rgba(255,255,255,0.1)
+		&:focus, &:hover
+			color: $colorAccentOne
+	&-accent
+		background-color: $bgAccentOne
+		color: #fff
+		&:focus
+			background-color: $colorAccentOneDark
+	&-accentSecond
+		background-color: $bgAccentSecond
+
+
+
+.is-disabled
+	opacity: .45
+	pointer-events: none
+
+.tt-uppercase
+	text-transform: uppercase
+
+.tape-top
+	border-top: 2rem solid $bgAccentOne
+
+.blank
+	box-shadow: 0 30px 100px 0 rgba(0,0,0,0.08)
+	background-color: #FFFFFF
+	padding: 6.6rem 5.5rem
+	&.tape-top
+		padding-top: 4.6rem
+	&__head
+		display: block
+		width: 100%
+		margin-bottom: 4.2rem
+	&__content
+
+
+.blank-self
+	box-shadow: 0 30px 100px 0 rgba(0,0,0,0.08)
+	background-color: #FFFFFF
+	padding: 6.6rem 5.5rem
+	margin-bottom: 8.5rem
+	&__head
+		display: block
+		width: 100%
+		margin-bottom: 4.2rem
+	&.tape-top
+		padding-top: 4.6rem
+
+
+
+.logo
+	display: inline-block
+	max-width: 17.2rem
+	max-height: 5.2rem
+	img
+		max-height: 100%
+
+.full-width
+	display: block
+	width: 100%
+
+.has-error
+	position: relative
+	input
+		color: $errorColor
+		border-color: $errorColor
+	.error-label
+		display: block
+		background:  $errorColor
+		&:before, &:after
+			background: $errorColor
+
+.has-warn
+	position: relative
+	input
+		color: $warnColor
+		border-color: $warnColor
+	.error-label
+		display: block
+		background:  $warnColor
+		&:before, &:after
+			background: $warnColor
+
+
+.dropdown
+	position: relative
+	&-link
+		position: relative
+		padding-right: 15px
+		&:after
+			content: ''
+			position: absolute
+			top: 50%
+			right: 0
+			display: inline-block
+			width: 7px
+			height: 7px
+			border: 2px solid #fff
+			border-width: 0 0 2px 2px
+			transform: rotate(-45deg) translateY(-50%)
+	&-data
+		position: absolute
+		opacity: 0
+		visibility: hidden
+		top: 100%
+		left: 50%
+		width: 20rem
+		margin-top: 1.5rem
+		background-color: #fff
+		box-shadow: 0 2px 4px 0 rgba(0,0,0,0.14)
+		transform: translateX(-50%)
+		font-family: $sans
+		padding: 3rem
+		padding-top: 2rem
+		padding-bottom: 1.5rem
+		border-radius: 4px
+		transition: opacity .25s ease
+		z-index: 100
+		&:after
+			content: ''
+			position: absolute
+			top: 0
+			left: 50%
+			transform: translateY(-50%) translateX(-50%) rotate(-45deg)
+			background-color: #fff
+			box-shadow: 0 2px 4px 0 rgba(0,0,0,0.14)
+			width: 1rem
+			height: 1rem
+		&:before
+			content: ''
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 1rem
+			background-color: #fff
+			border-radius: 4px 4px 0 0
+			z-index: 1
+		li
+			display: inline-block
+			width: 100%
+			font-size: 1.7rem
+			line-height: 2rem
+			margin-top: .9rem
+			margin-bottom: .9rem
+			a
+				color: $main
+				&:hover
+					color: $colorAccentOne
+		hr
+			display: block
+			width: 100%
+			height: 1px
+			margin: 5px 0
+
+	&._opened
+		.dropdown-link
+			&:after
+				margin-top: 4px
+				border-width: 2px 2px 0 0
+		.dropdown-data
+			opacity: 1
+			visibility: visible
+	&-up
+		.dropdown-data
+			top: auto
+			bottom: 100%
+			margin-top: 0
+			margin-bottom: 1rem
+			padding: 2rem 3rem
+			box-shadow: 0 -1px 15px 0 rgba(0,0,0,.14)
+			&:before
+				top: auto
+				bottom: 0
+				border-radius: 0 0 4px 4px
+			&:after
+				top: auto
+				bottom: 0
+				transform: translateY(50%) translateX(-50%) rotate(-45deg);
+
+.nav-menu
+	> li
+		display: inline-block
+		position: relative
+		> a
+			color: #fff
+			position: relative
+			&.active
+				font-weight: bold
+				&:before
+					content: ''
+					position: absolute
+					height: .6rem
+					width: .6rem
+					border-radius: 25px
+					background-color: #D2A884
+					display: block
+
+
+// HEADER
+.header
+	z-index: 1
+	height: 10rem
+	position: relative
+	&:after
+		content: ""
+		position: absolute
+		top: 0
+		right: 0
+		left: 0
+		bottom: 0
+		background-color: $bgAccentSecond
+		z-index: -1
+	.container
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		align-items: center
+		height: 100%
+		position: relative
+	.transform-to-mobile
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		flex-wrap: wrap
+		flex: 2
+		align-items: center
+		.hamburger
+			display: none
+	&-logo
+		margin-right: 21rem
+	&-menu
+		.nav-menu
+			display: -webkit-flex
+			display: -moz-flex
+			display: -ms-flex
+			display: -o-flex
+			display: flex
+			align-items: center
+			flex-wrap: wrap
+			> li
+				display: inline-block
+				margin-right: 4.8rem
+				position: relative
+				&:last-child
+					margin-right: 0
+				> a
+					color: #fff
+					position: relative
+					&.active
+						font-weight: bold
+						&:before
+							content: ''
+							position: absolute
+							bottom: -.9rem
+							left: 50%
+							height: .6rem
+							width: .6rem
+							border-radius: 25px
+							background-color: #D2A884
+							display: block
+
+				.dropdown
+					&-data
+						width: 22rem
+	&-btn
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		align-items: flex-start
+		flex-wrap: wrap
+		margin-left: auto
+		.btn-accent
+			min-width: 15rem
+		.btn-border
+			margin-right: 1rem
+			color: #fff
+		.dropdown
+			display: -webkit-flex
+			display: -moz-flex
+			display: -ms-flex
+			display: -o-flex
+			display: flex
+	&-lang
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
+		right: -7.5rem
+		.dropdown
+			&-link
+				color: #fff
+			&-data
+				width: 7rem
+				padding: 1.4rem 2.5rem
+	&-mobile
+		display: none
+
+.landing-page
+	max-width: 90rem
+	margin: 3rem auto 0
+	.magazine .blank-self
+		&:first-child
+			margin-top: 8.5rem
+
+.advantages
+	display: -webkit-flex
+	display: -moz-flex
+	display: -ms-flex
+	display: -o-flex
+	display: flex
+	flex-wrap: wrap
+	width: 100%
+	align-items: flex-start
+	padding: 2.5rem 0 4.5rem
+	box-shadow: 0 30px 100px 0 rgba(0,0,0,0.08);
+	.item
+		flex: 1
+		position: relative
+		text-align: center
+		&:after
+			content: ''
+			position: absolute
+			top: -10px
+			right: 0
+			width: 1px
+			height: calc(100% + 30px)
+			background-color: $bgGrey;
+		&:last-child
+			&:after
+				display: none
+		&-icons
+			display: inline-block
+			width: 6.4rem
+			height: 6.4rem
+		&-title
+			display: block
+			width: 100%
+			margin-top: 1.5rem
+			color: $colorAccentSecondDark
+			font-weight: bold
+			span
+				display: inline-block
+				text-decoration: underline
+
+.magazine
+	padding-bottom: 5rem
+	.item
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		flex-wrap: wrap
+		position: relative
+		.h2
+			display: block
+			width: 100%
+		&-info
+			width: 30.3rem
+		&-image
+			position: relative
+			flex: 2
+			img
+				position: absolute
+				max-width: none
+				left: 4.5rem
+		.btn-wrapper
+			margin-top: 5rem
+		&_reverse
+			.h2
+				order: 1
+			.item-info
+				width: 31.4rem
+				order: 3
+				margin-left: auto
+			.item-image
+				order: 2
+				width: calc(100% - 31.4rem)
+				flex: none
+				img
+					left: auto
+					right: 4.5rem
+
+.currencies
+	&.hidden-opened
+		.currencies-hidden
+			display: block
+			animation-name: fadein
+			animation-duration: 1s
+			animation-timing-function: ease
+		.currencies-other .item img
+			transform: scaleY(-1)
+	&-other
+		.item
+			img
+				display: inline-block
+				width: 14px
+				height: 8px
+				position: absolute
+				top: 50%
+				margin-top: -3px
+				right: 2.5rem
+	&-hidden
+		display: none
+		.item:first-child
+			margin-top: 2.5rem
+
+	.item
+		width: 100%
+		height: 5.1rem
+		line-height: 5.1rem
+		background-repeat: no-repeat
+		background-color: $bgAccentSecondDark
+		margin-bottom: 2.5rem
+		position: relative
+		border-radius: 5px
+		color: #fff
+		padding-left: 3rem
+		cursor: pointer
+		&:last-child
+			margin-bottom: 0
+		&:hover
+			background-color: lighten($bgAccentSecond, 3%)
+		&-icons
+			width: 6rem
+			height: 6rem
+			position: absolute
+			top: 50%
+			+transY
+			right: 3rem
+			background-repeat: no-repeat
+			background-position: center
+			background-size: 6rem
+			z-index: 2
+		&-value
+			display: -webkit-flex
+			display: -moz-flex
+			display: -ms-flex
+			display: -o-flex
+			display: flex
+			align-items: center
+			width: calc(100% - 9rem)
+			background-color: transparent
+			color: #fff
+			border-radius: 5px
+			font-weight: normal
+			&__total
+				font-size: 1.6rem
+				line-height: 2.2rem
+				color: $colorBeige
+				margin-left: auto
+				margin-right: 1.7rem
+			span
+				display: inline-block
+				text-overflow: ellipsis
+				overflow: hidden
+				white-space: nowrap
+		&.is-selected
+			background-color: $bgAccentSecondDark
+			&:after
+				content: ''
+				position: absolute
+				top: 50%
+				left: 50%
+				transform: translateX(-50%) translateY(-50%)
+				width: calc(100% - 10px)
+				height: calc(100% - 10px)
+				border: 1px solid #FFFFFF
+				border-radius: 3px
+				z-index: 1
+	&_small
+		.item
+			height: 36px
+			line-height: 36px
+			font-size: 16px
+			line-height: 22px
+			padding-left: 15px
+			margin-bottom: 0
+			background-color: $bgAccentSecond
+			cursor: default
+			&-icons
+				width: 42px
+				height: 42px
+				background-size: 42px
+				right: 15px
+			&-value
+				height: 36px
+				line-height: 36px
+
+.switch
+	margin-right: auto
+	margin-left: auto
+	&-btn
+		height: 33px
+		width: 33px;
+		background: url("../img/svg/switch-btn.svg")
+		background-position: center
+		background-size: 33px
+		margin: 8px auto
+	&-stats
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		width: 100%
+		justify-content: space-between
+		margin-bottom: 7px
+		.tape
+			height: 20px
+			width: 109px
+			border-radius: 10px
+			background-color: $bgGrey
+			color: #fff
+			font-size: 12px
+			line-height: 20px
+			text-align: center
+			font-family: $sans
+			&-accent
+				background-color: $green
+
+
+.page__content
+	min-height: 50vh
+
+// MAIN
+.main
+	position: relative
+	&:after
+		content: ''
+		position: absolute
+		top: 0
+		left: 0
+		height: 580px
+		width: 100%
+		background-color: #EFEFEF
+		z-index: -1
+
+	.content__header
+		padding: 0 1rem
+		padding-top: 4.4rem
+		.title
+			font-weight: bold
+			text-align: center
+			margin-bottom: 3rem
+			&-single
+				margin-bottom: 3.9rem
+		.sub-title
+			font-size: 2rem
+			line-height: 2.8rem
+			text-align: center
+			margin-bottom: 4.5rem
+
+
+.inner
+	&:after
+		height: 355px
+.main-single
+	&:after
+		height: 222px
+.inner-single
+	&:after
+		height: 222px
+.inner-large
+	min-height: 122vh
+	&:after
+		height: 580px
+
+
+.main__wrapper
+	display: flex
+	flex-wrap: wrap
+	.navbars
+		width: 260px
+		flex-shrink: 0
+		margin-top: 14rem
+		margin-right: 1rem
+		.item
+			margin-bottom: 2.7rem
+			.item__title
+				font-weight: bold
+				font-family: $sans
+				font-size: 1.8rem
+				line-height: 2.5rem
+
+				margin-bottom: 1rem
+			.item__nav
+
+				ol
+					padding-left: 1.7rem
+					margin: 0
+					color: $colorAccentSecondDark
+					font-family: $sans
+					font-size: 1.6rem
+					line-height: 2.5rem
+				li
+					color: $colorAccentSecondDark
+					font-family: $sans
+					font-size: 1.6rem
+					line-height: 2.5rem
+					a
+						color: $colorAccentSecondDark
+						font-family: $sans
+						font-size: 1.6rem
+						line-height: 2.5rem
+
+	.content
+		width: 100%
+		flex: 2
+		position: relative
+		.fixed-head
+			position: absolute
+			top: -8.1rem
+			right: 0
+
+.inner
+	.main__wrapper
+		> .content
+			width: calc(100% - 260px)
+
+
+
+.exchange
+	display: flex
+	.process-wr
+		border-left: 5px solid #F8F9FA
+		border-right: 5px solid #F8F9FA
+		height: 100%
+		position: relative
+		&:before
+			position: absolute
+			content: ''
+			height: 35px
+			width: 35px
+			border: 5px solid #F8F9FA
+			border-width: 0 0 1px 1px
+			border-radius: 0 0 0 8px
+			transform:  rotate(-135deg) translate(-50%,0)
+			background-color: white
+			left: -35px
+			top: 165px
+			z-index: 1
+		&:after
+			position: absolute
+			content: ''
+			height: 35px
+			width: 35px
+			border: 5px solid #F8F9FA
+			border-width: 0 0 1px 1px
+			border-radius: 0 0 0 8px
+			transform:  rotate(45deg) translate(+50%,0)
+			background-color: white
+			right: -10px
+			top: 165px
+			z-index: 1
+	.process
+		background-color: #F8F9FA
+		height: 100%
+		border-left: 1px solid $borderGrey
+		border-right: 1px solid $borderGrey
+		position: relative
+		&:before
+			position: absolute
+			content: ''
+			height: 35px
+			width: 35px
+			border: 1px solid $borderGrey
+			border-width: 0 0 1px 1px
+			border-radius: 0 0 0 8px
+			transform:  rotate(-135deg) translate(-50%,0)
+			background-color: #F8F9FA
+			left: -30px
+			top: 165px
+
+		&:after
+			position: absolute
+			content: ''
+			height: 35px
+			width: 35px
+			border: 1px solid $borderGrey
+			border-width: 0 0 1px 1px
+			transform:  rotate(45deg) translate(+50%,0)
+			background-color: #F8F9FA
+			right: -5px
+			top: 165px
+			border-radius: 0 0 0 8px
+	.column
+		padding-top: 2.7rem
+		padding-left: 4rem
+		padding-right: 4rem
+		.column__head
+			padding-top: 1.9rem
+			margin-bottom: 1.8rem
+		&:first-child
+			width: 100%
+		&:nth-child(2)
+			overflow: hidden
+			min-width: 39.7rem
+			width: 39.7rem
+			padding-left: 0
+			padding-right: 0
+			flex-shrink: 0
+
+		&:last-child
+			width: 100%
+		.subblock
+			margin-bottom: 3.5rem
+			&:last-child
+				margin-bottom: 0
+			&-title
+				margin-bottom: 2.2rem
+		.form-group.has-error
+			margin-bottom: 1rem
+			& + .tip-link
+				margin-top: 1rem
+
+	.process__content
+		position: relative
+		z-index: 1
+		padding-left: 4rem
+		padding-right: 4rem
+
+	&-info
+		&__direction, &__descr
+			span
+				font-size: 1.6rem
+				line-height: 2rem
+		.line-sides
+			font-family: $playfair
+		&__direction
+			width: 100%
+			tr
+				display: -webkit-flex
+				display: -moz-flex
+				display: -ms-flex
+				display: -o-flex
+				display: flex
+				width: 100%
+				&:last-child
+					td
+						padding-bottom: 0
+				td
+					padding-bottom: 1.6rem
+					text-align: left
+					&:first-child
+						margin-right: auto
+					span
+						display: block
+						width: 100%
+					b
+						font-weight: normal
+					strong
+						font-weight: bold
+					&[align=left]
+						text-align: left
+					&[align=right]
+						text-align: right
+		&__descr
+			.item
+				display: block
+				width: 100%
+				margin-bottom: 1.6rem
+				span
+					display: block
+					width: 100%
+				&:last-child
+					margin-bottom: 0
+
+.gratitude
+	width: 100%
+	margin: -1.5rem auto 3.5rem
+	position: relative
+	.img-left
+		display: inline-block
+		vertical-align: middle
+		width: 13.5rem
+		height: 13.5rem
+		margin-right: 3rem
+		flex-shrink: 0
+	.img-right
+		display: inline-block
+		vertical-align: middle
+		margin-left: 4.5rem
+		flex-shrink: 0
+		width: 11rem
+		height: auto
+	&-text
+		display: inline-block
+		vertical-align: top
+		max-width: 59rem
+		.h2
+			display: inline-block
+			vertical-align: middle
+			flex-shrink: 0
+		hr
+			margin-top: 0
+
+.no-padding
+	padding: 0 !important
+
+
+.hard-table
+	margin-bottom: 3.2rem
+	table
+		width: 100%
+		font-family: $sans
+		thead
+			th
+				padding: 2.9rem 2.4rem 2.1rem
+				color: #fff
+				background-color: $bgAccentSecondDark
+				font-size: 1.8rem
+				line-height: 2.3rem
+				border: 1px solid #3A4D7D;
+				font-weight: normal
+		tbody
+			.tr-content
+				display: none
+				td
+					vertical-align: top
+					padding: 1.9rem 3.6rem 3rem 2.5rem
+					border: none
+				.tr-review
+					cursor: default
+					&__name
+						display: block
+						width: 100%
+					&__text
+						position: relative
+						display: inline-block
+						margin: 3rem auto 0
+						.quote
+							max-width: 80rem
+							padding-left: 6.8rem
+							z-index: 3
+							&:before
+								left: 3.5rem
+					&__autor
+						font-size: 1.6rem
+						line-height: 2.4rem
+						text-align: right
+					.rating
+						width: auto
+						position: absolute
+						top: -2.5rem
+						right: -6rem
+						margin: 0
+						opacity: .3
+						.star
+							margin-right: 5px
+							&:first-child
+								margin-right: 0
+							img, svg
+								width: 45px
+								height: 43px
+
+			.tr-default
+
+				&.is-opened
+					td
+						background-color: #E3E7EA
+					& + .tr-content
+						td
+							border-top: 1px solid $borderGrey
+			tr
+				cursor: pointer
+				&:nth-last-child(2) td
+					border-bottom: none
+				&:nth-child(4n - 1) td
+					background-color: #F8F9FA
+				
+			td
+				border-width: 1px
+				border-style: solid
+				border-left-color: rgba(27,44,88,0.5)
+				border-right-color: rgba(27,44,88,0.5)
+				border-top-color: $borderGrey
+				border-bottom-color: $borderGrey
+				padding: 1rem 2.4rem
+				font-size: 1.7rem
+				line-height: 2.2rem
+				white-space: nowrap
+				&:first-child
+					border-left: none
+				&:last-child
+					border-right: none
+				&.transfer-name
+					padding-right: .5rem
+				.transfer-id
+					font-size: 12px
+					line-height: 15px
+				.transfer-status
+					display: -webkit-flex
+					display: -moz-flex
+					display: -ms-flex
+					display: -o-flex
+					display: flex
+					align-items: center
+					font-size: 12px
+					line-height: 15px
+					.circle
+						margin-right: 11px
+					.loader
+						margin-right: 11px;
+						margin-left: -4px;
+				.rating .star
+					cursor: default
+		.currency
+			display: -webkit-flex
+			display: -moz-flex
+			display: -ms-flex
+			display: -o-flex
+			display: flex
+			align-items: center
+			&-name
+				margin-right: auto
+			&-icons
+				width: 22px
+				height: 22px
+				flex-shrink: 0
+				background-size: 22px
+	&.square-table
+		margin: 0 auto
+		table
+			display: block
+			width: 100%
+			tr
+				display: -webkit-flex
+				display: -moz-flex
+				display: -ms-flex
+				display: -o-flex
+				display: flex
+				th, td
+					display: -webkit-flex
+					display: -moz-flex
+					display: -ms-flex
+					display: -o-flex
+					display: flex
+					align-items: center
+					justify-content: center
+					width: 6.2rem
+					height: 6.2rem
+					padding: 0
+					border: none
+					border-bottom: 1px solid #B7BECE;
+					border-right: 1px solid #B7BECE;
+					cursor: default
+					&:first-child
+						width: 12.4rem
+			tbody
+				tr:last-child
+					td
+						border-top: 1px solid #B7BECE;
+					td:first-child
+						border-top-color: #1B2C58
+				tr:first-child
+					margin-top: -2px
+					td:first-child
+						border-top: 1px solid #1B2C58
+				tr td
+					font-size: 1.8rem
+					line-height: 2.2rem
+					background-color: #F8F9FA
+					&:first-child
+						background-color: $bgAccentSecond
+						color: #fff
+						border-bottom-color: #1B2C58
+						justify-content: flex-start;
+						padding-left: 1.5rem
+					.currency
+						&-icons
+							margin-right: 7px
+			thead
+				tr
+					th
+						display: -webkit-flex
+						display: -moz-flex
+						display: -ms-flex
+						display: -o-flex
+						display: flex
+						justify-content: center
+						align-items: flex-end
+						padding-bottom: 1.5rem
+						height: 12.5rem
+						position: relative
+						border-right: 1px solid #3A4D7D
+						&:first-child
+							border-bottom-color: #1B2C58
+						.currency
+							-webkit-writing-mode: vertical-rl;
+							writing-mode: tb-rl;
+							transform: rotate(180deg);
+							&-icons
+								margin-bottom: 7px
+							&-name
+								margin-right: -2px
+						
+						._direction
+							&:before
+								content: ''
+								position: absolute
+								bottom: 0
+								left: 0
+								width: 0;
+								height: 0;
+								border-style: solid;
+								border-width: 12.25rem 0 0 12.25rem
+								border-color: transparent transparent transparent $bgAccentSecond
+							&:after
+								content: ''
+								position: absolute
+								top: 0
+								left: 0
+								width: 0;
+								height: 0;
+								border-style: solid;
+								border-width: 0 12.25rem 12.25rem 0
+								border-color: transparent $bgAccentSecondDark transparent transparent;
+							&-send
+								z-index: 2
+								position: relative
+								text-align: center
+								position: absolute
+								bottom: 9px
+								left: 1.6rem
+							&-receive
+								z-index: 2
+								position: relative
+								position: absolute
+								top: 2rem
+								right: 3px
+								-webkit-writing-mode: vertical-rl;
+								writing-mode: tb-rl;
+								transform: rotate(180deg);
+
+.discounts, .landing
+	&:after
+		height: 350px		
+.discounts						
+	.content__header .sub-title
+		margin-bottom: 7.8rem
+	.main__wrapper .content
+		max-width: 74.4rem
+		margin: 0 auto 15rem
+	.hard-table.hz-scroll table
+		width: 74.4rem
+  
+.quote
+	display: block
+	width: 100%
+	font-size: 1.7rem
+	line-height: 2.8rem
+	font-style: italic
+	font-family: $sans
+	position: relative
+	white-space: normal
+	&:before, &:after
+		display: inline-block
+		font-size: 7.2rem
+		line-height: 16px
+		height: 16px
+		position: absolute
+	&:before
+		content: '„'
+		left: -9px
+		bottom: 2rem
+	&:after
+		content: '“'
+		right: -2rem
+		top: 1.5rem
+
+.steps
+	.reduced-width
+		width: 25rem
+		margin: 0 auto
+	.step
+		padding-top: 2.9rem
+		margin-bottom: 3rem
+		position: relative
+		&:before
+			content: "";
+			position: absolute
+			display: block
+			top: 0
+			left: 0
+			height: 1px;
+			border-bottom: 1px solid $borderGrey
+			margin-left: -2.3rem
+			width: calc(100% + 4.6rem)
+		.step-title
+			margin-bottom: 1.8rem
+		hr
+			display: block
+			margin: 3.2rem 0
+			&.full-width
+				margin-top: 1.6rem
+				margin-bottom: -1.5rem
+				margin-left: -2.3rem
+				width: calc(100% + 4.6rem)
+	.btn
+		min-width: 15rem
+		margin-top: 3.6rem
+		padding-left: 0
+		padding-right: 0
+		&-border
+			min-width: 14rem
+	.captcha
+		display: block
+		margin-top: 4.5rem
+		text-align: center
+	.qr-code
+		display: block
+		margin: 2rem auto
+	.btn-wrapper
+		margin-top: 3.2rem
+		.btn
+			margin-top: 0
+			margin-bottom: 1rem
+	.switch
+		display: inline-block
+		width: 100%
+		margin: 1.8rem auto
+	.tip-link
+		margin: 1rem 0
+		& + .form
+			margin-top: -1.5rem
+	.form-btn .btn
+		max-width: 15rem
+
+.form
+	.double
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		align-items: flex-start
+		flex-wrap: wrap
+		.form-group
+			&:first-child
+				width: 18rem
+				margin-right: auto
+			&:last-child
+				width: 10.3rem
+	&-group
+		display: block
+		width: 100%
+		margin-top: 3.6rem
+		position: relative
+	&-title
+		display: block
+		width: 100%
+		font-size: 2rem
+		line-height: 2.6rem
+		font-family: $sans
+		margin-bottom: 1rem
+	&-control
+		height: 5.1rem
+		width: 100%
+		border: 1px solid $borderGrey
+		border-radius: 4px
+		background-color: #FFFFFF
+		padding: 0 2.4rem
+		position: relative
+		z-index: 5
+	textarea.form-control
+		min-height: 13.8rem
+		width: 100%
+		border: 1px solid $borderGrey
+		border-radius: 4px
+		background-color: #F9F9F9
+		resize: vertical
+		+placeholder-color($borderGrey)
+		padding: 1.6rem
+		font-weight: normal
+		font-family: $sans
+	&-btn
+		label
+			display: flex
+			height: 100%
+			&.text-center
+				justify-content: center
+		input[type='submit']
+			display: none
+		&.small-indent
+			.btn
+				margin-top: 1.5rem
+
+	.has-error .error-label
+		top: 100%
+	.checkbox
+		margin-top: 3rem
+	.btn
+		margin-top: 3.6rem
+	.error-label
+		position: relative
+
+.tip-list
+	max-width: 25.7rem
+	margin: 3rem auto 0
+	counter-reset: counter
+	font-size: 1.7rem
+	line-height: 3rem
+	li
+		&:before
+			display: inline-block
+			counter-increment: counter
+			content: counter(counter)"."
+			font-weight: bold
+			margin-right: 4px
+
+.phone-send
+	display: block
+	height: auto
+	position: relative
+	input
+		padding-right: 10.5rem
+	.btn
+		position: absolute
+		top: 0
+		right: 0
+		width: 9.5rem
+		min-width: auto
+		height: 100%
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		align-items: center
+		justify-content: center
+		font-size: 1.6rem
+		line-height: 2.2rem
+		margin: 0
+		padding: 0
+		z-index: 5
+
+.upload-file
+	display: -webkit-flex
+	display: -moz-flex
+	display: -ms-flex
+	display: -o-flex
+	display: flex
+	align-items: center
+	height: 5.1rem;
+	width: 100%;
+	border: 1px solid #b7bece;
+	border-right-color: transparent
+	border-radius: 4px;
+	background-color: #fff;
+	position: relative;
+	z-index: 5;
+	input
+		display: none
+	&__name
+		padding-left: 2.4rem
+		padding-right: 10.5rem
+		overflow: hidden
+		text-overflow: ellipsis
+		white-space: nowrap
+	.btn
+		position: absolute
+		top: 0
+		right: -2px
+		min-width: auto
+		height: 100%
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		align-items: center
+		justify-content: center
+		font-size: 1.6rem
+		line-height: 2.2rem
+		margin: 0
+		padding: 0 1.7rem
+		z-index: 5
+
+
+.between-children
+	display: -webkit-flex
+	display: -moz-flex
+	display: -ms-flex
+	display: -o-flex
+	display: flex
+	flex-wrap: wrap
+	align-items: flex-start
+	justify-content: space-between
+
+
+.line-sides
+	width: 100%
+	position: relative;
+	overflow: hidden;
+	white-space: nowrap;
+	text-align: center
+	margin: 3.2rem 0
+	&:before, &:after
+		content: "";
+		position: relative;
+		display: inline-block;
+		width: 50%;
+		height: 1px;
+		vertical-align: middle;
+		background-clip: content-box;
+		border-bottom: 1px solid $borderGrey
+	&:before
+		left: -15px
+		margin: 0 0 0 -50%
+	&:after
+		left: 15px
+		margin: 0 -50% 0 0
+
+.or
+	font-family: $playfair
+	margin: 1.8rem auto 2.7rem
+	& + .btn
+		margin-top: 2.7rem
+
+.dots
+	display: -webkit-flex
+	display: -moz-flex
+	display: -ms-flex
+	display: -o-flex
+	display: flex
+	align-items: center
+	margin-top: 3rem
+	padding: 0 15px
+	justify-content: center
+	position: relative
+	height: 20px
+	margin-left: -2.3rem
+	width: calc(100% + 4.6rem)
+	.dot
+		display: inline-block
+		height: 10px;
+		width: 10px;
+		border-radius: 50%
+		margin-right: 1rem
+		background-color: $bgGrey
+		z-index: 2
+		&:last-child
+			margin-right: 0
+		&.is-active
+			position: relative
+			background-color: $bgAccentOne
+			&:before
+				content: ''
+				position: absolute
+				top: 50%
+				left: 50%
+				transform: translateX(-50%) translateY(-50%)
+				height: 17px
+				width: 17px
+				border-radius: 50%
+				border: 1px solid $dotsBorder
+
+.input-exchange
+	display: flex
+	flex-wrap: wrap
+	position: relative
+	.input
+		display: flex
+		width: 100%
+		align-items: center
+		background: white
+		border-radius: 4px
+		z-index: 1
+		padding: 1.9rem 2.4rem
+		input
+			background: transparent
+	&:before
+		content: ''
+		position: absolute
+		top: 50%
+		left: 50%
+		transform: translateX(-50%) translateY(-50%)
+		width: calc(100% - 10px)
+		height: calc(100% - 10px)
+		border: 1px solid #BAC1D0
+		border-radius: 3px
+		z-index: 2
+	&:after
+		content: ''
+		position: absolute
+		top: 50%
+		left: 50%
+		transform: translateX(-50%) translateY(-50%)
+		width: 100%
+		height: 100%
+		border: 1px solid $bgAccentSecondDark
+		border-radius: 4px
+		z-index: 2
+
+	.currency
+		font-size: 2.4rem
+		font-weight: bold
+		line-height: 3.2rem
+		flex-shrink: 0
+
+	input
+		width: 100%
+		font-size: 2.4rem
+		line-height: 3.2rem
+		border: none
+		padding-right: 0
+
+
+	&.has-error
+		color: $errorColor
+		margin-bottom: 4rem
+		&:before, &:after
+			border-color: $errorColor
+		.error-label
+			display: flex
+
+
+
+	&.has-warn
+		color: #D2A884
+		background-color: $warnColor
+		&:before, &:after
+			border-color: $warnColor
+		.error-label
+			display: flex
+			background:  $warnColor
+			&:before, &:after
+				background: $warnColor
+
+.error-label
+	display: none
+	position: absolute
+	left: 50%
+	width: 100%
+	padding: .9rem 1rem .6rem 1rem
+	border-radius: 0 0 4px 4px
+	transform: translate(-50%,0)
+	color: #FFFFFF
+	font-family: $sans
+	font-size: 14px
+	font-style: italic
+	font-weight: bold
+	line-height: 19px
+	top: calc(100% - 1px)
+	&:before
+		content: ""
+		position: absolute
+		top: -3px
+		left: 0
+		background: transparent
+		width: 5px
+		height: 5px
+	&:after
+		content: ""
+		position: absolute
+		top: -3px
+		right: 0
+		background: transparent
+		width: 5px
+		height: 5px
+	a
+		color: #FFFFFF
+		font-family: $sans
+		font-size: 14px
+		font-style: italic
+		font-weight: bold
+		line-height: 19px
+		text-decoration: underline
+		text-transform: uppercase
+		margin-left: auto
+		flex-shrink: 0
+		margin-left: 1rem
+
+.checkbox
+	display: -webkit-flex
+	display: -moz-flex
+	display: -ms-flex
+	display: -o-flex
+	display: flex
+	align-items: center
+	input[type='checkbox']
+		display: none
+		&:checked + .checkbox-icons:after
+			opacity: 1
+			transform: rotate(-45deg) translateX(-50%) scale(1)
+	&-icons
+		display: inline-block
+		height: 3.2rem
+		width: 3.2rem
+		border: 1px solid $borderGrey
+		border-radius: 3px
+		background-color: #FFFFFF
+		flex-shrink: 0
+		position: relative
+		cursor: pointer
+		&:after
+			content: ''
+			position: absolute
+			top: 0
+			left: 50%
+			height: 10px
+			width: 20px
+			border: 2px solid $colorAccentSecondDark
+			transform: rotate(-45deg) translateX(-50%) scale(0)
+			border-width: 0 0 2px 2px
+			margin-left: -2px
+			opacity: 0
+			transition: opacity .15s ease, transform .15s ease
+		&:hover
+			border-color: darken($borderGrey, 3%)
+	&-title
+		font-size: 1.6rem
+		line-height: 2.4rem
+		margin-left: 1.5rem
+		cursor: pointer
+		font-family: $sans
+	&.has-error
+		color: $errorColor
+		.checkbox-icons
+			border-color: $errorColor
+			&:after
+				border-color: $errorColor
+
+.subblock
+	&-content
+		.btns
+			display: flex
+			border: 1px solid $borderGrey
+			border-radius: 4px
+			overflow: hidden
+			.item
+				flex: 1
+				transition: background-color .2s linear
+				border-left: 1px solid $borderGrey
+				font-size: 2rem
+				width: 100%
+				line-height: 2.7rem
+				text-align: center
+				padding: 1.2rem 0
+				position: relative
+				cursor: pointer
+				display: flex
+				align-items: center
+				justify-content: center
+				&.is-selected
+					background-color: $colorAccentSecond
+					color: #ffffff
+					border-left: 1px solid transparent
+					& + .item
+						border-left: 1px solid transparent
+					&:hover
+						background-color: $colorAccentSecond
+						color: #ffffff
+
+				&:hover
+					background: lighten($colorAccentSecond, 75%)
+				&:first-child
+					border-left: 1px solid transparent
+
+.settings
+	.form
+		margin-bottom: 3.6rem
+		.form-group
+			max-width: 30rem
+			&.small-indent
+				margin-top: 1rem
+	.between-children
+		.form-btn
+			margin-top: auto
+	&-tip
+		font-weight: normal
+		margin-left: auto
+		max-width: 45%
+	.blank-self .items .item
+		position: relative
+
+.transcations
+	.blank
+		position: relative
+		min-height: 94rem
+	&-status
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		align-items: center
+		justify-content: center
+		color: #fff
+		height: 7.8rem
+		width: 26rem
+		font-size: 2.2rem
+		line-height: 2.9rem
+		font-weight: bold
+		border-radius: 3px;
+		background-color: $bgAccentSecond
+		background-image: url("data:image/svg+xml;utf8,<svg width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' style='fill: none; stroke: #fff; stroke-width: 7; stroke-dasharray: 10 8'/></svg>");
+		position: absolute
+		top: -8.5rem
+		left: 7rem
+		transform: rotate(-15deg) translateX(-50%)
+		z-index: 5
+		&__success
+			background-color: #008B57
+		&__error
+			background-color: $errorColor
+	&-process
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		align-items: flex-start
+		flex-wrap: wrap
+		width: 100%
+		.step
+			width: 100%
+			max-width: 29rem
+			&-header
+				margin-bottom: 1.8rem
+		.step-info
+			width: 100%
+			max-width: 30rem
+			margin: 0 auto
+			margin-top: -2.4rem
+			.line-sides
+				margin: 0
+				margin-bottom: 2.3rem
+			&__title
+				display: block
+				width: 100%
+				text-align: center
+				font-size: 2.4rem
+				line-height: 3.2rem
+			&__direction
+				margin: 2.2rem 0
+				text-align: center
+		.switch
+			position: relative
+			width: 100%
+			.currencies
+				display: -webkit-flex
+				display: -moz-flex
+				display: -ms-flex
+				display: -o-flex
+				display: flex
+				justify-content: space-between
+				width: 100%
+			.item, .switch-stats
+				width: 25rem
+			.switch-stats
+				position: absolute
+				top: 0
+				left: 50%
+				+transX
+			.item
+				margin-top: 1.6rem
+	&-info
+		max-width: 60rem
+		margin: 0 auto
+		.stages
+			margin-bottom: 3.5rem
+			.progress-bar
+				width: 39.1rem
+			.item
+				display: -webkit-flex
+				display: -moz-flex
+				display: -ms-flex
+				display: -o-flex
+				display: flex
+				flex-wrap: wrap
+				align-items: flex-start
+				padding-left: 10.5rem
+				margin-bottom: 2.5rem
+				&:last-child
+					margin-bottom: 0
+				&-title
+					margin-right: .5rem
+					font-weight: bold
+					width: 12rem
+					flex-shrink: 0
+					overflow: hidden
+					text-overflow: ellipsis
+					white-space: nowrap
+				&-descr
+					display: -webkit-flex
+					display: -moz-flex
+					display: -ms-flex
+					display: -o-flex
+					display: flex
+					align-items: flex-start
+					.loader
+						margin-top: 5px
+						margin-left: 3px
+					small
+						display: block
+						width: 100%
+						font-size: 12px
+						line-height: 12px
+		.review
+			width: 39rem
+			margin: 0 auto
+			.rating
+				margin: 3.5rem auto 3rem
+				.star
+					margin-right: 5px
+					&:first-child
+						margin-right: 0
+					img, svg
+						height: 4.161rem
+						width: 4.375rem
+			.form
+				&-group
+					margin-top: 0
+				&-title
+					font-size: 16px
+					line-height: 2.4rem
+					margin-bottom: 1rem
+				&-control
+					font-size: 15px
+					line-height: 2.4rem
+.rating
+	display: -webkit-flex
+	display: -moz-flex
+	display: -ms-flex
+	display: -o-flex
+	display: flex
+	align-items: center
+	justify-content: center
+	width: 100%
+	direction: rtl;
+	.star
+		display: inline-block
+		vertical-align: top
+		cursor: pointer
+		&:hover
+			svg g, svg path
+				fill: $bgAccentOne !important
+			& ~ .star
+				svg g, svg path
+					fill: $bgAccentOne !important
+		&.is-active
+			svg g, svg path
+				fill: $bgAccentOne !important
+			&:hover
+				svg g, svg path
+					fill: lighten($bgAccentOne, 3%) !important
+	&-static
+		.star
+			pointer-events: none
+.invite
+	display: -webkit-flex
+	display: -moz-flex
+	display: -ms-flex
+	display: -o-flex
+	display: flex
+	align-items: flex-start
+	flex-wrap: wrap
+	.col
+		width: 50%
+		padding: 0 1.5rem 0 5.5rem
+		&:first-child
+			border-right: 1px solid $borderGrey
+			padding-left: 0
+			padding-right: 6.4rem
+	hr
+		display: block
+		margin: 4.2rem 0
+		border-top: 1px solid $borderGrey
+	p
+		margin: 3rem 0
+	.title-inner
+		margin-top: 1.2rem
+	.commission
+		display: -webkit-flex
+		display: -moz-flex
+		display: -ms-flex
+		display: -o-flex
+		display: flex
+		align-items: center
+		flex-wrap: wrap
+		margin: 2.2rem 0
+		strong
+			margin-right: 3.2rem
+	.copy
+		margin-top: 1.6rem
+
+.default-table
+	width: 100%
+	margin-top: 2rem
+	font-size: 1.6rem
+	line-height: 2.4rem
+	font-family: $sans
+	thead
+		tr th
+			font-weight: bold
+			text-align: left
+	td, td
+		padding: 2px 0
+
+.copy
+	position: relative
+	&-input
+		display: inline-block
+		height: 5.1rem
+		width: 100%
+		border: 1px solid $bgAccentSecondDark
+		border-radius: 4px;
+		background-color: #E6EAF5
+		padding: 0 2.4rem
+		padding-right: calc(7.5rem)
+		font-size: 1.7rem
+		line-height: 2.3rem
+		text-overflow: ellipsis
+		overflow: hidden
+		white-space: nowrap
+	&-btn
+		position: absolute
+		top: 0
+		right: 0
+		display: block
+		height: 5.1rem
+		line-height: 5rem
+		width: 7.3rem
+		background-color: $bgAccentSecond
+		border: none
+		outline: none
+		color: #fff
+		text-align: center
+		padding: 0
+		border-radius: 0 4px 4px 0
+		&:hover
+			color: #fff
+
+
+
+.blank-self
+	.items
+		.item
+			&__head
+				margin-bottom: 1.6rem
+				display: flex
+				align-items: center
+				&:before
+					content: attr(dataDate)
+					position: relative
+					height: 34px
+					min-width: 100px
+					background-color: #2F4171
+					padding: 10px 8px 9px 11px
+					font-size: 12px
+					color: white
+					display: flex
+					align-items: center
+					justify-content: center
+					margin-right: 2.5rem
+					font-weight: bold
+					line-height: 15px
+					border-radius: 15px
+			&__content
+				margin-bottom: 4rem
+				padding-left: 10.8rem
+				padding-left: calc(2.5rem + 100px)
+
+	.drop
+		.item__head
+			cursor: pointer
+			&:after
+				content: ''
+				position: relative
+				width: 10px
+				height: 10px
+				border: 2px solid $warnColor
+				border-width: 0 0 2px 2px
+				transform: rotate(-45deg)
+				margin-left: 1rem
+				margin-bottom: .5rem
+				transition: all .2s linear
+				flex-shrink: 0
+		.opened
+			&:after
+				transform: rotate(135deg)
+				margin-bottom: -.5rem
+
+	.list-numeric
+		counter-reset: heading
+		.item__content
+			padding-left: calc(1.8rem + 34px)
+		.item__head
+			display: flex
+			align-items: center
+			&:before
+				counter-increment: heading /* Указываем идентификатор счетчика */
+				content:  counter(heading)  /* Выводим текст перед содержимым тега <h2> */
+				position: relative
+				border-radius: 50%
+				margin-right: 1.8rem
+				padding: 0
+				min-width: 34px
+				@extend .title-inner
+
+
+.white-space
+	white-space: pre-wrap
+
+.pre-line
+	white-space: pre-line
+
+
+
+@import "prepaid_card"
+@import "contacts"
+@import "discount"
+@import "popup_and_hamburger"
+@import "footer"
+@import "paginator"
+@import "progress-bar"
+@import "media" // Всегда в конце

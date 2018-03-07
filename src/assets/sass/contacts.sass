@@ -1,0 +1,143 @@
+@import "vars"
+
+
+.contact-page
+  .banner
+    padding-top: 3.7rem
+    padding-bottom: 0
+    .blank-self__head
+      margin-bottom: -2rem
+    &-img
+      transform: translate(0,15%)
+      background: url("../img/banner.png") no-repeat top center
+      background-size: 100%
+      min-height: 35.2rem
+      background-size: cover
+  .content__header
+    .sub-title
+      margin-bottom: 9.5rem
+  .blank-self
+    margin-bottom: 16.7rem
+
+  #map
+    //height: 100%
+    width: 100%
+    margin-top: -11rem
+    height: 137%
+
+  .item
+    margin-bottom: 1.8rem
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    &__icon
+      margin-right: 2.2rem
+
+
+
+
+  .contacts
+    display: flex
+    &__map
+      flex: 6
+      min-width: 530px
+      margin-right: 7.5rem
+    &__info
+      flex: 6
+
+
+.colorAccentOne
+  color: $colorAccentOne
+
+.tac
+  text-align: center
+
+
+
+
+
+/*==========  Desktop First  ==========*/
+
+@media only screen and (max-width : 1200px)
+  .contact-page .banner .blank-self__head
+    margin-bottom: -1rem
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1100px)
+  .contact-page .contacts__map
+    margin-right: 5.5rem
+
+
+
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 991px)
+  .contact-page
+    .contacts
+      flex-direction: column
+    .blank-self
+      position: relative
+      &__map
+        order: 2
+
+      &__info
+        order: 1
+    #map
+      min-height: 50rem
+      margin-top: 0
+
+    .contacts__map
+      position: absolute
+      top: 100%
+      left: 0
+      width: 100%
+      min-width: 100%
+      margin-right: 0
+    .banner
+      margin-top: 66.7rem
+  .contact-page .banner .blank-self__head
+    margin-bottom: 0
+
+
+
+@media only screen and (max-width : 767px)
+  .contact-page .banner
+    padding-left: 0
+    padding-right: 0
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 639px)
+  .contact-page
+    #map
+      min-height: 40rem
+    .banner
+      margin-top: 50rem
+  .contact-page .banner-img
+    min-height: 28rem
+
+@media only screen and (max-width : 539px)
+  .contact-page .banner-img
+    min-height: 26rem
+  .contact-page .banner
+    margin-left: -12px
+    margin-right: -12px
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 479px)
+  .contact-page .banner-img
+    min-height: 24rem
+    background-position-x: -187px
+  .contact-page #map
+    min-height: 27rem
+  .contact-page .banner
+    margin-top: 34rem
+
+
+
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 374px)
+  .contact-page .banner-img
+    min-height: 23rem
+    background-position-x: -163px

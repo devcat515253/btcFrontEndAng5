@@ -1,0 +1,204 @@
+@import "vars"
+
+
+.ovals
+  position: absolute
+  top: 40%
+  left: 50%
+  +center()
+  .oval
+    min-height: 211px
+    min-width: 211px
+    background-color: rgba(183,190,206,0.2)
+    box-shadow: 0 2px 110px 0 rgba(27,44,88,0.28)
+    border-radius: 50%
+    padding: 7.5rem
+    &:not(.no-opacity)
+      opacity: .7
+  .no-opacity
+    opacity: 1
+    background-color: rgba(183,190,206,0.2)
+
+
+
+
+.prepaid_card-page
+  text-align: center
+  .blank-self__head
+    text-align: center
+    position: relative
+    z-index: 1
+  .btn
+    position: relative
+    z-index: 3
+  .head__icon
+    margin-bottom: 1rem
+  .blank-self
+    padding-top: 2.7rem
+    overflow: hidden
+    .content
+      display: flex
+      justify-content: center
+      margin-top: 6rem
+      padding-bottom: 24rem
+
+  .prepaid_card
+    width: 570px
+    position: relative
+    img
+      z-index: 1
+      position: relative
+  .mini-cards
+    position: absolute
+    top: 0
+    left: 0
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    width: 100%
+
+    .item
+      max-width: 279px
+      padding: 4rem 3.5rem
+      text-align: left
+      position: relative
+      overflow: visible
+      &:nth-child(1)
+        order: 1
+        right: 24rem
+        bottom: 5rem
+
+      &:nth-child(2)
+        order: 3
+        right: 9rem
+
+      &:nth-child(3)
+        order: 4
+        left: 9rem
+      &:nth-child(4)
+        order: 2
+        left: 24rem
+        bottom: 5rem
+      &:after
+        content: ''
+        top: 0
+        left: 50%
+        height: 49px
+        width: 49px
+        position: absolute
+        background-color: $colorAccentOne
+        box-shadow: 0 6px 12px 0 rgba(0,0,0,0.09)
+        border-radius: 50%
+        +center()
+      &:before
+        content: attr(data-count)
+        top: 0
+        left: 50%
+        position: absolute
+        height: 26px
+        min-width: 26px
+        background-color: $colorBeige
+        z-index: 1
+        border-radius: 50%
+        display: flex
+        align-items: center
+        justify-content: center
+        color: #FFFFFF
+        +center()
+
+
+
+@media only screen and (max-width : 1200px)
+  .prepaid_card-page .mini-cards
+    .item
+      &:nth-child(1)
+        right: 22rem
+        bottom: 5rem
+
+      &:nth-child(2)
+        right: 7rem
+
+      &:nth-child(3)
+        left: 7rem
+      &:nth-child(4)
+        left: 22rem
+        bottom: 5rem
+
+  .prepaid_card-page .prepaid_card img
+    transform: scale(.85)
+
+
+@media only screen and (max-width : 991px)
+  .prepaid_card-page .prepaid_card img
+    transform: scale(1)
+  .prepaid_card-page .mini-cards
+    position: relative
+  .prepaid_card-page .mini-cards
+    justify-content: space-between
+    .item
+      &:nth-child(1)
+        right: 0
+        bottom: 0
+        order: 1
+
+      &:nth-child(2)
+        right: 0
+        order: 2
+
+      &:nth-child(3)
+        left: 0
+        order: 3
+      &:nth-child(4)
+        left: 0
+        bottom: 0
+        order: 4
+
+  .prepaid_card-page .prepaid_card
+    width: auto
+  .prepaid_card-page .blank-self .content
+    padding-bottom: 0
+  .ovals
+    top: 15%
+  .prepaid_card-page .mini-cards
+    margin-top: -8rem
+
+@media only screen and (max-width : 767px) and (min-width : 640px)
+  .prepaid_card-page .mini-cards .item
+    width: 260px
+  .prepaid_card-page .blank-self__head
+    margin-bottom: 4.5rem
+  .prepaid_card-page .blank-self .content
+    margin-top: 4rem
+  .prepaid_card-page .mini-cards
+    margin-top: -10rem
+
+@media only screen and (max-width : 639px)
+  .prepaid_card-page .mini-cards
+    justify-content: center
+  .ovals
+    top: 9%
+    .oval
+      padding: 6rem
+
+@media only screen and (max-width : 479px)
+  .prepaid_card-page .blank-self.tape-top
+    padding-top: 4rem
+  .prepaid_card-page .head__icon
+    margin-bottom: 2.2rem
+  .prepaid_card-page .prepaid_card img
+    max-width: 390px
+
+  .ovals
+    top: 8%
+    .oval
+      padding: 4rem
+
+  .prepaid_card-page .mini-cards
+    margin-top: -7rem
+  .prepaid_card-page .blank-self .content
+    margin-top: 4rem
+
+
+@media only screen and (max-width : 374px)
+  .prepaid_card-page .blank-self .content
+    margin-top: 6rem

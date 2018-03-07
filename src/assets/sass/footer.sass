@@ -1,0 +1,62 @@
+@import "vars"
+
+// footer
+.footer
+  background-color: $bgAccentSecond
+  font-family: $serif
+  padding: 5.3rem 0
+  border-top: 20px solid #D2A884
+  .container
+    display: flex
+  &__logo
+    margin-right: 12.6rem
+  &__content
+    display: flex
+    .item
+      padding: 0 3.5rem
+      &:nth-child(2)
+        border-left: 1px solid #2F4171
+  .nav-menu > li
+    display: block
+    width: 100%
+  ul > li
+    > a
+      padding: .6rem 0
+      color: #FFFFFF
+      display: inline-block
+      white-space: nowrap
+      &:hover
+        color: $colorAccentOne
+      &:focus
+        color: #FFFFFF
+      &.active
+        padding-right: 15px
+        &:before
+          top: 48%
+          right: 0
+  .dropdown-link
+    padding-right: 15px
+  .dropdown-data
+    li
+      padding: 0
+      a
+        padding: 0
+        color: $main
+
+  .share
+    padding: .6rem 0
+    color: #FFFFFF
+    white-space: nowrap
+    display: inline-block
+    &__content
+      margin-top: 1.5rem
+      .ic
+        margin-right: 2.6rem
+        border-radius: 50%
+        &:last-child
+          margin-right: 0
+      .develop .ic
+        border-radius: 0
+  .develop
+    margin-top: 1.5rem
+

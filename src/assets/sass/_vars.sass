@@ -1,0 +1,135 @@
+$sans: 'PT Sans', sans-serif
+$serif: 'PT Serif', serif
+$nunito: 'Nunito Sans', sans-serif
+$playfair: 'Playfair Display', sans-serif
+
+
+
+// COLORS
+
+$colorBeige: #E7C2A2
+$bgGrey: #B7BECE
+$borderGrey: #B7BECE
+
+// DOTS
+$dotsBorder: #D1B294
+
+// DEFAULT COLOR
+$main: #464950
+$green: #00AC6C
+
+
+$colorAccentOne: #D2A884
+$colorAccentOneDark: #AF8560
+$bgAccentOne: #D2A884
+
+
+$colorAccentSecond: #2F4171
+$colorAccentSecondDark: #1B2C58
+$bgAccentSecond: #2F4171
+$bgAccentSecondDark: #1B2C58
+
+$errorColor:  #D01D02
+$warnColor: #D2A884
+
+
+
+=mt($name)
+	transition: $name .25s ease
+
+=placeholder-color($color)
+	&:-moz-placeholder,
+	&::-moz-placeholder
+		color: $color
+		opacity: 1
+	&::-webkit-input-placeholder
+		color: $color
+
+=transY
+	transform: translateY(-50%)
+=transX
+	transform: translateX(-50%)
+=center
+	transform: translate(-50%,-50%)
+
+
+
+
+.h1
+	font-size: 4.8rem
+	line-height: 6.4rem
+	font-weight: bold
+
+.title-great
+	font-size: 3rem
+	line-height: 4rem
+	font-weight: bold
+
+.title-status
+	display: inline-block
+	font-weight: normal
+	color: $bgGrey
+
+.h2
+	font-size: 3rem
+	line-height: 4rem
+	font-weight: bold
+
+.h3
+	font-size: 2.2rem
+	line-height: 2.9rem
+	font-weight: bold
+
+.title-inner
+	font-size: 2rem
+	line-height: 2.7rem
+	font-weight: bold
+
+
+.inner
+	.main__wrapper p
+		font-size: 1.6rem
+		line-height: 2.8rem
+		font-family: $sans
+
+.p_large
+	font-size: 2rem
+	line-height: 2.8rem
+
+.p_middle
+	font-size: 2rem
+	line-height: 2.6rem
+
+.p_small
+	font-size: 16px
+	line-height: 24px
+	font-family: $sans
+
+
+
+.error
+	font-size: 14px
+	line-height: 1.9rem
+
+.form-title_large
+	font-size: 2rem
+	line-height: 2.7rem
+
+.form-title_small
+	font-size: 1.8rem
+	line-height: 2rem
+
+.status
+	font-size: 12px
+	line-height: 15px
+
+.line
+	font-size: 2rem
+	line-height: 2.7rem
+
+
+.label
+	font-size: 16px
+	line-height: 20px
+	font-family: $sans
+

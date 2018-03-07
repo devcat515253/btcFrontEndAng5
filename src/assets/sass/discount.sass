@@ -1,0 +1,102 @@
+@import "vars"
+
+
+.discount
+  .head__icon
+    margin-bottom: 1.2rem
+  .blank-self__head
+    text-align: center
+  .blank-self
+    padding-top: 3.5rem
+    padding-right: 0
+    padding-left: 0
+
+  .content
+    background: url(../img/discount-background.png) no-repeat center top
+    background-size: 100%
+
+
+
+
+  .level
+    padding: 7.5rem 18rem 0 18rem
+    &__img
+      margin-bottom: 4.2rem
+      display: flex
+      justify-content: center
+      align-items: flex-start
+      img
+        opacity: 0.99
+        background-color: #FFFFFF
+        box-shadow: 0 30px 100px 0 rgba(0,0,0,0.08)
+
+
+
+
+
+  .info__value
+    display: flex
+    justify-content: space-between
+    margin-top: .6rem
+    b
+      color: $colorAccentOne
+      margin: 0 3px
+      &:last-child
+        margin-right: 0
+
+
+
+
+
+
+
+
+
+
+/*==========  Desktop First  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px)
+  .discount .level
+    padding: 7.5rem 9.5rem 0 9.5rem
+
+
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 991px)
+  .discount .level
+    padding: 7.5rem 2rem 0 2rem
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 767px)
+  .discount
+    .info__value
+      flex-direction: column
+      justify-content: flex-start
+      span:first-child
+        margin-bottom: 1.6rem
+    .info__title
+      margin-bottom: .6rem
+
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 639px)
+  .discount
+    .info__value
+      .h2_mobile
+        font-size: 1.6rem
+        line-height: 2.2rem
+    .content
+      background-size: 899px
+    .level
+      padding-top: 8.5rem
+
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 374px)
+  .discount .level
+    padding-left: 1rem
+    padding-right: 1rem
+  .discount .content
+      background-size: 805px
