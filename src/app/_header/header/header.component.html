@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header fadeIn animated">
   <div class="container">
     <div class="header-logo">
       <a routerLink="/" class="logo"><img src="../assets/img/logo.png" alt=""></a>
@@ -7,19 +7,19 @@
     <div class="transform-to-mobile">
       <nav class="header-menu">
         <ul class="nav-menu">
-          <li><a href="#" class="active">Home</a></li>
+          <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
           <li><a href="#">Testimonials</a></li>
-          <li><a routerLink="/contacts">Contact</a></li>
+          <li><a routerLink="/contacts" routerLinkActive="active">Contact</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-link js-dropdown-link">More</a>
             <ul class="dropdown-data">
               <li><a href="#">Terms and conditions</a></li>
               <li><a href="#">AML privacy</a></li>
-              <li><a routerLink="/feesdiscount">Fees & discounts</a></li>
+              <li><a routerLink="/feesdiscount" routerLinkActive="active">Fees & discounts</a></li>
               <li><a href="#">Privacy policy</a></li>
               <li><a href="#">Fees & discount</a></li>
               <li><a routerLink="/faq">FAQ</a></li>
-              <li><a href="#">NEWS</a></li>
+              <li><a routerLink="/news">NEWS</a></li>
             </ul>
           </li>
         </ul>

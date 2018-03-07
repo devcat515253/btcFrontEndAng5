@@ -4,10 +4,13 @@ import {HomeComponent} from './home/home.component';
 import {FaqComponent} from './faq/faq.component';
 import {ContactsComponent} from './contacts/contacts.component';
 import {FeesDiscountComponent} from './fees-discount/fees-discount.component';
+import {NewsComponent} from './news/news.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'contacts', component: ContactsComponent },
+  { path: 'news', component: NewsComponent },
   { path: 'faq', component: FaqComponent},
   { path: 'feesdiscount', component: FeesDiscountComponent},
   // { path: 'account', component: UserAccountComponent,
