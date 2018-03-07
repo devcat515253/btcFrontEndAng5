@@ -13,6 +13,7 @@ import {TestimonialsComponent} from './testimonials/testimonials.component';
 import {TransactionsComponent} from './transactions/transactions.component';
 import {SettingsComponent} from './settings/settings.component';
 import {PrepaidCardComponent} from './prepaid-card/prepaid-card.component';
+import {DiscountComponent} from './discount/discount.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'transactions', component: TransactionsComponent},
   { path: 'settings', component: SettingsComponent},
   { path: 'prepaid-card', component: PrepaidCardComponent},
+  { path: 'discount', component: DiscountComponent},
   // { path: 'account', component: UserAccountComponent,
   //   children: [
   //     { path: '', redirectTo: '/account/dashboard', pathMatch: 'full'},
