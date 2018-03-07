@@ -13,3 +13,5 @@ export class LandingMagazineComponent implements OnInit {
   }
 
 }
+
+
