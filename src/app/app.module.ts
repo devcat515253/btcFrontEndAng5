@@ -17,8 +17,7 @@ import { ContactsComponent } from './contacts/contacts.component';
     FooterComponent,
     HeaderComponent,
     HomeComponent,
-    FaqComponent
-    HomeComponent,
+    FaqComponent,
     ContactsComponent
   ],
   imports: [
