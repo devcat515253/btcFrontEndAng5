@@ -12,6 +12,7 @@ import {TableHistoryReviewsComponent} from './table-history-reviews/table-histor
 import {TestimonialsComponent} from './testimonials/testimonials.component';
 import {TransactionsComponent} from './transactions/transactions.component';
 import {SettingsComponent} from './settings/settings.component';
+import {PrepaidCardComponent} from './prepaid-card/prepaid-card.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'testimonials', component: TestimonialsComponent},
   { path: 'transactions', component: TransactionsComponent},
   { path: 'settings', component: SettingsComponent},
+  { path: 'prepaid-card', component: PrepaidCardComponent},
   // { path: 'account', component: UserAccountComponent,
   //   children: [
   //     { path: '', redirectTo: '/account/dashboard', pathMatch: 'full'},
