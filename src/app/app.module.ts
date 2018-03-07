@@ -24,6 +24,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material';
+import {DialogQuestionComponent} from './_dialog/dialog-question/dialog-question.component';
+import {DialogRegistrationComponent} from './_dialog/dialog-registration/dialog-registration.component';
+import {EffectBlurService} from './_services/effect-blur.service';
 
 
 @NgModule({
@@ -45,7 +49,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     SettingsComponent,
     DiscountComponent,
     SettingsComponent,
-    PrepaidCardComponent
+    PrepaidCardComponent,
+    DialogRegistrationComponent,
+    DialogQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +60,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
-  providers: [],
+  entryComponents: [
+    DialogRegistrationComponent
+  ],
+  providers: [
+    EffectBlurService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

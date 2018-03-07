@@ -1,14 +1,14 @@
-<header>
+<header [ngClass]="{'effects-blur': isBlur}">
   <app-header></app-header>
 </header>
 
 
-<main>
+<main [ngClass]="{'effects-blur': isBlur}">
   <router-outlet></router-outlet>
 </main>
 
 
 
-<footer>
+<footer [ngClass]="{'effects-blur': isBlur}">
   <app-footer></app-footer>
 </footer>

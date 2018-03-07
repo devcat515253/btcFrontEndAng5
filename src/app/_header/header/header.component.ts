@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {DialogRegistrationComponent} from '../../_dialog/dialog-registration/dialog-registration.component';
+import {MatDialog} from '@angular/material';
+import {EffectBlurService} from '../../_services/effect-blur.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  animal: string;
+  name: string;
+
+  constructor(public dialog: MatDialog, private blurService: EffectBlurService) {}
 
   ngOnInit() {
+  }
+
+
+  openDialog(): void {
+    event.preventDefault();
+
+    let dialogRef = this.dialog.open(DialogRegistrationComponent, {
+      width: '60rem',
+      data: { name: this.name, animal: this.animal }
+    });
+
+    this.blurService.toggleBlur(true);
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+
+
   }
 
 }
