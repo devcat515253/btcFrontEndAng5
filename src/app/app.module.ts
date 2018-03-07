@@ -11,6 +11,7 @@ import { FaqComponent } from './faq/faq.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { FeesDiscountComponent } from './fees-discount/fees-discount.component';
 import { LandingMagazineComponent } from './landing-magazine/landing-magazine.component';
+import { NewsComponent } from './news/news.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { LandingMagazineComponent } from './landing-magazine/landing-magazine.co
     FaqComponent,
     ContactsComponent,
     FeesDiscountComponent,
-    LandingMagazineComponent
+    LandingMagazineComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
