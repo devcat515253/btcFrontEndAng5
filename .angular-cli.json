@@ -20,7 +20,9 @@
       "prefix": "app",
       "styles": [
         "./assets/sass/main.sass",
-        "styles.sass"
+        "styles.sass",
+        "../node_modules/animate.css/animate.min.css"
+
       ],
       "scripts": [
         "./assets/js/scripts.min.js"
