@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "./assets/css/styles-app-loading.css",
         "./assets/sass/main.sass",
         "styles.sass",
         "../node_modules/animate.css/animate.min.css"
