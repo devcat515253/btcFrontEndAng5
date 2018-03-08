@@ -7,16 +7,12 @@ export class EffectBlurService {
 
 
   constructor() {
-    this.isBlur.emit(false);
+    this.isBlur.emit(false); // присваиваем дефолтное значение
   }
 
 
   toggleBlur(statusBlur: boolean) {
     this.isBlur.emit(statusBlur);
   }
-
-
-
-
 
 }
