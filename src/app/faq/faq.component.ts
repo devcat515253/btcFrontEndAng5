@@ -11,8 +11,12 @@ export class FaqComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit() {
-
   }
+
+  ngAfterViewInit() {
+    this.initDropdown();
+  }
+
 
 
 
@@ -48,10 +52,6 @@ export class FaqComponent implements OnInit, AfterViewInit {
   }
 
 
-
-  ngAfterViewInit() {
-    this.initDropdown();
-  }
 
 }
 

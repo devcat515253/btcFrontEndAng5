@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {MatDialog} from '@angular/material';
+import {Component, OnInit} from '@angular/core';
 import {EffectBlurService} from './_services/effect-blur.service';
 
 @Component({
@@ -7,18 +6,23 @@ import {EffectBlurService} from './_services/effect-blur.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
 
   isBlur: boolean = false;
 
-  constructor(public isBlurService: EffectBlurService) {
+  constructor(public isBlurService: EffectBlurService) { }
+
+  ngOnInit() {
+    this.getBlur();
+  }
+
+
+  getBlur() {
     this.isBlurService.isBlur.subscribe( (result) => {
       this.isBlur = result;
     });
   }
-
-
 
 }
 

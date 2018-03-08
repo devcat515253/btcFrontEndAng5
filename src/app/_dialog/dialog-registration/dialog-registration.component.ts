@@ -20,6 +20,10 @@ export class DialogRegistrationComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  onYesClick() {
+    this.dialogRef.close({ data: 'data' });
+  }
+
 }
 
 
