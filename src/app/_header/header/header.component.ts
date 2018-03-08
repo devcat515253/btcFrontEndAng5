@@ -19,16 +19,20 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  openDialog(): void {
+  openDialog(event): void {
     event.preventDefault();
+    this.blurService.toggleBlur(true);
 
-    let dialogRef = this.dialog.open(DialogRegistrationComponent, {
+
+    const dialogRef = this.dialog.open(DialogRegistrationComponent, {
       width: '60rem',
       data: { name: this.name, animal: this.animal }
     });
 
-    this.blurService.toggleBlur(true);
 
+    dialogRef.beforeClose().subscribe(result => {
+      this.blurService.toggleBlur(false);
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

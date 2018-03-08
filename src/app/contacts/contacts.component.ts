@@ -18,7 +18,10 @@ export class ContactsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     $( document ).ready(() => {
             this.initMap();
-        });
+      //$('html, body').animate({scrollTop: 0}, 500);
+      //window.scroll(0, 0);
+
+    });
   }
 
   initMap() {

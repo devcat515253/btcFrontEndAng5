@@ -64,7 +64,7 @@ import {EffectBlurService} from './_services/effect-blur.service';
     MatDialogModule
   ],
   entryComponents: [
-    DialogRegistrationComponent
+    DialogRegistrationComponent, HeaderComponent
   ],
   providers: [
     EffectBlurService
