@@ -21,6 +21,7 @@
       "styles": [
         "./assets/css/styles-app-loading.css",
         "./assets/sass/main.sass",
+        "./assets/sass/mozilla-fix.sass",
         "styles.sass",
         "../node_modules/animate.css/animate.min.css"
 

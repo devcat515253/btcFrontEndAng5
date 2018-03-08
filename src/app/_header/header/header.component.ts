@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  openDialog(): void {
+  openDialog(event): void {
     event.preventDefault();
     this.blurService.toggleBlur(true);
 
