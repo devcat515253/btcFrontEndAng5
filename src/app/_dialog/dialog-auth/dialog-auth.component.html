@@ -6,23 +6,35 @@
     <p class="p_middle mobile-small">Stav transakce můžete <b>sledovat</b> přes tento <b>odkaz</b>.</p>
   </div>
 
-  <form action="#" class="form">
+  <form action="#" class="form" (submit)="submit($event)" [formGroup]="userAuthForm"  #authForm="ngForm" novalidate >
 
-    <label class="form-group">
+    <label class="form-group"
+           [ngClass]="{'has-error': (userAuthForm.controls['email'].hasError('email')
+           || userAuthForm.controls['email'].hasError('maxLength'))
+           && authForm.submitted}">
       <span class="form-title">Your e-mail (account login):</span>
-      <input type="text" class="form-control">
+      <input [(ngModel)]="userAuth.email" formControlName="email" name="email" type="text" class="form-control">
+      <span
+        *ngIf="(userAuthForm.controls['email'].hasError('email')
+        || userAuthForm.controls['email'].hasError('maxLength'))
+        && authForm.submitted" class="error-label">Hesla se neshodují</span>
     </label>
 
-    <label class="form-group">
+    <label class="form-group" [ngClass]="{'has-error': (userAuthForm.controls['password'].hasError('required')
+           || userAuthForm.controls['password'].hasError('maxLength'))
+           && authForm.submitted}">
       <span class="form-title">Password:</span>
-      <input type="password" class="form-control" required="">
-      <span class="error-label">Hesla se neshodují</span>
+      <input [(ngModel)]="userAuth.password" formControlName="password" name="password" type="password" class="form-control" required="">
+      <span
+        *ngIf="(userAuthForm.controls['password'].hasError('required')
+        || userAuthForm.controls['password'].hasError('maxLength'))
+        && authForm.submitted" class="error-label">Hesla se neshodují</span>
     </label>
 
     <div class="form-btn between-children">
-      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
+      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="onNoClick($event)">Back</a>
       <label>
-        <a href="#" class="btn btn-accent rippler rippler-default">auth</a>
+        <a class="btn btn-accent rippler rippler-default">auth</a>
         <input type="submit" hidden>
       </label>
     </div>

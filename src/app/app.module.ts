@@ -29,6 +29,7 @@ import {DialogQuestionComponent} from './_dialog/dialog-question/dialog-question
 import {DialogRegistrationComponent} from './_dialog/dialog-registration/dialog-registration.component';
 import {EffectBlurService} from './_services/effect-blur.service';
 import { DialogAuthComponent } from './_dialog/dialog-auth/dialog-auth.component';
+import {UserService} from './_services/user.service';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { DialogAuthComponent } from './_dialog/dialog-auth/dialog-auth.component
     HeaderComponent
   ],
   providers: [
-    EffectBlurService
+    EffectBlurService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

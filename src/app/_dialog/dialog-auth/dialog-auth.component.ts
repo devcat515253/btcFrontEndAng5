@@ -1,5 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {UserAuth} from '../../_entity/user-auth';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-auth',
@@ -8,19 +10,56 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class DialogAuthComponent implements OnInit {
 
+  userAuth: UserAuth = new UserAuth();
+  userAuthForm: FormGroup;
+
   constructor(
     public dialogRef: MatDialogRef<DialogAuthComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.initValidator();
+  }
 
   ngOnInit() {
   }
 
-  onNoClick(): void {
+  onNoClick(event): void {
+    event.preventDefault();
     this.dialogRef.close();
   }
 
-  onYesClick() {
-    this.dialogRef.close({ data: 'data' });
+  // onYesClick() {
+  //   this.dialogRef.close({ data: 'data' });
+  // }
+
+  initValidator() {
+    this.userAuthForm = new FormGroup({
+      email: new FormControl( this.userAuth.email, [
+        Validators.required,
+        Validators.email,
+        Validators.maxLength(64)
+      ]),
+      password: new FormControl(this.userAuth.password, [
+        Validators.required,
+        Validators.maxLength(64)
+      ]),
+    });
+  }
+
+  submit(event) {
+    event.preventDefault();
+
+    const controls = this.userAuthForm.controls;
+
+    // this.checkEmail();
+
+
+    if (this.userAuthForm.invalid) {
+      Object.keys(controls)
+        .forEach(controlName => controls[controlName].markAsTouched());
+      return;
+    }
+
+    console.log(this.userAuth);
   }
 
 }
