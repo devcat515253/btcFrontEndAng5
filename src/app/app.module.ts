@@ -28,6 +28,7 @@ import {MatDialogModule} from '@angular/material';
 import {DialogQuestionComponent} from './_dialog/dialog-question/dialog-question.component';
 import {DialogRegistrationComponent} from './_dialog/dialog-registration/dialog-registration.component';
 import {EffectBlurService} from './_services/effect-blur.service';
+import { DialogAuthComponent } from './_dialog/dialog-auth/dialog-auth.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import {EffectBlurService} from './_services/effect-blur.service';
     SettingsComponent,
     PrepaidCardComponent,
     DialogRegistrationComponent,
-    DialogQuestionComponent
+    DialogQuestionComponent,
+    DialogAuthComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,9 @@ import {EffectBlurService} from './_services/effect-blur.service';
     MatDialogModule
   ],
   entryComponents: [
-    DialogRegistrationComponent, HeaderComponent
+    DialogRegistrationComponent,
+    DialogAuthComponent,
+    HeaderComponent
   ],
   providers: [
     EffectBlurService
