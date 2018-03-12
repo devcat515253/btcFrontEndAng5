@@ -2,6 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {UserAuth} from '../../_entity/user-auth';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {HttpResponse} from '@angular/common/http';
+import {UserService} from '../../_services/user.service';
 
 @Component({
   selector: 'app-dialog-auth',
@@ -12,9 +14,11 @@ export class DialogAuthComponent implements OnInit {
 
   userAuth: UserAuth = new UserAuth();
   userAuthForm: FormGroup;
+  userNotFound: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<DialogAuthComponent>,
+    private userService: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.initValidator();
   }
@@ -58,6 +62,19 @@ export class DialogAuthComponent implements OnInit {
         .forEach(controlName => controls[controlName].markAsTouched());
       return;
     }
+
+    this.userService.auth(this.userAuth).subscribe(
+      (data) => {
+        console.log(data);
+        this.userNotFound = false;
+      },
+      error => {
+        console.log(error);
+        this.userNotFound = true;
+      }
+    );
+
+
 
     console.log(this.userAuth);
   }

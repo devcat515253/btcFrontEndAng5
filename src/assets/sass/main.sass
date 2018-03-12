@@ -1406,6 +1406,33 @@ hr
 	.form-btn .btn
 		max-width: 15rem
 
+.alert
+    display: inline-block
+    padding: 0.85rem 1.5rem;
+    border-radius: 4px;
+    background: #ffffff;
+    margin: 2.5rem 0 0
+    border: 2px solid transparent;
+    position: relative
+    font-size: 16px;
+    line-height: 20px
+    padding-right: 5rem
+    max-width: 35rem
+    &-error
+      border-color: #f4516c;
+      color: #f4516c;
+      font-weight: 400;
+    .btn-close
+      position: absolute
+      top: 50%
+      transform: translateY(-50%)
+      right: 1.5rem
+      color: #f4516c
+      font-family: cursive
+      &:hover
+        color: darken(#f4516c, 3%)
+
+
 .form
 	.double
 		display: -webkit-flex
