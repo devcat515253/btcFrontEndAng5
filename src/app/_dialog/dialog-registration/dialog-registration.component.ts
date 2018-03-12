@@ -4,6 +4,7 @@ import {UserRegistr} from '../../_entity/user-registr';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {matchOtherValidator} from '../../_validators/validator';
 import {UserService} from '../../_services/user.service';
+import {HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-dialog-registration',
@@ -86,17 +87,13 @@ export class DialogRegistrationComponent implements OnInit {
 
 
     this.userService.registration(this.userRegistr).subscribe(
-      (data) => {
-        // this.data = data.json();
-        console.log(data.headers);
-        console.log(data.url);
+      (data: HttpResponse<any>) => {
+        console.log(data);
+        console.log(data.status);
       },
       error => {
-        console.log('Some error1');
-      },
-      () => {
-        console.log('.. but not here');
-        // alert("Data retrieve completed!");
+        console.log(error);
+        console.log(error.status);
       }
     );
 
