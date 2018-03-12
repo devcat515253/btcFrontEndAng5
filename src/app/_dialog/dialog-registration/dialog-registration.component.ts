@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {UserRegistr} from '../../_entity/user-registr';
 
 @Component({
   selector: 'app-dialog-registration',
@@ -8,6 +9,11 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class DialogRegistrationComponent implements OnInit {
 
+  userRegistr: UserRegistr = new UserRegistr();
+
+  policeAgree: boolean = false;
+
+
   constructor(
     public dialogRef: MatDialogRef<DialogRegistrationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
@@ -15,6 +21,14 @@ export class DialogRegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
+
+
+  submit(event) {
+    event.preventDefault();
+
+    console.log(this.userRegistr);
+    console.log(this.policeAgree);
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
