@@ -31,6 +31,7 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent},
   { path: 'prepaid-card', component: PrepaidCardComponent},
   { path: 'discount', component: DiscountComponent},
+  { path: 'discount', component: DiscountComponent},
   // { path: 'account', component: UserAccountComponent,
   //   children: [
   //     { path: '', redirectTo: '/account/dashboard', pathMatch: 'full'},

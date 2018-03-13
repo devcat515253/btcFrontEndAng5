@@ -76,6 +76,28 @@ body
 .mobile-only
 	display: none !important
 
+*:disabled, .disabled
+  opacity: .5
+  cursor: no-drop
+  pointer-events: none
+
+.custom-loader
+  position: relative
+  &:after
+    content: ''
+    position: absolute
+    display: block
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-image: url('../../assets/img/loader.gif')
+    background-position: center
+    background-repeat: no-repeat
+    -webkit-background-size: 40px
+    background-size: 40px
+    z-index: 100
+
 // ELEMENTS
 ul
 	margin: 0
@@ -1408,13 +1430,13 @@ hr
 
 .alert
     display: inline-block
-    padding: 0.85rem 1.5rem;
+    padding: 0.85rem 1.5rem
     border-radius: 4px;
     background: #ffffff;
     margin: 2.5rem 0 0
-    border: 2px solid transparent;
+    border: 2px solid transparent
     position: relative
-    font-size: 16px;
+    font-size: 16px
     line-height: 20px
     padding-right: 5rem
     max-width: 35rem

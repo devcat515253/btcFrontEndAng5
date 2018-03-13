@@ -30,6 +30,7 @@ import {DialogRegistrationComponent} from './_dialog/dialog-registration/dialog-
 import {EffectBlurService} from './_services/effect-blur.service';
 import { DialogAuthComponent } from './_dialog/dialog-auth/dialog-auth.component';
 import {UserService} from './_services/user.service';
+import { DialogSuccessComponent } from './_dialog/dialog-success/dialog-success.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import {UserService} from './_services/user.service';
     PrepaidCardComponent,
     DialogRegistrationComponent,
     DialogQuestionComponent,
-    DialogAuthComponent
+    DialogAuthComponent,
+    DialogSuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,7 @@ import {UserService} from './_services/user.service';
   entryComponents: [
     DialogRegistrationComponent,
     DialogAuthComponent,
+    DialogSuccessComponent,
     HeaderComponent
   ],
   providers: [

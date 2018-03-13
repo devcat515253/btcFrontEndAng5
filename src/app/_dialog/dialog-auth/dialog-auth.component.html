@@ -1,4 +1,4 @@
-<div id="medium-dialog" class="popup popup-user blank tape-top ">
+<div id="medium-dialog" class="popup popup-user blank tape-top" *ngIf="userAuthPopup" >
   <div class="popup-title">
     <h2 class="h2 text-center">Auth</h2>
   </div>
@@ -42,7 +42,7 @@
 
     <div class="forgot">
       <div class="text-center tip-link">
-        <a href="#" class="link">Forgot password?</a>
+        <a href="#" (click)="openForgotPopup($event)" class="link">Forgot password?</a>
       </div>
     </div>
 
@@ -50,7 +50,53 @@
     <div class="form-btn between-children">
       <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="onNoClick($event)">Back</a>
       <label>
-        <a class="btn btn-accent rippler rippler-default">auth</a>
+        <button class="btn btn-accent rippler rippler-default" [disabled]="userAuthForm.invalid && authForm.submitted">auth</button>
+        <!--<a class="btn btn-accent rippler rippler-default">auth</a>-->
+        <!--<input type="submit" hidden>-->
+      </label>
+    </div>
+
+
+  </form>
+
+</div>
+
+
+<div id="forgot-dialog" class="popup popup-user blank tape-top fadeIn animated" *ngIf="userForgotPopup">
+  <div class="popup-title">
+    <h2 class="h2 text-center">Forgot</h2>
+  </div>
+  <div class="popup-subtitle">
+    <p class="p_middle mobile-small">Stav transakce můžete <b>sledovat</b> přes tento <b>odkaz</b>.</p>
+  </div>
+
+  <div class="text-center js-deleteParent" *ngIf="userNotFound">
+    <div class="alert alert-error">
+      <p>Error: Email or password is incorrect</p>
+      <a href="#" class="btn-close js-deleteBlock">x</a>
+    </div>
+  </div>
+
+
+
+  <form action="#" class="form" (submit)="forgot($event)" [formGroup]="userForgotForm"  #forgotForm="ngForm" novalidate>
+
+    <label class="form-group"
+           [ngClass]="{'has-error': (userForgotForm.controls['email'].hasError('email')
+           || userForgotForm.controls['email'].hasError('maxLength'))
+           && forgotForm.submitted}">
+      <span class="form-title">Your e-mail (account login):</span>
+      <input [(ngModel)]="userForgotForm.email" formControlName="email" name="email" type="text" class="form-control">
+      <span
+        *ngIf="(userForgotForm.controls['email'].hasError('email')
+        || userForgotForm.controls['email'].hasError('maxLength'))
+        && forgotForm.submitted" class="error-label">Hesla se neshodují</span>
+    </label>
+
+    <div class="form-btn between-children">
+      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="closeForgotPopup($event)">Back</a>
+      <label>
+        <a class="btn btn-accent rippler rippler-default">Send pass</a>
         <input type="submit" hidden>
       </label>
     </div>

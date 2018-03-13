@@ -6,7 +6,7 @@
     <p class="p_middle mobile-small">Stav transakce můžete <b>sledovat</b> přes tento <b>odkaz</b>.</p>
   </div>
 
-  <form action="#" class="form" [formGroup]="userRegistrForm" (submit)="submit($event)"  #regForm="ngForm" novalidate>
+  <form action="#" class="form" [ngClass]="{'custom-loader disabled': loading}"  [formGroup]="userRegistrForm" (submit)="submit($event)"  #regForm="ngForm" novalidate>
 
     <label class="form-group" [ngClass]="{'has-error': userRegistrForm.controls['name'].hasError('required') && regForm.submitted}" >
       <span class="form-title">Your name:</span>
@@ -15,15 +15,17 @@
     </label>
 
      <label class="form-group"
-            [ngClass]="{'has-error': (userRegistrForm.controls['email'].hasError('required')
+            [ngClass]="{'has-error': ((userRegistrForm.controls['email'].hasError('required')
             || userRegistrForm.controls['email'].hasError('email')
             || userRegistrForm.controls['email'].hasError('minLength')
             || userRegistrForm.controls['email'].hasError('maxLength'))
-            && regForm.submitted}">
+            && regForm.submitted) || userRegistrForm.controls['email'].hasError('notunique') }">
       <span class="form-title">Your e-mail (account login):</span>
-      <input [(ngModel)]="userRegistr.email" formControlName="email" (blur)="checkEmailExist()" name="email"  type="text" class="form-control">
+      <input [(ngModel)]="userRegistr.email" formControlName="email"  name="email"  type="text" class="form-control">
        <span *ngIf="(userRegistrForm.controls['email'].hasError('required') || userRegistrForm.controls['email'].hasError('email')) && regForm.submitted" class="error-label">Hesla se neshodují</span>
+       <span *ngIf="userRegistrForm.controls['email'].hasError('notunique')" class="error-label">notunique</span>
     </label>
+    <!--(blur)="checkEmailExist()"-->
 
     <label class="form-group"
            [ngClass]="{'has-error': (userRegistrForm.controls['password'].hasError('required')
@@ -42,8 +44,9 @@
       <span *ngIf="userRegistrForm.controls['confirmPassword'].hasError('matchOther') && regForm.submitted" class="error-label">Heslsa se neshodují</span>
     </label>
 
-    <label class="checkbox" [ngClass]="{'has-error': !policeAgree && regForm.submitted}">
-      <input [(ngModel)]="policeAgree" type="checkbox" name="policeAgree" class="checkbox-cotrol" required [ngModelOptions]="{standalone: true}">
+    <label class="checkbox" [ngClass]="{'has-error': (userRegistrForm.controls['checkbox'].hasError('required')
+           && regForm.submitted )}">
+      <input [(ngModel)]="userRegistr.checkbox" formControlName="checkbox" type="checkbox" name="policeAgree" class="checkbox-control" required>
       <span class="checkbox-icons"></span>
       <span class="checkbox-title">I agree to the <a href="#" class="link">Terms and Conditions</a> and <a href="#" class="link">Privacy Policy</a></span>
     </label>
@@ -52,8 +55,7 @@
       <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="onNoClick($event)">Back</a>
 
       <label>
-        <a class="btn btn-accent rippler rippler-default">Register</a>
-        <input type="submit" hidden>
+        <button class="btn btn-accent rippler rippler-default" [disabled]="userRegistrForm.invalid && regForm.submitted">Register</button>
       </label>
     </div>
   </form>

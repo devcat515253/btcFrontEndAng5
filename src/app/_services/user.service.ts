@@ -3,6 +3,7 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 import {UserRegistr} from '../_entity/user-registr';
 import {UserAuth} from '../_entity/user-auth';
 import 'rxjs/add/operator/map';
+import {EmailModel} from '../_entity/email-model';
 
 @Injectable()
 export class UserService {
@@ -17,8 +18,8 @@ export class UserService {
     return this.http.post<any>(`${this.baseUrl}/api/user/registration`, newUser, {observe: 'response'});
   }
 
-  checkEmail(newUser: UserRegistr) {
-    return this.http.post<any>(`${this.baseUrl}/user/registration`, newUser);
+  checkEmail(emailUnique: EmailModel) {
+    return this.http.post<any>(`${this.baseUrl}/api/user/email-check-unique`, emailUnique, {observe: 'response'});
   }
 
 
@@ -32,6 +33,8 @@ export class UserService {
         return result;
       });
   }
+
+
 
 
 
