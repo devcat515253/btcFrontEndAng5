@@ -1443,19 +1443,29 @@ hr
     line-height: 20px
     padding-right: 5rem
     max-width: 35rem
-    &-error
-      border-color: #f4516c;
-      color: #f4516c;
-      font-weight: 400;
+    font-weight: normal
     .btn-close
       position: absolute
       top: 50%
       transform: translateY(-50%)
       right: 1.5rem
-      color: #f4516c
+      color: #ddd
       font-family: cursive
-      &:hover
+    &-error
+      border-color: #f4516c;
+      color: #f4516c;
+      .btn-close
+        color: #f4516c
+        &:hover
         color: darken(#f4516c, 3%)
+    &-success
+      border-color: #34bfa3;
+      color: #34bfa3;
+      .btn-close
+        color: #34bfa3
+        &:hover
+        color: darken(#34bfa3, 3%)
+
 
 
 .form

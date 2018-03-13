@@ -36,6 +36,10 @@ export class UserService {
     return this.http.get<any>(`${this.baseUrl}/api/user/activation/${hash}`,  {observe: 'response'});
   }
 
+  forgotPass(data: EmailModel) {
+    return this.http.post<any>(`${this.baseUrl}/api/user/password/reset`, data, {observe: 'response'});
+  }
+
 
 
 

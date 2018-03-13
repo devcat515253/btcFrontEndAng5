@@ -5,6 +5,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../_services/user.service';
 import {HttpResponse} from '@angular/common/http';
 import {EmailModel} from '../../_entity/email-model';
+import {of} from 'rxjs/observable/of';
 
 @Component({
   selector: 'app-dialog-auth',
@@ -21,11 +22,13 @@ export class DialogAuthComponent implements OnInit {
   userNotFound: boolean = false;
   userAuthPopup: boolean = true;
   userForgotPopup: boolean = false;
+  loading: boolean = false;
+  forgotSendSuccess: boolean = false;
+  forgotSendError: boolean = false;
 
-  constructor(
-    public dialogRef: MatDialogRef<DialogAuthComponent>,
-    private userService: UserService,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(public dialogRef: MatDialogRef<DialogAuthComponent>,
+              private userService: UserService,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
     this.initValidator();
     this.validatorForgot();
   }
@@ -57,7 +60,7 @@ export class DialogAuthComponent implements OnInit {
 
   validatorForgot() {
     this.userForgotForm = new FormGroup({
-      email: new FormControl( this.userForgot.email, [
+      email: new FormControl(this.userForgot.email, [
         Validators.required,
         Validators.email,
         Validators.maxLength(64)
@@ -67,7 +70,7 @@ export class DialogAuthComponent implements OnInit {
 
   initValidator() {
     this.userAuthForm = new FormGroup({
-      email: new FormControl( this.userAuth.email, [
+      email: new FormControl(this.userAuth.email, [
         Validators.required,
         Validators.email,
         Validators.maxLength(64)
@@ -84,25 +87,47 @@ export class DialogAuthComponent implements OnInit {
 
     const controls = this.userAuthForm.controls;
 
-    // this.checkEmail();
-
     if (this.userAuthForm.invalid) {
       Object.keys(controls)
         .forEach(controlName => controls[controlName].markAsTouched());
       return;
     }
 
+    this.loading = true;
     this.userService.auth(this.userAuth).subscribe(
       (data) => {
         console.log(data);
         this.userNotFound = false;
+        this.loading = false;
       },
       error => {
         console.log(error);
         this.userNotFound = true;
+        this.loading = false;
       }
     );
     console.log(this.userAuth);
+  }
+
+  sendForgotEmail() {
+    return this.userService.forgotPass(this.userForgot).subscribe(
+      (data) => {
+        console.log(data);
+        console.log(data.status);
+        this.forgotSendError = false;
+        this.forgotSendSuccess = true;
+        this.userForgotForm.reset();
+        this.userForgotForm.controls['email'].setErrors(null);
+        this.loading = false;
+      },
+      error => {
+        console.log(error);
+        console.log(error.status);
+        this.forgotSendError = true;
+        this.forgotSendSuccess = false;
+        this.loading = false;
+      }
+    );
   }
 
   forgot(event) {
@@ -116,12 +141,20 @@ export class DialogAuthComponent implements OnInit {
       return;
     }
 
+    this.loading = true;
     this.userService.checkEmail(this.userForgot).subscribe(
-      (data: HttpResponse<any>) => {
+      (data) => {
         console.log(data);
         console.log(data.status);
+        this.userForgotForm.controls['email'].setErrors({'notfounduser': true});
+        this.loading = false;
+        this.forgotSendSuccess = false;
+        this.forgotSendError = false;
       },
       error => {
+        if (error.error.errors.email[0] === 'This email somebody use already') {
+          this.sendForgotEmail();
+        }
         console.log(error);
         console.log(error.status);
       }

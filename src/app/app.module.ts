@@ -32,6 +32,7 @@ import { DialogAuthComponent } from './_dialog/dialog-auth/dialog-auth.component
 import {UserService} from './_services/user.service';
 import { DialogSuccessComponent } from './_dialog/dialog-success/dialog-success.component';
 import { UserActivateComponent } from './_user/user-activate/user-activate.component';
+import {NewsService} from './_services/news.service';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { UserActivateComponent } from './_user/user-activate/user-activate.compo
   ],
   providers: [
     EffectBlurService,
-    UserService
+    UserService,
+    NewsService
   ],
   bootstrap: [AppComponent]
 })

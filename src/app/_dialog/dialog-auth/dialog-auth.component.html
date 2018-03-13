@@ -15,7 +15,7 @@
 
 
 
-  <form action="#" class="form" (submit)="submit($event)" [formGroup]="userAuthForm"  #authForm="ngForm" novalidate>
+  <form action="#" class="form" [ngClass]="{'custom-loader disabled': loading}" (submit)="submit($event)" [formGroup]="userAuthForm"  #authForm="ngForm" novalidate>
 
     <label class="form-group"
            [ngClass]="{'has-error': (userAuthForm.controls['email'].hasError('email')
@@ -70,27 +70,37 @@
     <p class="p_middle mobile-small">Stav transakce můžete <b>sledovat</b> přes tento <b>odkaz</b>.</p>
   </div>
 
-  <div class="text-center js-deleteParent" *ngIf="userNotFound">
+  <div class="text-center js-deleteParent" *ngIf="forgotSendSuccess">
+    <div class="alert alert-success">
+      <p>Success! An email with a new password was sent to the specified mailbox.</p>
+      <a href="#" class="btn-close js-deleteBlock">x</a>
+    </div>
+  </div>
+
+  <div class="text-center js-deleteParent" *ngIf="forgotSendError">
     <div class="alert alert-error">
-      <p>Error: Email or password is incorrect</p>
+      <p>Error! A server-side error has occurred. Please try again.</p>
       <a href="#" class="btn-close js-deleteBlock">x</a>
     </div>
   </div>
 
 
 
-  <form action="#" class="form" (submit)="forgot($event)" [formGroup]="userForgotForm"  #forgotForm="ngForm" novalidate>
+  <form action="#" class="form" [ngClass]="{'custom-loader disabled': loading}" (submit)="forgot($event)" [formGroup]="userForgotForm"  #forgotForm="ngForm" novalidate>
 
     <label class="form-group"
-           [ngClass]="{'has-error': (userForgotForm.controls['email'].hasError('email')
+           [ngClass]="{'has-error': ((userForgotForm.controls['email'].hasError('email')
            || userForgotForm.controls['email'].hasError('maxLength'))
-           && forgotForm.submitted}">
+           && forgotForm.submitted) || userForgotForm.controls['email'].hasError('notfounduser') }">
       <span class="form-title">Your e-mail (account login):</span>
-      <input [(ngModel)]="userForgotForm.email" formControlName="email" name="email" type="text" class="form-control">
+      <input [(ngModel)]="userForgot.email" formControlName="email" name="email" type="text" class="form-control">
       <span
         *ngIf="(userForgotForm.controls['email'].hasError('email')
         || userForgotForm.controls['email'].hasError('maxLength'))
         && forgotForm.submitted" class="error-label">Hesla se neshodují</span>
+
+      <span *ngIf="(userForgotForm.controls['email'].hasError('notfounduser')
+        && forgotForm.submitted)" class="error-label">User not found</span>
     </label>
 
     <div class="form-btn between-children">
