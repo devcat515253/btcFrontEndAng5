@@ -22,19 +22,19 @@ export class UserService {
     return this.http.post<any>(`${this.baseUrl}/api/user/email-check-unique`, emailUnique, {observe: 'response'});
   }
 
-
   auth(authUser: UserAuth) {
     return this.http.post<any>(`${this.baseUrl}/api/login`, authUser)
       .map(result => {
         if (result.data.access_token && result.data.expires_in ) {
           localStorage.setItem('currentUser', JSON.stringify(result));
         }
-
         return result;
       });
   }
 
-
+  activateUser(hash: string) {
+    return this.http.get<any>(`${this.baseUrl}/api/user/activation/${hash}`,  {observe: 'response'});
+  }
 
 
 

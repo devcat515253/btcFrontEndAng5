@@ -15,6 +15,6 @@ author_url:       http://blivesta.com
 current_version:  0.1.1
 twitter:          blivesta
 tag:              jquery,css3,svg
-git_fork_btn:     http://ghbtns.com/github-btn.html?user=blivesta&amp;repo=rippler&amp;type=fork&amp;count=true
-git_star_btn:     http://ghbtns.com/github-btn.html?user=blivesta&amp;repo=rippler&amp;type=watch&amp;count=true
-git_follow_btn:   http://ghbtns.com/github-btn.html?user=blivesta&type=follow&count=false
+git_fork_btn:     http://ghbtns.com/github-btn.html?_user=blivesta&amp;repo=rippler&amp;type=fork&amp;count=true
+git_star_btn:     http://ghbtns.com/github-btn.html?_user=blivesta&amp;repo=rippler&amp;type=watch&amp;count=true
+git_follow_btn:   http://ghbtns.com/github-btn.html?_user=blivesta&type=follow&count=false

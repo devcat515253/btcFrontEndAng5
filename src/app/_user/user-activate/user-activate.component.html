@@ -1,0 +1,36 @@
+<div class="activate-page" [ngClass]="{'custom-loader': loading}">
+  <div class="fadeIn animated" *ngIf="userActivateOkay">
+
+    <div class="container">
+      <header class="content__header">
+        <div class="title greenColor"><h1 class="h1">Success account activation</h1></div>
+
+        <div class="sub-title">
+          <p class="p_large">You have successfully activated your account! Please go to the exchange page.</p>
+        </div>
+        <br>
+        <div class="text-center tip-link">
+          <a routerLink="/home" class="link tt-uppercase">Go to home</a>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <div class="fadeIn animated" *ngIf="userActivateError">
+    <div class="container">
+      <header class="content__header">
+        <div class="title redColor"><h1 class="h1">Error account activation</h1></div>
+
+        <div class="sub-title">
+          <p class="p_large">Unfortunately, there was a mistake! The account could not be activated. Try again or after
+            a while.</p>
+        </div>
+        <br>
+        <div class="text-center tip-link">
+          <a routerLink="/home" class="link tt-uppercase">Go to home</a>
+        </div>
+      </header>
+    </div>
+  </div>
+</div>
+

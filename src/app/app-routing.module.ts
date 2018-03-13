@@ -14,6 +14,7 @@ import {TransactionsComponent} from './transactions/transactions.component';
 import {SettingsComponent} from './settings/settings.component';
 import {PrepaidCardComponent} from './prepaid-card/prepaid-card.component';
 import {DiscountComponent} from './discount/discount.component';
+import {UserActivateComponent} from './_user/user-activate/user-activate.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,17 +29,15 @@ const routes: Routes = [
   { path: 'tablehistoryreviews', component: TableHistoryReviewsComponent},
   { path: 'testimonials', component: TestimonialsComponent},
   { path: 'transactions', component: TransactionsComponent},
-  { path: 'settings', component: SettingsComponent},
   { path: 'prepaid-card', component: PrepaidCardComponent},
   { path: 'discount', component: DiscountComponent},
-  { path: 'discount', component: DiscountComponent},
-  // { path: 'account', component: UserAccountComponent,
-  //   children: [
-  //     { path: '', redirectTo: '/account/dashboard', pathMatch: 'full'},
-  //     { path: 'dashboard' ,  component: DashboardComponent},
-  //     { path: 'portfolio' ,  component: PortfolioComponent}
-  //   ]
-  // },
+  { path: 'user',
+    children: [
+      { path: '', redirectTo: '/home', pathMatch: 'full'},
+      { path: 'activation/:hash' ,  component: UserActivateComponent},
+      { path: 'settings' ,  component: SettingsComponent}
+    ]
+  },
 
   { path: '**', redirectTo: '/'}
 ];

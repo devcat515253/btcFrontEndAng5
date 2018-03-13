@@ -31,6 +31,7 @@ import {EffectBlurService} from './_services/effect-blur.service';
 import { DialogAuthComponent } from './_dialog/dialog-auth/dialog-auth.component';
 import {UserService} from './_services/user.service';
 import { DialogSuccessComponent } from './_dialog/dialog-success/dialog-success.component';
+import { UserActivateComponent } from './_user/user-activate/user-activate.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { DialogSuccessComponent } from './_dialog/dialog-success/dialog-success.
     DialogQuestionComponent,
     DialogAuthComponent,
     DialogSuccessComponent,
+    UserActivateComponent,
   ],
   imports: [
     BrowserModule,
