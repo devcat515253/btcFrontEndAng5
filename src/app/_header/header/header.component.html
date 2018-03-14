@@ -7,27 +7,27 @@
     <div class="transform-to-mobile">
       <nav class="header-menu">
         <ul class="nav-menu">
-          <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-          <li><a routerLink="/testimonials" routerLinkActive="active">Testimonials</a></li>
-          <li><a routerLink="/contacts" routerLinkActive="active">Contact</a></li>
+          <li><a routerLink="/home" routerLinkActive="active" translate>home</a></li>
+          <li><a routerLink="/testimonials" routerLinkActive="active">{{ 'testimonials' | translate:user }}</a></li>
+          <li><a routerLink="/contacts" routerLinkActive="active">{{ 'contacts' | translate:user }}</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-link js-dropdown-link">More</a>
+            <a href="#" class="dropdown-link js-dropdown-link">{{ 'dropdown-link' | translate:user }}</a>
             <ul class="dropdown-data">
-              <li><a href="#">Terms and conditions</a></li>
-              <li><a href="#">AML privacy</a></li>
-              <li><a href="#">Privacy policy</a></li>
-              <li><a routerLink="/feesdiscount">Fees & discounts</a></li>
-              <li><a routerLink="/faq">FAQ</a></li>
-              <li><a routerLink="/news">NEWS</a></li>
+              <li><a href="#">{{ 'dropdown-data1' | translate:user }}</a></li>
+              <li><a href="#">{{ 'dropdown-data2' | translate:user }}</a></li>
+              <li><a href="#">{{ 'dropdown-data3' | translate:user }}</a></li>
+              <li><a routerLink="/feesdiscount">{{ 'feesdiscount' | translate:user }}</a></li>
+              <li><a routerLink="/faq">{{ 'faq' | translate:user }}</a></li>
+              <li><a routerLink="/news">{{ 'news' | translate:user }}</a></li>
               <li></li>
-              <li><a routerLink="/landingmagazine">Landing Magazine</a></li>
-              <li><a routerLink="/tablehistory">TableHistory</a></li>
-              <li><a routerLink="/tablehistoryreviews">TableHistoryReviews</a></li>
-              <li><a routerLink="/transactions">Transactions</a></li>
-              <li><a routerLink="/partners">Partners</a></li>
-              <li><a routerLink="/user/settings">Settings</a></li>
-              <li><a routerLink="/prepaid-card">Prepaid-card</a></li>
-              <li><a routerLink="/discount">Discount</a></li>
+              <li><a routerLink="/landingmagazine">{{ 'landingmagazine' | translate:user }}</a></li>
+              <li><a routerLink="/tablehistory">{{ 'tablehistory' | translate:user }}</a></li>
+              <li><a routerLink="/tablehistoryreviews">{{ 'tablehistoryreviews' | translate:user }}</a></li>
+              <li><a routerLink="/transactions">{{ 'transactions' | translate:user }}</a></li>
+              <li><a routerLink="/partners">{{ 'partners' | translate:user }}</a></li>
+              <li><a routerLink="/user/settings">{{ 'user-settings' | translate:user }}</a></li>
+              <li><a routerLink="/prepaid-card">{{ 'prepaid-card' | translate:user }}</a></li>
+              <li><a routerLink="/discount">{{ 'discount' | translate:user }}</a></li>
 
             </ul>
           </li>
@@ -58,8 +58,8 @@
           <a href="#" class="dropdown-link js-dropdown-link">EN</a>
           <div class="dropdown-data">
             <ul>
-              <li><a href="#">RU</a></li>
-              <li><a href="#">CZ</a></li>
+              <li><a (click)="switchLanguage('en')">EN</a></li>
+              <li><a (click)="switchLanguage('cz')">CZ</a></li>
               <li><a href="#">SK</a></li>
             </ul>
           </div>

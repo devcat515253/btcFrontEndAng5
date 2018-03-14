@@ -21,7 +21,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { DiscountComponent } from './discount/discount.component';
 import { PrepaidCardComponent } from './prepaid-card/prepaid-card.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material';
@@ -33,7 +33,12 @@ import {UserService} from './_services/user.service';
 import { DialogSuccessComponent } from './_dialog/dialog-success/dialog-success.component';
 import { UserActivateComponent } from './_user/user-activate/user-activate.component';
 import {NewsService} from './_services/news.service';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -69,7 +74,14 @@ import {NewsService} from './_services/news.service';
     ReactiveFormsModule,
     CommonModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   entryComponents: [
     DialogRegistrationComponent,

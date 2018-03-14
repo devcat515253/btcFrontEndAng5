@@ -3,6 +3,7 @@ import {DialogRegistrationComponent} from '../../_dialog/dialog-registration/dia
 import {MatDialog} from '@angular/material';
 import {EffectBlurService} from '../../_services/effect-blur.service';
 import {DialogAuthComponent} from '../../_dialog/dialog-auth/dialog-auth.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -14,10 +15,26 @@ export class HeaderComponent implements OnInit {
   animal: string;
   name: string;
 
-  constructor(public dialog: MatDialog, private blurService: EffectBlurService) {}
+  constructor(public dialog: MatDialog,
+              private blurService: EffectBlurService,
+              private translate: TranslateService) {
+    translate.addLangs(['en', 'cz']);
+    translate.setDefaultLang('en');
+    translate.use('en');
+  }
+
+
 
   ngOnInit() {
   }
+
+
+  switchLanguage(lang: string){
+    this.translate.use(lang);
+  }
+
+
+
 
 
   openDialogReg(event): void {
