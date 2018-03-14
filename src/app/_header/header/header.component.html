@@ -7,50 +7,50 @@
     <div class="transform-to-mobile">
       <nav class="header-menu">
         <ul class="nav-menu">
-          <li><a routerLink="/home" routerLinkActive="active" translate>home</a></li>
-          <li><a routerLink="/testimonials" routerLinkActive="active">{{ 'testimonials' | translate:user }}</a></li>
-          <li><a routerLink="/contacts" routerLinkActive="active">{{ 'contacts' | translate:user }}</a></li>
+          <li><a routerLink="/home" routerLinkActive="active">{{ 'header.home' | translate }}</a></li>
+          <li><a routerLink="/testimonials" routerLinkActive="active">{{ 'header.testimonials' | translate }}</a></li>
+          <li><a routerLink="/contacts" routerLinkActive="active">{{ 'header.contacts' | translate }}</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-link js-dropdown-link">{{ 'dropdown-link' | translate:user }}</a>
+            <a href="#" class="dropdown-link js-dropdown-link">{{ 'header.dropdown-link' | translate }}</a>
             <ul class="dropdown-data">
-              <li><a href="#">{{ 'dropdown-data1' | translate:user }}</a></li>
-              <li><a href="#">{{ 'dropdown-data2' | translate:user }}</a></li>
-              <li><a href="#">{{ 'dropdown-data3' | translate:user }}</a></li>
-              <li><a routerLink="/feesdiscount">{{ 'feesdiscount' | translate:user }}</a></li>
-              <li><a routerLink="/faq">{{ 'faq' | translate:user }}</a></li>
-              <li><a routerLink="/news">{{ 'news' | translate:user }}</a></li>
+              <li><a href="#">{{ 'header.dropdown-data1' | translate }}</a></li>
+              <li><a href="#">{{ 'header.dropdown-data2' | translate }}</a></li>
+              <li><a href="#">{{ 'header.dropdown-data3' | translate }}</a></li>
+              <li><a routerLink="/feesdiscount">{{ 'feesdiscount' | translate }}</a></li>
+              <li><a routerLink="/faq">{{ 'header.faq' | translate }}</a></li>
+              <li><a routerLink="/news">{{ 'header.news' | translate }}</a></li>
               <li></li>
-              <li><a routerLink="/landingmagazine">{{ 'landingmagazine' | translate:user }}</a></li>
-              <li><a routerLink="/tablehistory">{{ 'tablehistory' | translate:user }}</a></li>
-              <li><a routerLink="/tablehistoryreviews">{{ 'tablehistoryreviews' | translate:user }}</a></li>
-              <li><a routerLink="/transactions">{{ 'transactions' | translate:user }}</a></li>
-              <li><a routerLink="/partners">{{ 'partners' | translate:user }}</a></li>
-              <li><a routerLink="/user/settings">{{ 'user-settings' | translate:user }}</a></li>
-              <li><a routerLink="/prepaid-card">{{ 'prepaid-card' | translate:user }}</a></li>
-              <li><a routerLink="/discount">{{ 'discount' | translate:user }}</a></li>
-
+              <li><a routerLink="/landingmagazine">{{ 'header.landingmagazine' | translate }}</a></li>
+              <li><a routerLink="/tablehistory">{{ 'header.tablehistory' | translate }}</a></li>
+              <li><a routerLink="/tablehistoryreviews">{{ 'header.tablehistoryreviews' | translate }}</a></li>
+              <li><a routerLink="/transactions">{{ 'header.transactions' | translate }}</a></li>
+              <li><a routerLink="/partners">{{ 'header.partners' | translate }}</a></li>
+              <li><a routerLink="/user/settings">{{ 'header.user-settings' | translate }}</a></li>
+              <li><a routerLink="/prepaid-card">{{ 'header.prepaid-card' | translate }}</a></li>
+              <li><a routerLink="/discount">{{ 'header.discount' | translate }}</a></li>
             </ul>
           </li>
         </ul>
       </nav>
 
       <div class="header-btn">
-        <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="openDialogReg($event)">Registrace</a>
-        <a href="#" class="btn btn-accent rippler rippler-default" (click)="openDialogAuth($event)">Přihlásit</a>
+        <!--<a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="openDialogReg($event)">{{ 'header.guest-registr-btn' | translate }}</a>-->
+        <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="openDialogReg($event)">{{'header.user-transactions-btn' | translate }}</a>
+        <!--<a href="#" class="btn btn-accent rippler rippler-default" (click)="openDialogAuth($event)">{{ 'header.guest-login-btn' | translate }}</a>-->
 
-        <!-- <div class="dropdown">
-                      <a href="#" class="btn btn-accent rippler rippler-default js-dropdown-link"><span class="dropdown-link">Přihlásit</span></a>
-                      <div class="dropdown-data">
-                          <ul>
-                              <li><a href="#">Nastavení</a></li>
-                              <li><a href="#">Historie Transakcí</a></li>
-                              <li><a href="#">Invite Friends</a></li>
-                              <li><a href="#">Další položka</a></li>
-                          </ul>
-                          <hr class="full-width">
-                          <a href="#" class="logout">Log Out</a>
-                      </div>
-                  </div> -->
+        <div class="dropdown">
+          <a href="#" class="btn btn-accent rippler rippler-default js-dropdown-link"><span class="dropdown-link">{{ 'header.user-login-btn' | translate }}</span></a>
+          <div class="dropdown-data">
+            <ul>
+              <li><a href="#">{{ 'header.user-dropdownlist.link1' | translate }}</a></li>
+              <li><a href="#">{{ 'header.user-dropdownlist.link2' | translate }}</a></li>
+              <li><a href="#">{{ 'header.user-dropdownlist.link3' | translate }}</a></li>
+              <li><a href="#">{{ 'header.user-dropdownlist.link4' | translate }}</a></li>
+            </ul>
+            <hr class="full-width">
+            <a href="#" class="logout">Log Out</a>
+          </div>
+        </div>
       </div>
 
       <div class="header-lang">

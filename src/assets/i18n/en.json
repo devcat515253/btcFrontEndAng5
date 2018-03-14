@@ -1,4 +1,5 @@
 {
+  "header": {
     "home": "Home",
     "testimonials": "Testimonials",
     "contacts": "Contact",
@@ -16,5 +17,16 @@
     "partners": "Partners",
     "user-settings": "Settings",
     "prepaid-card": "Prepaid-card",
-    "discount": "Discount"
+    "discount": "Discount",
+    "user-transactions-btn": "Transactions",
+    "user-login-btn": "My Account",
+    "guest-registr-btn": "Register",
+    "guest-login-btn": "Login",
+    "user-dropdownlist": {
+      "link1": "Settings",
+      "link2": "Transaction History",
+      "link3": "Invite Friends",
+      "link4": "More"
+    }
+  }
 }
