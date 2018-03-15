@@ -52,6 +52,7 @@
                 <h2 class="title-great">General</h2>
               </div>
 
+
               <div class="blank-self__content">
                 <div class="content">
                   <div class="items list-numeric">
@@ -60,20 +61,20 @@
                       <div class="item__content">
                         <form action="#" class="form">
                           <label class="form-group has-error">
-                            <span class="form-title">Your e-mail:</span>
+                            <span class="form-title">{{ 'exchange.PersonalInfo.Name' | translate }}:</span>
                             <input type="text" class="form-control" required="">
                             <span class="error-label">Hesla se neshodují</span>
                           </label>
 
                           <label class="form-group">
-                            <span class="form-title">Your e-mail:</span>
+                            <span class="form-title">{{ 'exchange.PersonalInfo.Address' | translate }}:</span>
                             <input type="text" class="form-control">
                             <span class="error-label">Hesla se neshodují</span>
                           </label>
 
                           <div class="between-children">
                             <label class="form-group">
-                              <span class="form-title">Your e-mail:</span>
+                              <span class="form-title">{{ 'exchange.PersonalInfo.Country' | translate }}:</span>
                               <input type="text" class="form-control">
                               <span class="error-label">Hesla se neshodují</span>
                             </label>
@@ -97,7 +98,7 @@
             <div class="blank-self">
 
               <div class="blank-self__head">
-                <h2 class="title-great">Verification <span class="title-status">(aktuální status: limit1 - směna do do 249 €)</span></h2>
+                <h2 class="title-great">Verification <span class="title-status">{{ 'Settings.VerificationTitle' | translate }}</span></h2>
               </div>
 
               <div class="blank-self__content">
@@ -105,15 +106,15 @@
                   <div class="items list-numeric">
                     <!-- STEP1 -->
                     <div class="item">
-                      <div class="item__head title-inner opened">Limit1 (default) - směna do 249 €</div>
+                      <div class="item__head title-inner opened">{{ 'Settings.VerificationLimit1' | translate }}</div>
                     </div>
 
                     <!-- <div class="item is-disabled"> -->
                     <div class="item">
-                      <div class="line-sides">Další stupeň verifikace</div>
+                      <div class="line-sides">{{ 'Settings.NextLevel' | translate }}</div>
 
                       <div class="item__head title-inner">
-                        Limit2 - směna 250 - 999 €
+                        {{ 'Settings.VerificationLimit2' | translate }}
                         <div class="settings-tip p_small desktop-only">You need to verify your <b>e-mail address</b> and <br> <b>phone number</b> to exchange 250 - 999 €.</div>
                       </div>
 
@@ -143,7 +144,7 @@
 
                           <div class="form-btn">
                             <label>
-                              <a href="#" class="btn btn-accentSecond rippler rippler-default">Apply changes</a>
+                              <a href="#" class="btn btn-accentSecond rippler rippler-default">{{ 'Settings.ConfirmBtn' | translate }}</a>
                               <input type="submit" hidden>
                             </label>
                           </div>
@@ -158,10 +159,10 @@
                     </div>
 
                     <div class="item is-disabled">
-                      <div class="line-sides">Další stupeň verifikace</div>
+                      <div class="line-sides">{{ 'Settings.NextLevel' | translate }}</div>
 
                       <div class="item__head title-inner">
-                        Limit3 - směna 1 000 - 14 999 €
+                        {{ 'Settings.VerificationLimit3' | translate }}
                         <div class="settings-tip p_small desktop-only">You need to verify your <b>identity card</b> <br>to exchange 1 000 - 14 999 €.</div>
                       </div>
 
@@ -179,7 +180,7 @@
                           </div>
                           <div class="form-btn">
                             <label>
-                              <a href="#" class="btn btn-accentSecond rippler rippler-default">Apply changes</a>
+                              <a href="#" class="btn btn-accentSecond rippler rippler-default">{{ 'Settings.UploadBtn' | translate }}</a>
                               <input type="submit" hidden>
                             </label>
                           </div>
@@ -188,10 +189,10 @@
                     </div>
 
                     <div class="item is-disabled">
-                      <div class="line-sides">Další stupeň verifikace</div>
+                      <div class="line-sides">{{ 'Settings.NextLevel' | translate }}</div>
 
                       <div class="item__head title-inner">
-                        Limit4 - unlimited/corporate
+                        {{ 'Settings.VerificationLimit4' | translate }}
                         <div class="settings-tip p_small desktop-only">You need to verify <b>KYC questionnaire</b> <br>to exchange unlimited €.</div>
                       </div>
 
@@ -223,7 +224,7 @@
                           </div>
                           <div class="form-btn">
                             <label>
-                              <a href="#" class="btn btn-accentSecond rippler rippler-default">Apply changes</a>
+                              <a href="#" class="btn btn-accentSecond rippler rippler-default">{{ 'Settings.SendBtn' | translate }}</a>
                               <input type="submit" hidden>
                             </label>
                           </div>

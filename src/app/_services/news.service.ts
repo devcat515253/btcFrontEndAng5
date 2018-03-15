@@ -9,6 +9,6 @@ export class NewsService {
   constructor(private http: HttpClient) { }
 
   getNewsList(lang: string) {
-    return this.http.get<any>(`${this.baseUrl}/api/news/view?filters={"language":"${lang}"}`,  {observe: 'response'});
+    return this.http.get<any>(`${this.baseUrl}/api/news/view?filters={"language":"${lang}"}&pagination={"limit":1000000,"offset":0}`);
   }
 }

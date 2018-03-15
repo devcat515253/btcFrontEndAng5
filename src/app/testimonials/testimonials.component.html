@@ -2,11 +2,10 @@
   <div class="container">
 
     <header class="content__header">
-      <div class="title"><h1 class="h1">Testimonials</h1></div>
+      <div class="title"><h1 class="h1">{{ 'Testimonials.title' | translate }}</h1></div>
 
       <div class="sub-title">
-        <p class="p_large pre-line">Co o nás říkají naši spokojení zákazníci?
-          Podívejte se na hodnocení transakcí, které nám zanechali.</p>
+        <p class="p_large pre-line" [innerHTML]="'Testimonials.subtitle' | translate"></p>
       </div>
 
 
@@ -14,8 +13,7 @@
         <img src="../assets/img/satisfaction_guarantee.png" alt="" class="img-left">
         <div class="gratitude-text">
           <hr>
-          <h2 class="h2 pre-line">Více než <span class="accentColor">4,149 zákazníků</span> nám zanechalo
-            hodnocení <span class="accentColor">5/5 hvězd</span>. Děkujeme.</h2>
+          <h2 class="h2 pre-line" [innerHTML]="'Contacts.subtitle' | translate"></h2>
         </div>
         <img src="../assets/img/green_shield_check_protected_checked.png" alt="" class="img-right">
       </div>
@@ -29,13 +27,13 @@
               <table>
                 <thead>
                 <tr>
-                  <th align="center">Uživatel:</th>
-                  <th>Vstupní systém:</th>
-                  <th>Vstupní částka:</th>
-                  <th>Výstupní systém:</th>
-                  <th>Výstupní částka:</th>
-                  <th>ID transakce:</th>
-                  <th>Hodnocení:</th>
+                  <th align="center">{{ 'table.Testimonials.col1' | translate }}:</th>
+                  <th>{{ 'table.Testimonials.col2' | translate }}:</th>
+                  <th>{{ 'table.Testimonials.col3' | translate }}:</th>
+                  <th>{{ 'table.Testimonials.col4' | translate }}:</th>
+                  <th>{{ 'table.Testimonials.col5' | translate }}:</th>
+                  <th>{{ 'table.Testimonials.col6' | translate }}:</th>
+                  <th>{{ 'table.Testimonials.col7' | translate }}:</th>
                 </tr>
                 </thead>
 
@@ -70,7 +68,7 @@
                 <tr class="tr-content">
                   <td colspan="7">
                     <div class="tr-review">
-                      <div class="tr-review__name"><b>P*** D****</b> říká o této transakci:</div>
+                      <div class="tr-review__name"><b>P*** D****</b> {{ 'table.Testimonials.Reviews.Says' | translate }}</div>
                       <div class="tr-review__text">
                         <div class="rating rating-static">
                           <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
@@ -82,7 +80,7 @@
                         <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
                           Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
                       </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
+                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">{{ 'table.Testimonials.Reviews.Hide' | translate }}</a></div>
                     </div>
                   </td>
                 </tr>
@@ -118,7 +116,7 @@
                 <tr class="tr-content">
                   <td colspan="7">
                     <div class="tr-review">
-                      <div class="tr-review__name"><b>L*** K******</b> říká o této transakci:</div>
+                      <div class="tr-review__name"><b>L*** K******</b> {{ 'table.Testimonials.Reviews.Says' | translate }}:</div>
                       <div class="tr-review__text">
                         <div class="rating rating-static">
                           <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
@@ -130,7 +128,7 @@
                         <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
                           Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
                       </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
+                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">{{ 'table.Testimonials.Reviews.Hide' | translate }}</a></div>
                     </div>
                   </td>
                 </tr>
@@ -166,7 +164,7 @@
                 <tr class="tr-content">
                   <td colspan="7">
                     <div class="tr-review">
-                      <div class="tr-review__name"><b>T***** N******</b> říká o této transakci:</div>
+                      <div class="tr-review__name"><b>T***** N******</b> {{ 'table.Testimonials.Reviews.Says' | translate }}:</div>
                       <div class="tr-review__text">
                         <div class="rating rating-static">
                           <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
@@ -178,7 +176,7 @@
                         <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
                           Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
                       </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
+                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">{{ 'table.Testimonials.Reviews.Hide' | translate }}</a></div>
                     </div>
                   </td>
                 </tr>
@@ -214,7 +212,7 @@
                 <tr class="tr-content">
                   <td colspan="7">
                     <div class="tr-review">
-                      <div class="tr-review__name"><b>T***** N******</b> říká o této transakci:</div>
+                      <div class="tr-review__name"><b>T***** N******</b> {{ 'table.Testimonials.Reviews.Says' | translate }}:</div>
                       <div class="tr-review__text">
                         <div class="rating rating-static">
                           <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
@@ -226,7 +224,7 @@
                         <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
                           Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
                       </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
+                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">{{ 'table.Testimonials.Reviews.Hide' | translate }}</a></div>
                     </div>
                   </td>
                 </tr>
@@ -261,7 +259,7 @@
                 <tr class="tr-content">
                   <td colspan="7">
                     <div class="tr-review">
-                      <div class="tr-review__name"><b>P*** D****</b> říká o této transakci:</div>
+                      <div class="tr-review__name"><b>P*** D****</b> {{ 'table.Testimonials.Reviews.Says' | translate }}:</div>
                       <div class="tr-review__text">
                         <div class="rating rating-static">
                           <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
@@ -273,7 +271,7 @@
                         <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
                           Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
                       </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
+                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">{{ 'table.Testimonials.Reviews.Hide' | translate }}</a></div>
                     </div>
                   </td>
                 </tr>
@@ -309,7 +307,7 @@
                 <tr class="tr-content">
                   <td colspan="7">
                     <div class="tr-review">
-                      <div class="tr-review__name"><b>L*** K******</b> říká o této transakci:</div>
+                      <div class="tr-review__name"><b>L*** K******</b> {{ 'table.Testimonials.Reviews.Says' | translate }}:</div>
                       <div class="tr-review__text">
                         <div class="rating rating-static">
                           <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
@@ -321,7 +319,7 @@
                         <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
                           Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
                       </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
+                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">{{ 'table.Testimonials.Reviews.Hide' | translate }}</a></div>
                     </div>
                   </td>
                 </tr>
@@ -357,7 +355,7 @@
                 <tr class="tr-content">
                   <td colspan="7">
                     <div class="tr-review">
-                      <div class="tr-review__name"><b>T***** N******</b> říká o této transakci:</div>
+                      <div class="tr-review__name"><b>T***** N******</b> {{ 'table.Testimonials.Reviews.Says' | translate }}:</div>
                       <div class="tr-review__text">
                         <div class="rating rating-static">
                           <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
@@ -369,7 +367,7 @@
                         <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
                           Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
                       </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
+                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">{{ 'table.Testimonials.Reviews.Hide' | translate }}</a></div>
                     </div>
                   </td>
                 </tr>
@@ -405,7 +403,7 @@
                 <tr class="tr-content">
                   <td colspan="7">
                     <div class="tr-review">
-                      <div class="tr-review__name"><b>T***** N******</b> říká o této transakci:</div>
+                      <div class="tr-review__name"><b>T***** N******</b> {{ 'table.Testimonials.Reviews.Says' | translate }}:</div>
                       <div class="tr-review__text">
                         <div class="rating rating-static">
                           <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
@@ -417,7 +415,7 @@
                         <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
                           Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
                       </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
+                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">{{ 'table.Testimonials.Reviews.Hide' | translate }}</a></div>
                     </div>
                   </td>
                 </tr>
@@ -452,7 +450,7 @@
                 <tr class="tr-content">
                   <td colspan="7">
                     <div class="tr-review">
-                      <div class="tr-review__name"><b>P*** D****</b> říká o této transakci:</div>
+                      <div class="tr-review__name"><b>P*** D****</b> {{ 'table.Testimonials.Reviews.Says' | translate }}:</div>
                       <div class="tr-review__text">
                         <div class="rating rating-static">
                           <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
@@ -464,7 +462,7 @@
                         <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
                           Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
                       </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
+                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">{{ 'table.Testimonials.Reviews.Hide' | translate }}</a></div>
                     </div>
                   </td>
                 </tr>
@@ -500,7 +498,7 @@
                 <tr class="tr-content">
                   <td colspan="7">
                     <div class="tr-review">
-                      <div class="tr-review__name"><b>L*** K******</b> říká o této transakci:</div>
+                      <div class="tr-review__name"><b>L*** K******</b> {{ 'table.Testimonials.Reviews.Says' | translate }}:</div>
                       <div class="tr-review__text">
                         <div class="rating rating-static">
                           <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
@@ -512,7 +510,7 @@
                         <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
                           Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
                       </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
+                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">{{ 'table.Testimonials.Reviews.Hide' | translate }}</a></div>
                     </div>
                   </td>
                 </tr>
@@ -548,7 +546,7 @@
                 <tr class="tr-content">
                   <td colspan="7">
                     <div class="tr-review">
-                      <div class="tr-review__name"><b>T***** N******</b> říká o této transakci:</div>
+                      <div class="tr-review__name"><b>T***** N******</b> {{ 'table.Testimonials.Reviews.Says' | translate }}:</div>
                       <div class="tr-review__text">
                         <div class="rating rating-static">
                           <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
@@ -560,7 +558,7 @@
                         <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
                           Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
                       </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
+                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">{{ 'table.Testimonials.Reviews.Hide' | translate }}</a></div>
                     </div>
                   </td>
                 </tr>
@@ -596,7 +594,7 @@
                 <tr class="tr-content">
                   <td colspan="7">
                     <div class="tr-review">
-                      <div class="tr-review__name"><b>T***** N******</b> říká o této transakci:</div>
+                      <div class="tr-review__name"><b>T***** N******</b> {{ 'table.Testimonials.Reviews.Says' | translate }}:</div>
                       <div class="tr-review__text">
                         <div class="rating rating-static">
                           <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
@@ -608,7 +606,7 @@
                         <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
                           Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
                       </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
+                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">{{ 'table.Testimonials.Reviews.Hide' | translate }}</a></div>
                     </div>
                   </td>
                 </tr>

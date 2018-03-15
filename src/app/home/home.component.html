@@ -22,17 +22,13 @@
             </div>
             <div class="column__content">
               <div class="select-amount subblock">
-                <label class="input-exchange">
+                <label class="input-exchange has-error">
                   <div class="input">
                     <input type="text">
                     <span class="currency">USD</span>
                   </div>
 
-                  <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
-                  <!-- <span class="error-label">
-                                            Zadaná částka přesahuje limit 9,999 USD
-                                            <a href="#"> kontact us</a>
-                                        </span> -->
+                  <span class="error-label">{{ 'errors.ExchangeLimit' | translate }}</span>
                 </label>
 
                 <br>
@@ -42,11 +38,10 @@
                     <span class="currency">USD</span>
                   </div>
 
-                  <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
-                  <!-- <span class="error-label">
-                                            Zadaná částka přesahuje limit 9,999 USD
-                                            <a href="#"> kontact us</a>
-                                        </span> -->
+                  <span class="error-label">
+                    {{ 'errors.ExchangeAmount' | translate }}
+                    <a href="#"> {{ 'exchange.InputErrorLink' | translate }}</a>
+                  </span>
                 </label>
                 <br>
 
@@ -56,11 +51,7 @@
                     <span class="currency">USD</span>
                   </div>
 
-                  <!-- <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span> -->
-                  <span class="error-label">
-												Zadaná částka přesahuje limit 9,999 USD
-												<a href="#"> kontact us</a>
-											</span>
+                  <span class="error-label">{{ 'errors.ExchangeWarningVerify' | translate }}</span>
                 </label>
                 <br>
                 <br>
@@ -68,12 +59,12 @@
 
               <div class="subblock">
                 <div class="subblock-title">
-                  <p class="p_middle">Zvolte posílanou měnu:</p>
+                  <p class="p_middle">{{ 'exchange.choose' | translate }}:</p>
                 </div>
 
                 <div class="subblock-content">
                   <div class="btns">
-                    <div class="item rippler rippler-default">All</div>
+                    <div class="item rippler rippler-default">{{ 'exchange.all' | translate }}</div>
                     <div class="item is-selected rippler rippler-default">EUR</div>
                     <div class="item rippler rippler-default">CZK</div>
                     <div class="item rippler rippler-default">Coin</div>
@@ -83,7 +74,7 @@
 
               <div class="subblock">
                 <div class="subblock-title">
-                  <p class="p_middle">Vyberte transakční systém:</p>
+                  <p class="p_middle">{{ 'exchange.PaymentMethod' | translate }}:</p>
                 </div>
 
                 <div class="subblock-content">
@@ -237,8 +228,7 @@
                     <div class="step">
                       <div class="step-title"><h3 class="h3">2. Login or registration</h3></div>
 
-                      <p class="p_small">
-                        Vstupní částka <b>přesáhla limit</b> a je <b>vyžadováno přihlášení</b>. Pokud účet nemáte, klikněte na tlačítko “<b>Create free account</b>”.
+                      <p class="p_small" [innerHTML]="'exchange.ProcessLogin' | translate">
                       </p>
 
                       <div class="reduced-width">
@@ -261,14 +251,16 @@
                       </p>
 
                       <form action="#" class="form">
-                        <label class="form-group">
+                        <label class="form-group has-error">
                           <span class="form-title">Your e-mail:</span>
                           <input type="text" class="form-control">
+                          <span class="error-label">{{ 'errors.Email' | translate }}</span>
                         </label>
 
-                        <label class="form-group">
+                        <label class="form-group has-error">
                           <span class="form-title">Password:</span>
                           <input type="password" class="form-control">
+                          <span class="error-label">{{ 'errors.Password' | translate }}</span>
                         </label>
 
                         <div class="form-btn between-children">
@@ -287,8 +279,7 @@
                     <div class="step">
                       <div class="step-title"><h3 class="h3">2. Registration</h3></div>
 
-                      <p class="p_small">
-                        Vstupní částka přesáhla limit pro nutnou <b>registraci</b> a následnou <b>verifikaci</b>, pokračujte vyplněním hesla.
+                      <p class="p_small"  [innerHTML]="'exchange.ProcessReg' | translate">
                       </p>
 
                       <form action="#" class="form">
@@ -549,17 +540,17 @@
                       <form action="#" class="form">
 
                         <label class="form-group">
-                          <span class="form-title">Your wallet ID:</span>
+                          <span class="form-title">{{ 'exchange.PersonalInfo.Name' | translate }}:</span>
                           <input type="text" class="form-control" value="john.doe@gmail.com">
                         </label>
 
                         <label class="form-group">
-                          <span class="form-title">Contact e-mail:</span>
+                          <span class="form-title">{{ 'exchange.PersonalInfo.Address' | translate }}:</span>
                           <input type="text" class="form-control" value="john.doe@gmail.com">
                         </label>
 
                         <label class="form-group">
-                          <span class="form-title">Your wallet ID:</span>
+                          <span class="form-title">{{ 'exchange.PersonalInfo.Country' | translate }}:</span>
                           <input type="text" class="form-control" value="john.doe@gmail.com">
                         </label>
 
@@ -575,18 +566,23 @@
                         </label>
 
                         <label class="form-group">
+                          <span class="form-title">{{ 'exchange.PersonalInfo.BankName' | translate }}:</span>
+                          <input type="text" class="form-control" value="john.doe@gmail.com">
+                        </label>
+
+                        <label class="form-group">
+                          <span class="form-title">{{ 'exchange.PersonalInfo.BankAddress' | translate }}:</span>
+                          <input type="text" class="form-control" value="john.doe@gmail.com">
+                        </label>
+
+                        <label class="form-group">
+                          <span class="form-title">{{ 'exchange.PersonalInfo.Country' | translate }}:</span>
+                          <input type="text" class="form-control" value="john.doe@gmail.com">
+                        </label>
+
+                        <label class="form-group">
                           <span class="form-title">Contact e-mail:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
-                        </label>
-
-                        <label class="form-group">
-                          <span class="form-title">Your wallet ID:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
-                        </label>
-
-                        <label class="form-group">
-                          <span class="form-title">Your wallet ID:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
+                          <input type="email" class="form-control" value="john.doe@gmail.com">
                         </label>
 
 
@@ -619,18 +615,18 @@
                       <form action="#" class="form">
 
                         <label class="form-group">
-                          <span class="form-title">Your wallet ID:</span>
+                          <span class="form-title">{{ 'exchange.PersonalInfo.Name' | translate }}:</span>
                           <input type="text" class="form-control" value="john.doe@gmail.com">
                         </label>
 
                         <div class="double">
                           <label class="form-group">
-                            <span class="form-title">Číslo účtu:</span>
+                            <span class="form-title">{{ 'exchange.PersonalInfo.BankAccount' | translate }}:</span>
                             <input type="text" class="form-control" value=" 1112003761">
                           </label>
 
                           <label class="form-group has-error">
-                            <span class="form-title">Kod banky:</span>
+                            <span class="form-title">{{ 'exchange.PersonalInfo.BankCode' | translate }}:</span>
                             <input type="text" class="form-control" value="0600">
                             <span class="error-label">Invalid format</span>
                           </label>
@@ -638,7 +634,7 @@
 
                         <label class="form-group">
                           <span class="form-title">Contact e-mail:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
+                          <input type="email" class="form-control" value="john.doe@gmail.com">
                         </label>
 
                         <label class="checkbox">
@@ -660,12 +656,9 @@
 
                     <!-- STEP 3-3 -->
                     <div class="step">
-                      <div class="step-title"><h3 class="h3">3. Výhodnější směna s účtem</h3></div>
+                      <div class="step-title"><h3 class="h3">3. {{ 'exchange.ProcessRegAndExchange.title' | translate }}</h3></div>
 
-                      <p class="p_small">
-                        Vy ještě nemáte <b>vlastní účet</b>? Zaregistrujte <br>
-                        se <b>zdarma</b> a získejte pohodlný přístup k historii vašich směn a dalším benefitům.
-                      </p>
+                      <p class="p_small" [innerHTML]="'exchange.ProcessRegAndExchange.descr' | translate"></p>
 
                       <div class="text-center tip-link">
                         <a href="#" class="link tt-uppercase">Fill from last</a>
@@ -1014,7 +1007,7 @@
 
               <div class="subblock">
                 <div class="subblock-title">
-                  <p class="p_middle">Zvolte posílanou měnu:</p>
+                  <p class="p_middle">{{ 'exchange.choose' | translate }}:</p>
                 </div>
 
                 <div class="subblock-content">
@@ -1029,7 +1022,7 @@
 
               <div class="subblock">
                 <div class="subblock-title">
-                  <p class="p_middle">Vyberte transakční systém:</p>
+                  <p class="p_middle">{{ 'exchange.PaymentMethod' | translate }}:</p>
                 </div>
 
                 <div class="subblock-content">

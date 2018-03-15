@@ -6,8 +6,7 @@
         <div class="title"><h1 class="h1">Contact</h1></div>
 
         <div class="sub-title">
-          <p class="p_large pre-line">Rádi vám odpovíme na každou otázkou.
-            Máte zájem o partnerství? Napište nám, ozveme se.</p>
+          <p class="p_large pre-line" [innerHTML]="'Contacts.subtitle' | translate"></p>
         </div>
 
       </header>
@@ -112,7 +111,7 @@
             <div class="blank-self banner">
 
               <div class="blank-self__head tac">
-                <h2 class="h2">Patříme do sítě směnáren <span class="colorAccentOne">Unicash!</span></h2>
+                <h2 class="h2" [innerHTML]="'Contacts.partofUnicash' | translate"></h2>
               </div>
 
               <div class="blank-self__content"></div>

@@ -22,11 +22,21 @@
     justify-content: center
     cursor: pointer
     transition: background-color .2s linear, border .2s linear
+    position: relative
     a
       color: $colorAccentSecond
       font-family: $nunito
       font-size: 1.7rem
       line-height: 2.3rem
+      position: static
+      &:before
+        content: ''
+        display: block
+        position: absolute
+        top: 0
+        right: 0
+        left: 0
+        bottom: 0
     &:first-child
       border-radius: 3px 0 0 3px
     &:last-child
