@@ -1,6 +1,8 @@
 
 
-  <div class="main inner fadeIn animated">
+  <div class="main inner fadeIn animated"
+       (window:orientationchange)="initSetPage($event)"
+       (window:resize)="initSetPage($event)" >
     <div class="container">
 
       <header class="content__header">
@@ -89,14 +91,14 @@
 
                   <ul class="pages pages_mobile">
                     <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === 1}">
-                      <a (click)="setPage(1)">First</a>
+                      <a (click)="setPageMobile(1)">First</a>
                     </li>
 
                     <li class="page rippler rippler-default" *ngFor="let page of pager.pages" [ngClass]="{'is-selected':pager.currentPage === page}">
-                      <a (click)="setPage(page)">{{page}}</a>
+                      <a (click)="setPageMobile(page)">{{page}}</a>
                     </li>
 
-                    <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === pager.totalPages}"><a (click)="setPage(pager.totalPages)">Last</a></li>
+                    <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === pager.totalPages}"><a (click)="setPageMobile(pager.totalPages)">Last</a></li>
                   </ul>
                 </div>
               </div>
