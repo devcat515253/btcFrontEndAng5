@@ -30,22 +30,105 @@
     }
   },
 
+  "exchange": {
+    "choose": "Choose the Currency",
+    "all": "All",
+    "PaymentMethod": "Payment Method",
+    "InputErrorLink": "CONTACT US",
+    "ProcessLogin": "The entered <b>amount exceeded</b> the limit. Please login. If you don't have an account, you can create a free one by pressing “<b>Create free account</b>” button.",
+    "ProcessReg": "The entered amount exceeded the limit. It is required to be <b>registred</b> and <b>verified</b>. Continue by filling your password below.",
+    "ProcessRegAndExchange": {
+      "title": "Register and get exchange benefits.",
+      "descr": "Still don’t have an <b>account</b>? Create a free one for free and <b>get access</b> to transaction history of all your exchanges and take advantage of other exclusive <b>benefits</b>."
+    },
+    "PersonalInfo": {
+      "Name": "First and last name",
+      "Address": "Address",
+      "Country": "Country",
+      "BankName": "Bank name",
+      "BankAddress": "Bank address",
+      "BankAccount": "Bank account",
+      "BankCode": "Bank code"
+    },
+    "NewExchange": "New Exchange",
+    "PaginationOf": "of",
+    "TransactionID": "Transaction ID",
+    "PaymentInfo": "Payment Information",
+    "CurrentStatus": "Current Status"
+  },
+
+  "Settings": {
+    "VerificationTitle": "(current limit: limit 1 – up to 249 € exchange)",
+    "VerificationLimit1": "Limit 1 (default) – up to 249 € exchange",
+    "VerificationLimit2": "Limit 2 – 250 - 999 € exchange",
+    "VerificationLimit3": "Limit 3 – 1 000 - 14 999 € exchange",
+    "NextLevel": "Next Verification Level",
+    "ConfirmBtn": "Confirm verification",
+    "UploadBtn": "Upload and confirm",
+    "SendBtn": "Send KYC and confirm"
+  },
+
+  "Testimonials": {
+    "title": "Testimonials",
+    "subtitle": "What do our satisfied customers say? <br>Take a look at the reviews they left us.",
+    "gratitude": "Over <span class='accentColor'>4149 customers</span> have left us a <span class='accentColor'>5/5 star</span> rating. Thank you."
+  },
+
+  "errors": {
+    "ExchangeLimit": "Entered amount exceeds 9,999 USD limit",
+    "ExchangeAmount": "Amount not available",
+    "ExchangeWarningVerify": "To continue, please verify your account first",
+    "Email": "The e-mail doesn’t match any account",
+    "Password": "Passwords do not match"
+  },
+
+  "Contacts": {
+    "subtitle": "We will be happy to answer any questions. <br/>Interested in partnership? Contact us, we will get back to you.",
+    "partofUnicash": "We are part of <span class='colorAccentOne'>Unicash</span> exchange network!"
+  },
+
+  "FAQ": {
+    "subtitle": "We will be happy to answer any questions. <br/>Interested in partnership? Contact us and we will get back to you."
+  },
+
+  "News": {
+    "subtitle": "Important Smartex updates and latest Crypto <br/>News from all over the world in one place!"
+  },
 
 
+  "table": {
+    "HistoryReviews": {
+      "col1": "User",
+      "col2": "Input System",
+      "col3": "Input Amount",
+      "col4": "Output Method",
+      "col5": "Output Amount",
+      "col6": "Transaction ID",
+      "col7": "Rating"
+    },
 
+    "Testimonials": {
+      "col1": "Input Amount",
+      "col2": "Input System",
+      "col3": "Input Amount",
+      "col4": "Output System",
+      "col5": "Output Amount",
+      "col6": "Status",
+      "col7": "Rating",
+      "Reviews": {
+        "Says": "says",
+        "Hide": "Hide review"
+      }
+    },
 
-
-
-
-
-
-
-
-
-
-
-
-
+    "status": {
+      "Verifying": "Verifying the amount",
+      "Waiting": "Waiting to receive <br />your payment",
+      "Successfully": "Successfully processed",
+      "Failed": "Payment failed",
+      "NoRating": "No Rating"
+    }
+  }
 
 
 

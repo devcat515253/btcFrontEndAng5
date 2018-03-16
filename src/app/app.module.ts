@@ -35,6 +35,7 @@ import { UserActivateComponent } from './_user/user-activate/user-activate.compo
 import {NewsService} from './_services/news.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {PaginationService} from './_services/pagination.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
@@ -92,7 +93,8 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [
     EffectBlurService,
     UserService,
-    NewsService
+    NewsService,
+    PaginationService
   ],
   bootstrap: [AppComponent]
 })

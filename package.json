@@ -28,7 +28,8 @@
     "animate.css": "^3.6.1",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.6",
-    "zone.js": "^0.8.19"
+    "zone.js": "^0.8.19",
+    "underscore": "latest"
   },
   "devDependencies": {
     "@angular/cli": "~1.7.2",
@@ -38,6 +39,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/jquery": "^1.10.34",
     "@types/node": "~6.0.60",
+    "@types/underscore": "^1.8.8",
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",

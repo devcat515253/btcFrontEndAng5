@@ -1,14 +1,15 @@
 
 
-  <div class="main inner fadeIn animated">
+  <div class="main inner fadeIn animated"
+       (window:orientationchange)="initSetPage($event)"
+       (window:resize)="initSetPage($event)" >
     <div class="container">
 
       <header class="content__header">
         <div class="title"><h1 class="h1">News</h1></div>
 
         <div class="sub-title">
-          <p class="p_large pre-line">Důležité zprávy od směnárny Smartex
-            a novinky ze světa kryptoměn na jediném místě!</p>
+          <p class="p_large pre-line" [innerHTML]="'News.subtitle' | translate"></p>
         </div>
 
       </header>
@@ -29,19 +30,10 @@
                 <div class="content">
                   <div class="items ">
 
-                    <div class="item">
-                      <div class="item__head title-inner opened" dataDate="02/17/2017" >New design in progress!</div>
-                      <div class="item__content"><p class="pre-line">Hello partners!
-
-                        We are happy to announce that new design of smartex.info is in progrss. It will be implemented during the next weeks.
-                        Smartex2.0 will be better looking, user friendlier and alcso faster!
-
-                        Thank you for your enthusiasm
-                        Smartex Team</p></div>
+                    <div class="item" *ngIf="newsArray.length > 0">
+                      <div class="item__head title-inner opened" [attr.dataDate]="newsArray[0].date | date: 'dd/MM/yyyy'" >{{newsArray[0].title}}</div>
+                      <div class="item__content"><p class="pre-line">{{newsArray[0].text}}</p></div>
                     </div>
-
-
-
                   </div>
 
                 </div>
@@ -59,75 +51,55 @@
                 <div class="content">
                   <div class="items ">
 
-                    <div class="item">
-                      <div class="item__head title-inner opened" dataDate="06/17/2017" >We have added a new curreny!</div>
-                      <div class="item__content"><p class="pre-line">Can you imagine what we will be downloading in another twenty years? I mean who would have ever thought that you could record sound with digital quality fifty years ago? Now we routinely download whole albums worth of music in a couple of minutes to ipods that hold thousands of songs in the space the size of a zippo lighter!</p></div>
+                    <div *ngFor="let newsItem of pagedItems; let i = index">
+                    <div class="item animated fadeIn" *ngIf="i > 0">
+                      <div class="item__head title-inner opened" [attr.dataDate]="newsItem.date | date: 'dd/MM/yyyy'" >{{newsItem.title}}</div>
+                      <div class="item__content"><p class="pre-line" [innerHTML]="newsItem.text"></p></div>
                     </div>
-
-                    <div class="item">
-                      <div class="item__head title-inner opened" dataDate="06/17/2017" >Bitcoin’s value is incredible high!</div>
-                      <div class="item__content"><p class="pre-line">If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. Many offices use desktop computers because they are not intended to be moved around a lot. In addition, affordability often plays a large role in someone’s decision as to whether to purchase notebook or desktop computers.
-
-                        While you are shopping around, it’s important to keep in mind some of the benefits that go along with owning different types of computers. To that end, this article provides five important reasons to purchase desktop computers.</p></div>
                     </div>
-
-                    <div class="item">
-                      <div class="item__head title-inner opened" dataDate="06/17/2017" >Smartex 1.5 released!</div>
-                      <div class="item__content"><p class="pre-line">Now a good colon cleansing system is one which is divided into three steps: first it prepares the colon by creating the right environment for starting with the next and most important step of flushing. It can be achieved by consuming oral supplements.
-
-                        Now the question is how do you ensure the health of your colon? It is simple, go for colon cleansing at regular intervals. There are mainly two different ways to cleanse the colon. The first is to consume high fiber supplements and second is to flush the colon with water. In the second case where the colon is provided large amount of fluids, it actually flushes itself to get rid of the fecal matters and toxins accumulated in its walls for years. The end result is: you get a clean inside and get back the vitality of health.
-
-                        How does the colon flush help you to get back to the previous healthy and energetic state? To know this you have to first learn the importance of colon with regard to our over all health.</p></div>
-                    </div>
-
-
 
                   </div>
 
                 </div>
               </div>
 
-
-
             </div>
 
-
-
-            <div class="paginator__wr">
-              <div class="paginator">
-                <div class="paginator__status"><span class="">Zobrazeno <b>3</b> z <b>15</b></span></div>
+            <div class="paginator__wr" *ngIf="pager.pages && pager.pages.length">
+              <div class="paginator" >
+                <div class="paginator__status"><span class=""><b>{{pager.currentPage}}</b> {{ 'exchange.PaginationOf' | translate }} <b>{{pager.totalPages}}</b>  </span></div>
                 <div class="paginator__btns">
 
                   <ul class="pages pages_desktop">
-                    <li class="page rippler rippler-default is-disabled"><a >First</a></li>
-                    <li class="page rippler rippler-default is-disabled"><a >Previous</a></li>
-                    <li class="page rippler rippler-default is-selected"><a>1</a></li>
-                    <li class="page rippler rippler-default"><a>2</a></li>
-                    <li class="page rippler rippler-default"><a >3</a></li>
-                    <li class="page rippler rippler-default"><a >4</a></li>
-                    <li class="page rippler rippler-default"><a >5</a></li>
-                    <li class="page is-skip"><span>...</span></li>
-                    <li class="page rippler rippler-default"><a >9</a></li>
-                    <li class="page rippler rippler-default"><a >10</a></li>
-                    <li class="page rippler rippler-default"><a >Next</a></li>
-                    <li class="page rippler rippler-default"><a >Last</a></li>
+                    <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === 1}">
+                      <a (click)="setPage(1)">First</a>
+                    </li>
+                    <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === 1}">
+                      <a (click)="setPage(pager.currentPage - 1)" >Previous</a>
+                    </li>
+
+                    <li class="page rippler rippler-default" *ngFor="let page of pager.pages" [ngClass]="{'is-selected':pager.currentPage === page}">
+                      <a (click)="setPage(page)">{{page}}</a>
+                    </li>
+
+
+                    <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === pager.totalPages}"><a (click)="setPage(pager.currentPage + 1)">Next</a></li>
+                    <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === pager.totalPages}"><a (click)="setPage(pager.totalPages)">Last</a></li>
 
                   </ul>
 
 
                   <ul class="pages pages_mobile">
-                    <li class="page rippler rippler-default is-disabled"><a >First</a></li>
-                    <li class="page rippler rippler-default is-selected"><a>1</a></li>
-                    <li class="page rippler rippler-default"><a>2</a></li>
-                    <li class="page rippler rippler-default"><a >3</a></li>
-                    <li class="page is-skip"><span>...</span></li>
-                    <li class="page rippler rippler-default"><a >10</a></li>
-                    <li class="page rippler rippler-default"><a >Last</a></li>
+                    <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === 1}">
+                      <a (click)="setPageMobile(1)">First</a>
+                    </li>
 
+                    <li class="page rippler rippler-default" *ngFor="let page of pager.pages" [ngClass]="{'is-selected':pager.currentPage === page}">
+                      <a (click)="setPageMobile(page)">{{page}}</a>
+                    </li>
+
+                    <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === pager.totalPages}"><a (click)="setPageMobile(pager.totalPages)">Last</a></li>
                   </ul>
-
-
-
                 </div>
               </div>
             </div>
