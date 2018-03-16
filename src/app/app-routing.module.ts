@@ -15,10 +15,12 @@ import {SettingsComponent} from './settings/settings.component';
 import {PrepaidCardComponent} from './prepaid-card/prepaid-card.component';
 import {DiscountComponent} from './discount/discount.component';
 import {UserActivateComponent} from './_user/user-activate/user-activate.component';
+import {AuthGuard} from './_guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'home/:param', component: HomeComponent },
   { path: 'contacts', component: ContactsComponent },
   { path: 'news', component: NewsComponent },
   { path: 'faq', component: FaqComponent},
@@ -35,9 +37,10 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full'},
       { path: 'activation/:hash' ,  component: UserActivateComponent},
-      { path: 'settings' ,  component: SettingsComponent}
+      { path: 'settings' ,  component: SettingsComponent, canActivate: [AuthGuard]}
     ]
   },
+
 
   { path: '**', redirectTo: '/'}
 ];

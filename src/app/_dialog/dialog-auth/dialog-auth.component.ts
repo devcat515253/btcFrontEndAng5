@@ -6,6 +6,7 @@ import {UserService} from '../../_services/user.service';
 import {HttpResponse} from '@angular/common/http';
 import {EmailModel} from '../../_entity/email-model';
 import {of} from 'rxjs/observable/of';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-dialog-auth',
@@ -19,6 +20,8 @@ export class DialogAuthComponent implements OnInit {
   userAuthForm: FormGroup;
   userForgotForm: FormGroup;
 
+  returnUrl: string;
+
   userNotFound: boolean = false;
   userAuthPopup: boolean = true;
   userForgotPopup: boolean = false;
@@ -26,7 +29,9 @@ export class DialogAuthComponent implements OnInit {
   forgotSendSuccess: boolean = false;
   forgotSendError: boolean = false;
 
-  constructor(public dialogRef: MatDialogRef<DialogAuthComponent>,
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              public dialogRef: MatDialogRef<DialogAuthComponent>,
               private userService: UserService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.initValidator();
@@ -34,6 +39,11 @@ export class DialogAuthComponent implements OnInit {
   }
 
   ngOnInit() {
+    // reset login status
+    this.userService.logout();
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   onNoClick(event): void {
@@ -99,6 +109,8 @@ export class DialogAuthComponent implements OnInit {
         console.log(data);
         this.userNotFound = false;
         this.loading = false;
+        this.dialogRef.close();
+        this.router.navigate([this.returnUrl]);
       },
       error => {
         console.log(error);

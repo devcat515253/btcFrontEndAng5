@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {UserService} from '../_services/user.service';
+import {DialogSuccessComponent} from '../_dialog/dialog-success/dialog-success.component';
+import {MatDialog} from '@angular/material';
+import {DialogAuthComponent} from '../_dialog/dialog-auth/dialog-auth.component';
+import {EffectBlurService} from '../_services/effect-blur.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +13,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  param: string = '';
+
+
+  constructor(public dialog: MatDialog,
+              private cdr: ChangeDetectorRef,
+              private blurService: EffectBlurService,
+              private activatedRoute: ActivatedRoute,
+              private userService: UserService) { }
 
   ngOnInit() {
+    this.readRouteHash();
   }
+
+
+
+
+
+  readRouteHash() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.param = params['param'];
+
+      if  (this.param === 'openDialogAuth') {
+
+        setTimeout((() => this.openDialogAuth()), 0);
+      }
+      console.log(this.param);
+
+    });
+  }
+
+
+
+
+  openDialogAuth(): void {
+    this.blurService.toggleBlur(true);
+
+    const dialogRef = this.dialog.open(DialogAuthComponent, {
+      width: '60rem',
+    });
+
+    dialogRef.beforeClose().subscribe(result => {
+      this.blurService.toggleBlur(false);
+    });
+  }
+
 
 }

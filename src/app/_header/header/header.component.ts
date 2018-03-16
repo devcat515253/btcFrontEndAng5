@@ -80,8 +80,6 @@ export class HeaderComponent implements OnInit {
       this.animal = result;
       this.blurService.toggleBlur(false);
     });
-
-
   }
 
 

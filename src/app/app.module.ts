@@ -36,6 +36,7 @@ import {NewsService} from './_services/news.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {PaginationService} from './_services/pagination.service';
+import {AuthGuard} from './_guards/auth.guard';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
@@ -94,7 +95,8 @@ export function createTranslateLoader(http: HttpClient) {
     EffectBlurService,
     UserService,
     NewsService,
-    PaginationService
+    PaginationService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

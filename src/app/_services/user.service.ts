@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {UserRegistr} from '../_entity/user-registr';
 import {UserAuth} from '../_entity/user-auth';
 import 'rxjs/add/operator/map';
@@ -9,6 +9,8 @@ import {EmailModel} from '../_entity/email-model';
 export class UserService {
 
   baseUrl  = 'http://api.smartex.info';
+
+
 
   constructor(private http: HttpClient) { }
 
@@ -26,11 +28,17 @@ export class UserService {
     return this.http.post<any>(`${this.baseUrl}/api/login`, authUser)
       .map(result => {
         if (result.data.access_token && result.data.expires_in ) {
-          localStorage.setItem('currentUser', JSON.stringify(result));
+          localStorage.setItem('currentUser', JSON.stringify(result.data));
         }
         return result;
       });
   }
+
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+  }
+
 
   activateUser(hash: string) {
     return this.http.get<any>(`${this.baseUrl}/api/user/activation/${hash}`,  {observe: 'response'});
@@ -39,6 +47,16 @@ export class UserService {
   forgotPass(data: EmailModel) {
     return this.http.post<any>(`${this.baseUrl}/api/user/password/reset`, data, {observe: 'response'});
   }
+
+
+
+  getUserProfile() {
+    let localStorageData = JSON.parse(localStorage.getItem('currentUser'));
+    const headers = new HttpHeaders({'Authorization': `Bearer ${localStorageData.access_token}`});
+
+    return this.http.post<any>(`${this.baseUrl}/api/me`, headers);
+  }
+
 
 
 
