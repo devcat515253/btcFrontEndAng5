@@ -1,12 +1,12 @@
 <div id="small-dialog" class="popup blank tape-top">
   <div class="popup-title">
-    <h2 class="h2 text-center">Opravdu jste částku odeslal?</h2>
+    <h2 class="h2 text-center">{{data.title}}</h2>
   </div>
 
   <div class="popup-content">
     <div class="btn-wrapper text-center">
-      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Ne, neodeslal</a>
-      <a href="#" class="btn btn-accent rippler rippler-default">Ano, odeslal</a>
+      <a (click)="onNoClick()" class="btn btn-border btn-border_accent rippler rippler-default">{{ 'popup-question.no' | translate }}</a>
+      <a href="#" class="btn btn-accent rippler rippler-default">{{ 'popup-question.yes' | translate }}</a>
     </div>
   </div>
 </div>

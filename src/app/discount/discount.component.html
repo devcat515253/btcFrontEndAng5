@@ -5,8 +5,9 @@
       <div class="title"><h1 class="h1">Discount Program</h1></div>
 
       <div class="sub-title">
-        <p class="p_large pre-line">Zaregistrujte se a získejte dynamickou slevu.
-          Čím více budete směňovat, tím větší sleva bude.</p>
+        <p class="p_large pre-line">
+          {{ 'discount-program.sub-head' | translate }}
+        </p>
       </div>
 
     </header>
@@ -58,7 +59,7 @@
               <div class="head__icon">
                 <div class="ic-percent"></div>
               </div>
-              <h2 class="h2">Máme 5 slevových úrovní</h2>
+              <h2 class="h2">{{ 'discount-program.title' | translate }}</h2>
             </div>
 
             <div class="blank-self__content">
@@ -71,10 +72,12 @@
                     <img src="../assets/img//discount_level.png" alt="">
                   </div>
                   <div class="level__info">
-                    <div class="info__title title-inner">Kumulovaná časta:</div>
+                    <div class="info__title title-inner"> {{ 'discount-program.total' | translate }}</div>
                     <div class="info__value">
                       <span class="title-great">8 USD</span>
-                      <span class="h2 h2_mobile">Do nabytí slevy <b class="h2">3%</b> stačí směnit <b class="h2">2 USD</b></span>
+                      <span class="h2 h2_mobile" [innerHTML]="'discount-program.info' | translate">
+                        <!--Do nabytí slevy <b class="h2">3%</b> stačí směnit <b class="h2">2 USD</b>-->
+                      </span>
 
                     </div>
                   </div>

@@ -14,9 +14,9 @@
 
             <div class="invite">
               <div class="col">
-                <h2 class="title-inner">Jak to funguje?</h2>
+                <h2 class="title-inner">{{ 'invite-friends.how-work' | translate }}</h2>
 
-                <p class="pre-line p_small">Použijte vygenerovaný odkaz a <b>pošlete jej přátelům</b> jako pozvánku do naší směnárny.
+                <p class="pre-line p_small" [innerHTML]="'invite-friends.send-generated-link' | translate">Použijte vygenerovaný odkaz a <b>pošlete jej přátelům</b> jako pozvánku do naší směnárny.
 
                   Náš systém rozpozná,  že váš partner
                   přišel na stránku skrze váš odkaz a automaticky vám <b>přičte provizi</b>, kterou můžete vybrat na jakoukoliv peněženku.
@@ -25,7 +25,7 @@
                   nebo kontaktujte <a href="#" class="link">technickou podporu</a>.
                 </p>
 
-                <h2 class="title-inner">Odkaz k doporučení</h2>
+                <h2 class="title-inner">{{ 'invite-friends.refferal-link' | translate }}</h2>
                 <div class="copy">
                   <input type="text" class="copy-input" value="https://www.smartex.io/join/5a306f53257b4f0" readonly="">
                   <a href="#" class="btn btn-accentSecond copy-btn rippler rippler-default js-copyBtn">Copy</a>
@@ -33,7 +33,7 @@
               </div>
 
               <div class="col">
-                <h2 class="title-inner">Kumulovaný limit k výběru:</h2>
+                <h2 class="title-inner">{{ 'invite-friends.total' | translate }}</h2>
 
                 <div class="commission">
                   <strong class="title-great">15 USD</strong>
@@ -42,16 +42,16 @@
 
                 <hr>
 
-                <h2 class="title-inner">Seznam zaregistrovaných partnerů:</h2>
+                <h2 class="title-inner">{{ 'invite-friends.list-of-all' | translate }}</h2>
 
                 <div class="hz-scroll">
                   <table class="default-table ">
                     <thead>
                     <tr>
-                      <th>Jméno a příjmení</th>
-                      <th>Datum registrace</th>
-                      <th>Status</th>
-                      <th>Příjem</th>
+                      <th>{{ 'invite-friends.first-name' | translate }}</th>
+                      <th>{{ 'invite-friends.registration-date' | translate }}</th>
+                      <th>{{ 'invite-friends.status' | translate }}</th>
+                      <th>{{ 'invite-friends.amount' | translate }}</th>
                     </tr>
                     </thead>
 
