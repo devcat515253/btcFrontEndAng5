@@ -32,15 +32,6 @@ export class NewsComponent implements OnInit {
     this.getNewsList();
   }
 
-
-  initSetPage() {
-    if (window.screen.width > 640) {
-      this.setPage(1);
-    } else {
-      this.setPageMobile(1);
-    }
-  }
-
   getNewsList() {
     this.newsService.getNewsList(this.language).subscribe(
       (data) => {
@@ -55,9 +46,6 @@ export class NewsComponent implements OnInit {
       }
     );
   }
-
-
-
 
 
   setPage(page: number) {
@@ -81,6 +69,15 @@ export class NewsComponent implements OnInit {
     // get current page of items
     this.pagedItems = this.newsArray.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
+
+  initSetPage() {
+    if (window.matchMedia('(min-width: 640px)').matches) {
+      this.setPage(this.pager.currentPage);
+    } else {
+      this.setPageMobile(this.pager.currentPage);
+    }
+  }
+
 
 
 
