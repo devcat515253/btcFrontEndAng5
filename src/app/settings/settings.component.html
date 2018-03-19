@@ -43,9 +43,9 @@
           </nav>
         </div>
 
-        <div class="content ">
+        <div class="content">
 
-          <div class="settings">
+          <div class="settings" [ngClass]="{'custom-loader disabled': loading}">
 
             <div class="blank-self tape-top">
 
@@ -60,29 +60,32 @@
                     <div class="item">
                       <div class="item__head title-inner opened">Personal Information</div>
                       <div class="item__content">
-                        <form action="#" class="form">
+                        <!--<form class="form" (submit)="submitMainForm($event)" [formGroup]="mainInfoForm"  #mainInfo="ngForm" novalidate>-->
+                        <form class="form" (submit)="submitMainForm($event)"  #mainInfo="ngForm" novalidate>
+                        <!--<form action="#" class="form" (submit)="submit($event)" novalidate>-->
                           <label class="form-group has-error">
                             <span class="form-title">{{ 'exchange.PersonalInfo.Name' | translate }}:</span>
-                            <input type="text" class="form-control" required="">
+                            <input [(ngModel)]="userModel.name" name="name"  type="text" class="form-control" required="">
                             <span class="error-label">Hesla se neshodují</span>
                           </label>
 
                           <label class="form-group">
                             <span class="form-title">{{ 'exchange.PersonalInfo.Address' | translate }}:</span>
-                            <input type="text" class="form-control">
+                            <input [(ngModel)]="userModel.address" name="address" type="text" class="form-control">
                             <span class="error-label">Hesla se neshodují</span>
                           </label>
 
                           <div class="between-children">
                             <label class="form-group">
                               <span class="form-title">{{ 'exchange.PersonalInfo.Country' | translate }}:</span>
-                              <input type="text" class="form-control">
+                              <input [(ngModel)]="userModel.country" name="country" type="text" class="form-control">
                               <span class="error-label">Hesla se neshodují</span>
                             </label>
 
                             <div class="form-btn">
                               <label>
-                                <a href="#" class="btn btn-accentSecond rippler rippler-default">Apply changes</a>
+                                <!--<button class="btn btn-accentSecond rippler rippler-default" [disabled]="userAuthForm.invalid && mainInfo.submitted">Apply changes</button>-->
+                                <button class="btn btn-accentSecond rippler rippler-default">Apply changes</button>
                                 <input type="submit" hidden>
                               </label>
                             </div>

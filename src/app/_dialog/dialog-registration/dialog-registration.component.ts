@@ -54,23 +54,23 @@ export class DialogRegistrationComponent implements OnInit {
 
       name: new FormControl(this.userRegistr.name, [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(6),
         Validators.maxLength(64),
       ]),
       email: new FormControl(this.userRegistr.email, [
         Validators.required,
         Validators.email,
-        Validators.minLength(4),
+        Validators.minLength(8),
         Validators.maxLength(64)
       ]),
       password: new FormControl(this.userRegistr.password, [
         Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(6),
         Validators.maxLength(64)
       ]),
       confirmPassword: new FormControl(this.userRegistr.repassword, [
         Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(6),
         Validators.maxLength(64),
         matchOtherValidator('password')
       ]),

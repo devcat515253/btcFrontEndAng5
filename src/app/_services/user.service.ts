@@ -4,11 +4,13 @@ import {UserRegistr} from '../_entity/user-registr';
 import {UserAuth} from '../_entity/user-auth';
 import 'rxjs/add/operator/map';
 import {EmailModel} from '../_entity/email-model';
+import {UserModel} from '../_entity/user-model';
 
 @Injectable()
 export class UserService {
 
   baseUrl  = 'http://api.smartex.info';
+  userModel: UserModel = new UserModel();
 
 
 
@@ -28,7 +30,7 @@ export class UserService {
     return this.http.post<any>(`${this.baseUrl}/api/login`, authUser)
       .map(result => {
         if (result.data.access_token && result.data.expires_in ) {
-          localStorage.setItem('currentUser', JSON.stringify(result.data));
+          localStorage.setItem('access_token', JSON.stringify(result.data.access_token));
         }
         return result;
       });
@@ -36,7 +38,7 @@ export class UserService {
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('access_token');
   }
 
 
@@ -51,11 +53,27 @@ export class UserService {
 
 
   getUserProfile() {
-    let localStorageData = JSON.parse(localStorage.getItem('currentUser'));
-    const headers = new HttpHeaders({'Authorization': `Bearer ${localStorageData.access_token}`});
+    let localAuthToken = JSON.parse(localStorage.getItem('access_token'));
 
-    return this.http.post<any>(`${this.baseUrl}/api/me`, headers);
+    let header = new HttpHeaders();
+    let other_header = header.append('Authorization', `Bearer ${localAuthToken}`);
+
+    return this.http.get<any>(`${this.baseUrl}/api/me`, {headers: other_header});
   }
+
+
+  updateUserProfile(userModel: UserModel) {
+    let localAuthToken = JSON.parse(localStorage.getItem('access_token'));
+
+    delete userModel.date;
+
+    let header = new HttpHeaders();
+    let other_header = header.append('Authorization', `Bearer ${localAuthToken}`);
+
+    return this.http.put<any>(`${this.baseUrl}/api/me`, userModel, {headers: other_header});
+  }
+
+
 
 
 

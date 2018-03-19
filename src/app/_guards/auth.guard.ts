@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     // Проверяем наличие ключа в локал стордж
-    if (localStorage.getItem('currentUser')) {
+    if (localStorage.getItem('access_token')) {
       // Если есть, то Guard разрешает переход
       return true;
     }
