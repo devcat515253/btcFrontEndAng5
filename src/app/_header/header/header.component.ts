@@ -5,6 +5,7 @@ import {EffectBlurService} from '../../_services/effect-blur.service';
 import {DialogAuthComponent} from '../../_dialog/dialog-auth/dialog-auth.component';
 import { TranslateService } from '@ngx-translate/core';
 import {DialogSuccessComponent} from '../../_dialog/dialog-success/dialog-success.component';
+import {UserService} from '../../_services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -15,10 +16,12 @@ export class HeaderComponent implements OnInit {
 
   animal: string;
   name: string;
+  loggedUser: boolean = false;
 
   constructor(public dialog: MatDialog,
               private blurService: EffectBlurService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private userService: UserService) {
     translate.addLangs(['en', 'cz']);
     translate.setDefaultLang('en');
     translate.use('en');
@@ -27,6 +30,11 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit() {
+    let authToken = this.userService.getAuthToken();
+    if  (authToken) {
+      this.loggedUser = true;
+      return;
+    }
   }
 
 

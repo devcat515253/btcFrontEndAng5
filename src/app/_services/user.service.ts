@@ -17,6 +17,12 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
 
+  getAuthToken() {
+    let token = JSON.parse(localStorage.getItem('access_token'));
+    return token;
+  }
+
+
   registration(newUser: UserRegistr) {
     // console.log(newUser);
     return this.http.post<any>(`${this.baseUrl}/api/user/registration`, newUser, {observe: 'response'});
@@ -71,6 +77,31 @@ export class UserService {
     let other_header = header.append('Authorization', `Bearer ${localAuthToken}`);
 
     return this.http.put<any>(`${this.baseUrl}/api/me`, userModel, {headers: other_header});
+  }
+
+  updateUserIdCardProfile(base64img: string) {
+    let localAuthToken = JSON.parse(localStorage.getItem('access_token'));
+
+
+    let header = new HttpHeaders();
+    let other_header = header.append('Authorization', `Bearer ${localAuthToken}`);
+
+
+    let hotImg = {
+      verification_image_64_base: base64img
+    };
+
+    return this.http.put<any>(`${this.baseUrl}/api/me`, hotImg, {headers: other_header});
+  }
+
+  updateUserPassword(pass: any) {
+    let localAuthToken = JSON.parse(localStorage.getItem('access_token'));
+
+
+    let header = new HttpHeaders();
+    let other_header = header.append('Authorization', `Bearer ${localAuthToken}`);
+
+    return this.http.put<any>(`${this.baseUrl}/api/me`, pass, {headers: other_header});
   }
 
 

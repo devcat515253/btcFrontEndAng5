@@ -45,14 +45,12 @@
 
         <div class="content">
 
-          <div class="settings" [ngClass]="{'custom-loader disabled': loading}">
+          <div class="settings">
 
-            <div class="blank-self tape-top">
-
+            <div class="blank-self tape-top" [ngClass]="{'custom-loader disabled': loadingMain}">
               <div class="blank-self__head">
                 <h2 class="title-great">General</h2>
               </div>
-
 
               <div class="blank-self__content">
                 <div class="content">
@@ -85,6 +83,14 @@
                             <div class="form-btn">
                               <label>
                                 <!--<button class="btn btn-accentSecond rippler rippler-default" [disabled]="userAuthForm.invalid && mainInfo.submitted">Apply changes</button>-->
+                                <div class="loadingSuccess" *ngIf="successMain">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="-263.5 236.5 26 26">
+                                    <g class="svg-success">
+                                      <circle cx="-250.5" cy="249.5" r="12"/>
+                                      <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+                                    </g>
+                                  </svg>
+                                </div>
                                 <button class="btn btn-accentSecond rippler rippler-default">Apply changes</button>
                                 <input type="submit" hidden>
                               </label>
@@ -94,17 +100,6 @@
                       </div>
                     </div>
                   </div>
-
-                  <div class="sweet-alert">
-                    <div class="sa-icon sa-success animate">
-                      <span class="sa-line sa-tip animateSuccessTip"></span>
-                      <span class="sa-line sa-long animateSuccessLong"></span>
-
-                      <div class="sa-placeholder"></div>
-                      <div class="sa-fix"></div>
-                    </div>
-                  </div>
-
                 </div>
               </div>
             </div>
@@ -124,7 +119,6 @@
                       <div class="item__head title-inner opened">{{ 'Settings.VerificationLimit1' | translate }}</div>
                     </div>
 
-                    <!-- <div class="item is-disabled"> -->
                     <div class="item">
                       <div class="line-sides">{{ 'Settings.NextLevel' | translate }}</div>
 
@@ -173,7 +167,8 @@
                       </form>
                     </div>
 
-                    <div class="item is-disabled">
+                    <!--<div class="item is-disabled">-->
+                    <div class="item" [ngClass]="{'is-disabled': !step3Show}"  >
                       <div class="line-sides">{{ 'Settings.NextLevel' | translate }}</div>
 
                       <div class="item__head title-inner">
@@ -181,13 +176,13 @@
                         <div class="settings-tip p_small desktop-only">You need to verify your <b>identity card</b> <br>to exchange 1 000 - 14 999 €.</div>
                       </div>
 
-                      <form action="#" class="form">
+                      <form class="form" (submit)="submitIdCardForm($event)" novalidate [ngClass]="{'custom-loader disabled': loadingIdCard}">
                         <div class="between-children">
                           <div class="form-group">
                             <span class="form-title">Upload image of your ID card:</span>
                             <label class="upload-file">
-                              <input type="file" class="form-control" required="">
-                              <span class="upload-file__name">No file chosen</span>
+                              <input type="file" (change)="fileChange($event)" class="form-control" placeholder="Upload file" accept="image/*" required>
+                              <span class="upload-file__name">{{IdCardFileName}}</span>
                               <span class="btn btn-accent rippler rippler-default js-file-upload">Choose file</span>
                             </label>
                             <span class="error-label">Bad file format, supported - jpg and png</span>
@@ -195,7 +190,15 @@
                           </div>
                           <div class="form-btn">
                             <label>
-                              <a href="#" class="btn btn-accentSecond rippler rippler-default">{{ 'Settings.UploadBtn' | translate }}</a>
+                              <div class="loadingSuccess" *ngIf="successIdCard">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="-263.5 236.5 26 26">
+                                  <g class="svg-success">
+                                    <circle cx="-250.5" cy="249.5" r="12"/>
+                                    <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+                                  </g>
+                                </svg>
+                              </div>
+                              <button class="btn btn-accentSecond rippler rippler-default">{{ 'Settings.UploadBtn' | translate }}</button>
                               <input type="submit" hidden>
                             </label>
                           </div>
@@ -203,7 +206,7 @@
                       </form>
                     </div>
 
-                    <div class="item is-disabled">
+                    <div class="item" [ngClass]="{'is-disabled': !step4Show}">
                       <div class="line-sides">{{ 'Settings.NextLevel' | translate }}</div>
 
                       <div class="item__head title-inner">
@@ -315,29 +318,50 @@
                       <hr>
                     </div>
 
-                    <div class="item">
+                    <div class="item" [ngClass]="{'custom-loader disabled': loadingPass}">
                       <div class="item__head title-inner">Change my password</div>
                       <div class="item__content">
-                        <form action="#" class="form">
-                          <label class="form-group">
+                        <form class="form" (submit)="submitPassForm($event)" [formGroup]="passwordForm"  #passForm="ngForm">
+                          <label class="form-group" [ngClass]="{'has-error': (passwordForm.controls['passwordOld'].hasError('required')
+                                 || passwordForm.controls['passwordOld'].hasError('minlength'))
+                                 && passForm.submitted}">
                             <span class="form-title">Current password:</span>
-                            <input type="password" class="form-control" value="parolparol">
+                            <input [(ngModel)]="passwordOld" formControlName="passwordOld" name="passwordOld" type="password" class="form-control" value="">
+                            <span
+                              *ngIf="(passwordForm.controls['passwordOld'].hasError('required')
+                                  || passwordForm.controls['passwordOld'].hasError('minlength'))
+                                  && passForm.submitted" class="error-label">Hesla se neshodují</span>
                           </label>
 
-                          <label class="form-group">
+                          <label class="form-group" [ngClass]="{'has-error': (passwordForm.controls['passwordNew'].hasError('required')
+                                 || passwordForm.controls['passwordNew'].hasError('minlength'))
+                                 && passForm.submitted}">
                             <span class="form-title">New password again:</span>
-                            <input type="password" class="form-control" value="parolparol">
+                            <input [(ngModel)]="passwordNew" type="password" formControlName="passwordNew" class="form-control" value="">
+                            <span
+                              *ngIf="(passwordForm.controls['passwordNew'].hasError('required')
+                                  || passwordForm.controls['passwordNew'].hasError('minlength'))
+                                  && passForm.submitted" class="error-label">Hesla se neshodují</span>
                           </label>
 
                           <div class="between-children">
-                            <label class="form-group">
+                            <label class="form-group" [ngClass]="{'has-error': passwordForm.controls['repasswordNew'].hasError('matchOther') && passForm.submitted}">
                               <span class="form-title">New password again:</span>
-                              <input type="password" class="form-control" value="parolparol">
+                              <input [(ngModel)]="repasswordNew" type="password" formControlName="repasswordNew" class="form-control" value="">
+                              <span *ngIf="passwordForm.controls['repasswordNew'].hasError('matchOther') && passForm.submitted" class="error-label">Required field</span>
                             </label>
 
                             <div class="form-btn">
                               <label>
-                                <a href="#" class="btn btn-accentSecond rippler rippler-default">Change password</a>
+                                <div class="loadingSuccess" *ngIf="successPassTip">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="-263.5 236.5 26 26">
+                                    <g class="svg-success">
+                                      <circle cx="-250.5" cy="249.5" r="12"/>
+                                      <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+                                    </g>
+                                  </svg>
+                                </div>
+                                <button class="btn btn-accentSecond rippler rippler-default">Change password</button>
                                 <input type="submit" hidden>
                               </label>
                             </div>

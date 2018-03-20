@@ -14,6 +14,7 @@ export class NewsComponent implements OnInit {
   language: string = 'en';
   newsArray: News[] = [];
   newsArrayCount: any[] = [];
+  loadingNews: boolean = true;
 
 
   // array of all items to be paged
@@ -40,9 +41,11 @@ export class NewsComponent implements OnInit {
         this.newsArrayCount = data.meta.count + 1;
 
         this.initSetPage();
+        this.loadingNews = false;
       },
       error => {
         console.log(error);
+        this.loadingNews = false;
       }
     );
   }

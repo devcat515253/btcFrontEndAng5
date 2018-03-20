@@ -62,6 +62,7 @@
     "VerificationLimit1": "Limit 1 (default) – up to 249 € exchange",
     "VerificationLimit2": "Limit 2 – 250 - 999 € exchange",
     "VerificationLimit3": "Limit 3 – 1 000 - 14 999 € exchange",
+    "VerificationLimit4": "Limit4 - unlimited/corporate",
     "NextLevel": "Next Verification Level",
     "ConfirmBtn": "Confirm verification",
     "UploadBtn": "Upload and confirm",

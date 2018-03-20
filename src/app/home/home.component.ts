@@ -14,6 +14,7 @@ import {EffectBlurService} from '../_services/effect-blur.service';
 export class HomeComponent implements OnInit {
 
   param: string = '';
+  loggedUser: boolean = false;
 
 
   constructor(public dialog: MatDialog,
@@ -38,8 +39,6 @@ export class HomeComponent implements OnInit {
 
         setTimeout((() => this.openDialogAuth()), 0);
       }
-      console.log(this.param);
-
     });
   }
 
