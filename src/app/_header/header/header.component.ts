@@ -6,6 +6,8 @@ import {DialogAuthComponent} from '../../_dialog/dialog-auth/dialog-auth.compone
 import { TranslateService } from '@ngx-translate/core';
 import {DialogSuccessComponent} from '../../_dialog/dialog-success/dialog-success.component';
 import {UserService} from '../../_services/user.service';
+import {Subscription} from 'rxjs/Subscription';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +16,6 @@ import {UserService} from '../../_services/user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  animal: string;
-  name: string;
   loggedUser: boolean = false;
 
   constructor(public dialog: MatDialog,
@@ -27,19 +27,22 @@ export class HeaderComponent implements OnInit {
     translate.use('en');
   }
 
-
-
   ngOnInit() {
-    let authToken = this.userService.getAuthToken();
-    if  (authToken) {
-      this.loggedUser = true;
-      return;
-    }
+    this.userService.token$.subscribe(logged => {
+      this.loggedUser = logged;
+    });
   }
+
+
 
 
   switchLanguage(lang: string){
     this.translate.use(lang);
+  }
+
+  btnLogout(event) {
+    event.preventDefault();
+    this.userService.logout();
   }
 
 
@@ -53,7 +56,6 @@ export class HeaderComponent implements OnInit {
 
     const dialogRef = this.dialog.open(DialogRegistrationComponent, {
       width: '60rem',
-      data: { name: this.name, animal: this.animal }
     });
 
 
@@ -62,7 +64,6 @@ export class HeaderComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.animal = result;
       this.blurService.toggleBlur(false);
     });
 
@@ -76,7 +77,6 @@ export class HeaderComponent implements OnInit {
 
     const dialogRef = this.dialog.open(DialogAuthComponent, {
       width: '60rem',
-      data: { name: this.name, animal: this.animal }
     });
 
 
@@ -85,7 +85,6 @@ export class HeaderComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.animal = result;
       this.blurService.toggleBlur(false);
     });
   }
@@ -103,7 +102,6 @@ export class HeaderComponent implements OnInit {
     // this.translate.get('popup-question.title').subscribe(res => {
     //   console.log(res);
     // });
-
 
       dialogRef.beforeClose().subscribe(result => {
         this.blurService.toggleBlur(false);

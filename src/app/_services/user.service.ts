@@ -5,6 +5,9 @@ import {UserAuth} from '../_entity/user-auth';
 import 'rxjs/add/operator/map';
 import {EmailModel} from '../_entity/email-model';
 import {UserModel} from '../_entity/user-model';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Router} from '@angular/router';
+import {UserLogs} from '../_entity/user-logs';
 
 @Injectable()
 export class UserService {
@@ -13,13 +16,32 @@ export class UserService {
   userModel: UserModel = new UserModel();
 
 
+  isLogged: boolean = false;
+  token$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient,
+              private router: Router) {
+    this.getAuthToken();
+  }
+  getToken() {
+    return JSON.parse(localStorage.getItem('access_token')) || '';
+  }
 
   getAuthToken() {
-    let token = JSON.parse(localStorage.getItem('access_token'));
-    return token;
+    if  (this.getToken()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
+    this.token$.next(this.isLogged);
+    // next - установка нового значения
+  }
+
+  getAuthHeader() {
+    let localAuthToken = JSON.parse(localStorage.getItem('access_token'));
+    let header = new HttpHeaders();
+    let other_header = header.append('Authorization', `Bearer ${localAuthToken}`);
+    return other_header;
   }
 
 
@@ -37,14 +59,19 @@ export class UserService {
       .map(result => {
         if (result.data.access_token && result.data.expires_in ) {
           localStorage.setItem('access_token', JSON.stringify(result.data.access_token));
+          this.getAuthToken();
         }
         return result;
       });
   }
 
   logout() {
-    // remove user from local storage to log user out
+    // next - установка нового значения
     localStorage.removeItem('access_token');
+
+    // remove user from local storage to log user out
+    this.getAuthToken();
+    this.router.navigate(['/home']);
   }
 
 
@@ -56,52 +83,33 @@ export class UserService {
     return this.http.post<any>(`${this.baseUrl}/api/user/password/reset`, data, {observe: 'response'});
   }
 
-
-
-  getUserProfile() {
-    let localAuthToken = JSON.parse(localStorage.getItem('access_token'));
-
-    let header = new HttpHeaders();
-    let other_header = header.append('Authorization', `Bearer ${localAuthToken}`);
-
-    return this.http.get<any>(`${this.baseUrl}/api/me`, {headers: other_header});
+  // GET
+  getLogsProfile() {
+    return this.http.get<UserLogs>(`${this.baseUrl}/api/user/login-logs`,  {headers: this.getAuthHeader()});
   }
 
+  getUserProfile() {
+    return this.http.get<any>(`${this.baseUrl}/api/me`, {headers: this.getAuthHeader()});
+  }
 
+  // UPDATE
   updateUserProfile(userModel: UserModel) {
-    let localAuthToken = JSON.parse(localStorage.getItem('access_token'));
-
     delete userModel.date;
-
-    let header = new HttpHeaders();
-    let other_header = header.append('Authorization', `Bearer ${localAuthToken}`);
-
-    return this.http.put<any>(`${this.baseUrl}/api/me`, userModel, {headers: other_header});
+    return this.http.put<any>(`${this.baseUrl}/api/me`, userModel, {headers: this.getAuthHeader()});
   }
 
   updateUserIdCardProfile(base64img: string) {
-    let localAuthToken = JSON.parse(localStorage.getItem('access_token'));
+    let hotImg = {verification_image_64_base: base64img};
+    return this.http.put<any>(`${this.baseUrl}/api/user/documents/card`, hotImg, {headers: this.getAuthHeader()});
+  }
 
-
-    let header = new HttpHeaders();
-    let other_header = header.append('Authorization', `Bearer ${localAuthToken}`);
-
-
-    let hotImg = {
-      verification_image_64_base: base64img
-    };
-
-    return this.http.put<any>(`${this.baseUrl}/api/me`, hotImg, {headers: other_header});
+  updateUserKycProfile(base64img: string) {
+    let hotImg = {verification_kyc_64_base: base64img};
+    return this.http.put<any>(`${this.baseUrl}/api/user/documents/kyc`, hotImg, {headers: this.getAuthHeader()});
   }
 
   updateUserPassword(pass: any) {
-    let localAuthToken = JSON.parse(localStorage.getItem('access_token'));
-
-
-    let header = new HttpHeaders();
-    let other_header = header.append('Authorization', `Bearer ${localAuthToken}`);
-
-    return this.http.put<any>(`${this.baseUrl}/api/me`, pass, {headers: other_header});
+    return this.http.put<any>(`${this.baseUrl}/api/user/password`, pass, {headers: this.getAuthHeader()});
   }
 
 

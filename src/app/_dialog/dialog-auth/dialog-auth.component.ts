@@ -102,11 +102,11 @@ export class DialogAuthComponent implements OnInit {
         .forEach(controlName => controls[controlName].markAsTouched());
       return;
     }
+    console.log(this.userAuth);
 
     this.loading = true;
     this.userService.auth(this.userAuth).subscribe(
       (data) => {
-        console.log(data);
         this.userNotFound = false;
         this.loading = false;
         this.dialogRef.close();

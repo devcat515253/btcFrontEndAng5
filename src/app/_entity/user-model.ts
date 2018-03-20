@@ -18,7 +18,9 @@ export class UserModel {
   refer: string;
   total_exchange: string;
   verification_image: string;
+  verification_kyc: string;
   verification_ok: boolean;
+  verification_kyc_ok: boolean;
 
   constructor() {
     this.activation = false;
@@ -39,7 +41,9 @@ export class UserModel {
     this.refer = '';
     this.total_exchange = '';
     this.verification_image = '';
+    this.verification_kyc = '';
     this.verification_ok = false;
+    this.verification_kyc_ok = false;
   }
 }
 

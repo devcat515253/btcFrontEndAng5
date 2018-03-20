@@ -177,14 +177,17 @@
                       </div>
 
                       <form class="form" (submit)="submitIdCardForm($event)" novalidate [ngClass]="{'custom-loader disabled': loadingIdCard}">
+
                         <div class="between-children">
                           <div class="form-group">
                             <span class="form-title">Upload image of your ID card:</span>
                             <label class="upload-file">
-                              <input type="file" (change)="fileChange($event)" class="form-control" placeholder="Upload file" accept="image/*" required>
-                              <span class="upload-file__name">{{IdCardFileName}}</span>
+                              <input type="file" (change)="fileChangeIdCard($event)" class="form-control" placeholder="Upload file" accept="image/*" required>
+                              <span class="upload-file__name" [ngClass]="{rtl: IdCardFileName}">{{IdCardFileName}}</span>
                               <span class="btn btn-accent rippler rippler-default js-file-upload">Choose file</span>
                             </label>
+
+
                             <span class="error-label">Bad file format, supported - jpg and png</span>
                             <div class="settings-tip p_small mobile-only">You need to verify your <b>identity card</b> <br>to exchange 1 000 - 14 999 €.</div>
                           </div>
@@ -203,6 +206,17 @@
                             </label>
                           </div>
                         </div>
+                        <div class="checkbox checkbox-success" *ngIf="IdCardFileName">
+                          <input type="checkbox" class="checkbox-cotrol" checked>
+                          <span class="checkbox-icons"></span>
+                          <span class="checkbox-title">
+                            <span class="verified">
+                              <span class="verified-success">Document uploaded! Link to the <a [attr.href]="IdCardFileName" target="_blank" class="link">document</a></span>
+                              <span class="verified-success" *ngIf="userModel.verification_ok">Document <b>verified</b>!</span>
+                              <span *ngIf="!userModel.verification_ok">The document has <b>not been verified</b> yet!</span>
+                            </span>
+                          </span>
+                        </div>
                       </form>
                     </div>
 
@@ -214,7 +228,7 @@
                         <div class="settings-tip p_small desktop-only">You need to verify <b>KYC questionnaire</b> <br>to exchange unlimited €.</div>
                       </div>
 
-                      <form action="#" class="form">
+                      <form action="#" class="form" (submit)="submitKycForm($event)" novalidate [ngClass]="{'custom-loader disabled': loadingKyc}">
 
                         <div class="form-group">
                           <ul class="tip-list">
@@ -234,18 +248,37 @@
                           <div class="form-group">
                             <span class="form-title">Upload image of your ID card:</span>
                             <label class="upload-file">
-                              <input type="file" class="form-control" required="">
-                              <span class="upload-file__name">No file chosen</span>
+                              <input type="file" (change)="fileChangeKyc($event)" class="form-control" placeholder="Upload file" accept="image/*" required>
+                              <span class="upload-file__name" [ngClass]="{rtl: KycFileName}">{{KycFileName}}</span>
                               <span class="btn btn-accent rippler rippler-default js-file-upload">Choose file</span>
                             </label>
                             <span class="error-label">Bad file format, supported - jpg and png</span>
                           </div>
                           <div class="form-btn">
                             <label>
-                              <a href="#" class="btn btn-accentSecond rippler rippler-default">{{ 'Settings.SendBtn' | translate }}</a>
+                              <div class="loadingSuccess" *ngIf="successKycTip">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="-263.5 236.5 26 26">
+                                  <g class="svg-success">
+                                    <circle cx="-250.5" cy="249.5" r="12"/>
+                                    <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+                                  </g>
+                                </svg>
+                              </div>
+                              <button class="btn btn-accentSecond rippler rippler-default">{{ 'Settings.SendBtn' | translate }}</button>
                               <input type="submit" hidden>
                             </label>
                           </div>
+                        </div>
+                        <div class="checkbox checkbox-success" *ngIf="KycFileName">
+                          <input type="checkbox" class="checkbox-cotrol" checked>
+                          <span class="checkbox-icons"></span>
+                          <span class="checkbox-title">
+                            <span class="verified">
+                              <span class="verified-success">Document uploaded! Link to the <a [attr.href]="KycFileName" target="_blank" class="link">document</a></span>
+                              <span class="verified-success" *ngIf="userModel.verification_kyc_ok">Document <b>verified</b>!</span>
+                              <span *ngIf="!userModel.verification_kyc_ok">The document has <b>not been verified</b> yet!</span>
+                            </span>
+                          </span>
                         </div>
                       </form>
                     </div>
@@ -265,7 +298,7 @@
                 <div class="content">
                   <div class="items list-numeric">
 
-                    <div class="item">
+                    <div class="item" [ngClass]="{'custom-loader disabled': loadingLogs}">
                       <div class="item__head title-inner opened">Poslední přihlášení</div>
                       <div class="item__content">
                         <div class="hz-scroll">
@@ -281,35 +314,12 @@
                             </thead>
 
                             <tbody>
-                            <tr>
-                              <td>8 days ago</td>
-                              <td>Chrome (Windows)</td>
-                              <td>87.124.4.64</td>
-                              <td>Prague, Czechia</td>
+                            <tr *ngFor="let logsItem of logsArray; let i = index">
+                              <td>{{logsItem.created_at | date: 'MMMM d, y'}}</td>
+                              <td>browser</td>
+                              <td>{{logsItem.ip}}</td>
+                              <td>{{logsItem.geo}}</td>
                               <td><a href="#" class="link">X</a></td>
-                            </tr>
-
-                            <tr>
-                              <td>12 days ago</td>
-                              <td>Safari (macOS)</td>
-                              <td>127.64.3.64</td>
-                              <td>Prague, Czechia</td>
-                              <td></td>
-                            </tr>
-
-                            <tr>
-                              <td>16 days ago</td>
-                              <td>Safari (iPhone)</td>
-                              <td>127.64.3.64</td>
-                              <td>Prague, Czechia</td>
-                              <td></td>
-                            </tr>
-
-                            <tr>
-                              <td>Karel Nový</td>
-                              <td>14. 07. 2018</td>
-                              <td>Směnil</td>
-                              <td>8 USD</td>
                             </tr>
                             </tbody>
                           </table>
@@ -322,15 +332,19 @@
                       <div class="item__head title-inner">Change my password</div>
                       <div class="item__content">
                         <form class="form" (submit)="submitPassForm($event)" [formGroup]="passwordForm"  #passForm="ngForm">
+
                           <label class="form-group" [ngClass]="{'has-error': (passwordForm.controls['passwordOld'].hasError('required')
-                                 || passwordForm.controls['passwordOld'].hasError('minlength'))
+                                 || passwordForm.controls['passwordOld'].hasError('minlength')
+                                 || passwordForm.controls['passwordOld'].hasError('notequal'))
                                  && passForm.submitted}">
                             <span class="form-title">Current password:</span>
                             <input [(ngModel)]="passwordOld" formControlName="passwordOld" name="passwordOld" type="password" class="form-control" value="">
-                            <span
-                              *ngIf="(passwordForm.controls['passwordOld'].hasError('required')
+                            <span *ngIf="(passwordForm.controls['passwordOld'].hasError('required')
                                   || passwordForm.controls['passwordOld'].hasError('minlength'))
                                   && passForm.submitted" class="error-label">Hesla se neshodují</span>
+
+                            <span *ngIf=" passwordForm.controls['passwordOld'].hasError('notequal')
+                                  && passForm.submitted" class="error-label">Current password is wrong!</span>
                           </label>
 
                           <label class="form-group" [ngClass]="{'has-error': (passwordForm.controls['passwordNew'].hasError('required')
