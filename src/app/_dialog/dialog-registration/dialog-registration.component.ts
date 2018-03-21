@@ -54,7 +54,7 @@ export class DialogRegistrationComponent implements OnInit {
 
       name: new FormControl(this.userRegistr.name, [
         Validators.required,
-        Validators.minLength(6),
+        Validators.minLength(3),
         Validators.maxLength(64),
       ]),
       email: new FormControl(this.userRegistr.email, [
@@ -126,7 +126,7 @@ export class DialogRegistrationComponent implements OnInit {
 
     const dialogRef = this.dialog.open(DialogSuccessComponent, {
       width: '60rem',
-      data: { title: 'TITLE SUCCESS MESSAGE', subtitle: 'SUBTITLE SUCCESS MESSAGE' }
+      data: { title: 'Successful registration!', subtitle: 'A pleasant and profitable exchange for You!' }
     });
 
 

@@ -85,7 +85,7 @@ export class UserService {
 
   // GET
   getLogsProfile() {
-    return this.http.get<UserLogs>(`${this.baseUrl}/api/user/login-logs`,  {headers: this.getAuthHeader()});
+    return this.http.get<any>(`${this.baseUrl}/api/user/login-logs`,  {headers: this.getAuthHeader()});
   }
 
   getUserProfile() {

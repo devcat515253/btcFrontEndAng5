@@ -16,11 +16,14 @@ import {PrepaidCardComponent} from './prepaid-card/prepaid-card.component';
 import {DiscountComponent} from './discount/discount.component';
 import {UserActivateComponent} from './_user/user-activate/user-activate.component';
 import {AuthGuard} from './_guards/auth.guard';
+import {ReferralComponent} from './referral/referral.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'home/:param', component: HomeComponent },
+  { path: 'referral/:referral-id', component: ReferralComponent },
+  { path: 'referral/:referral-id/:action', component: ReferralComponent },
   { path: 'contacts', component: ContactsComponent },
   { path: 'news', component: NewsComponent },
   { path: 'faq', component: FaqComponent},

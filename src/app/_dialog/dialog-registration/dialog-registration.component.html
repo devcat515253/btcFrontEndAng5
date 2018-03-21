@@ -8,30 +8,28 @@
 
   <form action="#" class="form" [ngClass]="{'custom-loader disabled': loading}"  [formGroup]="userRegistrForm" (submit)="submit($event)"  #regForm="ngForm" novalidate>
 
-    <label class="form-group" [ngClass]="{'has-error': userRegistrForm.controls['name'].hasError('required') && regForm.submitted}" >
+    <label class="form-group" [ngClass]="{'has-error': (userRegistrForm.controls['name'].hasError('required')
+                              || userRegistrForm.controls['name'].hasError('minlength')) && regForm.submitted} " >
       <span class="form-title">Your name:</span>
       <input [(ngModel)]="userRegistr.name" formControlName="name"  name="name" type="text" class="form-control">
       <span *ngIf="userRegistrForm.controls['name'].hasError('required') && regForm.submitted" class="error-label">Required field</span>
-      <span *ngIf="userRegistrForm.controls['name'].hasError('minlength') && regForm.submitted" class="error-label">Name should contain 6 characters</span>
+      <span *ngIf="userRegistrForm.controls['name'].hasError('minlength') && regForm.submitted" class="error-label">Name should contain 3 characters</span>
     </label>
 
      <label class="form-group"
             [ngClass]="{'has-error': ((userRegistrForm.controls['email'].hasError('required')
-            || userRegistrForm.controls['email'].hasError('email')
-            || userRegistrForm.controls['email'].hasError('minLength')
-            || userRegistrForm.controls['email'].hasError('maxLength'))
-            && regForm.submitted) || userRegistrForm.controls['email'].hasError('notunique') }">
+            || userRegistrForm.controls['email'].hasError('email'))
+            && regForm.submitted) || userRegistrForm.controls['email'].hasError('notunique')}">
       <span class="form-title">Your e-mail (account login):</span>
-      <input [(ngModel)]="userRegistr.email" formControlName="email"  name="email"  type="text" class="form-control">
+      <input [(ngModel)]="userRegistr.email" formControlName="email" (blur)="checkEmailExist()"  name="email"  type="text" class="form-control">
        <span *ngIf="(userRegistrForm.controls['email'].hasError('required') || userRegistrForm.controls['email'].hasError('email')) && regForm.submitted" class="error-label">Required field</span>
        <span *ngIf="userRegistrForm.controls['email'].hasError('notunique')" class="error-label">User with this email already exists!</span>
     </label>
-    <!--(blur)="checkEmailExist()"-->
 
     <label class="form-group"
            [ngClass]="{'has-error': (userRegistrForm.controls['password'].hasError('required')
            || userRegistrForm.controls['password'].hasError('minlength')
-           || userRegistrForm.controls['password'].hasError('maxLength'))
+           || userRegistrForm.controls['password'].hasError('maxlength'))
            && regForm.submitted}">
       <span class="form-title">Password:</span>
       <input [(ngModel)]="userRegistr.password" formControlName="password"  name="password" type="password" class="form-control" required="">

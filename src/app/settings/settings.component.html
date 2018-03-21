@@ -61,7 +61,7 @@
                         <!--<form class="form" (submit)="submitMainForm($event)" [formGroup]="mainInfoForm"  #mainInfo="ngForm" novalidate>-->
                         <form class="form" (submit)="submitMainForm($event)"  #mainInfo="ngForm" novalidate>
                         <!--<form action="#" class="form" (submit)="submit($event)" novalidate>-->
-                          <label class="form-group has-error">
+                          <label class="form-group">
                             <span class="form-title">{{ 'exchange.PersonalInfo.Name' | translate }}:</span>
                             <input [(ngModel)]="userModel.name" name="name"  type="text" class="form-control" required="">
                             <span class="error-label">Hesla se neshodují</span>
@@ -176,19 +176,29 @@
                         <div class="settings-tip p_small desktop-only">You need to verify your <b>identity card</b> <br>to exchange 1 000 - 14 999 €.</div>
                       </div>
 
-                      <form class="form" (submit)="submitIdCardForm($event)" novalidate [ngClass]="{'custom-loader disabled': loadingIdCard}">
+                        <form class="form" [ngClass]="{'custom-loader disabled': loadingIdCard}" (submit)="submitIdCardForm($event)" [formGroup]="idCardForm" #ngIdCardForm="ngForm" novalidate >
 
                         <div class="between-children">
                           <div class="form-group">
                             <span class="form-title">Upload image of your ID card:</span>
                             <label class="upload-file">
-                              <input type="file" (change)="fileChangeIdCard($event)" class="form-control" placeholder="Upload file" accept="image/*" required>
+                              <input type="file" (change)="fileChangeIdCard($event)" formControlName="file" class="form-control" placeholder="Upload file" accept="image/*">
                               <span class="upload-file__name" [ngClass]="{rtl: IdCardFileName}">{{IdCardFileName}}</span>
                               <span class="btn btn-accent rippler rippler-default js-file-upload">Choose file</span>
                             </label>
 
+                            <div class="has-error" *ngIf="idCardForm.controls['file'].hasError('required') && ngIdCardForm.submitted">
+                              <span class="error-label">This field is required!</span>
+                            </div>
 
-                            <span class="error-label">Bad file format, supported - jpg and png</span>
+                            <div class="has-error" *ngIf="idCardForm.controls['file'].hasError('badformat')">
+                              <span class="error-label">Bad file format, supported - jpg and png</span>
+                            </div>
+
+                            <div class="has-error" *ngIf="idCardForm.controls['file'].hasError('maxsize')">
+                              <span class="error-label">Max size 120 KB</span>
+                            </div>
+
                             <div class="settings-tip p_small mobile-only">You need to verify your <b>identity card</b> <br>to exchange 1 000 - 14 999 €.</div>
                           </div>
                           <div class="form-btn">
@@ -201,17 +211,16 @@
                                   </g>
                                 </svg>
                               </div>
-                              <button class="btn btn-accentSecond rippler rippler-default">{{ 'Settings.UploadBtn' | translate }}</button>
-                              <input type="submit" hidden>
+                              <button type="submit" class="btn btn-accentSecond rippler rippler-default" [disabled]="idCardForm.invalid && ngIdCardForm.submitted">{{ 'Settings.UploadBtn' | translate }}</button>
                             </label>
                           </div>
                         </div>
-                        <div class="checkbox checkbox-success" *ngIf="IdCardFileName">
+                        <div class="checkbox checkbox-success" *ngIf="userModel.verification_image">
                           <input type="checkbox" class="checkbox-cotrol" checked>
                           <span class="checkbox-icons"></span>
                           <span class="checkbox-title">
                             <span class="verified">
-                              <span class="verified-success">Document uploaded! Link to the <a [attr.href]="IdCardFileName" target="_blank" class="link">document</a></span>
+                              <span class="verified-success">Document uploaded! Link to the <a [attr.href]="userModel.verification_image" target="_blank" class="link">document</a></span>
                               <span class="verified-success" *ngIf="userModel.verification_ok">Document <b>verified</b>!</span>
                               <span *ngIf="!userModel.verification_ok">The document has <b>not been verified</b> yet!</span>
                             </span>
@@ -228,7 +237,7 @@
                         <div class="settings-tip p_small desktop-only">You need to verify <b>KYC questionnaire</b> <br>to exchange unlimited €.</div>
                       </div>
 
-                      <form action="#" class="form" (submit)="submitKycForm($event)" novalidate [ngClass]="{'custom-loader disabled': loadingKyc}">
+                      <form class="form" (submit)="submitKycForm($event)" [formGroup]="KycForm" #ngKycForm="ngForm" novalidate [ngClass]="{'custom-loader disabled': loadingKyc}">
 
                         <div class="form-group">
                           <ul class="tip-list">
@@ -248,11 +257,23 @@
                           <div class="form-group">
                             <span class="form-title">Upload image of your ID card:</span>
                             <label class="upload-file">
-                              <input type="file" (change)="fileChangeKyc($event)" class="form-control" placeholder="Upload file" accept="image/*" required>
+                              <input type="file" (change)="fileChangeKyc($event)" formControlName="file" class="form-control" placeholder="Upload file" accept="image/*">
                               <span class="upload-file__name" [ngClass]="{rtl: KycFileName}">{{KycFileName}}</span>
                               <span class="btn btn-accent rippler rippler-default js-file-upload">Choose file</span>
                             </label>
-                            <span class="error-label">Bad file format, supported - jpg and png</span>
+
+                            <div class="has-error" *ngIf="KycForm.controls['file'].hasError('required') && ngKycForm.submitted">
+                              <span class="error-label">This field is required!</span>
+                            </div>
+
+                            <div class="has-error" *ngIf="KycForm.controls['file'].hasError('badformat')">
+                              <span class="error-label">Bad file format, supported - jpg and png</span>
+                            </div>
+
+                            <div class="has-error" *ngIf="KycForm.controls['file'].hasError('maxsize')">
+                              <span class="error-label">Max size 120 KB</span>
+                            </div>
+
                           </div>
                           <div class="form-btn">
                             <label>
@@ -264,17 +285,17 @@
                                   </g>
                                 </svg>
                               </div>
-                              <button class="btn btn-accentSecond rippler rippler-default">{{ 'Settings.SendBtn' | translate }}</button>
+                              <button class="btn btn-accentSecond rippler rippler-default" [disabled]="KycForm.invalid && ngKycForm.submitted">{{ 'Settings.SendBtn' | translate }}</button>
                               <input type="submit" hidden>
                             </label>
                           </div>
                         </div>
-                        <div class="checkbox checkbox-success" *ngIf="KycFileName">
+                        <div class="checkbox checkbox-success" *ngIf="userModel.verification_kyc">
                           <input type="checkbox" class="checkbox-cotrol" checked>
                           <span class="checkbox-icons"></span>
                           <span class="checkbox-title">
                             <span class="verified">
-                              <span class="verified-success">Document uploaded! Link to the <a [attr.href]="KycFileName" target="_blank" class="link">document</a></span>
+                              <span class="verified-success">Document uploaded! Link to the <a [attr.href]="userModel.verification_kyc" target="_blank" class="link">document</a></span>
                               <span class="verified-success" *ngIf="userModel.verification_kyc_ok">Document <b>verified</b>!</span>
                               <span *ngIf="!userModel.verification_kyc_ok">The document has <b>not been verified</b> yet!</span>
                             </span>
@@ -316,7 +337,7 @@
                             <tbody>
                             <tr *ngFor="let logsItem of logsArray; let i = index">
                               <td>{{logsItem.created_at | date: 'MMMM d, y'}}</td>
-                              <td>browser</td>
+                              <td>{{logsItem.browser}}</td>
                               <td>{{logsItem.ip}}</td>
                               <td>{{logsItem.geo}}</td>
                               <td><a href="#" class="link">X</a></td>

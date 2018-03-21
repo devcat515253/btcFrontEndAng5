@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../_services/user.service';
 import {EmailModel} from '../_entity/email-model';
 import {UserModel} from '../_entity/user-model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DomSanitizer} from '@angular/platform-browser';
-import {matchOtherValidator} from '../_validators/validator';
+import {FileValidator, matchOtherValidator} from '../_validators/validator';
 import {UserLogs} from '../_entity/user-logs';
+import {ICustomFile} from 'file-input-accessor';
 
 @Component({
   selector: 'app-settings',
@@ -20,6 +21,7 @@ export class SettingsComponent implements OnInit {
   loadingIdCard: boolean = true;
   successIdCard: boolean = false;
   IdCardFileName: string = 'No file chosen';
+  IdCardFileSize: number = 0;
 
   loadingPass: boolean = false;
   successPassTip: boolean = false;
@@ -27,7 +29,8 @@ export class SettingsComponent implements OnInit {
   loadingKyc: boolean = true;
   successKycTip: boolean = false;
   KycFileName: string = 'No file chosen';
-
+  KycFileSize: number = 0;
+  KycFileValid: boolean = true;
 
   step3Show: boolean = true;
   step4Show: boolean = false;
@@ -43,14 +46,18 @@ export class SettingsComponent implements OnInit {
   mainInfoForm: FormGroup;
   passwordForm: FormGroup;
 
+  idCardForm: FormGroup;
+  KycForm: FormGroup;
+
 
   loadingLogs: boolean = true;
   logsArray: UserLogs[] = [];
 
 
-  constructor( private userService: UserService) {
-    // this.mainFormValidator();
+  constructor(private userService: UserService) {
     this.passwordValidator();
+    this.idCardFormValidator();
+    this.KycFormValidator();
   }
 
 
@@ -61,25 +68,23 @@ export class SettingsComponent implements OnInit {
   }
 
 
+
   getUserProfile() {
     this.userService.getUserProfile().subscribe((data) => {
       this.userModel = data.data;
-      // console.log(this.userModel);
+      console.log(this.userModel);
 
       this.loadingMain = false;
       this.loadingKyc = false;
+      this.loadingIdCard = false;
+      this.loadingKyc = false;
+
       this.IdCardFileName = this.userModel.verification_image;
       this.KycFileName = this.userModel.verification_kyc;
 
-      if  (this.IdCardFileName) {
-        this.loadingIdCard = false;
+      if (this.IdCardFileName) {
         this.step4Show = true;
       }
-
-      if  (this.KycFileName) {
-        this.loadingKyc = false;
-      }
-
     }, (error) => {
       console.log(error);
       this.loadingMain = false;
@@ -88,7 +93,8 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  submitMainForm() {
+  submitMainForm(event) {
+    event.preventDefault();
     this.loadingMain = true;
     this.userService.updateUserProfile(this.userModel).subscribe((data) => {
       // console.log(data);
@@ -101,14 +107,30 @@ export class SettingsComponent implements OnInit {
     });
   }
 
+  isImage(file) {
+    return file['type'].split('/')[0] === 'image'; // returns true or false
+  }
+
   // ================================
   // READ IMAGE FILE FOR ID CARD FORM
   // ================================
   fileChangeIdCard($event) {
     this.loadingIdCard = true;
     let fileList: FileList = $event.target.files;
+
     if (fileList.length > 0) {
       this.IdCardFileName = fileList[0].name;
+      this.IdCardFileSize = fileList[0].size;
+
+      if (this.IdCardFileSize >= 10485760) {
+      // if (this.IdCardFileSize >= 5242880) {
+        this.idCardForm.controls['file'].setErrors({'maxsize': true});
+      }
+
+      if  (!this.isImage(fileList[0])) {
+        this.idCardForm.controls['file'].setErrors({'badformat': true});
+      }
+
     } else {
       this.IdCardFileName = 'No file chosen';
       this.base64Image = '';
@@ -139,6 +161,16 @@ export class SettingsComponent implements OnInit {
     let fileList: FileList = $event.target.files;
     if (fileList.length > 0) {
       this.KycFileName = fileList[0].name;
+      this.KycFileSize = fileList[0].size;
+
+      if (this.KycFileSize >= 10485760) {
+        // if (this.IdCardFileSize >= 5242880) {
+        this.KycForm.controls['file'].setErrors({'maxsize': true});
+      }
+
+      if  (!this.isImage(fileList[0])) {
+        this.KycForm.controls['file'].setErrors({'badformat': true});
+      }
     } else {
       this.KycFileName = 'No file chosen';
       this.base64Image = '';
@@ -161,9 +193,18 @@ export class SettingsComponent implements OnInit {
   }
 
 
+  submitIdCardForm(event) {
+    event.preventDefault();
+
+    const controls = this.idCardForm.controls;
 
 
-  submitIdCardForm() {
+    if (this.idCardForm.invalid) {
+      Object.keys(controls)
+        .forEach(controlName => controls[controlName].markAsTouched());
+      return;
+    }
+
     this.loadingIdCard = true;
     this.userService.updateUserIdCardProfile(this.base64Image).subscribe((data) => {
       // console.log(data);
@@ -178,7 +219,17 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  submitKycForm() {
+  submitKycForm(event) {
+    event.preventDefault();
+
+    const controls = this.KycForm.controls;
+
+    if (this.KycForm.invalid) {
+      Object.keys(controls)
+        .forEach(controlName => controls[controlName].markAsTouched());
+      return;
+    }
+
     this.loadingKyc = true;
     this.userService.updateUserKycProfile(this.base64Image).subscribe((data) => {
       // console.log(data);
@@ -192,6 +243,24 @@ export class SettingsComponent implements OnInit {
     });
   }
 
+
+
+
+  idCardFormValidator() {
+    this.idCardForm = new FormGroup({
+      file: new FormControl('',    [
+        FileValidator.validate
+      ])
+    });
+  }
+
+  KycFormValidator() {
+    this.KycForm = new FormGroup({
+      file: new FormControl('',    [
+        FileValidator.validate
+      ])
+    });
+  }
 
 
   passwordValidator() {
@@ -258,11 +327,6 @@ export class SettingsComponent implements OnInit {
 
 
   // user/login-logs
-
-
-
-
-
 
 
 }

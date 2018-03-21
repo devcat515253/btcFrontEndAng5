@@ -3,5 +3,4 @@ export interface UserLogs {
   created_at: string;
   geo: string;
   id: string;
-  created_at: string;
 }

@@ -37,6 +37,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {PaginationService} from './_services/pagination.service';
 import {AuthGuard} from './_guards/auth.guard';
+import { FileValueAccessorDirective } from './_directives/file-value-accessor.directive';
+import { ReferralComponent } from './referral/referral.component';
+import {ReferralService} from './referral/referral.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
@@ -67,6 +70,8 @@ export function createTranslateLoader(http: HttpClient) {
     DialogAuthComponent,
     DialogSuccessComponent,
     UserActivateComponent,
+    FileValueAccessorDirective,
+    ReferralComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +82,7 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule,
     HttpClientModule,
     MatDialogModule,
+    // FileInputAccessorModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -96,7 +102,8 @@ export function createTranslateLoader(http: HttpClient) {
     UserService,
     NewsService,
     PaginationService,
-    AuthGuard
+    AuthGuard,
+    ReferralService
   ],
   bootstrap: [AppComponent]
 })

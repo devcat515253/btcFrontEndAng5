@@ -5,6 +5,7 @@ import {DialogSuccessComponent} from '../_dialog/dialog-success/dialog-success.c
 import {MatDialog} from '@angular/material';
 import {DialogAuthComponent} from '../_dialog/dialog-auth/dialog-auth.component';
 import {EffectBlurService} from '../_services/effect-blur.service';
+import {DialogRegistrationComponent} from '../_dialog/dialog-registration/dialog-registration.component';
 
 @Component({
   selector: 'app-home',
@@ -36,9 +37,14 @@ export class HomeComponent implements OnInit {
       this.param = params['param'];
 
       if  (this.param === 'openDialogAuth') {
-
         setTimeout((() => this.openDialogAuth()), 0);
       }
+
+      if  (this.param === 'registration') {
+        setTimeout((() => this.openDialogReg()), 0);
+      }
+
+
     });
   }
 
@@ -49,6 +55,18 @@ export class HomeComponent implements OnInit {
     this.blurService.toggleBlur(true);
 
     const dialogRef = this.dialog.open(DialogAuthComponent, {
+      width: '60rem',
+    });
+
+    dialogRef.beforeClose().subscribe(result => {
+      this.blurService.toggleBlur(false);
+    });
+  }
+
+  openDialogReg(): void {
+    this.blurService.toggleBlur(true);
+
+    const dialogRef = this.dialog.open(DialogRegistrationComponent, {
       width: '60rem',
     });
 

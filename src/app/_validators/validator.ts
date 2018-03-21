@@ -1,4 +1,4 @@
-import {FormControl} from '@angular/forms';
+import {FormControl, Validator} from '@angular/forms';
 
 export function matchOtherValidator (otherControlName: string) {
 
@@ -37,4 +37,15 @@ export function matchOtherValidator (otherControlName: string) {
 
   };
 
+}
+
+
+export class FileValidator implements Validator {
+  static validate(c: FormControl): {[key: string]: any} {
+    return c.value == null || c.value.length === 0 ? { 'required' : true} : null;
+  }
+
+  validate(c: FormControl): {[key: string]: any} {
+    return FileValidator.validate(c);
+  }
 }
