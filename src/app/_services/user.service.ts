@@ -44,7 +44,6 @@ export class UserService {
     return other_header;
   }
 
-
   registration(newUser: UserRegistr) {
     // console.log(newUser);
     return this.http.post<any>(`${this.baseUrl}/api/user/registration`, newUser, {observe: 'response'});
@@ -110,6 +109,10 @@ export class UserService {
 
   updateUserPassword(pass: any) {
     return this.http.put<any>(`${this.baseUrl}/api/user/password`, pass, {headers: this.getAuthHeader()});
+  }
+
+  getPartnersList() {
+    return this.http.get<any>(`${this.baseUrl}/api/user/referrers`,  {headers: this.getAuthHeader()});
   }
 
 
