@@ -11,4 +11,8 @@ export class ReferralService {
     localStorage.setItem('referral-id', JSON.stringify(refID));
   }
 
+  getReferralId() {
+    return JSON.parse(localStorage.getItem('referral-id')) || 0;
+  }
+
 }

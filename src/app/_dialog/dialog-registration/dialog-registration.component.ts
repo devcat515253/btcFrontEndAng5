@@ -10,6 +10,7 @@ import 'rxjs/add/operator/mergeMap';
 import {of} from 'rxjs/observable/of';
 import {EffectBlurService} from '../../_services/effect-blur.service';
 import {DialogSuccessComponent} from '../dialog-success/dialog-success.component';
+import {ReferralService} from '../../referral/referral.service';
 
 @Component({
   selector: 'app-dialog-registration',
@@ -28,6 +29,7 @@ export class DialogRegistrationComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<DialogRegistrationComponent>,
               private userService: UserService,
+              private referralService: ReferralService,
               public dialog: MatDialog, private blurService: EffectBlurService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -39,6 +41,11 @@ export class DialogRegistrationComponent implements OnInit {
 
 
   checkEmailExist() {
+
+    if  (this.userRegistr.email === '') {
+      return;
+    }
+
     this.emailModel.email = this.userRegistr.email;
     this.userService.checkEmail(this.emailModel).subscribe(
       (data: HttpResponse<any>) => {
@@ -93,8 +100,10 @@ export class DialogRegistrationComponent implements OnInit {
       return;
     }
     this.emailModel.email = this.userRegistr.email;
+    this.userRegistr.refer = this.referralService.getReferralId();
 
     this.loading = true;
+
     this.userService.checkEmail(this.emailModel).flatMap(loginResult => {
       return this.userService.registration(this.userRegistr);
     }).subscribe(

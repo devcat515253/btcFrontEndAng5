@@ -4,6 +4,7 @@ export class UserRegistr {
   password: string;
   repassword: string;
   checkbox: boolean;
+  refer: number;
 
   constructor() {
     this.name = '';
@@ -11,5 +12,6 @@ export class UserRegistr {
     this.password = '';
     this.repassword = '';
     this.checkbox = false;
+    this.refer = 0;
   }
 }
