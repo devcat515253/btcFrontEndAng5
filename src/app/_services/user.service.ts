@@ -22,7 +22,22 @@ export class UserService {
   constructor(private http: HttpClient,
               private router: Router) {
     this.getAuthToken();
+    this.checkToken();
   }
+
+
+
+  checkToken() {
+    this.http.get<any>(`${this.baseUrl}/api/me`, {headers: this.getAuthHeader()}).subscribe(result => {
+      console.log(result);
+    }, (error) => {
+      console.log(error);
+      console.log(error.status);
+      this.logout();
+    });
+  }
+
+
   getToken() {
     return JSON.parse(localStorage.getItem('access_token')) || '';
   }
@@ -113,6 +128,10 @@ export class UserService {
 
   getPartnersList() {
     return this.http.get<any>(`${this.baseUrl}/api/user/referrers`,  {headers: this.getAuthHeader()});
+  }
+
+  logoutAllUser(idUser: number) {
+    return this.http.put<any>(`${this.baseUrl}/api/user/login-logs/${idUser}/token-revoke`, '' , {headers: this.getAuthHeader()});
   }
 
 

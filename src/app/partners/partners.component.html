@@ -59,7 +59,8 @@
                       <tr *ngFor="let listItem of refArray; let i = index">
                         <td>{{listItem.name}}</td>
                         <td>{{listItem.date.date | date: 'dd.MM.yyyy'}}</td>
-                        <td>{{listItem.activation}}</td>
+                        <td *ngIf="!listItem.activation">inactive</td>
+                        <td *ngIf="listItem.activation">active</td>
                         <td>{{listItem.total_exchange || 0}}</td>
                       </tr>
                     </tbody>

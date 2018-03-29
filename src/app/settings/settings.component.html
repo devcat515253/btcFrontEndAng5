@@ -340,7 +340,8 @@
                               <td>{{logsItem.browser}}</td>
                               <td>{{logsItem.ip}}</td>
                               <td>{{logsItem.geo}}</td>
-                              <td><a href="#" class="link">X</a></td>
+                              <td *ngIf="!logsItem.active"></td>
+                              <td *ngIf="logsItem.active"><a (click)="logoutAll($event, logsItem)" class="link">X</a></td>
                             </tr>
                             </tbody>
                           </table>

@@ -325,6 +325,17 @@ export class SettingsComponent implements OnInit {
     });
   }
 
+  logoutAll(event, logsItem) {
+    event.preventDefault();
+
+    this.userService.logoutAllUser(logsItem.id).subscribe(result => {
+      console.log(result);
+    },(error) => {
+      console.log(error);
+    });
+
+  }
+
 
   // user/login-logs
 

@@ -40,6 +40,7 @@ import {AuthGuard} from './_guards/auth.guard';
 import { FileValueAccessorDirective } from './_directives/file-value-accessor.directive';
 import { ReferralComponent } from './referral/referral.component';
 import {ReferralService} from './referral/referral.service';
+import {TablesService} from './_services/tables.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
@@ -103,7 +104,8 @@ export function createTranslateLoader(http: HttpClient) {
     NewsService,
     PaginationService,
     AuthGuard,
-    ReferralService
+    ReferralService,
+    TablesService
   ],
   bootstrap: [AppComponent]
 })

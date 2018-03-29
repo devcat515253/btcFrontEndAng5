@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {UserLogs} from '../_entity/user-logs';
 declare var $: any;
 
 @Component({
