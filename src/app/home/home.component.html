@@ -96,23 +96,23 @@
 
 
                     <div class="item-wrapper" *ngFor="let fromItem of exchangeFromArray; let i = index">
-                      <div class="item" *ngIf="i <= 5">
+                      <div class="item" *ngIf="i <= 5" (click)="selectExchangeFrom(fromItem)">
                         <div class="item-icons" [style.background-image]="'url(' + fromItem.logo +')'"></div>
                         <div class="item-value" value="Advanced Cash">{{fromItem.name}} <span class="ttu">{{fromItem.currency}}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div class="currencies-other js-view-other">
+                    <div class="currencies-other js-view-other" *ngIf="exchangeFromArray.length > 5">
                       <div class="item" text="Select other payment" replaceText="Hidden other payment">
                         <span>Select other payment </span>
                         <img src="../../assets/img/svg/arrow-down.svg" alt="View other"></div>
                     </div>
 
-                    <div class="currencies-hidden">
+                    <div class="currencies-hidden" >
 
                       <div class="item-wrapper" *ngFor="let fromItem of exchangeFromArray; let i = index">
-                        <div class="item" *ngIf="i > 5">
+                        <div class="item" *ngIf="i > 5" (click)="selectExchangeFrom(fromItem)">
                           <div class="item-icons" [style.background-image]="'url(' + fromItem.logo +')'"></div>
                           <div class="item-value" value="Advanced Cash">{{fromItem.name}} <span class="ttu">{{fromItem.currency}}</span>
                           </div>
@@ -307,13 +307,13 @@
 
 
                    <div class="item-wrapper"  *ngFor="let toItem of exchangeToArray; let i = index">
-                     <div class="item" *ngIf="i <= 5">
+                     <div class="item" *ngIf="i <= 5" (click)="selectExchangeTo(toItem)">
                        <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
                        <div class="item-value" [attr.value]="toItem.name">{{toItem.name}} <span class="ttu">{{toItem.currency}}</span></div>
                      </div>
                    </div>
 
-                    <div class="currencies-other js-view-other">
+                    <div class="currencies-other js-view-other" *ngIf="exchangeToArray.length > 5">
                       <div class="item" text="Select other payment" replaceText="Hidden other payment">
                         <span>Select other payment </span>
                         <img src="../../assets/img/svg/arrow-down.svg" alt="View other"></div>
@@ -322,7 +322,7 @@
                     <div class="currencies-hidden">
 
                       <div class="item-wrapper" *ngFor="let toItem of exchangeToArray; let i = index">
-                        <div class="item" *ngIf="i > 5">
+                        <div class="item" *ngIf="i > 5" (click)="selectExchangeTo(toItem)">
                           <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
                           <div class="item-value" [attr.value]="toItem.name">{{toItem.name}} <span class="ttu">{{toItem.currency}}</span></div>
                         </div>
