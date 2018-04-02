@@ -12,11 +12,12 @@ import {NameIcon} from '../_entity/name-icon';
 export class FeesDiscountComponent implements OnInit {
 
 
-  commissionArray: Commission[] = [];
+  commissionArray: any;
   thDiscountsArray: NameIcon[];
 
 
-  constructor(private tablesService: TablesService) { }
+  constructor(private tablesService: TablesService) {
+  }
 
   ngOnInit() {
     this.getCommissions();
@@ -32,7 +33,9 @@ export class FeesDiscountComponent implements OnInit {
     this.tablesService.getCommissions().subscribe( (result) => {
       console.log(result);
 
-      this.commissionArray = result.data as Commission[];
+      this.commissionArray = result.data;
+      console.log(this.commissionArray);
+
 
       // this.exchangesArray[0].inPayment = result.data[0].inPayment.data.paymentSystem.data.name;
       // console.log(result.data[0].inPayment.data.paymentSystem.data.name);

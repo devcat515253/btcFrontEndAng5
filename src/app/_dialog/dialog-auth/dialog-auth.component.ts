@@ -47,6 +47,8 @@ export class DialogAuthComponent implements OnInit {
 
   }
 
+
+
   onNoClick(event): void {
     event.preventDefault();
     this.dialogRef.close();
@@ -64,10 +66,6 @@ export class DialogAuthComponent implements OnInit {
     this.userForgotPopup = false;
   }
 
-
-  // onYesClick() {
-  //   this.dialogRef.close({ data: 'data' });
-  // }
 
   validatorForgot() {
     this.userForgotForm = new FormGroup({

@@ -1,0 +1,47 @@
+.currencies .item .item-value span.ttu
+  margin-left: 4px
+.welcome-page.custom-loader:after
+  background: rgba(255,255,255, .6)
+.color-loader
+  display: block
+  width: 28px
+  height: 28px
+  border-radius: 50%
+  position: absolute
+  animation: loader10 0.9s ease alternate infinite
+  animation-delay: 0.36s
+  top: 3rem
+  margin: -42px auto 0
+  left: 50%
+  -webkit-transform: translateX(-50%)
+  -moz-transform: translateX(-50%)
+  -ms-transform: translateX(-50%)
+  -o-transform: translateX(-50%)
+  transform: translateX(-50%)
+  z-index: 1
+  &::after
+    content: ''
+    position: absolute
+    width: 28px
+    height: 28px
+    border-radius: 50%
+    animation: loader10 0.9s ease alternate infinite
+  &::before
+    content: ''
+    position: absolute
+    width: 28px
+    height: 28px
+    border-radius: 50%
+    animation: loader10 0.9s ease alternate infinite
+    left: -40px
+    animation-delay: 0.18s
+  &::after
+    right: -40px
+    animation-delay: 0.54s
+
+@keyframes loader10
+  0%
+    box-shadow: 0 28px 0 -28px #304271
+
+  100%
+    box-shadow: 0 28px 0 #304271

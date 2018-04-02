@@ -1,0 +1,72 @@
+<div class="step">
+  <div class="step-title"><h3 class="h3">5. {{ 'process5.title-sepa' | translate }}</h3></div>
+
+  <p class="p_small pre-line" [innerHTML]="'process5.sub-title' | translate">
+    <!--<b>Pošlete</b> částku na uvedený <b>bankovní účet</b>. Dbejte na <b>potvrzení</b> odeslání až v momentu, kdy budou finance <b>skutečně odeslány</b>.-->
+  </p>
+
+  <div class="exchange-info">
+    <div class="line-sides">{{ 'process5.amount-transfer' | translate }}</div>
+
+    <div class="select-amount">
+      <label class="input-exchange">
+        <div class="input">
+          <input type="text">
+          <span class="currency">USD</span>
+        </div>
+
+        <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
+        <!-- <span class="error-label">
+                                            Zadaná částka přesahuje limit 9,999 USD
+                                            <a href="#"> kontact us</a>
+                                        </span> -->
+      </label>
+    </div>
+
+
+    <div class="line-sides">{{ 'process5.payment-information' | translate }}</div>
+
+    <div class="exchange-info__descr">
+      <div class="item">
+        <span>{{ 'process5.bank-holder' | translate }}</span>
+        <b>Společnost, s.r.o.</b>
+      </div>
+
+      <div class="item">
+        <span>{{ 'process5.bank-holder-address' | translate }}</span>
+        <b>Příčná ulice 12/845 <br>100 00 Bradavice 16</b>
+      </div>
+
+      <div class="item">
+        <span>IBAN:</span>
+        <b>CZ6508000000192000145399</b>
+      </div>
+
+      <div class="item">
+        <span>BIC/SWIFT:</span>
+        <b>CEKOCZPP</b>
+      </div>
+
+      <div class="item">
+        <span>{{ 'process5.bank-name' | translate }}</span>
+        <b>Moneta Money Bank, a.s.</b>
+      </div>
+
+      <div class="item">
+        <span>{{ 'process5.bank-address' | translate }}</span>
+        <b>Hitlerstrasse 1/422 <br>100 00 Deutchland 4</b>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <p class="p_small pre-line" [innerHTML]="'process5.info-instruction' | translate">
+    <!--Pokud nedodržíte platební instrukce, <br>transakce může trvat déle.-->
+    <!--Na tlačítko <b class="accentColor">“Peníze odeslány”</b> klikněte <br>-->
+    <!--až v momentu, co budou peníze <b class="redColor">opravdu odeslány</b>.-->
+
+  </p>
+
+  <a href="#" class="btn btn-accent rippler rippler-default full-width">Money sent</a>
+</div>

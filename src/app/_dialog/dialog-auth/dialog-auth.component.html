@@ -19,24 +19,24 @@
 
     <label class="form-group"
            [ngClass]="{'has-error': (userAuthForm.controls['email'].hasError('email')
-           || userAuthForm.controls['email'].hasError('maxLength'))
+           || userAuthForm.controls['email'].hasError('maxlength'))
            && authForm.submitted}">
       <span class="form-title">Your e-mail (account login):</span>
       <input [(ngModel)]="userAuth.email" formControlName="email" name="email" type="text" class="form-control">
       <span
         *ngIf="(userAuthForm.controls['email'].hasError('email')
-        || userAuthForm.controls['email'].hasError('maxLength'))
+        || userAuthForm.controls['email'].hasError('maxlength'))
         && authForm.submitted" class="error-label">Hesla se neshodují</span>
     </label>
 
     <label class="form-group" [ngClass]="{'has-error': (userAuthForm.controls['password'].hasError('required')
-           || userAuthForm.controls['password'].hasError('maxLength'))
+           || userAuthForm.controls['password'].hasError('maxlength'))
            && authForm.submitted}">
       <span class="form-title">Password:</span>
       <input [(ngModel)]="userAuth.password" formControlName="password" name="password" type="password" class="form-control" required="">
       <span
         *ngIf="(userAuthForm.controls['password'].hasError('required')
-        || userAuthForm.controls['password'].hasError('maxLength'))
+        || userAuthForm.controls['password'].hasError('maxlength'))
         && authForm.submitted" class="error-label">Hesla se neshodují</span>
     </label>
 

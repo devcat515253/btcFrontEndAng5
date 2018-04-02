@@ -41,6 +41,24 @@ import { FileValueAccessorDirective } from './_directives/file-value-accessor.di
 import { ReferralComponent } from './referral/referral.component';
 import {ReferralService} from './referral/referral.service';
 import {TablesService} from './_services/tables.service';
+import { Step1Component } from './_exchange/step1/step1.component';
+import { Step2Component } from './_exchange/step2/step2.component';
+import { Step3Component } from './_exchange/step3/step3.component';
+import { Step31Component } from './_exchange/step3-1/step3-1.component';
+import { Step32Component } from './_exchange/step3-2/step3-2.component';
+import { Step33Component } from './_exchange/step3-3/step3-3.component';
+import { Step34Component } from './_exchange/step3-4/step3-4.component';
+import { Step35Component } from './_exchange/step3-5/step3-5.component';
+import { Step36Component } from './_exchange/step3-6/step3-6.component';
+import { Step4Component } from './_exchange/step4/step4.component';
+import { Step41Component } from './_exchange/step4-1/step4-1.component';
+import { Step42Component } from './_exchange/step4-2/step4-2.component';
+import { Step43Component } from './_exchange/step4-3/step4-3.component';
+import { Step5Component } from './_exchange/step5/step5.component';
+import { Step6Component } from './_exchange/step6/step6.component';
+import { Step61Component } from './_exchange/step6-1/step6-1.component';
+import { Step62Component } from './_exchange/step6-2/step6-2.component';
+import {ExchangeService} from './_services/exchange.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
@@ -72,7 +90,24 @@ export function createTranslateLoader(http: HttpClient) {
     DialogSuccessComponent,
     UserActivateComponent,
     FileValueAccessorDirective,
-    ReferralComponent
+    ReferralComponent,
+    Step1Component,
+    Step2Component,
+    Step3Component,
+    Step31Component,
+    Step32Component,
+    Step33Component,
+    Step34Component,
+    Step35Component,
+    Step36Component,
+    Step4Component,
+    Step41Component,
+    Step42Component,
+    Step43Component,
+    Step5Component,
+    Step6Component,
+    Step61Component,
+    Step62Component
   ],
   imports: [
     BrowserModule,
@@ -105,7 +140,8 @@ export function createTranslateLoader(http: HttpClient) {
     PaginationService,
     AuthGuard,
     ReferralService,
-    TablesService
+    TablesService,
+    ExchangeService
   ],
   bootstrap: [AppComponent]
 })

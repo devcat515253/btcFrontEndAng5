@@ -1,0 +1,31 @@
+<div class="step">
+  <div class="step-title"><h3 class="h3">2. Login</h3></div>
+
+  <p class="p_small">
+    <b>Fill</b> your <b>login information</b> into the <br>form bellow.
+  </p>
+
+  <form action="#" class="form">
+    <label class="form-group has-error">
+      <span class="form-title">Your e-mail:</span>
+      <input type="text" class="form-control">
+      <span class="error-label">{{ 'errors.Email' | translate }}</span>
+    </label>
+
+    <label class="form-group has-error">
+      <span class="form-title">Password:</span>
+      <input type="password" class="form-control">
+      <span class="error-label">{{ 'errors.Password' | translate }}</span>
+    </label>
+
+    <div class="form-btn between-children">
+      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
+
+      <label>
+        <a href="#" class="btn btn-accent rippler rippler-default">Login</a>
+        <input type="submit" hidden>
+      </label>
+    </div>
+
+  </form>
+</div>

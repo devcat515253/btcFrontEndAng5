@@ -128,6 +128,9 @@ img
 .btn-wrapper
 	display: block
 	width: 100%
+
+.ttu
+  text-transform: uppercase
 .ic
 	display: inline-block
 	vertical-align: middle
@@ -707,9 +710,11 @@ hr
 				right: 2.5rem
 	&-hidden
 		display: none
-		.item:first-child
+		.item-wrapper:first-child
 			margin-top: 2.5rem
-
+  .item-wrapper
+    &:last-child
+      margin-bottom: 0
 	.item
 		width: 100%
 		height: 5.1rem
@@ -722,8 +727,7 @@ hr
 		color: #fff
 		padding-left: 3rem
 		cursor: pointer
-		&:last-child
-			margin-bottom: 0
+
 		&:hover
 			background-color: lighten($bgAccentSecond, 3%)
 		&-icons

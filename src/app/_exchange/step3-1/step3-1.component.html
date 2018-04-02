@@ -1,0 +1,41 @@
+<div class="step">
+  <div class="step-title"><h3 class="h3">2. Registration</h3></div>
+
+  <p class="p_small"  [innerHTML]="'exchange.ProcessReg' | translate">
+  </p>
+
+  <form action="#" class="form">
+    <label class="form-group">
+      <span class="form-title">Your e-mail (account login):</span>
+      <input type="text" class="form-control">
+    </label>
+
+    <label class="form-group">
+      <span class="form-title">Password:</span>
+      <input type="password" class="form-control" required="">
+      <span class="error-label">Hesla se neshodují</span>
+    </label>
+
+    <label class="form-group has-error">
+      <span class="form-title">Password again:</span>
+      <input type="password" class="form-control" required="">
+      <span class="error-label">Hesla se neshodují</span>
+    </label>
+
+    <div class="form-btn between-children">
+      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
+
+      <label>
+        <a href="#" class="btn btn-accent rippler rippler-default">Register</a>
+        <input type="submit" hidden>
+      </label>
+    </div>
+
+    <label class="checkbox">
+      <input type="checkbox" class="checkbox-cotrol">
+      <span class="checkbox-icons"></span>
+      <span class="checkbox-title">I agree to the <a href="#" class="link">Terms and Conditions</a> and <a href="#" class="link">Privacy Policy</a></span>
+    </label>
+
+  </form>
+</div>

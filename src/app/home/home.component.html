@@ -12,7 +12,8 @@
       </header>
 
 
-      <div class="content blank tape-top no-padding">
+      <div class="content blank tape-top no-padding welcome-page" [ngClass]="{'custom-loader': loading}">
+        <div class="color-loader" *ngIf="loading"></div>
 
         <div class="exchange">
 
@@ -22,39 +23,51 @@
             </div>
             <div class="column__content">
               <div class="select-amount subblock">
-                <label class="input-exchange has-error">
-                  <div class="input">
-                    <input type="text">
-                    <span class="currency">USD</span>
-                  </div>
+                <form [formGroup]="exchangeFromForm"  #fromForm="ngForm" novalidate>
 
-                  <span class="error-label">{{ 'errors.ExchangeLimit' | translate }}</span>
-                </label>
+                  <label class="input-exchange"
+                         [ngClass]="{'has-error':
+                            (exchangeFromForm.controls['inputFrom'].hasError('required'))
+                         || (exchangeFromForm.controls['inputFrom'].hasError('maxlength'))
+                         || (exchangeFromForm.controls['inputFrom'].hasError('minlength')),
+                                     'has-warn':
+                            (exchangeFromForm.controls['inputFrom'].hasError('email')) }">
+                    <div class="input">
+                      <input type="text" [(ngModel)]="inputExchangeFrom" (ngModelChange)="inputFromChanged()" formControlName="inputFrom">
+                      <span class="currency">USD</span>
+                    </div>
 
-                <br>
-                <label class="input-exchange has-error">
-                  <div class="input">
-                    <input type="text">
-                    <span class="currency">USD</span>
-                  </div>
+                    <span class="error-label"
+                          *ngIf="(exchangeFromForm.controls['inputFrom'].hasError('email')
+                               || exchangeFromForm.controls['inputFrom'].hasError('maxlength'))
+                               && fromForm.submitted">{{ 'errors.ExchangeLimit' | translate }}</span>
+                  </label>
+                </form>
 
-                  <span class="error-label">
-                    {{ 'errors.ExchangeAmount' | translate }}
-                    <a href="#"> {{ 'exchange.InputErrorLink' | translate }}</a>
-                  </span>
-                </label>
-                <br>
+                <!--<br>-->
+                <!--<label class="input-exchange has-error">-->
+                  <!--<div class="input">-->
+                    <!--<input type="text">-->
+                    <!--<span class="currency">USD</span>-->
+                  <!--</div>-->
 
-                <label class="input-exchange has-warn">
-                  <div class="input">
-                    <input type="text">
-                    <span class="currency">USD</span>
-                  </div>
+                  <!--<span class="error-label">-->
+                    <!--{{ 'errors.ExchangeAmount' | translate }}-->
+                    <!--<a href="#"> {{ 'exchange.InputErrorLink' | translate }}</a>-->
+                  <!--</span>-->
+                <!--</label>-->
+                <!--<br>-->
 
-                  <span class="error-label">{{ 'errors.ExchangeWarningVerify' | translate }}</span>
-                </label>
-                <br>
-                <br>
+                <!--<label class="input-exchange has-warn">-->
+                  <!--<div class="input">-->
+                    <!--<input type="text">-->
+                    <!--<span class="currency">USD</span>-->
+                  <!--</div>-->
+
+                  <!--<span class="error-label">{{ 'errors.ExchangeWarningVerify' | translate }}</span>-->
+                <!--</label>-->
+                <!--<br>-->
+                <!--<br>-->
               </div>
 
               <div class="subblock">
@@ -64,10 +77,10 @@
 
                 <div class="subblock-content">
                   <div class="btns">
-                    <div class="item rippler rippler-default">{{ 'exchange.all' | translate }}</div>
-                    <div class="item is-selected rippler rippler-default">EUR</div>
-                    <div class="item rippler rippler-default">CZK</div>
-                    <div class="item rippler rippler-default">Coin</div>
+                    <div class="item is-selected rippler rippler-default" (click)="changeFromFilter($event)" filterValue="all">All</div>
+                    <div class="item rippler rippler-default" (click)="changeFromFilter($event)" filterValue="usd">USD</div>
+                    <div class="item rippler rippler-default" (click)="changeFromFilter($event)" filterValue="eur">EUR</div>
+                    <div class="item rippler rippler-default" (click)="changeFromFilter($event)" filterValue="btc">Coin</div>
                   </div>
                 </div>
               </div>
@@ -79,50 +92,15 @@
 
                 <div class="subblock-content">
                   <div class="currencies js-select-currencies">
-                    <div class="item is-selected">
-                      <div class="item-icons" style="background-image: url(../../assets/img/adv-cash.png);"></div>
-                      <div class="item-value" value="Advanced Cash"><span>Advanced Cash</span></div>
-                    </div>
 
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/bitcoin.png);"></div>
-                      <div class="item-value" value="Bitcoin">Bitcoin <span class="item-value__total">1</span></div>
-                    </div>
 
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/dash.png);"></div>
-                      <div class="item-value" value="Dash">Dash  <span class="item-value__total">0.0048</span></div>
-                    </div>
 
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/etherium.png);"></div>
-                      <div class="item-value" value="Ether">Ether</div>
-                    </div>
-
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/litecoin.png);"></div>
-                      <div class="item-value" value="Litecoin">Litecoin</div>
-                    </div>
-
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/monelo.png);"></div>
-                      <div class="item-value" value="Monelo">Monelo</div>
-                    </div>
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/ripple.png);"></div>
-                      <div class="item-value" value="Ripple">Ripple</div>
-                    </div>
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/payeer.png);"></div>
-                      <div class="item-value" value="Payeer">Payeer</div>
-                    </div>
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/perfect-money.png);"></div>
-                      <div class="item-value" value="PerfectMoney">PerfectMoney</div>
-                    </div>
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/zcash.png);"></div>
-                      <div class="item-value" value="Zcash">Zcash</div>
+                    <div class="item-wrapper" *ngFor="let fromItem of exchangeFromArray; let i = index">
+                      <div class="item" *ngIf="i <= 5">
+                        <div class="item-icons" [style.background-image]="'url(' + fromItem.logo +')'"></div>
+                        <div class="item-value" value="Advanced Cash">{{fromItem.name}} <span class="ttu">{{fromItem.currency}}</span>
+                        </div>
+                      </div>
                     </div>
 
                     <div class="currencies-other js-view-other">
@@ -132,46 +110,15 @@
                     </div>
 
                     <div class="currencies-hidden">
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/bitcoin.png);"></div>
-                        <div class="item-value" value="Bitcoin">Bitcoin</div>
+
+                      <div class="item-wrapper" *ngFor="let fromItem of exchangeFromArray; let i = index">
+                        <div class="item" *ngIf="i > 5">
+                          <div class="item-icons" [style.background-image]="'url(' + fromItem.logo +')'"></div>
+                          <div class="item-value" value="Advanced Cash">{{fromItem.name}} <span class="ttu">{{fromItem.currency}}</span>
+                          </div>
+                        </div>
                       </div>
 
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/dash.png);"></div>
-                        <div class="item-value" value="Dash">Dash</div>
-                      </div>
-
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/etherium.png);"></div>
-                        <div class="item-value" value="Ether">Ether</div>
-                      </div>
-
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/litecoin.png);"></div>
-                        <div class="item-value" value="Litecoin">Litecoin</div>
-                      </div>
-
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/monelo.png);"></div>
-                        <div class="item-value" value="Monelo">Monelo</div>
-                      </div>
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/ripple.png);"></div>
-                        <div class="item-value" value="Ripple">Ripple</div>
-                      </div>
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/payeer.png);"></div>
-                        <div class="item-value" value="Payeer">Payeer</div>
-                      </div>
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/perfect-money.png);"></div>
-                        <div class="item-value" value="PerfectMoney">PerfectMoney</div>
-                      </div>
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/zcash.png);"></div>
-                        <div class="item-value" value="Zcash">Zcash</div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -190,778 +137,103 @@
 
                   <div class="steps">
 
-                    <div class="reduced-width">
-                      <div class="switch">
-                        <div class="currencies currencies_small">
-                          <div class="item">
-                            <div class="item-icons" style="background-image: url(../../assets/img/adv-cash.png);"></div>
-                            <div class="item-value" value="Advanced Cash">Advanced Cash</div>
-                          </div>
-
-                          <div class="switch-btn"></div>
-
-                          <div class="switch-stats">
-                            <div class="tape">Fee: 1.00 %</div>
-                            <div class="tape tape-accent">Discount: 0.00 %</div>
-                          </div>
-
-                          <div class="item">
-                            <div class="item-icons" style="background-image: url(../../assets/img/bitcoin.png);"></div>
-                            <div class="item-value" value="Bitcoin">Bitcoin</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="captcha">
-                        <img src="../../assets/img/captcha.png" alt="">
-                      </div>
-
-                      <div class="btn-wrapper">
-                        <a href="#" class="btn btn-accent rippler rippler-default full-width">Exchange</a>
-                      </div>
-                    </div>
+                    <div class="step1">
+                    <app-step1></app-step1>
+                  </div>
 
                     <br>
                     <br>
                     <br>
 
-                    <!-- STEP1 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">2. Login or registration</h3></div>
-
-                      <p class="p_small" [innerHTML]="'exchange.ProcessLogin' | translate">
-                      </p>
-
-                      <div class="reduced-width">
-                        <a href="#" class="btn btn-accentSecond rippler rippler-default full-width">I have an account</a>
-                        <div class="or line-sides">or</div>
-                        <a href="#" class="btn btn-accentSecond rippler rippler-default full-width">Create free account</a>
-
-                        <div class="text-center">
-                          <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-                        </div>
-                      </div>
+                    <!-- STEP12 -->
+                    <div class="step2">
+                      <app-step2></app-step2>
                     </div>
-
-                    <!-- STEP 2 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">2. Login</h3></div>
-
-                      <p class="p_small">
-                        <b>Fill</b> your <b>login information</b> into the <br>form bellow.
-                      </p>
-
-                      <form action="#" class="form">
-                        <label class="form-group has-error">
-                          <span class="form-title">Your e-mail:</span>
-                          <input type="text" class="form-control">
-                          <span class="error-label">{{ 'errors.Email' | translate }}</span>
-                        </label>
-
-                        <label class="form-group has-error">
-                          <span class="form-title">Password:</span>
-                          <input type="password" class="form-control">
-                          <span class="error-label">{{ 'errors.Password' | translate }}</span>
-                        </label>
-
-                        <div class="form-btn between-children">
-                          <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-
-                          <label>
-                            <a href="#" class="btn btn-accent rippler rippler-default">Login</a>
-                            <input type="submit" hidden>
-                          </label>
-                        </div>
-
-                      </form>
-                    </div>
-
-                    <!-- STEP 2-1 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">2. Registration</h3></div>
-
-                      <p class="p_small"  [innerHTML]="'exchange.ProcessReg' | translate">
-                      </p>
-
-                      <form action="#" class="form">
-                        <label class="form-group">
-                        <span class="form-title">Your e-mail (account login):</span>
-                        <input type="text" class="form-control">
-                      </label>
-
-                        <label class="form-group">
-                          <span class="form-title">Password:</span>
-                          <input type="password" class="form-control" required="">
-                          <span class="error-label">Hesla se neshodují</span>
-                        </label>
-
-                        <label class="form-group has-error">
-                          <span class="form-title">Password again:</span>
-                          <input type="password" class="form-control" required="">
-                          <span class="error-label">Hesla se neshodují</span>
-                        </label>
-
-                        <div class="form-btn between-children">
-                          <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-
-                          <label>
-                            <a href="#" class="btn btn-accent rippler rippler-default">Register</a>
-                            <input type="submit" hidden>
-                          </label>
-                        </div>
-
-                        <label class="checkbox">
-                          <input type="checkbox" class="checkbox-cotrol">
-                          <span class="checkbox-icons"></span>
-                          <span class="checkbox-title">I agree to the <a href="#" class="link">Terms and Conditions</a> and <a href="#" class="link">Privacy Policy</a></span>
-                        </label>
-
-                      </form>
-                    </div>
-
-                    <!-- STEP 2-2 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">2. Fast verification</h3></div>
-
-                      <p class="p_small">
-                        <b>Check your e-mail</b>, click on the activation <br>
-                        link or copy the activation code and <b>continue</b> the process.
-                      </p>
-
-                      <form action="#" class="form">
-                        <label class="form-group has-error">
-                          <span class="form-title">Activation code:</span>
-                          <input type="text" class="form-control" value="c5r6a9">
-                          <span class="error-label">Bad activation code, try it again</span>
-                        </label>
-
-                        <div class="text-center tip-link">
-                          <a href="#" class="link tt-uppercase">Send again</a>
-                        </div>
-
-                        <div class="form-btn between-children small-indent">
-                          <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-
-                          <label>
-                            <a href="#" class="btn btn-accent rippler rippler-default">Verify e-mail</a>
-                            <input type="submit" hidden>
-                          </label>
-                        </div>
-
-                      </form>
-                    </div>
-
-                    <!-- STEP 2-3 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">2. E-mail verified!</h3></div>
-
-                      <p class="p_small">
-                        Congratulations! Your e-mail address wasbr	<br>
-                        verified. Let’s <b>continue</b> with your <b>transaction</b> <br>
-                        process and <b>verify</b> your <b>phone number</b>.
-                      </p>
-
-                      <form action="#" class="form">
-
-                        <div class="form-group">
-                          <span class="form-title">Your phone number:</span>
-                          <label class="phone-send">
-                            <input type="text" class="form-control" value="+380993056563" required="">
-                            <a href="#" class="btn btn-accent rippler rippler-default js-phone-send">Send code</a>
-                          </label>
-                          <span class="error-label">Not valid phone number format</span>
-                        </div>
-
-                        <div class="text-center tip-link">
-                          <a href="#" class="link tt-uppercase">Send Again</a>
-                        </div>
-
-                        <hr class="full-width">
-
-                        <label class="form-group">
-                          <span class="form-title">Activation code:</span>
-                          <input type="text" class="form-control" required="" value="l7d8w9">
-                          <span class="error-label">Hesla se neshodují</span>
-                        </label>
-
-                        <div class="form-btn between-children">
-                          <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-
-                          <label>
-                            <a href="#" class="btn btn-accent rippler rippler-default is-disabled">Verify e-mail</a>
-                            <input type="submit" hidden>
-                          </label>
-                        </div>
-
-                      </form>
-                    </div>
-
-                    <!-- STEP 2-4 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">2. Phone verified!</h3></div>
-
-                      <p class="p_small">
-                        Congratulations! Your phone number was <br>
-                        verified. Let’s <b>continue</b> with your <b>transaction</b> <br>
-                        process and <b>verify</b> your <b>identity card</b>.
-                      </p>
-
-                      <form action="#" class="form">
-
-                        <div class="form-group">
-                          <span class="form-title">Upload image of your ID card:</span>
-                          <label class="upload-file">
-                            <input type="file" class="form-control" required="">
-                            <span class="upload-file__name">No file chosen</span>
-                            <span class="btn btn-accent rippler rippler-default js-file-upload">Choose file</span>
-                          </label>
-                          <span class="error-label">Bad file format, supported - jpg and png</span>
-                        </div>
-
-                        <div class="form-btn between-children">
-                          <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-
-                          <label>
-                            <a href="#" class="btn btn-accent rippler rippler-default">Verify ID</a>
-                            <input type="submit" hidden>
-                          </label>
-                        </div>
-                      </form>
-                    </div>
-
-                    <!-- STEP 2-5 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">2. ID verified!</h3></div>
-
-                      <p class="p_small">
-                        Congratulations! Your identity card was <br>
-                        verified. Let’s <b>continue</b> with your <b>KYC questionnaire</b>.
-                      </p>
-
-                      <form action="#" class="form">
-
-                        <ul class="tip-list">
-                          <li><b>Download</b> KYC questionnaire</li>
-                          <li><b>Fill</b> in necessary information</li>
-                          <li><b>Upload</b> photo of filled KYC</li>
-                        </ul>
-
-                        <a href="#" class="btn btn-accent rippler rippler-default js-file-upload full-width">Downlaod KYC</a>
-
-                        <br><hr class="full-width">
-
-                        <div class="form-group">
-                          <span class="form-title">Upload image of your KYC:</span>
-                          <label class="upload-file">
-                            <input type="file" class="form-control" required="">
-                            <span class="upload-file__name">No file chosen</span>
-                            <span class="btn btn-accent rippler rippler-default js-file-upload">Choose file</span>
-                          </label>
-                          <span class="error-label">Bad file format, supported - jpg and png</span>
-                        </div>
-
-                        <div class="form-btn between-children">
-                          <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-
-                          <label>
-                            <a href="#" class="btn btn-accent rippler rippler-default">Verify KYC</a>
-                            <input type="submit" hidden>
-                          </label>
-                        </div>
-                      </form>
-                    </div>
-
-                    <!-- STEP 2-6 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">2. Account is verified!</h3></div>
-
-                      <p class="p_small">
-                        Congratulations! You can <b>continue</b> with your <br><b>transaction process</b>.
-                      </p>
-
-                      <form action="#" class="form">
-                        <div class="form-btn between-children">
-                          <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-
-                          <label>
-                            <a href="#" class="btn btn-accent rippler rippler-default">Continue</a>
-                            <input type="submit" hidden>
-                          </label>
-                        </div>
-                      </form>
-                    </div>
-
                     <!-- STEP 3 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">3. Personal info and wallet</h3></div>
-
-                      <div class="text-center tip-link">
-                        <a href="#" class="link tt-uppercase">Fill from last</a>
-                      </div>
-
-                      <form action="#" class="form">
-
-                        <label class="form-group">
-                          <span class="form-title">Your wallet ID:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com" required="">
-                          <span class="error-label">Invalid wallet ID</span>
-                        </label>
-
-                        <label class="form-group">
-                          <span class="form-title">Contact e-mail:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
-                          <span class="error-label">Not valid phone number format</span>
-                        </label>
-
-                        <label class="checkbox">
-                          <input type="checkbox" class="checkbox-cotrol">
-                          <span class="checkbox-icons"></span>
-                          <span class="checkbox-title">I agree to the <a href="#" class="link">Terms and Conditions</a> and <a href="#" class="link">Privacy Policy</a></span>
-                        </label>
-
-                        <div class="form-btn between-children">
-                          <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-
-                          <label>
-                            <a href="#" class="btn btn-accent rippler rippler-default">Exhange</a>
-                            <input type="submit" hidden>
-                          </label>
-                        </div>
-                      </form>
+                    <div class="step3">
+                      <app-step3></app-step3>
                     </div>
 
                     <!-- STEP 3-1 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">3. Personal info and wallet</h3></div>
-
-                      <div class="text-center tip-link">
-                        <a href="#" class="link tt-uppercase">Fill from last</a>
-                      </div>
-
-                      <form action="#" class="form">
-
-                        <label class="form-group">
-                          <span class="form-title">{{ 'exchange.PersonalInfo.Name' | translate }}:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
-                        </label>
-
-                        <label class="form-group">
-                          <span class="form-title">{{ 'exchange.PersonalInfo.Address' | translate }}:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
-                        </label>
-
-                        <label class="form-group">
-                          <span class="form-title">{{ 'exchange.PersonalInfo.Country' | translate }}:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
-                        </label>
-
-                        <label class="form-group">
-                          <span class="form-title">IBAN:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com" required="">
-                          <span class="error-label">Invalid IBAN format</span>
-                        </label>
-
-                        <label class="form-group">
-                          <span class="form-title">BIC/SWIFT</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
-                        </label>
-
-                        <label class="form-group">
-                          <span class="form-title">{{ 'exchange.PersonalInfo.BankName' | translate }}:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
-                        </label>
-
-                        <label class="form-group">
-                          <span class="form-title">{{ 'exchange.PersonalInfo.BankAddress' | translate }}:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
-                        </label>
-
-                        <label class="form-group">
-                          <span class="form-title">{{ 'exchange.PersonalInfo.Country' | translate }}:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
-                        </label>
-
-                        <label class="form-group">
-                          <span class="form-title">Contact e-mail:</span>
-                          <input type="email" class="form-control" value="john.doe@gmail.com">
-                        </label>
-
-
-
-                        <label class="checkbox">
-                          <input type="checkbox" class="checkbox-cotrol">
-                          <span class="checkbox-icons"></span>
-                          <span class="checkbox-title">I agree to the <a href="#" class="link">Terms and Conditions</a> and <a href="#" class="link">Privacy Policy</a></span>
-                        </label>
-
-                        <div class="form-btn between-children">
-                          <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-
-                          <label>
-                            <a href="#" class="btn btn-accent rippler rippler-default">Exhange</a>
-                            <input type="submit" hidden>
-                          </label>
-                        </div>
-                      </form>
+                    <div class="step3-1">
+                      <app-step3-1></app-step3-1>
                     </div>
 
                     <!-- STEP 3-2 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">3. Personal info and wallet</h3></div>
-
-                      <div class="text-center tip-link">
-                        <a href="#" class="link tt-uppercase">Fill from last</a>
-                      </div>
-
-                      <form action="#" class="form">
-
-                        <label class="form-group">
-                          <span class="form-title">{{ 'exchange.PersonalInfo.Name' | translate }}:</span>
-                          <input type="text" class="form-control" value="john.doe@gmail.com">
-                        </label>
-
-                        <div class="double">
-                          <label class="form-group">
-                            <span class="form-title">{{ 'exchange.PersonalInfo.BankAccount' | translate }}:</span>
-                            <input type="text" class="form-control" value=" 1112003761">
-                          </label>
-
-                          <label class="form-group has-error">
-                            <span class="form-title">{{ 'exchange.PersonalInfo.BankCode' | translate }}:</span>
-                            <input type="text" class="form-control" value="0600">
-                            <span class="error-label">Invalid format</span>
-                          </label>
-                        </div>
-
-                        <label class="form-group">
-                          <span class="form-title">Contact e-mail:</span>
-                          <input type="email" class="form-control" value="john.doe@gmail.com">
-                        </label>
-
-                        <label class="checkbox">
-                          <input type="checkbox" class="checkbox-cotrol">
-                          <span class="checkbox-icons"></span>
-                          <span class="checkbox-title">I agree to the <a href="#" class="link">Terms and Conditions</a> and <a href="#" class="link">Privacy Policy</a></span>
-                        </label>
-
-                        <div class="form-btn between-children">
-                          <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-
-                          <label>
-                            <a href="#" class="btn btn-accent rippler rippler-default">Exhange</a>
-                            <input type="submit" hidden>
-                          </label>
-                        </div>
-                      </form>
+                    <div class="step3-2">
+                      <app-step3-2></app-step3-2>
                     </div>
 
                     <!-- STEP 3-3 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">3. {{ 'exchange.ProcessRegAndExchange.title' | translate }}</h3></div>
-
-                      <p class="p_small" [innerHTML]="'exchange.ProcessRegAndExchange.descr' | translate"></p>
-
-                      <div class="text-center tip-link">
-                        <a href="#" class="link tt-uppercase">Fill from last</a>
-                      </div>
-
-
-                      <a href="#" class="btn btn-accentSecond rippler rippler-default full-width">I have an account</a>
-                      <div class="or line-sides">or</div>
-                      <a href="#" class="btn btn-accentSecond rippler rippler-default full-width">Create free account</a>
-
-                      <div class="text-center tip-link">
-                        <a href="#" class="link tt-uppercase">continue without account</a>
-                      </div>
-
-                      <div class="between-children">
-                        <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-                        <a href="#" class="btn btn-accent rippler rippler-default">Exhange</a>
-                      </div>
+                    <div class="step3-3">
+                      <app-step3-3></app-step3-3>
                     </div>
 
+                    <!-- STEP 3-4 -->
+                    <div class="step3-4">
+                      <app-step3-4></app-step3-4>
+                    </div>
+
+                    <!-- STEP 3-5 -->
+                    <div class="step3-5">
+                      <app-step3-5></app-step3-5>
+                    </div>
+
+                    <!-- STEP 3-6 -->
+                    <div class="step3-6">
+                      <app-step3-6></app-step3-6>
+                    </div>
 
                     <!-- STEP 4 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">4. {{ 'process4.title' | translate }}</h3></div>
-
-                      <div class="reduced-width">
-                        <div class="switch">
-                          <div class="currencies currencies_small">
-                            <div class="item">
-                              <div class="item-icons" style="background-image: url(../../assets/img/adv-cash.png);"></div>
-                              <div class="item-value" value="Advanced Cash">Advanced Cash</div>
-                            </div>
-
-                            <div class="switch-btn"></div>
-
-                            <div class="switch-stats">
-                              <div class="tape">Fee: 1.00 %</div>
-                              <div class="tape tape-accent">Discount: 0.00 %</div>
-                            </div>
-
-                            <div class="item">
-                              <div class="item-icons" style="background-image: url(../../assets/img/bitcoin.png);"></div>
-                              <div class="item-value" value="Bitcoin">Bitcoin</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="exchange-info">
-                        <div class="line-sides">{{ 'process4.transfer' | translate }}</div>
-
-                        <table class="exchange-info__direction">
-                          <tr>
-                            <td>
-                              <span>{{ 'process4.input-system' | translate }}</span>
-                              <b>Adv Cash</b>
-                            </td>
-                            <td align="right">
-                              <span>{{ 'process4.amount' | translate }}</span>
-                              <b><strong>26,960</strong> USD</b>
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <td>
-                              <span>{{ 'process4.output-system' | translate }}</span>
-                              <b>Bitcoin</b>
-                            </td>
-                            <td align="right">
-                              <span>{{ 'process4.amount' | translate }}</span>
-                              <b><strong>0.08040</strong>BTC</b>
-                            </td>
-                          </tr>
-                        </table>
-
-                        <div class="line-sides">{{ 'process4.personal-information' | translate }}</div>
-
-                        <div class="exchange-info__descr">
-                          <div class="item">
-                            <span>Your wallet ID:</span>
-                            <b>1BvBMSEYstWetqTFn5Au4</b>
-                          </div>
-
-                          <div class="item">
-                            <span>{{ 'process4.first-name' | translate }}</span>
-                            <b>John Doe</b>
-                          </div>
-
-                          <div class="item">
-                            <span>Contact e-mail:</span>
-                            <b>john.doe@gmail.com</b>
-                          </div>
-                        </div>
-
-                      </div>
-
-                      <div class="between-children">
-                        <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-                        <a href="#" class="btn btn-accent rippler rippler-default">Pay</a>
-                      </div>
-
-                      <div class="text-center tip-link">
-                        <a href="#" class="link tt-uppercase">Cancel</a>
-                      </div>
+                    <div class="step4">
+                      <app-step4></app-step4>
                     </div>
+
+                    <!-- STEP 4-1 -->
+                    <div class="step4-1">
+                      <app-step4-1></app-step4-1>
+                    </div>
+
+                    <!-- STEP 4-2 -->
+                    <div class="step4-2">
+                      <app-step4-2></app-step4-2>
+                    </div>
+
+                    <!-- STEP 4-3 -->
+                    <div class="step4-3">
+                      <app-step4-3></app-step4-3>
+                    </div>
+
 
                     <!-- STEP 5 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">5. {{ 'process5.title-sepa' | translate }}</h3></div>
-
-                      <p class="p_small pre-line" [innerHTML]="'process5.sub-title' | translate">
-                        <!--<b>Pošlete</b> částku na uvedený <b>bankovní účet</b>. Dbejte na <b>potvrzení</b> odeslání až v momentu, kdy budou finance <b>skutečně odeslány</b>.-->
-                      </p>
-
-                      <div class="exchange-info">
-                        <div class="line-sides">{{ 'process5.amount-transfer' | translate }}</div>
-
-                        <div class="select-amount">
-                          <label class="input-exchange">
-                            <div class="input">
-                              <input type="text">
-                              <span class="currency">USD</span>
-                            </div>
-
-                            <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
-                            <!-- <span class="error-label">
-                                                                Zadaná částka přesahuje limit 9,999 USD
-                                                                <a href="#"> kontact us</a>
-                                                            </span> -->
-                          </label>
-                        </div>
-
-
-                        <div class="line-sides">{{ 'process5.payment-information' | translate }}</div>
-
-                        <div class="exchange-info__descr">
-                          <div class="item">
-                            <span>{{ 'process5.bank-holder' | translate }}</span>
-                            <b>Společnost, s.r.o.</b>
-                          </div>
-
-                          <div class="item">
-                            <span>{{ 'process5.bank-holder-address' | translate }}</span>
-                            <b>Příčná ulice 12/845 <br>100 00 Bradavice 16</b>
-                          </div>
-
-                          <div class="item">
-                            <span>IBAN:</span>
-                            <b>CZ6508000000192000145399</b>
-                          </div>
-
-                          <div class="item">
-                            <span>BIC/SWIFT:</span>
-                            <b>CEKOCZPP</b>
-                          </div>
-
-                          <div class="item">
-                            <span>{{ 'process5.bank-name' | translate }}</span>
-                            <b>Moneta Money Bank, a.s.</b>
-                          </div>
-
-                          <div class="item">
-                            <span>{{ 'process5.bank-address' | translate }}</span>
-                            <b>Hitlerstrasse 1/422 <br>100 00 Deutchland 4</b>
-                          </div>
-                        </div>
-                      </div>
-
-                      <hr>
-
-                      <p class="p_small pre-line" [innerHTML]="'process5.info-instruction' | translate">
-                        <!--Pokud nedodržíte platební instrukce, <br>transakce může trvat déle.-->
-                        <!--Na tlačítko <b class="accentColor">“Peníze odeslány”</b> klikněte <br>-->
-                        <!--až v momentu, co budou peníze <b class="redColor">opravdu odeslány</b>.-->
-
-                      </p>
-
-                      <a href="#" class="btn btn-accent rippler rippler-default full-width">Money sent</a>
+                    <div class="step5">
+                      <app-step5></app-step5>
                     </div>
+
+                    <!-- STEP 6 -->
+                    <div class="step6">
+                      <app-step6></app-step6>
+                    </div>
+
+                    <!-- STEP 6-1 -->
+                    <div class="step6-1">
+                      <app-step6-1></app-step6-1>
+                    </div>
+
+                    <!-- STEP 6-2 -->
+                    <div class="step6-2">
+                      <app-step6-2></app-step6-2>
+                    </div>
+
+
+
+
+                    <!-- STEP 5 -->
 
                     <!-- STEP 5-1 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">5. {{ 'process5.title-account' | translate }}</h3></div>
-
-                      <p class="p_small pre-line" [innerHTML]="'process5.sub-title' | translate">
-                        <!--<b>Pošlete</b> částku na uvedený <b>bankovní účet</b>. Dbejte na <b>potvrzení</b> odeslání až v momentu, kdy budou finance <b>skutečně odeslány</b>.-->
-                      </p>
-
-                      <div class="exchange-info">
-                        <div class="line-sides">{{ 'process5.amount-transfer' | translate }}</div>
-
-                        <div class="select-amount">
-                          <label class="input-exchange">
-                            <div class="input">
-                              <input type="text">
-                              <span class="currency">USD</span>
-                            </div>
-
-                            <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
-                            <!-- <span class="error-label">
-                                                                Zadaná částka přesahuje limit 9,999 USD
-                                                                <a href="#"> kontact us</a>
-                                                            </span> -->
-                          </label>
-                        </div>
-
-                        <div class="line-sides">{{ 'process5.payment-information' | translate }}</div>
-                      </div>
-
-                      <table class="exchange-info__direction">
-                        <tr>
-                          <td>
-                            <span>{{ 'process5.bank-holder' | translate }}</span>
-                            <b><strong>Společnost, s.r.o.</strong></b>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <span>{{ 'process5.bank-number' | translate }}</span>
-                            <b><strong>1112003761</strong></b>
-                          </td>
-                          <td>
-                            <span>{{ 'process5.bank-code' | translate }}</span>
-                            <b><strong>0600</strong></b>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <span>{{ 'process5.order-number' | translate }}</span>
-                            <b><strong>2017003</strong></b>
-                          </td>
-                        </tr>
-                      </table>
-                      <hr>
-                      <p class="p_small pre-line" [innerHTML]="'process5.info-instruction' | translate">
-                      </p>
-
-                      <a href="#" class="btn btn-accent rippler rippler-default full-width">Money sent</a>
-                    </div>
 
 
                     <!-- STEP 5-1 -->
-                    <div class="step">
-                      <div class="step-title"><h3 class="h3">5. {{ 'process5.title-crypto' | translate }}</h3></div>
-
-                      <p class="p_small pre-line" [innerHTML]="'process5.sub-title' | translate">
-                      </p>
-
-                      <div class="exchange-info">
-                        <div class="line-sides">{{ 'process5.amount-transfer' | translate }}</div>
-
-                        <div class="select-amount">
-                          <label class="input-exchange">
-                            <div class="input">
-                              <input type="text" value="0.000178">
-                              <span class="currency">BTC</span>
-                            </div>
-
-                            <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
-                            <!-- <span class="error-label">
-                                                                Zadaná částka přesahuje limit 9,999 USD
-                                                                <a href="#"> kontact us</a>
-                                                            </span> -->
-                          </label>
-                        </div>
-
-                        <div class="line-sides">{{ 'process5.payment-information' | translate }}</div>
-                      </div>
-
-
-
-                      <div class="exchange-info__descr text-center">
-                        <div class="item">
-                          <span>{{ 'process5.bitcoin-qr' | translate }}</span>
-                          <b>{{ 'process5.scan-pay' | translate }}</b>
-                        </div>
-
-                        <div class="item">
-                          <div class="qr-code">
-                            <img src="../../assets/img/qr-code.png" alt="">
-                          </div>
-                        </div>
-
-                        <div class="item">
-                          <span>{{ 'process5.wallet-address' | translate }}</span>
-                          <span><b>1GoBTCTiC8TEVoLmrGk4CQFXiVbRr7ktoz</b></span>
-                        </div>
-
-                        <div class="item">
-                          <span>{{ 'process5.time-to-pay-left' | translate }}</span>
-                          <b>7 minut a 69 vteřin</b>
-                        </div>
-                      </div>
-
-
-                      <hr>
-                      <p class="p_small pre-line" [innerHTML]="'process5.info-instruction' | translate">
-
-                      </p>
-
-                      <a href="#" class="btn btn-accent rippler rippler-default full-width">Money sent</a>
-                    </div>
 
                     <div class="steps-footer">
                       <div class="dots line-sides">
@@ -986,18 +258,27 @@
             </div>
             <div class="column__content">
               <div class="select-amount subblock">
-                <label class="input-exchange">
-                  <div class="input">
-                    <input type="text">
-                    <span class="currency">BTC</span>
-                  </div>
 
-                  <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
-                  <!-- <span class="error-label">
-                                            Zadaná částka přesahuje limit 9,999 USD
-                                            <a href="#"> kontact us</a>
-                                        </span> -->
-                </label>
+                <form [formGroup]="exchangeToForm"  #toForm="ngForm" novalidate>
+
+                  <label class="input-exchange"
+                         [ngClass]="{'has-error':
+                            (exchangeToForm.controls['inputTo'].hasError('required'))
+                         || (exchangeToForm.controls['inputTo'].hasError('maxlength'))
+                         || (exchangeToForm.controls['inputTo'].hasError('minlength')),
+                                     'has-warn':
+                            (exchangeToForm.controls['inputTo'].hasError('email')) }">
+                    <div class="input">
+                      <input type="text" [(ngModel)]="inputExchangeTo" (ngModelChange)="inputToChanged()" formControlName="inputTo">
+                      <span class="currency">USD</span>
+                    </div>
+
+                    <span class="error-label"
+                          *ngIf="(exchangeToForm.controls['inputTo'].hasError('email')
+                               || exchangeToForm.controls['inputTo'].hasError('maxlength'))
+                               && toForm.submitted">{{ 'errors.ExchangeLimit' | translate }}</span>
+                  </label>
+                </form>
               </div>
 
               <div class="subblock">
@@ -1007,10 +288,10 @@
 
                 <div class="subblock-content">
                   <div class="btns">
-                    <div class="item rippler rippler-default">All</div>
-                    <div class="item is-selected rippler rippler-default">EUR</div>
-                    <div class="item rippler rippler-default">CZK</div>
-                    <div class="item rippler rippler-default">Coin</div>
+                    <div class="item is-selected rippler rippler-default" (click)="changeToFilter($event)" filterValue="all">All</div>
+                    <div class="item rippler rippler-default" (click)="changeToFilter($event)" filterValue="usd">USD</div>
+                    <div class="item rippler rippler-default" (click)="changeToFilter($event)" filterValue="eur">EUR</div>
+                    <div class="item rippler rippler-default" (click)="changeToFilter($event)" filterValue="btc">Coin</div>
                   </div>
                 </div>
               </div>
@@ -1022,51 +303,15 @@
 
                 <div class="subblock-content">
                   <div class="currencies js-select-currencies">
-                    <div class="item is-selected">
-                      <div class="item-icons" style="background-image: url(../../assets/img/adv-cash.png);"></div>
-                      <div class="item-value" value="Advanced Cash">Advanced Cash</div>
-                    </div>
 
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/bitcoin.png);"></div>
-                      <div class="item-value" value="Bitcoin">Bitcoin <span class="item-value__total">1</span></div>
-                    </div>
 
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/dash.png);"></div>
-                      <div class="item-value" value="Dash">Dash  <span class="item-value__total">0.0048</span></div>
-                    </div>
 
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/etherium.png);"></div>
-                      <div class="item-value" value="Ether">Ether</div>
-                    </div>
-
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/litecoin.png);"></div>
-                      <div class="item-value" value="Litecoin">Litecoin</div>
-                    </div>
-
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/monelo.png);"></div>
-                      <div class="item-value" value="Monelo">Monelo</div>
-                    </div>
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/ripple.png);"></div>
-                      <div class="item-value" value="Ripple">Ripple</div>
-                    </div>
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/payeer.png);"></div>
-                      <div class="item-value" value="Payeer">Payeer</div>
-                    </div>
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/perfect-money.png);"></div>
-                      <div class="item-value" value="PerfectMoney">PerfectMoney</div>
-                    </div>
-                    <div class="item">
-                      <div class="item-icons" style="background-image: url(../../assets/img/zcash.png);"></div>
-                      <div class="item-value" value="Zcash">Zcash</div>
-                    </div>
+                   <div class="item-wrapper"  *ngFor="let toItem of exchangeToArray; let i = index">
+                     <div class="item" *ngIf="i <= 5">
+                       <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
+                       <div class="item-value" [attr.value]="toItem.name">{{toItem.name}} <span class="ttu">{{toItem.currency}}</span></div>
+                     </div>
+                   </div>
 
                     <div class="currencies-other js-view-other">
                       <div class="item" text="Select other payment" replaceText="Hidden other payment">
@@ -1075,46 +320,14 @@
                     </div>
 
                     <div class="currencies-hidden">
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/bitcoin.png);"></div>
-                        <div class="item-value" value="Bitcoin">Bitcoin</div>
+
+                      <div class="item-wrapper" *ngFor="let toItem of exchangeToArray; let i = index">
+                        <div class="item" *ngIf="i > 5">
+                          <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
+                          <div class="item-value" [attr.value]="toItem.name">{{toItem.name}} <span class="ttu">{{toItem.currency}}</span></div>
+                        </div>
                       </div>
 
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/dash.png);"></div>
-                        <div class="item-value" value="Dash">Dash</div>
-                      </div>
-
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/etherium.png);"></div>
-                        <div class="item-value" value="Ether">Ether</div>
-                      </div>
-
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/litecoin.png);"></div>
-                        <div class="item-value" value="Litecoin">Litecoin</div>
-                      </div>
-
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/monelo.png);"></div>
-                        <div class="item-value" value="Monelo">Monelo</div>
-                      </div>
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/ripple.png);"></div>
-                        <div class="item-value" value="Ripple">Ripple</div>
-                      </div>
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/payeer.png);"></div>
-                        <div class="item-value" value="Payeer">Payeer</div>
-                      </div>
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/perfect-money.png);"></div>
-                        <div class="item-value" value="PerfectMoney">PerfectMoney</div>
-                      </div>
-                      <div class="item">
-                        <div class="item-icons" style="background-image: url(../../assets/img/zcash.png);"></div>
-                        <div class="item-value" value="Zcash">Zcash</div>
-                      </div>
                     </div>
                   </div>
                 </div>
