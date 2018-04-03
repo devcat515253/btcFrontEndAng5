@@ -27,14 +27,13 @@
 
                   <label class="input-exchange"
                          [ngClass]="{'has-error':
-                            (exchangeFromForm.controls['inputFrom'].hasError('required'))
-                         || (exchangeFromForm.controls['inputFrom'].hasError('maxlength'))
-                         || (exchangeFromForm.controls['inputFrom'].hasError('minlength')),
-                                     'has-warn':
-                            (exchangeFromForm.controls['inputFrom'].hasError('email')) }">
+                                      exchangeFromForm.controls['inputFrom'].hasError('maxlength'),
+                                      'has-warn':
+                                      exchangeFromForm.controls['inputFrom'].hasError('email') }">
+
                     <div class="input">
-                      <input type="text" [(ngModel)]="inputExchangeFrom" (ngModelChange)="inputFromChanged()" formControlName="inputFrom">
-                      <span class="currency">USD</span>
+                      <input type="text" [(ngModel)]="inputExchangeFrom"  (keydown)='inputExchangeChanged($event)' appNumberOnly (ngModelChange)="inputFromChanged()" formControlName="inputFrom">
+                      <span class="currency">{{selectedExchangeFrom?.currency || ''}}</span>
                     </div>
 
                     <span class="error-label"
@@ -90,13 +89,19 @@
                   <p class="p_middle">{{ 'exchange.PaymentMethod' | translate }}:</p>
                 </div>
 
+                <div class="text-center fadeIn animated" *ngIf="selectedFromNotChoise">
+                  <div class="alert alert-error">
+                    <p>Warning: <br>Choose your payment system!</p>
+                  </div>
+                </div>
+
                 <div class="subblock-content">
                   <div class="currencies js-select-currencies">
 
 
 
                     <div class="item-wrapper" *ngFor="let fromItem of exchangeFromArray; let i = index">
-                      <div class="item" *ngIf="i <= 5" (click)="selectExchangeFrom(fromItem)">
+                      <div class="item" [ngClass]="{'is-selected': selectedExchangeFrom === fromItem}" *ngIf="i <= 5" (click)="selectExchangeFrom(fromItem)">
                         <div class="item-icons" [style.background-image]="'url(' + fromItem.logo +')'"></div>
                         <div class="item-value" value="Advanced Cash">{{fromItem.name}} <span class="ttu">{{fromItem.currency}}</span>
                         </div>
@@ -112,7 +117,7 @@
                     <div class="currencies-hidden" >
 
                       <div class="item-wrapper" *ngFor="let fromItem of exchangeFromArray; let i = index">
-                        <div class="item" *ngIf="i > 5" (click)="selectExchangeFrom(fromItem)">
+                        <div class="item" [ngClass]="{'is-selected': selectedExchangeFrom === fromItem}" *ngIf="i > 5" (click)="selectExchangeFrom(fromItem)">
                           <div class="item-icons" [style.background-image]="'url(' + fromItem.logo +')'"></div>
                           <div class="item-value" value="Advanced Cash">{{fromItem.name}} <span class="ttu">{{fromItem.currency}}</span>
                           </div>
@@ -138,7 +143,7 @@
                   <div class="steps">
 
                     <div class="step1">
-                    <app-step1></app-step1>
+                    <app-step1 [exchangeTo]="selectedExchangeTo" [exchangeFrom]="selectedExchangeFrom"></app-step1>
                   </div>
 
                     <br>
@@ -263,14 +268,12 @@
 
                   <label class="input-exchange"
                          [ngClass]="{'has-error':
-                            (exchangeToForm.controls['inputTo'].hasError('required'))
-                         || (exchangeToForm.controls['inputTo'].hasError('maxlength'))
-                         || (exchangeToForm.controls['inputTo'].hasError('minlength')),
+                                      exchangeToForm.controls['inputTo'].hasError('maxlength'),
                                      'has-warn':
-                            (exchangeToForm.controls['inputTo'].hasError('email')) }">
+                                      exchangeToForm.controls['inputTo'].hasError('email')}">
                     <div class="input">
-                      <input type="text" [(ngModel)]="inputExchangeTo" (ngModelChange)="inputToChanged()" formControlName="inputTo">
-                      <span class="currency">USD</span>
+                      <input type="text" [(ngModel)]="inputExchangeTo" (keydown)='inputExchangeChanged($event)' (ngModelChange)="inputToChanged()" formControlName="inputTo">
+                      <span class="currency">{{selectedExchangeTo?.currency || ''}}</span>
                     </div>
 
                     <span class="error-label"
@@ -301,13 +304,18 @@
                   <p class="p_middle">{{ 'exchange.PaymentMethod' | translate }}:</p>
                 </div>
 
+                <div class="text-center fadeIn animated" *ngIf="selectedToNotChoise">
+                  <div class="alert alert-error">
+                    <p>Warning: <br>Choose your payment system!</p>
+                  </div>
+                </div>
+
                 <div class="subblock-content">
                   <div class="currencies js-select-currencies">
 
 
-
                    <div class="item-wrapper"  *ngFor="let toItem of exchangeToArray; let i = index">
-                     <div class="item" *ngIf="i <= 5" (click)="selectExchangeTo(toItem)">
+                     <div class="item" [ngClass]="{'is-selected': selectedExchangeTo === toItem}" *ngIf="i <= 5" (click)="selectExchangeTo(toItem)">
                        <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
                        <div class="item-value" [attr.value]="toItem.name">{{toItem.name}} <span class="ttu">{{toItem.currency}}</span></div>
                      </div>
@@ -322,7 +330,7 @@
                     <div class="currencies-hidden">
 
                       <div class="item-wrapper" *ngFor="let toItem of exchangeToArray; let i = index">
-                        <div class="item" *ngIf="i > 5" (click)="selectExchangeTo(toItem)">
+                        <div class="item" [ngClass]="{'is-selected': selectedExchangeTo === toItem}" *ngIf="i > 5" (click)="selectExchangeTo(toItem)">
                           <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
                           <div class="item-value" [attr.value]="toItem.name">{{toItem.name}} <span class="ttu">{{toItem.currency}}</span></div>
                         </div>

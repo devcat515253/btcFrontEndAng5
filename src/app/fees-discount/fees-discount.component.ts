@@ -21,11 +21,6 @@ export class FeesDiscountComponent implements OnInit {
 
   ngOnInit() {
     this.getCommissions();
-
-    this.getThForDiscounts();
-  }
-  getThForDiscounts(): void {
-    this.tablesService.getThForDiscounts().then(array => this.thDiscountsArray = array);
   }
 
 

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {NameIconsArray} from '../_entity/name-icons-array';
 import {NameIcon} from '../_entity/name-icon';
 
 @Injectable()
@@ -14,10 +13,6 @@ export class TablesService {
     this.getExchanges();
   }
 
-
-  getThForDiscounts(): Promise<NameIcon[]> {
-    return Promise.resolve(NameIconsArray);
-  }
 
 
   getAuthHeader() {

@@ -59,6 +59,7 @@ import { Step6Component } from './_exchange/step6/step6.component';
 import { Step61Component } from './_exchange/step6-1/step6-1.component';
 import { Step62Component } from './_exchange/step6-2/step6-2.component';
 import {ExchangeService} from './_services/exchange.service';
+import { NumberOnlyDirective } from './_directives/number-only.directive';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
@@ -107,7 +108,8 @@ export function createTranslateLoader(http: HttpClient) {
     Step5Component,
     Step6Component,
     Step61Component,
-    Step62Component
+    Step62Component,
+    NumberOnlyDirective
   ],
   imports: [
     BrowserModule,

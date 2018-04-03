@@ -1447,9 +1447,11 @@ hr
     position: relative
     font-size: 16px
     line-height: 20px
-    padding-right: 5rem
+    width: 100%
     max-width: 35rem
     font-weight: normal
+    &.js-deleteParent
+      padding-right: 5rem
     .btn-close
       position: absolute
       top: 50%
@@ -1743,10 +1745,11 @@ hr
 		z-index: 2
 
 	.currency
-		font-size: 2.4rem
-		font-weight: bold
-		line-height: 3.2rem
-		flex-shrink: 0
+    font-size: 2.4rem
+    font-weight: bold
+    line-height: 3.2rem
+    flex-shrink: 0
+    text-transform: uppercase
 
 	input
 		width: 100%

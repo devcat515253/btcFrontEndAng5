@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {UserRegistr} from '../_entity/user-registr';
 import {UserAuth} from '../_entity/user-auth';
@@ -12,19 +12,22 @@ import {UserLogs} from '../_entity/user-logs';
 @Injectable()
 export class UserService {
 
-  baseUrl  = 'http://api.smartex.info';
+  baseUrl = 'http://api.smartex.info';
   userModel: UserModel = new UserModel();
+
 
 
   isLogged: boolean = false;
   token$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  discount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  discount: number = 0;
 
   constructor(private http: HttpClient,
               private router: Router) {
     this.getAuthToken();
     this.checkToken();
+    this.getUserDiscount();
   }
-
 
 
   checkToken() {
@@ -43,7 +46,7 @@ export class UserService {
   }
 
   getAuthToken() {
-    if  (this.getToken()) {
+    if (this.getToken()) {
       this.isLogged = true;
     } else {
       this.isLogged = false;
@@ -71,9 +74,10 @@ export class UserService {
   auth(authUser: UserAuth) {
     return this.http.post<any>(`${this.baseUrl}/api/login`, authUser)
       .map(result => {
-        if (result.data.access_token && result.data.expires_in ) {
+        if (result.data.access_token && result.data.expires_in) {
           localStorage.setItem('access_token', JSON.stringify(result.data.access_token));
           this.getAuthToken();
+          this.getUserDiscount();
         }
         return result;
       });
@@ -85,12 +89,25 @@ export class UserService {
 
     // remove user from local storage to log user out
     this.getAuthToken();
+    this.discount = 0;
+    this.getUserDiscount();
     this.router.navigate(['/home']);
+  }
+
+  getUserDiscount() {
+     this.http.get<any>(`${this.baseUrl}/api/me`, {headers: this.getAuthHeader()}).subscribe( (result) => {
+       this.discount = result.data.discount;
+       this.discount$.next(this.discount);
+     }, (error) => {
+       console.log(error);
+       this.discount = 0;
+       this.discount$.next(this.discount);
+     });
   }
 
 
   activateUser(hash: string) {
-    return this.http.get<any>(`${this.baseUrl}/api/user/activation/${hash}`,  {observe: 'response'});
+    return this.http.get<any>(`${this.baseUrl}/api/user/activation/${hash}`, {observe: 'response'});
   }
 
   forgotPass(data: EmailModel) {
@@ -99,9 +116,8 @@ export class UserService {
 
   // GET
   getLogsProfile() {
-    return this.http.get<any>(`${this.baseUrl}/api/user/login-logs`,  {headers: this.getAuthHeader()});
+    return this.http.get<any>(`${this.baseUrl}/api/user/login-logs`, {headers: this.getAuthHeader()});
   }
-
   getUserProfile() {
     return this.http.get<any>(`${this.baseUrl}/api/me`, {headers: this.getAuthHeader()});
   }
@@ -127,17 +143,12 @@ export class UserService {
   }
 
   getPartnersList() {
-    return this.http.get<any>(`${this.baseUrl}/api/user/referrers`,  {headers: this.getAuthHeader()});
+    return this.http.get<any>(`${this.baseUrl}/api/user/referrers`, {headers: this.getAuthHeader()});
   }
 
   logoutAllUser(idUser: number) {
-    return this.http.put<any>(`${this.baseUrl}/api/user/login-logs/${idUser}/token-revoke`, '' , {headers: this.getAuthHeader()});
+    return this.http.put<any>(`${this.baseUrl}/api/user/login-logs/${idUser}/token-revoke`, '', {headers: this.getAuthHeader()});
   }
-
-
-
-
-
 
 
 }

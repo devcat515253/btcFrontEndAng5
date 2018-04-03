@@ -20,13 +20,13 @@ export class ExchangeService {
 
 
   getExchangeListFromFiltered(itemTo: Exchange) {
-    console.log(`${this.baseUrl}/api/payment-systems/from?filters={"${ itemTo.name }":${ itemTo.id },"currency":"${ itemTo.currency }"}`);
-    return this.http.get<any>(`${this.baseUrl}/api/payment-systems/from?filters={"${ itemTo.name }":${ itemTo.id },"currency":"${ itemTo.currency }"}`);
+    console.log(`${this.baseUrl}/api/payment-systems/from?filters={"payment_system":${ itemTo.id },"currency":"${ itemTo.currency }"}`);
+    return this.http.get<any>(`${this.baseUrl}/api/payment-systems/from?filters={"payment_system":${ itemTo.id },"currency":"${ itemTo.currency }"}`);
   }
 
   getExchangeListToFiltered(itemFrom: Exchange) {
-    console.log(`${this.baseUrl}/api/payment-systems/to?filters={"${ itemFrom.name }":${ itemFrom.id },"currency":"${ itemFrom.currency }"}`);
-    return this.http.get<any>(`${this.baseUrl}/api/payment-systems/to?filters={"${ itemFrom.name }":${ itemFrom.id },"currency":"${ itemFrom.currency }"}`);
+    console.log(`${this.baseUrl}/api/payment-systems/to?filters={"payment_system":${ itemFrom.id },"currency":"${ itemFrom.currency }"}`);
+    return this.http.get<any>(`${this.baseUrl}/api/payment-systems/to?filters={"payment_system":${ itemFrom.id },"currency":"${ itemFrom.currency }"}`);
   }
 
 

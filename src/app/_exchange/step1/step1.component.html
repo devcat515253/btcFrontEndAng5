@@ -2,20 +2,19 @@
   <div class="switch">
     <div class="currencies currencies_small">
       <div class="item">
-        <div class="item-icons" style="background-image: url(../../assets/img/adv-cash.png);"></div>
-        <div class="item-value" value="Advanced Cash">Advanced Cash</div>
+        <div class="item-icons" [style.background-image]="'url(' + exchangeFrom?.logo +')'"></div>
+        <div class="item-value" value="Advanced Cash">{{exchangeFrom?.name || 'From'}}</div>
       </div>
-
       <div class="switch-btn"></div>
 
       <div class="switch-stats">
-        <div class="tape">Fee: 1.00 %</div>
-        <div class="tape tape-accent">Discount: 0.00 %</div>
+        <div class="tape">Fee: {{exchangeTo?.commission || '0.00'}} %</div>
+        <div class="tape tape-accent">Discount: {{userDiscount || '0.00'}} %</div>
       </div>
 
       <div class="item">
-        <div class="item-icons" style="background-image: url(../../assets/img/bitcoin.png);"></div>
-        <div class="item-value" value="Bitcoin">Bitcoin</div>
+        <div class="item-icons" [style.background-image]="'url(' + exchangeTo?.logo +')'"></div>
+        <div class="item-value" value="Bitcoin">{{exchangeTo?.name || 'To'}}</div>
       </div>
     </div>
   </div>
