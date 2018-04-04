@@ -27,17 +27,24 @@ export class HomeComponent implements OnInit {
   param: string = '';
   loggedUser: boolean = false;
   loading: boolean = true;
+  noSuchFilterFrom: boolean = false;
+  noSuchFilterTo: boolean = false;
+
+
+  btnSelectedFilterForm: string = 'All';
+  btnSelectedFilterTo: string = 'All';
 
   exchangeFromForm: FormGroup;
   exchangeToForm: FormGroup;
 
 
-
   exchangeFromArray: Exchange[] = [];
   exchangeFromArrayOriginal: Exchange[] = [];
+  exchangeFromArrayFiltred: Exchange[] = [];
 
   exchangeToArray: Exchange[] = [];
   exchangeToArrayOriginal: Exchange[] = [];
+  exchangeToArrayFiltred: Exchange[] = [];
 
   inputExchangeFrom: number = 100;
   inputExchangeTo: number = 100;
@@ -122,11 +129,14 @@ export class HomeComponent implements OnInit {
     this.exchangeService.getExchangeListFromFiltered(this.selectedExchangeTo).subscribe(
       (result) => {
         this.exchangeFromArray = result.data as Exchange[];
+        this.exchangeFromArrayFiltred = result.data as Exchange[];
         this.checkSelectedFromPayment(this.exchangeFromArray);
         this.loading = false;
+        this.noSuchFilterTo = false;
       }, (error) => {
         console.log(error);
         this.loading = false;
+        this.noSuchFilterTo = false;
       }
     );
   }
@@ -137,11 +147,14 @@ export class HomeComponent implements OnInit {
     this.exchangeService.getExchangeListToFiltered(this.selectedExchangeFrom).subscribe(
       result => {
         this.exchangeToArray = result.data as Exchange[];
+        this.exchangeToArrayFiltred = result.data as Exchange[];
         this.checkSelectedToPayment(this.exchangeToArray);
         this.loading = false;
+        this.noSuchFilterTo = false;
       }, error => {
         console.log(error);
         this.loading = false;
+        this.noSuchFilterTo = false;
       }
     );
   }
@@ -153,12 +166,11 @@ export class HomeComponent implements OnInit {
     this.inputFromChanged();
     // console.log(itemFrom);
   }
-
   selectExchangeTo(itemTo) {
     this.selectedExchangeTo = itemTo;
     this.getExchangeListFromFiltered();
     this.selectedToNotChoise = false;
-    this.inputToChanged();
+    this.inputFromChanged();
     console.log(itemTo);
   }
   inputExchangeChanged(event) {
@@ -223,7 +235,7 @@ export class HomeComponent implements OnInit {
     }
 
     let percentCommision = 100 - this.selectedExchangeTo.commission;
-    let inputFrom: number = (this.inputExchangeTo / this.selectedExchangeTo.course;
+    let inputFrom: number = this.inputExchangeTo / this.selectedExchangeTo.course;
     inputFrom = inputFrom / percentCommision * 100;
 
     const comission_amount: number = inputFrom * (this.selectedExchangeTo.commission / 100);
@@ -282,27 +294,129 @@ export class HomeComponent implements OnInit {
 
   changeFromFilter(event) {
     event.preventDefault();
-    let currency = event.target.attributes.filtervalue.value;
+    this.btnSelectedFilterForm = event.target.innerText;
+    let currency = event.target.getAttribute('filterValue');
 
-    if (currency === 'all') {
+    let tempArray = [];
+
+    if (this.selectedExchangeTo) {
+      tempArray = this.exchangeFromArrayFiltred;
+    }else {
+      tempArray = this.exchangeFromArrayOriginal;
+    }
+
+    if (currency === 'all' && this.selectedExchangeFrom && this.selectedExchangeTo) {
+      this.noSuchFilterFrom = false;
+      this.noSuchFilterTo = false;
+      this.showAllItems();
+      this.clearSelectedPayments();
+      this.btnSelectedFilterTo = 'All';
+      this.btnSelectedFilterForm = 'All';
+      return;
+    }
+
+    if (currency === 'all' && this.selectedExchangeFrom) {
+      this.noSuchFilterFrom = false;
+      this.noSuchFilterTo = false;
       this.showAllItems();
       return;
     }
 
-    let resultArray: Exchange[] = this.exchangeFromArrayOriginal.filter(item => item.currency === currency);
+    if (currency === 'all') {
+      this.noSuchFilterFrom = false;
+      this.noSuchFilterTo = false;
+      this.showAllItems();
+      return;
+    }
+
+
+
+    if (currency === 'coin') {
+      this.exchangeFromArray = tempArray.filter(item => {
+        return currencyArray.indexOf( item.currency ) === -1;
+      });
+
+      if  (this.exchangeFromArray.length === 0) {
+        this.noSuchFilterFrom = true;
+      } else {
+        this.noSuchFilterFrom = false;
+      }
+      return;
+    }
+
+    let resultArray: Exchange[] = tempArray.filter(item => item.currency === currency);
+    if  (resultArray.length === 0) {
+      this.noSuchFilterFrom = true;
+    } else {
+      this.noSuchFilterFrom = false;
+    }
     this.exchangeFromArray = resultArray;
+
   }
 
   changeToFilter(event) {
     event.preventDefault();
-    let currency = event.target.attributes.filtervalue.value;
+    this.btnSelectedFilterTo = event.target.innerText;
+    let currency = event.target.getAttribute('filterValue');
+    console.log(currency);
 
-    if (currency === 'all') {
+    let tempArray = [];
+    if (this.selectedExchangeFrom) {
+      tempArray = this.exchangeToArrayFiltred;
+    }else {
+      tempArray = this.exchangeToArrayOriginal;
+    }
+
+
+    console.log(tempArray);
+
+
+    if (currency === 'all' && this.selectedExchangeFrom && this.selectedExchangeTo) {
+      this.noSuchFilterFrom = false;
+      this.noSuchFilterTo = false;
+      this.showAllItems();
+      this.clearSelectedPayments();
+      this.btnSelectedFilterTo = 'All';
+      this.btnSelectedFilterForm = 'All';
+      return;
+    }
+
+    if (currency === 'all' && this.selectedExchangeTo) {
+      this.noSuchFilterFrom = false;
+      this.noSuchFilterTo = false;
       this.showAllItems();
       return;
     }
 
-    let resultArray: Exchange[] = this.exchangeToArrayOriginal.filter(item => item.currency === currency);
+    if (currency === 'all') {
+      this.noSuchFilterFrom = false;
+      this.noSuchFilterTo = false;
+      this.showAllItems();
+      return;
+    }
+
+
+
+    if (currency === 'coin') {
+      this.exchangeToArray = tempArray.filter(item => {
+       return currencyArray.indexOf( item.currency ) === -1;
+      });
+
+      if  (this.exchangeToArray.length === 0) {
+        this.noSuchFilterTo = true;
+      } else {
+        this.noSuchFilterTo = false;
+      }
+      return;
+    }
+
+
+    let resultArray: Exchange[] = tempArray.filter(item => item.currency === currency);
+    if  (resultArray.length === 0) {
+      this.noSuchFilterTo = true;
+    } else {
+      this.noSuchFilterTo = false;
+    }
     this.exchangeToArray = resultArray;
   }
 
@@ -310,7 +424,7 @@ export class HomeComponent implements OnInit {
   showAllItems() {
     this.exchangeFromArray = this.exchangeFromArrayOriginal;
     this.exchangeToArray = this.exchangeToArrayOriginal;
-    this.clearSelectedPayments();
+    // this.clearSelectedPayments();
   }
 
   clearSelectedPayments() {

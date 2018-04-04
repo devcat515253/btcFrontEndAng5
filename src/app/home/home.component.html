@@ -32,7 +32,7 @@
                                       exchangeFromForm.controls['inputFrom'].hasError('email') }">
 
                     <div class="input">
-                      <input type="text" [(ngModel)]="inputExchangeFrom"  (keydown)='inputExchangeChanged($event)' appNumberOnly (ngModelChange)="inputFromChanged()" formControlName="inputFrom">
+                      <input type="text" [(ngModel)]="inputExchangeFrom"  (keydown)='inputExchangeChanged($event)' appNumberOnly (keyup)="inputFromChanged()" formControlName="inputFrom">
                       <span class="currency">{{selectedExchangeFrom?.currency || ''}}</span>
                     </div>
 
@@ -76,10 +76,10 @@
 
                 <div class="subblock-content">
                   <div class="btns">
-                    <div class="item is-selected rippler rippler-default" (click)="changeFromFilter($event)" filterValue="all">All</div>
-                    <div class="item rippler rippler-default" (click)="changeFromFilter($event)" filterValue="usd">USD</div>
-                    <div class="item rippler rippler-default" (click)="changeFromFilter($event)" filterValue="eur">EUR</div>
-                    <div class="item rippler rippler-default" (click)="changeFromFilter($event)" filterValue="btc">Coin</div>
+                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterForm === 'All'}"  (click)="changeFromFilter($event)" filterValue="all">All</div>
+                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterForm === 'USD'}"  (click)="changeFromFilter($event)" filterValue="usd">USD</div>
+                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterForm === 'EUR'}"  (click)="changeFromFilter($event)" filterValue="eur">EUR</div>
+                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterForm === 'Coin'}"  (click)="changeFromFilter($event)" filterValue="coin">Coin</div>
                   </div>
                 </div>
               </div>
@@ -92,6 +92,12 @@
                 <div class="text-center fadeIn animated" *ngIf="selectedFromNotChoise">
                   <div class="alert alert-error">
                     <p>Warning: <br>Choose your payment system!</p>
+                  </div>
+                </div>
+
+                <div class="text-center fadeIn animated" *ngIf="noSuchFilterFrom">
+                  <div class="alert alert-error">
+                    <p>Warning: <br>Nothing found!</p>
                   </div>
                 </div>
 
@@ -272,7 +278,7 @@
                                      'has-warn':
                                       exchangeToForm.controls['inputTo'].hasError('email')}">
                     <div class="input">
-                      <input type="text" [(ngModel)]="inputExchangeTo" (keydown)='inputExchangeChanged($event)' (ngModelChange)="inputToChanged()" formControlName="inputTo">
+                      <input type="text" [(ngModel)]="inputExchangeTo" (keydown)='inputExchangeChanged($event)' appNumberOnly (keyup)="inputToChanged()" formControlName="inputTo">
                       <span class="currency">{{selectedExchangeTo?.currency || ''}}</span>
                     </div>
 
@@ -291,11 +297,11 @@
 
                 <div class="subblock-content">
                   <div class="btns">
-                    <div class="item is-selected rippler rippler-default" (click)="changeToFilter($event)" filterValue="all">All</div>
-                    <div class="item rippler rippler-default" (click)="changeToFilter($event)" filterValue="usd">USD</div>
-                    <div class="item rippler rippler-default" (click)="changeToFilter($event)" filterValue="eur">EUR</div>
-                    <div class="item rippler rippler-default" (click)="changeToFilter($event)" filterValue="btc">Coin</div>
-                  </div>
+                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterTo === 'All'}" (click)="changeToFilter($event)" filterValue="all">All</div>
+                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterTo === 'USD'}" (click)="changeToFilter($event)" filterValue="usd">USD</div>
+                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterTo === 'EUR'}" (click)="changeToFilter($event)" filterValue="eur">EUR</div>
+                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterTo === 'Coin'}" (click)="changeToFilter($event)" filterValue="coin">Coin</div>
+              </div>
                 </div>
               </div>
 
@@ -307,6 +313,12 @@
                 <div class="text-center fadeIn animated" *ngIf="selectedToNotChoise">
                   <div class="alert alert-error">
                     <p>Warning: <br>Choose your payment system!</p>
+                  </div>
+                </div>
+
+                <div class="text-center fadeIn animated" *ngIf="noSuchFilterTo">
+                  <div class="alert alert-error">
+                    <p>Warning: <br>Nothing found!</p>
                   </div>
                 </div>
 
