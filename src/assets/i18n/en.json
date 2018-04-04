@@ -76,7 +76,7 @@
   },
 
   "errors": {
-    "ExchangeLimit": "Entered amount exceeds 9,999 USD limit",
+    "ExchangeLimit": "Entered amount exceeds {{balance}} {{currency}} limit",
     "ExchangeAmount": "Amount not available",
     "ExchangeWarningVerify": "To continue, please verify your account first",
     "Email": "The e-mail doesn’t match any account",

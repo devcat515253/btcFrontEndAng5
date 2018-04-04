@@ -10,7 +10,9 @@ export class NumberOnlyDirective {
 
   // Allow key codes for special events. Reflect :
   // Backspace, tab, end, home
-  private specialKeys: Array<string> = [ 'Backspace', 'Tab', 'End', 'Home' ];
+  private specialKeys: Array<string> = [ 'Backspace', 'Tab', 'End', 'Home', 'Ctrl', 'A' ];
+
+
 
   constructor(private el: ElementRef) {
   }
@@ -18,7 +20,23 @@ export class NumberOnlyDirective {
   @HostListener('keydown', [ '$event' ])
   onKeyDown(event: KeyboardEvent) {
     // Allow Backspace, tab, end, and home keys
+
+
     if (this.specialKeys.indexOf(event.key) !== -1) {
+      return;
+    }
+
+    if (// Allow: Ctrl+A
+      (event.keyCode === 65 && (event.ctrlKey || event.metaKey)) ||
+      // Allow: Ctrl+C
+      (event.keyCode === 67 && (event.ctrlKey || event.metaKey)) ||
+      // Allow: Ctrl+V
+      (event.keyCode === 86 && (event.ctrlKey || event.metaKey)) ||
+      // Allow: Ctrl+X
+      (event.keyCode === 88 && (event.ctrlKey || event.metaKey)) ||
+      // Allow: home, end, left, right
+      (event.keyCode >= 35 && event.keyCode <= 39)) {
+      // let it happen, don't do anything
       return;
     }
 

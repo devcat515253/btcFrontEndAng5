@@ -4,6 +4,7 @@ export interface Exchange {
   logo: string;
   name: string;
   commission: number;
+  balance: number;
   course: number;
 }
 

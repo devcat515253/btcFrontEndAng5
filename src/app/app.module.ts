@@ -60,6 +60,7 @@ import { Step61Component } from './_exchange/step6-1/step6-1.component';
 import { Step62Component } from './_exchange/step6-2/step6-2.component';
 import {ExchangeService} from './_services/exchange.service';
 import { NumberOnlyDirective } from './_directives/number-only.directive';
+import { ReCaptchaModule } from 'angular2-recaptcha';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
@@ -120,7 +121,7 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule,
     HttpClientModule,
     MatDialogModule,
-    // FileInputAccessorModule,
+    ReCaptchaModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

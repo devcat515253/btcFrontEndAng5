@@ -57,6 +57,7 @@ export class HomeComponent implements OnInit {
   selectedToNotChoise: boolean = false;
 
 
+
   constructor(public dialog: MatDialog,
               private cdr: ChangeDetectorRef,
               private blurService: EffectBlurService,
@@ -86,13 +87,66 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  checkMaxBalance() {
+    if  (this.inputExchangeTo > this.selectedExchangeTo.balance) {
+      this.exchangeToForm.controls['inputTo'].setErrors({'maxbalance': true});
+    } else {
+      this.exchangeToForm.controls['inputTo'].setErrors(null);
+    }
+  }
 
+  asyncGetExchangeList() {
+    this.loading = true;
+
+    Observable.forkJoin([
+      this.exchangeService.getExchangeListFromFiltered(this.selectedExchangeTo),
+      this.exchangeService.getExchangeListToFiltered(this.selectedExchangeFrom)]).subscribe(t => {
+      let firstResult: any = t[0];
+      let secondResult: any = t[1];
+
+      this.exchangeFromArray = firstResult.data as Exchange[];
+      this.exchangeFromArrayFiltred = firstResult.data as Exchange[];
+      this.checkSelectedFromPayment(this.exchangeFromArray);
+
+      this.exchangeToArray = secondResult.data as Exchange[];
+      this.exchangeToArrayFiltred = secondResult.data as Exchange[];
+      this.checkSelectedToPayment(this.exchangeToArray);
+      this.checkMaxBalance();
+
+      this.loading = false;
+      this.noSuchFilterFrom = false;
+      this.noSuchFilterTo = false;
+    }, (error) => {
+        console.log(error);
+        this.loading = false;
+        this.noSuchFilterFrom = false;
+        this.noSuchFilterTo = false;
+    });
+  }
+
+  exchangeSwap(event) {
+    let tempSelectedExchangeFrom = this.selectedExchangeFrom;
+    let tempSelectedExchangeTo = this.selectedExchangeTo;
+
+    this.selectedExchangeFrom = tempSelectedExchangeTo;
+    this.selectedExchangeTo = tempSelectedExchangeFrom;
+
+
+    let tempInputExchangeFrom = this.inputExchangeFrom;
+    let tempInputExchangeTo = this.inputExchangeTo;
+
+    this.inputExchangeFrom = tempInputExchangeTo;
+    this.inputExchangeTo = tempInputExchangeFrom;
+    this.cdr.detectChanges();
+
+
+    this.asyncGetExchangeList();
+  }
 
   checkSelectedFromPayment(arr) {
     if (!this.selectedExchangeFrom) {
       return;
     }
-
 
     let resArr = arr.filter(el => el.name === this.selectedExchangeFrom.name && el.currency === this.selectedExchangeFrom.currency);
 
@@ -133,6 +187,7 @@ export class HomeComponent implements OnInit {
         this.checkSelectedFromPayment(this.exchangeFromArray);
         this.loading = false;
         this.noSuchFilterTo = false;
+        console.log(this.selectedExchangeFrom);
       }, (error) => {
         console.log(error);
         this.loading = false;
@@ -151,6 +206,8 @@ export class HomeComponent implements OnInit {
         this.checkSelectedToPayment(this.exchangeToArray);
         this.loading = false;
         this.noSuchFilterTo = false;
+        console.log(this.selectedExchangeTo)
+
       }, error => {
         console.log(error);
         this.loading = false;
@@ -176,16 +233,10 @@ export class HomeComponent implements OnInit {
   inputExchangeChanged(event) {
     if (!this.selectedExchangeFrom) {
       this.selectedFromNotChoise = true;
-      setTimeout(() => {
-        this.selectedFromNotChoise = false;
-      }, 5000);
       return;
     }
     if (!this.selectedExchangeTo) {
       this.selectedToNotChoise = true;
-      setTimeout(() => {
-        this.selectedToNotChoise = false;
-      }, 5000);
       return;
     }
   }
@@ -224,9 +275,14 @@ export class HomeComponent implements OnInit {
     let amount: number = (this.inputExchangeFrom - comission_amount + discount_amount) * this.selectedExchangeTo.course;
     console.log("FROM-Итого (число - (комиссия + скидка) * курс валюты): " + amount);
 
-    console.log(amount);
-    console.log(this.digits(amount));
-    this.inputExchangeTo = this.digits(amount, this.selectedExchangeTo.currency);
+
+      this.inputExchangeTo = this.digits(amount, this.selectedExchangeTo.currency);
+      this.cdr.detectChanges();
+
+      this.checkMaxBalance();
+      this.cdr.detectChanges();
+
+
   }
 
   inputToChanged() {
@@ -252,6 +308,10 @@ export class HomeComponent implements OnInit {
 
     console.log(amount);
     this.inputExchangeFrom = this.digits(amount, this.selectedExchangeFrom.currency);
+    this.cdr.detectChanges();
+
+    this.checkMaxBalance();
+    this.cdr.detectChanges();
   }
 
   // кол-во знаков после запятой
@@ -437,7 +497,6 @@ export class HomeComponent implements OnInit {
     this.exchangeFromForm = new FormGroup({
       inputFrom: new FormControl(this.inputExchangeFrom, [
         Validators.required,
-        Validators.minLength(1),
         Validators.maxLength(64)
       ])
     });
@@ -445,14 +504,12 @@ export class HomeComponent implements OnInit {
 
   exchangeToValidator() {
     this.exchangeToForm = new FormGroup({
-      inputTo: new FormControl(this.exchangeToForm, [
+      inputTo: new FormControl(this.inputExchangeTo, [
         Validators.required,
-        Validators.minLength(1),
         Validators.maxLength(64)
       ])
     });
   }
-
 
   readRouteHash() {
     this.activatedRoute.params.subscribe((params: Params) => {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Exchange} from '../_entity/exchange';
 
 @Injectable()
@@ -9,6 +9,12 @@ export class ExchangeService {
 
   constructor(private http: HttpClient) { }
 
+  getAuthHeader() {
+    let localAuthToken = JSON.parse(localStorage.getItem('access_token'));
+    let header = new HttpHeaders();
+    let other_header = header.append('Authorization', `Bearer ${localAuthToken}`);
+    return other_header;
+  }
 // ?filters={"all":5}
   getExchangeListFrom() {
     return this.http.get<any>(`${this.baseUrl}/api/payment-systems/from`);
@@ -28,6 +34,13 @@ export class ExchangeService {
     console.log(`${this.baseUrl}/api/payment-systems/to?filters={"payment_system":${ itemFrom.id },"currency":"${ itemFrom.currency }"}`);
     return this.http.get<any>(`${this.baseUrl}/api/payment-systems/to?filters={"payment_system":${ itemFrom.id },"currency":"${ itemFrom.currency }"}`);
   }
+
+  getLimit(sendForm: Exchange, input: number) {
+    console.log(sendForm.currency);
+    console.log(input);
+    return this.http.post<any>(`${this.baseUrl}/api/user/exchanges/can?amount=${input}&currency=${sendForm.currency}`, {}, {headers: this.getAuthHeader()});
+  }
+
 
 
 

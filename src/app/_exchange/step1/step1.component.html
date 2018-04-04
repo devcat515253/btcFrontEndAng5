@@ -5,7 +5,7 @@
         <div class="item-icons" [style.background-image]="'url(' + exchangeFrom?.logo +')'"></div>
         <div class="item-value" value="Advanced Cash">{{exchangeFrom?.name || 'From'}}</div>
       </div>
-      <div class="switch-btn"></div>
+      <div class="switch-btn" (click)="exchangeSwap($event)"></div>
 
       <div class="switch-stats">
         <div class="tape">Fee: {{exchangeTo?.commission || '0.00'}} %</div>
@@ -19,10 +19,13 @@
     </div>
   </div>
   <div class="captcha">
-    <img src="../../assets/img/captcha.png" alt="">
+    <!--<re-captcha site_key="6Lfc51AUAAAAAJ300SFIWTq0vij-jtxbxomKE0et"></re-captcha>-->
+    <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" site_key="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
   </div>
 
   <div class="btn-wrapper">
-    <a href="#" class="btn btn-accent rippler rippler-default full-width">Exchange</a>
+    <button class="btn btn-accent rippler rippler-default full-width"
+            [disabled]="!exchangeFromForm.valid || !exchangeToForm.valid || !exchangeTo || !exchangeFrom"
+            (click)="exchangeSubmit($event)">Exchange</button>
   </div>
 </div>

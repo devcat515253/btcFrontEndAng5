@@ -1,6 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Exchange} from '../../_entity/exchange';
 import {UserService} from '../../_services/user.service';
+import {FormGroup} from '@angular/forms';
+import { ViewChild } from '@angular/core';
+import { ReCaptchaComponent } from 'angular2-recaptcha';
+import {ExchangeService} from '../../_services/exchange.service';
 
 @Component({
   selector: 'app-step1',
@@ -12,14 +16,27 @@ export class Step1Component implements OnInit {
   @Input() exchangeTo: Exchange;
   @Input() exchangeFrom: Exchange;
 
+  @Input() exchangeFromForm: FormGroup;
+  @Input() exchangeToForm: FormGroup;
+
+  @Input() inputExchangeFrom: number;
+
+  @Output() onExchangeSwap = new EventEmitter<any>();
+  @ViewChild(ReCaptchaComponent) captcha: ReCaptchaComponent;
+
   userDiscount: number = 0;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private exchangeService: ExchangeService) {
   }
 
   ngOnInit() {
     this.getUserDiscount();
+  }
 
+  handleCorrectCaptcha() {
+    let token = this.captcha.getResponse();
+    console.log(token);
   }
 
   getUserDiscount() {
@@ -29,6 +46,19 @@ export class Step1Component implements OnInit {
     });
   }
 
+  exchangeSwap(event) {
+    if  (this.exchangeTo && this.exchangeFrom) {
+      this.onExchangeSwap.emit();
+    }
+  }
+
+  exchangeSubmit(event) {
+    this.exchangeService.getLimit(this.exchangeFrom, this.inputExchangeFrom).subscribe( (result) => {
+      console.log(result);
+    }, (error) => {
+      console.log(error);
+    });
+  }
 
 }
 

@@ -101,6 +101,9 @@
                   </div>
                 </div>
 
+
+
+
                 <div class="subblock-content">
                   <div class="currencies js-select-currencies">
 
@@ -149,7 +152,13 @@
                   <div class="steps">
 
                     <div class="step1">
-                    <app-step1 [exchangeTo]="selectedExchangeTo" [exchangeFrom]="selectedExchangeFrom"></app-step1>
+                    <app-step1
+                      [exchangeTo]="selectedExchangeTo"
+                      [exchangeFrom]="selectedExchangeFrom"
+                      [exchangeFromForm]="exchangeFromForm"
+                      [exchangeToForm]="exchangeToForm"
+                      [inputExchangeFrom]="inputExchangeFrom"
+                      (onExchangeSwap)="exchangeSwap($event)"></app-step1>
                   </div>
 
                     <br>
@@ -274,18 +283,19 @@
 
                   <label class="input-exchange"
                          [ngClass]="{'has-error':
-                                      exchangeToForm.controls['inputTo'].hasError('maxlength'),
+                                      (exchangeToForm.controls['inputTo'].hasError('maxlength') ||
+                                      exchangeToForm.controls['inputTo'].hasError('maxbalance')),
                                      'has-warn':
                                       exchangeToForm.controls['inputTo'].hasError('email')}">
                     <div class="input">
+
+
                       <input type="text" [(ngModel)]="inputExchangeTo" (keydown)='inputExchangeChanged($event)' appNumberOnly (keyup)="inputToChanged()" formControlName="inputTo">
                       <span class="currency">{{selectedExchangeTo?.currency || ''}}</span>
                     </div>
 
                     <span class="error-label"
-                          *ngIf="(exchangeToForm.controls['inputTo'].hasError('email')
-                               || exchangeToForm.controls['inputTo'].hasError('maxlength'))
-                               && toForm.submitted">{{ 'errors.ExchangeLimit' | translate }}</span>
+                          *ngIf="exchangeToForm.controls['inputTo'].hasError('maxbalance')">{{ 'errors.ExchangeLimit' | translate:selectedExchangeTo }}</span>
                   </label>
                 </form>
               </div>
