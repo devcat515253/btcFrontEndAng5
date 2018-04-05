@@ -55,7 +55,6 @@ export class DialogRegistrationComponent implements OnInit {
       }
     );
   }
-
   initValidator() {
     this.userRegistrForm = new FormGroup({
 
@@ -122,7 +121,7 @@ export class DialogRegistrationComponent implements OnInit {
         return of();
       }
     );
-  }
+}
 
   onNoClick(event): void {
     event.preventDefault();

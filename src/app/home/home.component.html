@@ -149,99 +149,100 @@
                     <h2 class="title-great">Process</h2>
                   </div>
 
-                  <div class="steps">
 
-                    <div class="step1">
-                    <app-step1
-                      [exchangeTo]="selectedExchangeTo"
-                      [exchangeFrom]="selectedExchangeFrom"
-                      [exchangeFromForm]="exchangeFromForm"
-                      [exchangeToForm]="exchangeToForm"
-                      [inputExchangeFrom]="inputExchangeFrom"
-                      (onExchangeSwap)="exchangeSwap($event)"></app-step1>
+                  <div class="steps" id="steps">
+
+                    <div class="step1" *ngIf="stepsArray[0].status">
+                      <app-step1
+                        [exchangeTo]="selectedExchangeTo"
+                        [exchangeFrom]="selectedExchangeFrom"
+                        [exchangeFromForm]="exchangeFromForm"
+                        [exchangeToForm]="exchangeToForm"
+                        [inputExchangeFrom]="inputExchangeFrom"
+                        (onExchangeSwap)="exchangeSwap($event)"
+                        (loading)="getStatusLoading($event)"
+                        (exchangeSubmitResult)="checkExchangeSubmitResult($event)">
+                      </app-step1>
                   </div>
 
-                    <br>
-                    <br>
-                    <br>
-
                     <!-- STEP12 -->
-                    <div class="step2">
-                      <app-step2></app-step2>
+                    <div class="step2" *ngIf="stepsArray[1].status">
+                      <app-step2 (goBack)="goToStart()"></app-step2>
                     </div>
                     <!-- STEP 3 -->
-                    <div class="step3">
+                    <div class="step3" *ngIf="stepsArray[2].status">
                       <app-step3></app-step3>
                     </div>
 
                     <!-- STEP 3-1 -->
-                    <div class="step3-1">
+                    <div class="step3-1" *ngIf="stepsArray[3].status">
                       <app-step3-1></app-step3-1>
                     </div>
 
                     <!-- STEP 3-2 -->
-                    <div class="step3-2">
+                    <div class="step3-2" *ngIf="stepsArray[4].status">
                       <app-step3-2></app-step3-2>
                     </div>
 
                     <!-- STEP 3-3 -->
-                    <div class="step3-3">
+                    <div class="step3-3" *ngIf="stepsArray[5].status">
                       <app-step3-3></app-step3-3>
                     </div>
 
                     <!-- STEP 3-4 -->
-                    <div class="step3-4">
+                    <div class="step3-4" *ngIf="stepsArray[6].status">
                       <app-step3-4></app-step3-4>
                     </div>
 
                     <!-- STEP 3-5 -->
-                    <div class="step3-5">
-                      <app-step3-5></app-step3-5>
+                    <div class="step3-5" *ngIf="stepsArray[7].status">
+                      <app-step3-5 (goBack)="goToStart()"></app-step3-5>
                     </div>
 
                     <!-- STEP 3-6 -->
-                    <div class="step3-6">
+                    <div class="step3-6" *ngIf="stepsArray[8].status">
                       <app-step3-6></app-step3-6>
                     </div>
 
                     <!-- STEP 4 -->
-                    <div class="step4">
-                      <app-step4></app-step4>
+                    <div class="step4" *ngIf="stepsArray[9].status">
+                      <app-step4 (goBack)="goToStart()"></app-step4>
                     </div>
 
+
                     <!-- STEP 4-1 -->
-                    <div class="step4-1">
-                      <app-step4-1></app-step4-1>
+                    <div class="step4-1" *ngIf="stepsArray[10].status">
+                      <app-step4-1 (goBack)="goToStart()"></app-step4-1>
                     </div>
 
                     <!-- STEP 4-2 -->
-                    <div class="step4-2">
-                      <app-step4-2></app-step4-2>
+                    <div class="step4-2" *ngIf="stepsArray[11].status">
+                      <app-step4-2 (goBack)="goToStart()"></app-step4-2>
                     </div>
 
                     <!-- STEP 4-3 -->
-                    <div class="step4-3">
+                    <div class="step4-3"  *ngIf="stepsArray[12].status">
                       <app-step4-3></app-step4-3>
                     </div>
 
 
                     <!-- STEP 5 -->
-                    <div class="step5">
+                    <div class="step5"  *ngIf="stepsArray[13].status">
                       <app-step5></app-step5>
                     </div>
 
                     <!-- STEP 6 -->
-                    <div class="step6">
+                    <div class="step6"  *ngIf="stepsArray[14].status">
                       <app-step6></app-step6>
                     </div>
 
                     <!-- STEP 6-1 -->
-                    <div class="step6-1">
+                    <div class="step6-1"  *ngIf="stepsArray[15].status">
                       <app-step6-1></app-step6-1>
                     </div>
 
                     <!-- STEP 6-2 -->
-                    <div class="step6-2">
+                    <div class="step6-2"   *ngIf="stepsArray[15].status">
                       <app-step6-2></app-step6-2>
                     </div>
 

@@ -5,32 +5,49 @@
     <a href="#" class="link tt-uppercase">Fill from last</a>
   </div>
 
-  <form action="#" class="form">
+  <form class="form" [ngClass]="{'custom-loader disabled': loading}" (submit)="submit($event)" [formGroup]="step4Form"  #form4="ngForm" novalidate>
 
-    <label class="form-group">
+    <label class="form-group" [ngClass]="{'has-error':
+           (step4Form.controls['id'].hasError('required')
+           || step4Form.controls['id'].hasError('minlength')
+           || step4Form.controls['id'].hasError('maxlength'))
+           && form4.submitted}">
       <span class="form-title">Your wallet ID:</span>
-      <input type="text" class="form-control" value="john.doe@gmail.com" required="">
-      <span class="error-label">Invalid wallet ID</span>
+      <input type="text" [(ngModel)]="controlsId" formControlName="id" class="form-control" value="" required="">
+      <span *ngIf="step4Form.controls['id'].hasError('required') && form4.submitted"
+            class="error-label">Required field</span>
+      <span *ngIf="(step4Form.controls['id'].hasError('minlength') || step4Form.controls['id'].hasError('maxlength')) && form4.submitted" class="error-label">The field  must be between 3 and 64 characters</span>
     </label>
-
-    <label class="form-group">
+    <label class="form-group" [ngClass]="{'has-error':
+           (step4Form.controls['email'].hasError('required')
+           || step4Form.controls['email'].hasError('email')
+           || step4Form.controls['email'].hasError('minlength')
+           || step4Form.controls['email'].hasError('maxlength'))
+           && form4.submitted}">
       <span class="form-title">Contact e-mail:</span>
-      <input type="text" class="form-control" value="john.doe@gmail.com">
-      <span class="error-label">Not valid phone number format</span>
+      <input type="text" [(ngModel)]="user.email" formControlName="email" class="form-control" placeholder="example@gmail.com">
+      <span *ngIf="step4Form.controls['email'].hasError('required') && form4.submitted"
+            class="error-label">Required field</span>
+      <span *ngIf="step4Form.controls['email'].hasError('email') && !step4Form.controls['email'].hasError('required') && form4.submitted"
+            class="error-label">Incorrect email</span>
+      <span *ngIf="(step4Form.controls['email'].hasError('minlength') || step4Form.controls['email'].hasError('maxlength')) && form4.submitted" class="error-label">The field  must be between 5 and 64 characters</span>
+
     </label>
 
-    <label class="checkbox">
-      <input type="checkbox" class="checkbox-cotrol">
+    <label class="checkbox" [ngClass]="{'has-error': (step4Form.controls['checkbox'].hasError('required')
+           && form4.submitted )}">
+      <input [(ngModel)]="checkboxForm" formControlName="checkbox" type="checkbox" name="policeAgree" class="checkbox-control" required>
       <span class="checkbox-icons"></span>
       <span class="checkbox-title">I agree to the <a href="#" class="link">Terms and Conditions</a> and <a href="#" class="link">Privacy Policy</a></span>
     </label>
 
+
     <div class="form-btn between-children">
-      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
+      <a class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
+
 
       <label>
-        <a href="#" class="btn btn-accent rippler rippler-default">Exhange</a>
-        <input type="submit" hidden>
+        <button class="btn btn-accent rippler rippler-default" [disabled]="step4Form.invalid && form4.submitted">Exhange</button>
       </label>
     </div>
   </form>

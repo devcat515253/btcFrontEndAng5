@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {UserService} from '../_services/user.service';
 import {DialogSuccessComponent} from '../_dialog/dialog-success/dialog-success.component';
@@ -16,6 +16,7 @@ import {EmailModel} from '../_entity/email-model';
 import 'rxjs/add/observable/forkJoin';
 import {Observable} from 'rxjs/Observable';
 import {currencyArray} from '../_entity/currency';
+import {stepsArray} from '../_entity/stepsArray';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,11 @@ import {currencyArray} from '../_entity/currency';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
+
+  // STEPS
+  stepsArray = stepsArray;
+  // END STEPS
+
 
   param: string = '';
   loggedUser: boolean = false;
@@ -57,7 +63,6 @@ export class HomeComponent implements OnInit {
   selectedToNotChoise: boolean = false;
 
 
-
   constructor(public dialog: MatDialog,
               private cdr: ChangeDetectorRef,
               private blurService: EffectBlurService,
@@ -73,6 +78,11 @@ export class HomeComponent implements OnInit {
     this.exchangeToValidator();
     this.getExchangeList();
     this.getUserDiscount();
+    console.log(this.stepsArray);
+  }
+
+  getStatusLoading(event) {
+    this.loading = event;
   }
 
   getAuth() {
@@ -80,20 +90,77 @@ export class HomeComponent implements OnInit {
       this.loggedUser = logged;
     });
   }
+
   getUserDiscount() {
-    this.userService.discount$.subscribe( discount => {
+    this.userService.discount$.subscribe(discount => {
       this.userDiscount = discount;
-      console.log(this.userDiscount);
+      // console.log(this.userDiscount);
     });
   }
 
   checkMaxBalance() {
-    if  (this.inputExchangeTo > this.selectedExchangeTo.balance) {
+    if (this.inputExchangeTo > this.selectedExchangeTo.balance) {
       this.exchangeToForm.controls['inputTo'].setErrors({'maxbalance': true});
     } else {
       this.exchangeToForm.controls['inputTo'].setErrors(null);
     }
   }
+
+
+  // =====================================================
+  // ПЕРВАЯ ПРОВЕРКА ОБМЕНА В ЗАВИСИМОСТИ ОТ СУММЫ ВЫВОДА
+  // =====================================================
+
+  checkStepShow(countStep: string) {
+    for (let i of stepsArray) {
+      if (i.count === countStep) {
+        i.status = true;
+      } else {
+        i.status = false;
+      }
+    }
+  }
+
+  goToStart() {
+    this.checkStepShow('1');
+  }
+
+  checkExchangeSubmitResult(event) {
+
+
+    let statusCode = 0;
+    try {
+      statusCode = event.data.code;
+    } catch (error) {
+
+    }
+
+    if (statusCode === 1) {
+      this.checkStepShow('3-5');
+      return;
+    }
+
+    if (statusCode === 2) {
+      this.checkStepShow('2');
+      return;
+    }
+
+    if (this.selectedExchangeTo.name === 'Bank' && this.selectedExchangeTo.currency === 'eur' ) {
+      this.checkStepShow('4-1');
+      return;
+    }
+
+    if (this.selectedExchangeTo.name === 'Bank' && this.selectedExchangeTo.currency === 'czk') {
+      this.checkStepShow('4-2');
+      return;
+    }
+
+    this.checkStepShow('4');
+  }
+
+  // =====================================================
+  // END
+  // =====================================================
 
   asyncGetExchangeList() {
     this.loading = true;
@@ -117,10 +184,10 @@ export class HomeComponent implements OnInit {
       this.noSuchFilterFrom = false;
       this.noSuchFilterTo = false;
     }, (error) => {
-        console.log(error);
-        this.loading = false;
-        this.noSuchFilterFrom = false;
-        this.noSuchFilterTo = false;
+      // console.log(error);
+      this.loading = false;
+      this.noSuchFilterFrom = false;
+      this.noSuchFilterTo = false;
     });
   }
 
@@ -156,8 +223,8 @@ export class HomeComponent implements OnInit {
       this.selectedExchangeFrom = null;
     }
 
-    console.log(resArr);
-    console.log(this.selectedExchangeFrom);
+    // console.log(resArr);
+    // console.log(this.selectedExchangeFrom);
   }
 
   checkSelectedToPayment(arr) {
@@ -173,8 +240,8 @@ export class HomeComponent implements OnInit {
       this.selectedExchangeTo = null;
     }
 
-    console.log(resArr);
-    console.log(this.selectedExchangeTo);
+    // console.log(resArr);
+    // console.log(this.selectedExchangeTo);
   }
 
   getExchangeListFromFiltered() {
@@ -187,7 +254,7 @@ export class HomeComponent implements OnInit {
         this.checkSelectedFromPayment(this.exchangeFromArray);
         this.loading = false;
         this.noSuchFilterTo = false;
-        console.log(this.selectedExchangeFrom);
+        // console.log(this.selectedExchangeFrom);
       }, (error) => {
         console.log(error);
         this.loading = false;
@@ -206,7 +273,7 @@ export class HomeComponent implements OnInit {
         this.checkSelectedToPayment(this.exchangeToArray);
         this.loading = false;
         this.noSuchFilterTo = false;
-        console.log(this.selectedExchangeTo)
+        // console.log(this.selectedExchangeTo);
 
       }, error => {
         console.log(error);
@@ -223,6 +290,7 @@ export class HomeComponent implements OnInit {
     this.inputFromChanged();
     // console.log(itemFrom);
   }
+
   selectExchangeTo(itemTo) {
     this.selectedExchangeTo = itemTo;
     this.getExchangeListFromFiltered();
@@ -230,6 +298,7 @@ export class HomeComponent implements OnInit {
     this.inputFromChanged();
     console.log(itemTo);
   }
+
   inputExchangeChanged(event) {
     if (!this.selectedExchangeFrom) {
       this.selectedFromNotChoise = true;
@@ -247,13 +316,13 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    console.log(this.inputExchangeFrom);
+    // console.log(this.inputExchangeFrom);
     // console.log(this.selectedExchangeFrom);
 
     // комиссия в валюте, тут считаем комиссию в валюте, она получается равна сумма from * комиссию (которую ты получил) / 100
 
     const comission_amount: number = this.inputExchangeFrom * this.selectedExchangeTo.commission / 100;
-    console.log("FROM-Комиссия (число * (комиссия системы / 100) : " + comission_amount);
+    // console.log("FROM-Комиссия (число * (комиссия системы / 100) : " + comission_amount);
 
     /*
       тут считаем скидку в валюте для каждого пользователя, если не авторизирован то соответственно не считаем тк скидка 0 то есть,
@@ -268,21 +337,18 @@ export class HomeComponent implements OnInit {
       let discount = this.userDiscount; // должно из базы
 
       discount_amount = comission_amount * (discount / 100);
-      console.log("FROM-Скидка (комиссия системы * (скидка / 100)) : " + discount_amount);
+      // console.log("FROM-Скидка (комиссия системы * (скидка / 100)) : " + discount_amount);
     }
 
 
     let amount: number = (this.inputExchangeFrom - comission_amount + discount_amount) * this.selectedExchangeTo.course;
-    console.log("FROM-Итого (число - (комиссия + скидка) * курс валюты): " + amount);
+    // console.log("FROM-Итого (число - (комиссия + скидка) * курс валюты): " + amount);
 
+    this.inputExchangeTo = this.digits(amount, this.selectedExchangeTo.currency);
+    this.cdr.detectChanges();
 
-      this.inputExchangeTo = this.digits(amount, this.selectedExchangeTo.currency);
-      this.cdr.detectChanges();
-
-      this.checkMaxBalance();
-      this.cdr.detectChanges();
-
-
+    this.checkMaxBalance();
+    this.cdr.detectChanges();
   }
 
   inputToChanged() {
@@ -306,7 +372,7 @@ export class HomeComponent implements OnInit {
     }
     let amount = inputFrom - discount_amount;
 
-    console.log(amount);
+    // console.log(amount);
     this.inputExchangeFrom = this.digits(amount, this.selectedExchangeFrom.currency);
     this.cdr.detectChanges();
 
@@ -318,7 +384,7 @@ export class HomeComponent implements OnInit {
   digits(amount: number, currency: string) {
     let result: string = '';
 
-    if ( currencyArray.indexOf( currency ) !== -1 ) {
+    if (currencyArray.indexOf(currency) !== -1) {
       result = amount.toFixed(2);
       return Number(result);
     }
@@ -345,8 +411,8 @@ export class HomeComponent implements OnInit {
       this.exchangeToArray = secondResult.data as Exchange[];
       this.exchangeToArrayOriginal = secondResult.data as Exchange[];
 
-      console.log(this.exchangeFromArray);
-      console.log(this.exchangeToArray);
+      // console.log(this.exchangeFromArray);
+      // console.log(this.exchangeToArray);
 
       this.loading = false;
     });
@@ -361,7 +427,7 @@ export class HomeComponent implements OnInit {
 
     if (this.selectedExchangeTo) {
       tempArray = this.exchangeFromArrayFiltred;
-    }else {
+    } else {
       tempArray = this.exchangeFromArrayOriginal;
     }
 
@@ -390,13 +456,12 @@ export class HomeComponent implements OnInit {
     }
 
 
-
     if (currency === 'coin') {
       this.exchangeFromArray = tempArray.filter(item => {
-        return currencyArray.indexOf( item.currency ) === -1;
+        return currencyArray.indexOf(item.currency) === -1;
       });
 
-      if  (this.exchangeFromArray.length === 0) {
+      if (this.exchangeFromArray.length === 0) {
         this.noSuchFilterFrom = true;
       } else {
         this.noSuchFilterFrom = false;
@@ -405,7 +470,7 @@ export class HomeComponent implements OnInit {
     }
 
     let resultArray: Exchange[] = tempArray.filter(item => item.currency === currency);
-    if  (resultArray.length === 0) {
+    if (resultArray.length === 0) {
       this.noSuchFilterFrom = true;
     } else {
       this.noSuchFilterFrom = false;
@@ -418,17 +483,17 @@ export class HomeComponent implements OnInit {
     event.preventDefault();
     this.btnSelectedFilterTo = event.target.innerText;
     let currency = event.target.getAttribute('filterValue');
-    console.log(currency);
+    // console.log(currency);
 
     let tempArray = [];
     if (this.selectedExchangeFrom) {
       tempArray = this.exchangeToArrayFiltred;
-    }else {
+    } else {
       tempArray = this.exchangeToArrayOriginal;
     }
 
 
-    console.log(tempArray);
+    // console.log(tempArray);
 
 
     if (currency === 'all' && this.selectedExchangeFrom && this.selectedExchangeTo) {
@@ -456,13 +521,12 @@ export class HomeComponent implements OnInit {
     }
 
 
-
     if (currency === 'coin') {
       this.exchangeToArray = tempArray.filter(item => {
-       return currencyArray.indexOf( item.currency ) === -1;
+        return currencyArray.indexOf(item.currency) === -1;
       });
 
-      if  (this.exchangeToArray.length === 0) {
+      if (this.exchangeToArray.length === 0) {
         this.noSuchFilterTo = true;
       } else {
         this.noSuchFilterTo = false;
@@ -472,7 +536,7 @@ export class HomeComponent implements OnInit {
 
 
     let resultArray: Exchange[] = tempArray.filter(item => item.currency === currency);
-    if  (resultArray.length === 0) {
+    if (resultArray.length === 0) {
       this.noSuchFilterTo = true;
     } else {
       this.noSuchFilterTo = false;

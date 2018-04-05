@@ -727,7 +727,6 @@ hr
 		color: #fff
 		padding-left: 3rem
 		cursor: pointer
-
 		&:hover
 			background-color: lighten($bgAccentSecond, 3%)
 		&-icons
@@ -1505,14 +1504,20 @@ hr
 		font-family: $sans
 		margin-bottom: 1rem
 	&-control
-		height: 5.1rem
-		width: 100%
-		border: 1px solid $borderGrey
-		border-radius: 4px
-		background-color: #FFFFFF
-		padding: 0 2.4rem
-		position: relative
-		z-index: 5
+    height: 5.1rem
+    width: 100%
+    border: 1px solid $borderGrey
+    border-radius: 4px
+    background-color: #FFFFFF
+    padding: 0 2.4rem
+    position: relative
+    z-index: 5
+    &:-moz-placeholder,
+    &::-moz-placeholder
+      color: rgba(183, 190, 206, 0.8)
+      opacity: 1
+    &::-webkit-input-placeholder
+      color: rgba(183, 190, 206, 0.8)
 	textarea.form-control
 		min-height: 13.8rem
 		width: 100%

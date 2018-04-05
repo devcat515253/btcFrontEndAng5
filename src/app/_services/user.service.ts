@@ -20,6 +20,10 @@ export class UserService {
   isLogged: boolean = false;
   token$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   discount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  user$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+
   discount: number = 0;
 
   constructor(private http: HttpClient,
@@ -31,9 +35,14 @@ export class UserService {
 
 
   checkToken() {
+    this.loading$.next(true);
     this.http.get<any>(`${this.baseUrl}/api/me`, {headers: this.getAuthHeader()}).subscribe(result => {
       console.log(result);
+      this.userModel = result.data;
+      this.user$.next(this.userModel);
+      this.loading$.next(false;
     }, (error) => {
+      this.loading$.next(false;
       console.log(error);
       console.log(error.status);
       this.logout();
@@ -78,6 +87,7 @@ export class UserService {
           localStorage.setItem('access_token', JSON.stringify(result.data.access_token));
           this.getAuthToken();
           this.getUserDiscount();
+          this.checkToken();
         }
         return result;
       });
@@ -92,6 +102,8 @@ export class UserService {
     this.discount = 0;
     this.getUserDiscount();
     this.router.navigate(['/home']);
+    this.userModel = new UserModel();
+    this.user$.next(this.userModel);
   }
 
   getUserDiscount() {
@@ -104,6 +116,8 @@ export class UserService {
        this.discount$.next(this.discount);
      });
   }
+
+
 
 
   activateUser(hash: string) {
