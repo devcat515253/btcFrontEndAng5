@@ -15,3 +15,5 @@ export class UserRegistr {
     this.refer = 0;
   }
 }
+
+
