@@ -1,372 +1,414 @@
+<div class="main fadeIn animated">
+  <div class="container">
 
-  <div class="main fadeIn animated">
-    <div class="container">
+    <header class="content__header">
+      <div class="title"><h1 class="h1">Exchange your money</h1></div>
 
-      <header class="content__header">
-        <div class="title"><h1 class="h1">Exchange your money</h1></div>
-
-        <div class="sub-title">
-          <p class="p_large">We are fast and secure. 100% SSL transactions and <br>
-            our servers are DDOS protected.</p>
-        </div>
-      </header>
+      <div class="sub-title">
+        <p class="p_large">We are fast and secure. 100% SSL transactions and <br>
+          our servers are DDOS protected.</p>
+      </div>
+    </header>
 
 
-      <div class="content blank tape-top no-padding welcome-page" [ngClass]="{'custom-loader': loading}">
-        <div class="color-loader" *ngIf="loading"></div>
+    <div class="content blank tape-top no-padding welcome-page" [ngClass]="{'custom-loader': loading}">
+      <div class="color-loader" *ngIf="loading"></div>
 
-        <div class="exchange">
+      <div class="exchange">
 
-          <div class="column">
-            <div class="column__head">
-              <h2 class="title-great">You send</h2>
-            </div>
-            <div class="column__content">
-              <div class="select-amount subblock">
-                <form [formGroup]="exchangeFromForm"  #fromForm="ngForm" novalidate>
+        <div class="column">
+          <div class="column__head">
+            <h2 class="title-great">You send</h2>
+          </div>
+          <div class="column__content">
+            <div class="select-amount subblock">
+              <form [formGroup]="exchangeFromForm" #fromForm="ngForm" novalidate>
 
-                  <label class="input-exchange"
-                         [ngClass]="{'has-error':
+                <label class="input-exchange"
+                       [ngClass]="{'has-error':
                                       exchangeFromForm.controls['inputFrom'].hasError('maxlength'),
                                       'has-warn':
                                       exchangeFromForm.controls['inputFrom'].hasError('email') }">
 
-                    <div class="input">
-                      <input type="text" [(ngModel)]="inputExchangeFrom"  (keydown)='inputExchangeChanged($event)' appNumberOnly (keyup)="inputFromChanged()" formControlName="inputFrom">
-                      <span class="currency">{{selectedExchangeFrom?.currency || ''}}</span>
-                    </div>
+                  <div class="input">
+                    <input type="text" [(ngModel)]="inputExchangeFrom" (keydown)='inputExchangeChanged($event)'
+                           appNumberOnly (keyup)="inputFromChanged()" formControlName="inputFrom">
+                    <span class="currency">{{selectedExchangeFrom?.currency || ''}}</span>
+                  </div>
 
-                    <span class="error-label"
-                          *ngIf="(exchangeFromForm.controls['inputFrom'].hasError('email')
+                  <span class="error-label"
+                        *ngIf="(exchangeFromForm.controls['inputFrom'].hasError('email')
                                || exchangeFromForm.controls['inputFrom'].hasError('maxlength'))
                                && fromForm.submitted">{{ 'errors.ExchangeLimit' | translate }}</span>
-                  </label>
-                </form>
+                </label>
+              </form>
 
-                <!--<br>-->
-                <!--<label class="input-exchange has-error">-->
-                  <!--<div class="input">-->
-                    <!--<input type="text">-->
-                    <!--<span class="currency">USD</span>-->
-                  <!--</div>-->
+              <!--<br>-->
+              <!--<label class="input-exchange has-error">-->
+              <!--<div class="input">-->
+              <!--<input type="text">-->
+              <!--<span class="currency">USD</span>-->
+              <!--</div>-->
 
-                  <!--<span class="error-label">-->
-                    <!--{{ 'errors.ExchangeAmount' | translate }}-->
-                    <!--<a href="#"> {{ 'exchange.InputErrorLink' | translate }}</a>-->
-                  <!--</span>-->
-                <!--</label>-->
-                <!--<br>-->
+              <!--<span class="error-label">-->
+              <!--{{ 'errors.ExchangeAmount' | translate }}-->
+              <!--<a href="#"> {{ 'exchange.InputErrorLink' | translate }}</a>-->
+              <!--</span>-->
+              <!--</label>-->
+              <!--<br>-->
 
-                <!--<label class="input-exchange has-warn">-->
-                  <!--<div class="input">-->
-                    <!--<input type="text">-->
-                    <!--<span class="currency">USD</span>-->
-                  <!--</div>-->
+              <!--<label class="input-exchange has-warn">-->
+              <!--<div class="input">-->
+              <!--<input type="text">-->
+              <!--<span class="currency">USD</span>-->
+              <!--</div>-->
 
-                  <!--<span class="error-label">{{ 'errors.ExchangeWarningVerify' | translate }}</span>-->
-                <!--</label>-->
-                <!--<br>-->
-                <!--<br>-->
+              <!--<span class="error-label">{{ 'errors.ExchangeWarningVerify' | translate }}</span>-->
+              <!--</label>-->
+              <!--<br>-->
+              <!--<br>-->
+            </div>
+
+            <div class="subblock">
+              <div class="subblock-title">
+                <p class="p_middle">{{ 'exchange.choose' | translate }}:</p>
               </div>
 
-              <div class="subblock">
-                <div class="subblock-title">
-                  <p class="p_middle">{{ 'exchange.choose' | translate }}:</p>
-                </div>
-
-                <div class="subblock-content">
-                  <div class="btns">
-                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterForm === 'All'}"  (click)="changeFromFilter($event)" filterValue="all">All</div>
-                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterForm === 'USD'}"  (click)="changeFromFilter($event)" filterValue="usd">USD</div>
-                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterForm === 'EUR'}"  (click)="changeFromFilter($event)" filterValue="eur">EUR</div>
-                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterForm === 'Coin'}"  (click)="changeFromFilter($event)" filterValue="coin">Coin</div>
+              <div class="subblock-content">
+                <div class="btns">
+                  <div class="item" [ngClass]="{'is-selected': btnSelectedFilterForm === 'All'}"
+                       (click)="changeFromFilter($event)" filterValue="all">All
+                  </div>
+                  <div class="item" [ngClass]="{'is-selected': btnSelectedFilterForm === 'USD'}"
+                       (click)="changeFromFilter($event)" filterValue="usd">USD
+                  </div>
+                  <div class="item" [ngClass]="{'is-selected': btnSelectedFilterForm === 'EUR'}"
+                       (click)="changeFromFilter($event)" filterValue="eur">EUR
+                  </div>
+                  <div class="item" [ngClass]="{'is-selected': btnSelectedFilterForm === 'Coin'}"
+                       (click)="changeFromFilter($event)" filterValue="coin">Coin
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="subblock">
-                <div class="subblock-title">
-                  <p class="p_middle">{{ 'exchange.PaymentMethod' | translate }}:</p>
+            <div class="subblock">
+              <div class="subblock-title">
+                <p class="p_middle">{{ 'exchange.PaymentMethod' | translate }}:</p>
+              </div>
+
+              <div class="text-center fadeIn animated" *ngIf="selectedFromNotChoise">
+                <div class="alert alert-error">
+                  <p>Warning: <br>Choose your payment system!</p>
                 </div>
+              </div>
 
-                <div class="text-center fadeIn animated" *ngIf="selectedFromNotChoise">
-                  <div class="alert alert-error">
-                    <p>Warning: <br>Choose your payment system!</p>
+              <div class="text-center fadeIn animated" *ngIf="noSuchFilterFrom">
+                <div class="alert alert-error">
+                  <p>Warning: <br>Nothing found!</p>
+                </div>
+              </div>
+
+
+              <div class="subblock-content">
+                <div class="currencies js-select-currencies">
+
+
+                  <div class="item-wrapper" *ngFor="let fromItem of exchangeFromArray; let i = index">
+                    <div class="item" [ngClass]="{'is-selected': selectedExchangeFrom === fromItem}" *ngIf="i <= 5"
+                         (click)="selectExchangeFrom(fromItem)">
+                      <div class="item-icons" [style.background-image]="'url(' + fromItem.logo +')'"></div>
+                      <div class="item-value" value="Advanced Cash">{{fromItem.name}} <span class="ttu">{{fromItem.currency}}</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
 
-                <div class="text-center fadeIn animated" *ngIf="noSuchFilterFrom">
-                  <div class="alert alert-error">
-                    <p>Warning: <br>Nothing found!</p>
+                  <div class="currencies-other js-view-other" *ngIf="exchangeFromArray.length > 5">
+                    <div class="item" text="Select other payment" replaceText="Hidden other payment">
+                      <span>Select other payment </span>
+                      <img src="../../assets/img/svg/arrow-down.svg" alt="View other"></div>
                   </div>
-                </div>
 
-
-
-
-                <div class="subblock-content">
-                  <div class="currencies js-select-currencies">
-
-
+                  <div class="currencies-hidden">
 
                     <div class="item-wrapper" *ngFor="let fromItem of exchangeFromArray; let i = index">
-                      <div class="item" [ngClass]="{'is-selected': selectedExchangeFrom === fromItem}" *ngIf="i <= 5" (click)="selectExchangeFrom(fromItem)">
+                      <div class="item" [ngClass]="{'is-selected': selectedExchangeFrom === fromItem}" *ngIf="i > 5"
+                           (click)="selectExchangeFrom(fromItem)">
                         <div class="item-icons" [style.background-image]="'url(' + fromItem.logo +')'"></div>
                         <div class="item-value" value="Advanced Cash">{{fromItem.name}} <span class="ttu">{{fromItem.currency}}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div class="currencies-other js-view-other" *ngIf="exchangeFromArray.length > 5">
-                      <div class="item" text="Select other payment" replaceText="Hidden other payment">
-                        <span>Select other payment </span>
-                        <img src="../../assets/img/svg/arrow-down.svg" alt="View other"></div>
-                    </div>
-
-                    <div class="currencies-hidden" >
-
-                      <div class="item-wrapper" *ngFor="let fromItem of exchangeFromArray; let i = index">
-                        <div class="item" [ngClass]="{'is-selected': selectedExchangeFrom === fromItem}" *ngIf="i > 5" (click)="selectExchangeFrom(fromItem)">
-                          <div class="item-icons" [style.background-image]="'url(' + fromItem.logo +')'"></div>
-                          <div class="item-value" value="Advanced Cash">{{fromItem.name}} <span class="ttu">{{fromItem.currency}}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="column">
+        <div class="column">
 
-            <div class="process-wr">
-              <div class="process">
-                <div class="process__content">
-                  <div class="column__head">
-                    <h2 class="title-great">Process</h2>
+          <div class="process-wr">
+            <div class="process">
+              <div class="process__content">
+                <div class="column__head">
+                  <h2 class="title-great">Process</h2>
+                </div>
+
+
+                <div class="steps" id="steps">
+
+                  <div class="step1" *ngIf="stepsArray[0].status">
+                    <app-step1
+                      [exchangeTo]="selectedExchangeTo"
+                      [exchangeFrom]="selectedExchangeFrom"
+                      [exchangeFromForm]="exchangeFromForm"
+                      [exchangeToForm]="exchangeToForm"
+                      [inputExchangeFrom]="inputExchangeFrom"
+                      (onExchangeSwap)="exchangeSwap($event)"
+                      (loading)="getStatusLoading($event)"
+                      (exchangeSubmitResult)="checkExchangeSubmitResult($event)">
+                    </app-step1>
+                  </div>
+
+                  <!-- STEP12 -->
+                  <div class="step2" *ngIf="stepsArray[1].status">
+                    <app-step2 (goBack)="goToStart()"
+                               (goAuth)="goToAuth()"
+                               (goRegistration)="goToRegistr()"></app-step2>
+                  </div>
+                  <!-- STEP 3 -->
+                  <div class="step3" *ngIf="stepsArray[2].status">
+                    <app-step3 [inputFrom]="inputExchangeFrom"
+                               [selectedFrom]="selectedExchangeFrom"
+                               (exchangeSubmitResult)="checkExchangeSubmitResult($event)"
+                               (goBack)="goToForm2()"></app-step3>
+                  </div>
+
+                  <!-- STEP 3-1 -->
+                  <div class="step3-1" *ngIf="stepsArray[3].status">
+                    <app-step3-1 (goBack)="goToForm2()"
+                                 (goNext)="goToForm3_2()"></app-step3-1>
+                  </div>
+
+                  <!-- STEP 3-2 -->
+                  <div class="step3-2" *ngIf="stepsArray[4].status">
+                    <app-step3-2 [inputFrom]="inputExchangeFrom"
+                                 [selectedFrom]="selectedExchangeFrom"
+                                 (exchangeSubmitResult)="checkExchangeSubmitResult($event)"
+                                 (goBack)="goToRegistr()"></app-step3-2>
+                  </div>
+
+                  <!-- STEP 3-3 -->
+                  <div class="step3-3" *ngIf="stepsArray[5].status">
+                    <app-step3-3 [inputFrom]="inputExchangeFrom"
+                                 [selectedFrom]="selectedExchangeFrom"
+                                 (exchangeSubmitResult)="checkExchangeSubmitResult($event)"
+                                 (goBack)="goToStart()"></app-step3-3>
+                  </div>
+
+                  <!-- STEP 3-4 -->
+                  <div class="step3-4" *ngIf="stepsArray[6].status">
+                    <app-step3-4 (goBack)="goToStart()"
+                                 (goNext)="goToKyc()"></app-step3-4>
+                  </div>
+
+                  <!-- STEP 3-5 -->
+                  <div class="step3-5" *ngIf="stepsArray[7].status">
+                    <app-step3-5 (goBack)="goToId()"
+                                 (goNext)="goToVerifySuccess()"></app-step3-5>
+                  </div>
+
+                  <!-- STEP 3-6 -->
+                  <div class="step3-6" *ngIf="stepsArray[8].status">
+                    <app-step3-6 [inputFrom]="inputExchangeFrom"
+                                 [selectedFrom]="selectedExchangeFrom"
+                                 (goBack)="goToKyc()"
+                                 (goToStart)="goToStart($event)"></app-step3-6>
+                  </div>
+
+                  <!-- STEP 4 -->
+                  <div class="step4" *ngIf="stepsArray[9].status">
+                    <app-step4 (goBack)="goToStart()"
+                               (goNext)="goToForm5($event)" ></app-step4>
                   </div>
 
 
-                  <div class="steps" id="steps">
-
-                    <div class="step1" *ngIf="stepsArray[0].status">
-                      <app-step1
-                        [exchangeTo]="selectedExchangeTo"
-                        [exchangeFrom]="selectedExchangeFrom"
-                        [exchangeFromForm]="exchangeFromForm"
-                        [exchangeToForm]="exchangeToForm"
-                        [inputExchangeFrom]="inputExchangeFrom"
-                        (onExchangeSwap)="exchangeSwap($event)"
-                        (loading)="getStatusLoading($event)"
-                        (exchangeSubmitResult)="checkExchangeSubmitResult($event)">
-                      </app-step1>
+                  <!-- STEP 4-1 -->
+                  <div class="step4-1" *ngIf="stepsArray[10].status">
+                    <app-step4-1 (goBack)="goToStart()"></app-step4-1>
                   </div>
 
-                    <!-- STEP12 -->
-                    <div class="step2" *ngIf="stepsArray[1].status">
-                      <app-step2 (goBack)="goToStart()"></app-step2>
-                    </div>
-                    <!-- STEP 3 -->
-                    <div class="step3" *ngIf="stepsArray[2].status">
-                      <app-step3></app-step3>
-                    </div>
-
-                    <!-- STEP 3-1 -->
-                    <div class="step3-1" *ngIf="stepsArray[3].status">
-                      <app-step3-1></app-step3-1>
-                    </div>
-
-                    <!-- STEP 3-2 -->
-                    <div class="step3-2" *ngIf="stepsArray[4].status">
-                      <app-step3-2></app-step3-2>
-                    </div>
-
-                    <!-- STEP 3-3 -->
-                    <div class="step3-3" *ngIf="stepsArray[5].status">
-                      <app-step3-3></app-step3-3>
-                    </div>
-
-                    <!-- STEP 3-4 -->
-                    <div class="step3-4" *ngIf="stepsArray[6].status">
-                      <app-step3-4></app-step3-4>
-                    </div>
-
-                    <!-- STEP 3-5 -->
-                    <div class="step3-5" *ngIf="stepsArray[7].status">
-                      <app-step3-5 (goBack)="goToStart()"></app-step3-5>
-                    </div>
-
-                    <!-- STEP 3-6 -->
-                    <div class="step3-6" *ngIf="stepsArray[8].status">
-                      <app-step3-6></app-step3-6>
-                    </div>
-
-                    <!-- STEP 4 -->
-                    <div class="step4" *ngIf="stepsArray[9].status">
-                      <app-step4 (goBack)="goToStart()"></app-step4>
-                    </div>
-
-
-                    <!-- STEP 4-1 -->
-                    <div class="step4-1" *ngIf="stepsArray[10].status">
-                      <app-step4-1 (goBack)="goToStart()"></app-step4-1>
-                    </div>
-
-                    <!-- STEP 4-2 -->
-                    <div class="step4-2" *ngIf="stepsArray[11].status">
-                      <app-step4-2 (goBack)="goToStart()"></app-step4-2>
-                    </div>
-
-                    <!-- STEP 4-3 -->
-                    <div class="step4-3"  *ngIf="stepsArray[12].status">
-                      <app-step4-3></app-step4-3>
-                    </div>
-
-
-                    <!-- STEP 5 -->
-                    <div class="step5"  *ngIf="stepsArray[13].status">
-                      <app-step5></app-step5>
-                    </div>
-
-                    <!-- STEP 6 -->
-                    <div class="step6"  *ngIf="stepsArray[14].status">
-                      <app-step6></app-step6>
-                    </div>
-
-                    <!-- STEP 6-1 -->
-                    <div class="step6-1"  *ngIf="stepsArray[15].status">
-                      <app-step6-1></app-step6-1>
-                    </div>
-
-                    <!-- STEP 6-2 -->
-                    <div class="step6-2"   *ngIf="stepsArray[15].status">
-                      <app-step6-2></app-step6-2>
-                    </div>
-
-
-
-
-                    <!-- STEP 5 -->
-
-                    <!-- STEP 5-1 -->
-
-
-                    <!-- STEP 5-1 -->
-
-                    <div class="steps-footer">
-                      <div class="dots line-sides">
-                        <a href="#" class="dot"></a>
-                        <a href="#" class="dot"></a>
-                        <a href="#" class="dot is-active"></a>
-                        <a href="#" class="dot"></a>
-                        <a href="#" class="dot"></a>
-                      </div>
-                    </div>
-
-
+                  <!-- STEP 4-2 -->
+                  <div class="step4-2" *ngIf="stepsArray[11].status">
+                    <app-step4-2 (goBack)="goToStart()"></app-step4-2>
                   </div>
+
+                  <!-- STEP 4-3 -->
+                  <div class="step4-3" *ngIf="stepsArray[12].status">
+                    <app-step4-3></app-step4-3>
+                  </div>
+
+
+                  <!-- STEP 5 -->
+                  <div class="step5" *ngIf="stepsArray[13].status">
+                    <app-step5 [inputFrom]="inputExchangeFrom"
+                               [selectedFrom]="selectedExchangeFrom"
+                               [inputTo]="inputExchangeTo"
+                               [dataWallet]="dataFormWallet"
+                               [selectedTo]="selectedExchangeTo"
+                               (goBack)="goToForm4()"
+                               (goStart)="goToStart()" ></app-step5>
+                  </div>
+
+                  <!-- STEP 6 -->
+                  <div class="step6" *ngIf="stepsArray[14].status">
+                    <app-step6></app-step6>
+                  </div>
+
+                  <!-- STEP 6-1 -->
+                  <div class="step6-1" *ngIf="stepsArray[15].status">
+                    <app-step6-1></app-step6-1>
+                  </div>
+
+                  <!-- STEP 6-2 -->
+                  <div class="step6-2" *ngIf="stepsArray[15].status">
+                    <app-step6-2></app-step6-2>
+                  </div>
+
+
+                  <!-- STEP 5 -->
+
+                  <!-- STEP 5-1 -->
+
+
+                  <!-- STEP 5-1 -->
+
+                  <div class="steps-footer">
+                    <div class="dots line-sides">
+                      <a href="#" class="dot"></a>
+                      <a href="#" class="dot"></a>
+                      <a href="#" class="dot is-active"></a>
+                      <a href="#" class="dot"></a>
+                      <a href="#" class="dot"></a>
+                    </div>
+                  </div>
+
+
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="column">
-            <div class="column__head">
-              <h2 class="title-great">You receive</h2>
-            </div>
-            <div class="column__content">
-              <div class="select-amount subblock">
+        <div class="column">
+          <div class="column__head">
+            <h2 class="title-great">You receive</h2>
+          </div>
+          <div class="column__content">
+            <div class="select-amount subblock">
 
-                <form [formGroup]="exchangeToForm"  #toForm="ngForm" novalidate>
+              <form [formGroup]="exchangeToForm" #toForm="ngForm" novalidate>
 
-                  <label class="input-exchange"
-                         [ngClass]="{'has-error':
+                <label class="input-exchange"
+                       [ngClass]="{'has-error':
                                       (exchangeToForm.controls['inputTo'].hasError('maxlength') ||
                                       exchangeToForm.controls['inputTo'].hasError('maxbalance')),
                                      'has-warn':
                                       exchangeToForm.controls['inputTo'].hasError('email')}">
-                    <div class="input">
+                  <div class="input">
 
 
-                      <input type="text" [(ngModel)]="inputExchangeTo" (keydown)='inputExchangeChanged($event)' appNumberOnly (keyup)="inputToChanged()" formControlName="inputTo">
-                      <span class="currency">{{selectedExchangeTo?.currency || ''}}</span>
-                    </div>
+                    <input type="text" [(ngModel)]="inputExchangeTo" (keydown)='inputExchangeChanged($event)'
+                           appNumberOnly (keyup)="inputToChanged()" formControlName="inputTo">
+                    <span class="currency">{{selectedExchangeTo?.currency || ''}}</span>
+                  </div>
 
-                    <span class="error-label"
-                          *ngIf="exchangeToForm.controls['inputTo'].hasError('maxbalance')">{{ 'errors.ExchangeLimit' | translate:selectedExchangeTo }}</span>
-                  </label>
-                </form>
+                  <span class="error-label"
+                        *ngIf="exchangeToForm.controls['inputTo'].hasError('maxbalance')">{{ 'errors.ExchangeLimit' | translate:selectedExchangeTo }}</span>
+                </label>
+              </form>
+            </div>
+
+            <div class="subblock">
+              <div class="subblock-title">
+                <p class="p_middle">{{ 'exchange.choose' | translate }}:</p>
               </div>
 
-              <div class="subblock">
-                <div class="subblock-title">
-                  <p class="p_middle">{{ 'exchange.choose' | translate }}:</p>
-                </div>
-
-                <div class="subblock-content">
-                  <div class="btns">
-                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterTo === 'All'}" (click)="changeToFilter($event)" filterValue="all">All</div>
-                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterTo === 'USD'}" (click)="changeToFilter($event)" filterValue="usd">USD</div>
-                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterTo === 'EUR'}" (click)="changeToFilter($event)" filterValue="eur">EUR</div>
-                    <div class="item" [ngClass]="{'is-selected': btnSelectedFilterTo === 'Coin'}" (click)="changeToFilter($event)" filterValue="coin">Coin</div>
-              </div>
-                </div>
-              </div>
-
-              <div class="subblock">
-                <div class="subblock-title">
-                  <p class="p_middle">{{ 'exchange.PaymentMethod' | translate }}:</p>
-                </div>
-
-                <div class="text-center fadeIn animated" *ngIf="selectedToNotChoise">
-                  <div class="alert alert-error">
-                    <p>Warning: <br>Choose your payment system!</p>
+              <div class="subblock-content">
+                <div class="btns">
+                  <div class="item" [ngClass]="{'is-selected': btnSelectedFilterTo === 'All'}"
+                       (click)="changeToFilter($event)" filterValue="all">All
+                  </div>
+                  <div class="item" [ngClass]="{'is-selected': btnSelectedFilterTo === 'USD'}"
+                       (click)="changeToFilter($event)" filterValue="usd">USD
+                  </div>
+                  <div class="item" [ngClass]="{'is-selected': btnSelectedFilterTo === 'EUR'}"
+                       (click)="changeToFilter($event)" filterValue="eur">EUR
+                  </div>
+                  <div class="item" [ngClass]="{'is-selected': btnSelectedFilterTo === 'Coin'}"
+                       (click)="changeToFilter($event)" filterValue="coin">Coin
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <div class="text-center fadeIn animated" *ngIf="noSuchFilterTo">
-                  <div class="alert alert-error">
-                    <p>Warning: <br>Nothing found!</p>
-                  </div>
+            <div class="subblock">
+              <div class="subblock-title">
+                <p class="p_middle">{{ 'exchange.PaymentMethod' | translate }}:</p>
+              </div>
+
+              <div class="text-center fadeIn animated" *ngIf="selectedToNotChoise">
+                <div class="alert alert-error">
+                  <p>Warning: <br>Choose your payment system!</p>
                 </div>
+              </div>
 
-                <div class="subblock-content">
-                  <div class="currencies js-select-currencies">
+              <div class="text-center fadeIn animated" *ngIf="noSuchFilterTo">
+                <div class="alert alert-error">
+                  <p>Warning: <br>Nothing found!</p>
+                </div>
+              </div>
+
+              <div class="subblock-content">
+                <div class="currencies js-select-currencies">
 
 
-                   <div class="item-wrapper"  *ngFor="let toItem of exchangeToArray; let i = index">
-                     <div class="item" [ngClass]="{'is-selected': selectedExchangeTo === toItem}" *ngIf="i <= 5" (click)="selectExchangeTo(toItem)">
-                       <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
-                       <div class="item-value" [attr.value]="toItem.name">{{toItem.name}} <span class="ttu">{{toItem.currency}}</span></div>
-                     </div>
-                   </div>
-
-                    <div class="currencies-other js-view-other" *ngIf="exchangeToArray.length > 5">
-                      <div class="item" text="Select other payment" replaceText="Hidden other payment">
-                        <span>Select other payment </span>
-                        <img src="../../assets/img/svg/arrow-down.svg" alt="View other"></div>
+                  <div class="item-wrapper" *ngFor="let toItem of exchangeToArray; let i = index">
+                    <div class="item" [ngClass]="{'is-selected': selectedExchangeTo === toItem}" *ngIf="i <= 5"
+                         (click)="selectExchangeTo(toItem)">
+                      <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
+                      <div class="item-value" [attr.value]="toItem.name">{{toItem.name}} <span class="ttu">{{toItem.currency}}</span>
+                      </div>
                     </div>
+                  </div>
 
-                    <div class="currencies-hidden">
+                  <div class="currencies-other js-view-other" *ngIf="exchangeToArray.length > 5">
+                    <div class="item" text="Select other payment" replaceText="Hidden other payment">
+                      <span>Select other payment </span>
+                      <img src="../../assets/img/svg/arrow-down.svg" alt="View other"></div>
+                  </div>
 
-                      <div class="item-wrapper" *ngFor="let toItem of exchangeToArray; let i = index">
-                        <div class="item" [ngClass]="{'is-selected': selectedExchangeTo === toItem}" *ngIf="i > 5" (click)="selectExchangeTo(toItem)">
-                          <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
-                          <div class="item-value" [attr.value]="toItem.name">{{toItem.name}} <span class="ttu">{{toItem.currency}}</span></div>
+                  <div class="currencies-hidden">
+
+                    <div class="item-wrapper" *ngFor="let toItem of exchangeToArray; let i = index">
+                      <div class="item" [ngClass]="{'is-selected': selectedExchangeTo === toItem}" *ngIf="i > 5"
+                           (click)="selectExchangeTo(toItem)">
+                        <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
+                        <div class="item-value" [attr.value]="toItem.name">{{toItem.name}} <span class="ttu">{{toItem.currency}}</span>
                         </div>
                       </div>
-
                     </div>
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
+
       </div>
     </div>
   </div>
+</div>

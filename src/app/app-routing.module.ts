@@ -22,8 +22,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'home/:param', component: HomeComponent },
-  { path: 'referral/:referral-id', component: ReferralComponent },
-  { path: 'referral/:referral-id/:action', component: ReferralComponent },
+  // { path: 'referral/:referral-id', component: ReferralComponent },
+  // { path: 'referral/:referral-id/:action', component: ReferralComponent },
   { path: 'contacts', component: ContactsComponent },
   { path: 'news', component: NewsComponent },
   { path: 'faq', component: FaqComponent},
@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'discount', component: DiscountComponent},
   { path: 'user',
     children: [
-      { path: '', redirectTo: '/home', pathMatch: 'full'},
+      // { path: '', redirectTo: '/home', pathMatch: 'full'},
       { path: 'activation/:hash' ,  component: UserActivateComponent},
       { path: 'settings' ,  component: SettingsComponent, canActivate: [AuthGuard]}
     ]

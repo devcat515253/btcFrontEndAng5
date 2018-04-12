@@ -21,6 +21,7 @@ export class Step4Component implements OnInit {
 
 
   @Output() goBack = new EventEmitter<any>();
+  @Output() goNext = new EventEmitter<any>();
 
 
   constructor(private userService: UserService) {
@@ -68,20 +69,7 @@ export class Step4Component implements OnInit {
       return;
     }
     console.log("Форма пошла на отправку");
-
-    // this.loading = true;
-
-    // return this.userService.registration().subscribe( (data) => {
-    //   console.log(data);
-    //   console.log(data.status);
-    //   this.loading = false;
-    // },
-    //   error => {
-    //     console.log(error);
-    //     console.log(error.status);
-    //     this.loading = false;
-    //     return of();
-    // });
+    this.goNext.emit(this.step4Form);
   }
 
 

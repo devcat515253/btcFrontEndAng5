@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Exchange} from '../_entity/exchange';
 
 @Injectable()
 export class ExchangeService {
 
-  baseUrl  = 'http://api.smartex.info';
+  baseUrl = 'http://api.smartex.info';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getAuthHeader() {
     let localAuthToken = JSON.parse(localStorage.getItem('access_token'));
@@ -15,6 +16,7 @@ export class ExchangeService {
     let other_header = header.append('Authorization', `Bearer ${localAuthToken}`);
     return other_header;
   }
+
 // ?filters={"all":5}
   getExchangeListFrom() {
     return this.http.get<any>(`${this.baseUrl}/api/payment-systems/from`);
@@ -24,6 +26,23 @@ export class ExchangeService {
     return this.http.get<any>(`${this.baseUrl}/api/payment-systems/to`);
   }
 
+  exchangeSendSms(data: string) {
+    var phoneNumber = data,
+      phone = {
+        prefix: phoneNumber.substring(0, phoneNumber.length - 10),
+        number: phoneNumber.substring(phoneNumber.length - 10, phoneNumber.length)
+      };
+    return this.http.post<any>(`${this.baseUrl}/api/user/phone/verification/${ phone.prefix }/${ phone.number }`,  {}, {headers:  this.getAuthHeader()} );
+  }
+
+  exchangeSendCode(data: string, code: string) {
+    var phoneNumber = data,
+      phone = {
+        prefix: phoneNumber.substring(0, phoneNumber.length - 10),
+        number: phoneNumber.substring(phoneNumber.length - 10, phoneNumber.length)
+      };
+    return this.http.get<any>(`${this.baseUrl}/api/user/phone/verification/${ phone.prefix }/${ phone.number }/${ code }`, {headers: this.getAuthHeader()});
+  }
 
   getExchangeListFromFiltered(itemTo: Exchange) {
     console.log(`${this.baseUrl}/api/payment-systems/from?filters={"payment_system":${ itemTo.id },"currency":"${ itemTo.currency }"}`);
@@ -40,9 +59,6 @@ export class ExchangeService {
     console.log(input);
     return this.http.post<any>(`${this.baseUrl}/api/user/exchanges/can?amount=${input}&currency=${sendForm.currency}`, {}, {headers: this.getAuthHeader()});
   }
-
-
-
 
 
 }

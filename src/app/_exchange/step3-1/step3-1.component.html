@@ -4,38 +4,59 @@
   <p class="p_small"  [innerHTML]="'exchange.ProcessReg' | translate">
   </p>
 
-  <form action="#" class="form">
-    <label class="form-group">
+  <form action="#" class="form" [ngClass]="{'custom-loader disabled': loading}"  [formGroup]="userRegistrForm" (submit)="submit($event)"  #regForm="ngForm" novalidate>
+    <label class="form-group"
+           [ngClass]="{'has-error': ((userRegistrForm.controls['email'].hasError('required')
+            || userRegistrForm.controls['email'].hasError('email'))
+            && regForm.submitted) || userRegistrForm.controls['email'].hasError('notunique')}">
       <span class="form-title">Your e-mail (account login):</span>
-      <input type="text" class="form-control">
+      <input [(ngModel)]="userRegistr.email" formControlName="email" (blur)="checkEmailExist()"  name="email"  type="text" class="form-control">
+      <span *ngIf="userRegistrForm.controls['email'].hasError('required') && regForm.submitted" class="error-label">Required field</span>
+      <span *ngIf="userRegistrForm.controls['email'].hasError('email') && !userRegistrForm.controls['email'].hasError('required') && !userRegistrForm.controls['email'].hasError('notunique') && regForm.submitted"
+            class="error-label">Incorrect email</span>
+      <span *ngIf="userRegistrForm.controls['email'].hasError('notunique')" class="error-label">User with this email already exists!</span>
     </label>
 
-    <label class="form-group">
+    <label class="form-group"
+           [ngClass]="{'has-error': (userRegistrForm.controls['password'].hasError('required')
+           || userRegistrForm.controls['password'].hasError('minlength')
+           || userRegistrForm.controls['password'].hasError('maxlength'))
+           && regForm.submitted}">
       <span class="form-title">Password:</span>
-      <input type="password" class="form-control" required="">
-      <span class="error-label">Hesla se neshodují</span>
+      <input [(ngModel)]="userRegistr.password" formControlName="password"  name="password" type="password" class="form-control" required="">
+      <span *ngIf="userRegistrForm.controls['password'].hasError('required') && regForm.submitted" class="error-label">Required field</span>
+      <span *ngIf="(userRegistrForm.controls['password'].hasError('minlength') || userRegistrForm.controls['password'].hasError('maxlength')) && regForm.submitted" class="error-label">The password must be between 6 and 64 characters</span>
     </label>
 
-    <label class="form-group has-error">
+
+    <label class="form-group" [ngClass]="{'has-error': userRegistrForm.controls['confirmPassword'].hasError('matchOther') && regForm.submitted}">
       <span class="form-title">Password again:</span>
-      <input type="password" class="form-control" required="">
-      <span class="error-label">Hesla se neshodují</span>
+      <input [(ngModel)]="userRegistr.repassword" formControlName="confirmPassword" name="repassword"  type="password" class="form-control" required="">
+      <span *ngIf="userRegistrForm.controls['confirmPassword'].hasError('matchOther') && regForm.submitted" class="error-label">Required field</span>
     </label>
 
-    <div class="form-btn between-children">
-      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-
-      <label>
-        <a href="#" class="btn btn-accent rippler rippler-default">Register</a>
-        <input type="submit" hidden>
-      </label>
-    </div>
-
-    <label class="checkbox">
-      <input type="checkbox" class="checkbox-cotrol">
+    <label class="checkbox" [ngClass]="{'has-error': (userRegistrForm.controls['checkbox'].hasError('required')
+           && regForm.submitted )}">
+      <input [(ngModel)]="userRegistr.checkbox" formControlName="checkbox" type="checkbox" name="policeAgree" class="checkbox-control" required>
       <span class="checkbox-icons"></span>
       <span class="checkbox-title">I agree to the <a href="#" class="link">Terms and Conditions</a> and <a href="#" class="link">Privacy Policy</a></span>
     </label>
 
+    <div class="form-btn between-children">
+      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
+
+      <label>
+        <button class="btn btn-accent rippler rippler-default" [disabled]="userRegistrForm.invalid && regForm.submitted">Register</button>
+      </label>
+    </div>
   </form>
+
+  <div class="loadingSuccess" *ngIf="successRegistr">
+    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="-263.5 236.5 26 26">
+      <g class="svg-success">
+        <circle cx="-250.5" cy="249.5" r="12"/>
+        <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+      </g>
+    </svg>
+  </div>
 </div>

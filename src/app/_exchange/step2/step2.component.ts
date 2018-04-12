@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-step2',
@@ -8,6 +8,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class Step2Component implements OnInit {
 
   @Output() goBack = new EventEmitter<any>();
+  @Output() goAuth = new EventEmitter<any>();
+  @Output() goRegistration = new EventEmitter<any>();
 
   constructor() { }
 
@@ -18,5 +20,15 @@ export class Step2Component implements OnInit {
     event.preventDefault();
     this.goBack.emit();
   }
+
+  goToAuth(event) {
+    event.preventDefault();
+    this.goAuth.emit();
+  }
+  goToRegistr(event) {
+    event.preventDefault();
+    this.goRegistration.emit();
+  }
+
 
 }

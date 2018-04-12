@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {UserRegistr} from '../_entity/user-registr';
 import {UserAuth} from '../_entity/user-auth';
@@ -20,9 +20,11 @@ export class UserService {
   isLogged: boolean = false;
   token$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   discount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  user$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  user$: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(new UserModel);
   loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
+  newUser$: BehaviorSubject<UserRegistr> = new BehaviorSubject<UserRegistr>(new UserRegistr);
+  exchangeGoStart = new EventEmitter(); // подписка на ответ
 
   discount: number = 0;
 
@@ -34,18 +36,25 @@ export class UserService {
   }
 
 
+
   checkToken() {
     this.loading$.next(true);
     this.http.get<any>(`${this.baseUrl}/api/me`, {headers: this.getAuthHeader()}).subscribe(result => {
       console.log(result);
       this.userModel = result.data;
       this.user$.next(this.userModel);
-      this.loading$.next(false;
+      this.loading$.next(false);
     }, (error) => {
-      this.loading$.next(false;
+      this.loading$.next(false);
       console.log(error);
       console.log(error.status);
-      this.logout();
+
+      localStorage.removeItem('access_token');
+      this.getAuthToken();
+      this.discount = 0;
+      this.getUserDiscount();
+      this.userModel = new UserModel();
+      this.user$.next(this.userModel);
     });
   }
 
@@ -73,7 +82,9 @@ export class UserService {
 
   registration(newUser: UserRegistr) {
     // console.log(newUser);
+    this.newUser$.next(newUser);
     return this.http.post<any>(`${this.baseUrl}/api/user/registration`, newUser, {observe: 'response'});
+
   }
 
   checkEmail(emailUnique: EmailModel) {
@@ -81,6 +92,7 @@ export class UserService {
   }
 
   auth(authUser: UserAuth) {
+    console.log(authUser);
     return this.http.post<any>(`${this.baseUrl}/api/login`, authUser)
       .map(result => {
         if (result.data.access_token && result.data.expires_in) {
@@ -104,6 +116,7 @@ export class UserService {
     this.router.navigate(['/home']);
     this.userModel = new UserModel();
     this.user$.next(this.userModel);
+    this.exchangeGoStart.emit();
   }
 
   getUserDiscount() {
@@ -133,6 +146,7 @@ export class UserService {
     return this.http.get<any>(`${this.baseUrl}/api/user/login-logs`, {headers: this.getAuthHeader()});
   }
   getUserProfile() {
+    console.log(`${this.baseUrl}/api/me`, {headers: this.getAuthHeader()});
     return this.http.get<any>(`${this.baseUrl}/api/me`, {headers: this.getAuthHeader()});
   }
 
@@ -161,6 +175,7 @@ export class UserService {
   }
 
   logoutAllUser(idUser: number) {
+    location.reload();
     return this.http.put<any>(`${this.baseUrl}/api/user/login-logs/${idUser}/token-revoke`, '', {headers: this.getAuthHeader()});
   }
 

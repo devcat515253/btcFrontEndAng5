@@ -77,7 +77,6 @@ export class SettingsComponent implements OnInit {
       this.loadingMain = false;
       this.loadingKyc = false;
       this.loadingIdCard = false;
-      this.loadingKyc = false;
 
       this.IdCardFileName = this.userModel.verification_image;
       this.KycFileName = this.userModel.verification_kyc;
@@ -98,6 +97,8 @@ export class SettingsComponent implements OnInit {
     this.loadingMain = true;
     this.userService.updateUserProfile(this.userModel).subscribe((data) => {
       // console.log(data);
+      console.log(this.userModel);
+      this.userService.user$.next(this.userModel);
       this.loadingMain = false;
       this.successMain = true;
       setTimeout((() => this.successMain = false), 1000);
@@ -327,6 +328,7 @@ export class SettingsComponent implements OnInit {
 
   logoutAll(event, logsItem) {
     event.preventDefault();
+    event.target.remove();
 
     this.userService.logoutAllUser(logsItem.id).subscribe(result => {
       console.log(result);

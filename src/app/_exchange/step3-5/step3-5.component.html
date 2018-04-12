@@ -1,40 +1,78 @@
 <div class="step">
-  <div class="step-title"><h3 class="h3">2. ID verified!</h3></div>
+  <div class="step-title" *ngIf="!userModel.verification_kyc"><h3 class="h3">2. ID verified!</h3></div>
+  <div class="step-title" *ngIf="userModel.verification_kyc"><h3 class="h3">2. ID waiting moderation!</h3></div>
 
-  <p class="p_small">
+  <p class="p_small" *ngIf="!userModel.verification_kyc">
     Congratulations! Your identity card was <br>
     verified. Let’s <b>continue</b> with your <b>KYC questionnaire</b>.
   </p>
 
-  <form action="#" class="form">
+  <form class="form" (submit)="submitKycForm($event)" [formGroup]="KycForm" #ngKycForm="ngForm" novalidate [ngClass]="{'custom-loader disabled': loadingKyc}">
 
-    <ul class="tip-list">
+    <ul class="tip-list" *ngIf="!userModel.verification_kyc">
       <li><b>Download</b> KYC questionnaire</li>
       <li><b>Fill</b> in necessary information</li>
       <li><b>Upload</b> photo of filled KYC</li>
     </ul>
 
-    <a href="#" class="btn btn-accent rippler rippler-default js-file-upload full-width">Downlaod KYC</a>
+    <a href="#" class="btn btn-accent rippler rippler-default js-file-upload full-width" *ngIf="!userModel.verification_kyc">Downlaod KYC</a>
 
-    <br><hr class="full-width">
+    <div *ngIf="!userModel.verification_kyc">
+      <br>
+      <hr class="full-width" *ngIf="!userModel.verification_kyc">
+    </div>
 
-    <div class="form-group">
+    <div class="form-group" *ngIf="!userModel.verification_kyc">
       <span class="form-title">Upload image of your KYC:</span>
       <label class="upload-file">
-        <input type="file" class="form-control" required="">
-        <span class="upload-file__name">No file chosen</span>
+        <input type="file" (change)="fileChangeKyc($event)" formControlName="file" class="form-control" placeholder="Upload file" accept="image/*">
+        <span class="upload-file__name" [ngClass]="{rtl: KycFileName}">{{KycFileName}}</span>
         <span class="btn btn-accent rippler rippler-default js-file-upload">Choose file</span>
       </label>
-      <span class="error-label">Bad file format, supported - jpg and png</span>
+      <div class="has-error" *ngIf="KycForm.controls['file'].hasError('required') && ngKycForm.submitted">
+        <span class="error-label">This field is required!</span>
+      </div>
+
+      <div class="has-error" *ngIf="KycForm.controls['file'].hasError('badformat')">
+        <span class="error-label">Bad file format, supported - jpg and png</span>
+      </div>
+
+      <div class="has-error" *ngIf="KycForm.controls['file'].hasError('maxsize')">
+        <span class="error-label">Max size 120 KB</span>
+      </div>
+    </div>
+
+    <div class="checkbox checkbox-success" *ngIf="userModel.verification_kyc">
+      <input type="checkbox" class="checkbox-cotrol" checked>
+      <span class="checkbox-icons"></span>
+      <span class="checkbox-title">
+        <span class="verified">
+          <span class="verified-success">Document uploaded! Link to the <a [attr.href]="userModel.verification_kyc" target="_blank" class="link">document</a></span>
+        </span>
+      </span>
+    </div>
+    <div class="alert alert-info" *ngIf="userModel.verification_kyc">
+      <span>The <b>document was successfully uploaded</b> but has <b>not yet been verified</b> by the administration. Upon completion of the check, <b>we will send you an email</b> to the email address specified during registration.</span>
     </div>
 
     <div class="form-btn between-children">
-      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
+      <a class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
 
       <label>
-        <a href="#" class="btn btn-accent rippler rippler-default">Verify KYC</a>
-        <input type="submit" hidden>
+        <div class="loadingSuccess" *ngIf="successKycTip">
+          <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="-263.5 236.5 26 26">
+            <g class="svg-success">
+              <circle cx="-250.5" cy="249.5" r="12"/>
+              <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+            </g>
+          </svg>
+        </div>
+        <button class="btn btn-accentSecond rippler rippler-default" *ngIf="!userModel.verification_kyc" [disabled]="KycForm.invalid && ngKycForm.submitted">Verify KYC</button>
+        <button type="submit" class="btn btn-accentSecond rippler rippler-default" *ngIf="userModel.verification_kyc" (click)="goToNext($event)">Next</button>
       </label>
     </div>
   </form>
 </div>
+
+
+

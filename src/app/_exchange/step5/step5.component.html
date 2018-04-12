@@ -5,20 +5,20 @@
     <div class="switch">
       <div class="currencies currencies_small">
         <div class="item">
-          <div class="item-icons" style="background-image: url(../../assets/img/adv-cash.png);"></div>
-          <div class="item-value" value="Advanced Cash">Advanced Cash</div>
+          <div class="item-icons" [style.background-image]="'url(' + selectedFrom?.logo +')'"></div>
+          <div class="item-value">{{selectedFrom?.name}} <span class="ttu">{{selectedFrom?.currency}}</span></div>
         </div>
 
         <div class="switch-btn"></div>
 
         <div class="switch-stats">
-          <div class="tape">Fee: 1.00 %</div>
-          <div class="tape tape-accent">Discount: 0.00 %</div>
+          <div class="tape">Fee: {{selectedTo?.commission || '0.00'}} %</div>
+          <div class="tape tape-accent">Discount: {{userDiscount || '0.00'}} %</div>
         </div>
 
         <div class="item">
-          <div class="item-icons" style="background-image: url(../../assets/img/bitcoin.png);"></div>
-          <div class="item-value" value="Bitcoin">Bitcoin</div>
+          <div class="item-icons" [style.background-image]="'url(' + selectedTo?.logo +')'"></div>
+          <div class="item-value">{{selectedTo?.name}} <span class="ttu">{{selectedTo?.currency}}</span></div>
         </div>
       </div>
     </div>
@@ -31,22 +31,22 @@
       <tr>
         <td>
           <span>{{ 'process4.input-system' | translate }}</span>
-          <b>Adv Cash</b>
+          <b>{{selectedFrom?.name}}</b>
         </td>
         <td align="right">
           <span>{{ 'process4.amount' | translate }}</span>
-          <b><strong>26,960</strong> USD</b>
+          <b  class="tt-uppercase"><strong>{{inputFrom}}</strong> {{selectedFrom?.currency}}</b>
         </td>
       </tr>
 
       <tr>
         <td>
           <span>{{ 'process4.output-system' | translate }}</span>
-          <b>Bitcoin</b>
+          <b>{{selectedTo?.name}}</b>
         </td>
         <td align="right">
           <span>{{ 'process4.amount' | translate }}</span>
-          <b><strong>0.08040</strong>BTC</b>
+          <b class="tt-uppercase"><strong>{{inputTo}}</strong> {{selectedTo?.currency}}</b>
         </td>
       </tr>
     </table>
@@ -56,28 +56,28 @@
     <div class="exchange-info__descr">
       <div class="item">
         <span>Your wallet ID:</span>
-        <b>1BvBMSEYstWetqTFn5Au4</b>
+        <b>{{dataWallet.id}}</b>
       </div>
 
-      <div class="item">
-        <span>{{ 'process4.first-name' | translate }}</span>
-        <b>John Doe</b>
-      </div>
+      <!--<div class="item">-->
+        <!--<span>{{ 'process4.first-name' | translate }}</span>-->
+        <!--<b>John Doe</b>-->
+      <!--</div>-->
 
       <div class="item">
         <span>Contact e-mail:</span>
-        <b>john.doe@gmail.com</b>
+        <b>{{dataWallet.email}}</b>
       </div>
     </div>
 
   </div>
 
   <div class="between-children">
-    <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-    <a href="#" class="btn btn-accent rippler rippler-default">Pay</a>
+    <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
+    <a href="#" class="btn btn-accent rippler rippler-default" (click)="goToPay($event)">Pay</a>
   </div>
 
   <div class="text-center tip-link">
-    <a href="#" class="link tt-uppercase">Cancel</a>
+    <a href="#" class="link tt-uppercase" (click)="goToStart($event)">Cancel</a>
   </div>
 </div>

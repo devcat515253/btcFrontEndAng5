@@ -6,25 +6,34 @@
     link or copy the activation code and <b>continue</b> the process.
   </p>
 
-  <form action="#" class="form">
-    <label class="form-group has-error">
-      <span class="form-title">Activation code:</span>
-      <input type="text" class="form-control" value="c5r6a9">
-      <span class="error-label">Bad activation code, try it again</span>
-    </label>
+  <form action="#" class="form" [ngClass]="{'custom-loader disabled': loading}">
+    <!--<label class="form-group has-error">-->
+      <!--<span class="form-title">Activation code:</span>-->
+      <!--<input type="text" class="form-control" placeholder="*****">-->
+      <!--<span class="error-label">Bad activation code, try it again</span>-->
+    <!--</label>-->
 
     <div class="text-center tip-link">
       <a href="#" class="link tt-uppercase">Send again</a>
     </div>
 
     <div class="form-btn between-children small-indent">
-      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
+      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
 
       <label>
-        <a href="#" class="btn btn-accent rippler rippler-default">Verify e-mail</a>
+        <a href="#" class="btn btn-accent rippler rippler-default" (click)="goToNext($event)">Verify e-mail</a>
         <input type="submit" hidden>
       </label>
     </div>
 
   </form>
+
+  <div class="loadingSuccess" *ngIf="successRegistr">
+    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="-263.5 236.5 26 26">
+      <g class="svg-success">
+        <circle cx="-250.5" cy="249.5" r="12"/>
+        <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+      </g>
+    </svg>
+  </div>
 </div>

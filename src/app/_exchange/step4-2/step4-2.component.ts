@@ -14,8 +14,8 @@ export class Step42Component implements OnInit {
 
   user: UserModel = new UserModel();
   controlsName: string = '';
-  controlsBank: number = null;
-  controlsCode: number = null;
+  controlsBank: string = '';
+  controlsBankCode: number = null;
   checkboxForm: boolean = false;
   step4_2Form: FormGroup;
   loading: boolean = false;
@@ -47,7 +47,7 @@ export class Step42Component implements OnInit {
         Validators.required,
         Validators.maxLength(10),
       ]),
-      bank_code: new FormControl(this.controlsCode, [
+      bank_code: new FormControl(this.controlsBankCode, [
         Validators.required,
         Validators.maxLength(4),
       ]),

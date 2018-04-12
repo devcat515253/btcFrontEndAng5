@@ -17,6 +17,7 @@ import 'rxjs/add/observable/forkJoin';
 import {Observable} from 'rxjs/Observable';
 import {currencyArray} from '../_entity/currency';
 import {stepsArray} from '../_entity/stepsArray';
+import {UserModel} from '../_entity/user-model';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
   stepsArray = stepsArray;
   // END STEPS
 
+  userModel: UserModel = new UserModel();
 
   param: string = '';
   loggedUser: boolean = false;
@@ -63,6 +65,11 @@ export class HomeComponent implements OnInit {
   selectedToNotChoise: boolean = false;
 
 
+  // DATA
+  dataFormWallet: any;
+  // needVerification: boolean = false;
+
+
   constructor(public dialog: MatDialog,
               private cdr: ChangeDetectorRef,
               private blurService: EffectBlurService,
@@ -79,10 +86,22 @@ export class HomeComponent implements OnInit {
     this.getExchangeList();
     this.getUserDiscount();
     console.log(this.stepsArray);
+    this.checkGoToStart();
+    this.getUser();
   }
 
   getStatusLoading(event) {
     this.loading = event;
+  }
+
+  getUser() {
+    this.userService.user$.subscribe( (result) => {
+      console.log(result);
+      this.userModel = result;
+      this.cdr.detectChanges();
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   getAuth() {
@@ -106,6 +125,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  checkGoToStart() {
+    this.userService.exchangeGoStart.subscribe( () => {
+      this.goToStart();
+    });
+  }
+
 
   // =====================================================
   // ПЕРВАЯ ПРОВЕРКА ОБМЕНА В ЗАВИСИМОСТИ ОТ СУММЫ ВЫВОДА
@@ -121,26 +146,96 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // Стартовая форма обмена
   goToStart() {
     this.checkStepShow('1');
   }
 
-  checkExchangeSubmitResult(event) {
+  // Форма входа
+  goToAuth() {
+    this.checkStepShow('3');
+  }
 
+  // Форма регистрации
+  goToRegistr() {
+    this.checkStepShow('3-1');
+  }
+
+  // Форма выбора РЕГИСТРАЦИЯ / ВХОД
+  goToForm2() {
+    this.checkStepShow('2');
+  }
+
+  // Fast EMAIL VERIFICATION
+  goToForm3_2() {
+    this.checkStepShow('3-2');
+  }
+
+  // Fast PHONE VERIFICATION
+  goToPhone() {
+    this.checkStepShow('3-3');
+    // this.checkStepShow('3-4');
+  }
+
+  // Fast ID CARD VERIFICATION
+  goToId() {
+    this.checkStepShow('3-4');
+  }
+
+
+  // Fast KYC VERIFICATION
+  goToKyc() {
+    this.checkStepShow('3-5');
+  }
+
+  // VERIFY ACCOUNT SUCCESSS
+  goToVerifySuccess() {
+    this.checkStepShow('3-6');
+  }
+
+  // FORM WALLET
+  goToForm4() {
+    this.checkStepShow('4');
+  }
+
+
+  // PRINT WALLET INFO
+  goToForm5(event) {
+    console.log(event)
+    this.dataFormWallet = event.value;
+    this.checkStepShow('5');
+  }
+
+
+
+
+
+
+  // ПРОВЕРКА на дальнейшие шаги
+  checkExchangeSubmitResult(event) {
 
     let statusCode = 0;
     try {
       statusCode = event.data.code;
-    } catch (error) {
+    } catch (error) {}
+    console.log(statusCode);
 
-    }
-
+    // > 25 ВЕРИФИКАЦИЯ
     if (statusCode === 1) {
-      this.checkStepShow('3-5');
+      let phone = this.userModel.verification_phone_ok;
+      let id = this.userModel.verification_ok;
+      let kyc = this.userModel.verification_kyc_ok;
+
+      if  (!phone) {this.checkStepShow('3-3'); return; }
+      if  (!id) { this.checkStepShow('3-4'); return; }
+      if  (!kyc) { this.checkStepShow('3-5'); return; }
       return;
     }
 
+    // от 10 > 25
     if (statusCode === 2) {
+      console.log(this.inputExchangeFrom);
+      // this.needVerification = true;
       this.checkStepShow('2');
       return;
     }
@@ -149,12 +244,11 @@ export class HomeComponent implements OnInit {
       this.checkStepShow('4-1');
       return;
     }
-
     if (this.selectedExchangeTo.name === 'Bank' && this.selectedExchangeTo.currency === 'czk') {
       this.checkStepShow('4-2');
       return;
     }
-
+    // до 10
     this.checkStepShow('4');
   }
 
@@ -284,6 +378,7 @@ export class HomeComponent implements OnInit {
   }
 
   selectExchangeFrom(itemFrom) {
+    this.checkStepShow('1');
     this.selectedExchangeFrom = itemFrom;
     this.getExchangeListToFiltered();
     this.selectedFromNotChoise = false;
@@ -292,6 +387,7 @@ export class HomeComponent implements OnInit {
   }
 
   selectExchangeTo(itemTo) {
+    this.checkStepShow('1');
     this.selectedExchangeTo = itemTo;
     this.getExchangeListFromFiltered();
     this.selectedToNotChoise = false;
@@ -300,6 +396,7 @@ export class HomeComponent implements OnInit {
   }
 
   inputExchangeChanged(event) {
+    this.goToStart();
     if (!this.selectedExchangeFrom) {
       this.selectedFromNotChoise = true;
       return;

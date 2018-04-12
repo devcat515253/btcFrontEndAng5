@@ -5,27 +5,57 @@
     <b>Fill</b> your <b>login information</b> into the <br>form bellow.
   </p>
 
-  <form action="#" class="form">
-    <label class="form-group has-error">
-      <span class="form-title">Your e-mail:</span>
-      <input type="text" class="form-control">
-      <span class="error-label">{{ 'errors.Email' | translate }}</span>
+  <div class="text-center js-deleteParent" *ngIf="userNotFound">
+    <div class="alert alert-error">
+      <p>Error: Email or password is incorrect</p>
+      <a href="#" class="btn-close js-deleteBlock">x</a>
+    </div>
+  </div>
+
+  <form action="#" class="form" [ngClass]="{'custom-loader disabled': loading}"  [formGroup]="userAuthForm" (submit)="submit($event)"  #authForm="ngForm" novalidate>
+    <label class="form-group"
+           [ngClass]="{'has-error': (userAuthForm.controls['email'].hasError('email')
+           || userAuthForm.controls['email'].hasError('maxlength'))
+           && authForm.submitted}">
+      <span class="form-title">Your e-mail (account login):</span>
+      <input [(ngModel)]="userAuth.email" formControlName="email" name="email" type="text" class="form-control">
+      <span
+        *ngIf="(userAuthForm.controls['email'].hasError('email')
+        || userAuthForm.controls['email'].hasError('maxlength'))
+        && authForm.submitted" class="error-label">{{ 'errors.Email' | translate }}</span>
     </label>
 
-    <label class="form-group has-error">
+    <label class="form-group" [ngClass]="{'has-error': (userAuthForm.controls['password'].hasError('required')
+           || userAuthForm.controls['password'].hasError('maxlength'))
+           && authForm.submitted}">
       <span class="form-title">Password:</span>
-      <input type="password" class="form-control">
-      <span class="error-label">{{ 'errors.Password' | translate }}</span>
+      <input [(ngModel)]="userAuth.password" formControlName="password" name="password" type="password" class="form-control"
+             required="">
+      <span
+        *ngIf="(userAuthForm.controls['password'].hasError('required')
+        || userAuthForm.controls['password'].hasError('maxlength'))
+        && authForm.submitted" class="error-label">{{ 'errors.Password' | translate }}</span>
     </label>
+
 
     <div class="form-btn between-children">
-      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
+      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
 
       <label>
-        <a href="#" class="btn btn-accent rippler rippler-default">Login</a>
-        <input type="submit" hidden>
+        <button class="btn btn-accent rippler rippler-default" [disabled]="userAuthForm.invalid && authForm.submitted">Login</button>
       </label>
     </div>
-
   </form>
+
+
+  <div class="loadingSuccess" *ngIf="successAuth">
+    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="-263.5 236.5 26 26">
+      <g class="svg-success">
+        <circle cx="-250.5" cy="249.5" r="12"/>
+        <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+      </g>
+    </svg>
+  </div>
 </div>
+
+

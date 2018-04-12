@@ -1,4 +1,4 @@
-<div class="step">
+<div class="step" xmlns="http://www.w3.org/1999/html">
   <div class="step-title"><h3 class="h3">2. E-mail verified!</h3></div>
 
   <p class="p_small">
@@ -7,37 +7,68 @@
     process and <b>verify</b> your <b>phone number</b>.
   </p>
 
-  <form action="#" class="form">
+  <form class="form" [ngClass]="{'custom-loader disabled': loading}" (submit)="submit($event)" [formGroup]="phoneForm"  #formPhone="ngForm" novalidate>
 
-    <div class="form-group">
+    <div class="form-group" [ngClass]="{'has-error':
+           (phoneForm.controls['phone'].hasError('required')
+           || phoneForm.controls['phone'].hasError('invalid')
+           || phoneForm.controls['phone'].hasError('minlength'))
+           && formPhone.submitted}">
       <span class="form-title">Your phone number:</span>
       <label class="phone-send">
-        <input type="text" class="form-control" value="+380993056563" required="">
-        <a href="#" class="btn btn-accent rippler rippler-default js-phone-send">Send code</a>
+        <int-phone-prefix class='country-prefix'[(ngModel)]="fieldPhone" formControlName="phone" [locale]="'en'"></int-phone-prefix>
+        <!--<input type="text" [(ngModel)]="fieldPhone" formControlName="phone" mask="(000)-000-00-00" class="form-control" placeholder="(000)-000-00-00" required="">-->
+        <button class="btn btn-accent rippler rippler-default" [disabled]="formPhone.invalid && formPhone.submitted || btnDisabled">Send code</button>
       </label>
-      <span class="error-label">Not valid phone number format</span>
+      <span *ngIf="phoneForm.controls['phone'].hasError('required') && formPhone.submitted"
+            class="error-label">Required field</span>
+      <span *ngIf="phoneForm.controls['phone'].hasError('invalid') && formPhone.submitted"
+            class="error-label">Not valid phone number format</span>
+      <span *ngIf="phoneForm.controls['phone'].hasError('minlength') && formPhone.submitted"
+            class="error-label">The minimum number of characters 10</span>
     </div>
-
     <div class="text-center tip-link">
-      <a href="#" class="link tt-uppercase">Send Again</a>
+      <a href="#" class="link tt-uppercase" [ngClass]="{'is-disabled': sendAgainDisabled}" (click)="submit($event)">Send Again</a>
+      <div id="timer"></div>
     </div>
+  </form>
 
-    <hr class="full-width">
 
-    <label class="form-group">
+  <hr class="full-width">
+  <form class="form" [ngClass]="{'custom-loader disabled': loadingCode}" (submit)="goToNext($event)" [formGroup]="codeForm"  #formCode="ngForm" novalidate>
+
+
+  <label class="form-group" [ngClass]="{'has-error':
+           (codeForm.controls['code'].hasError('required')
+           || codeForm.controls['code'].hasError('maxlength')
+           || codeForm.controls['code'].hasError('invalid'))
+           && formCode.submitted}">
       <span class="form-title">Activation code:</span>
-      <input type="text" class="form-control" required="" value="l7d8w9">
-      <span class="error-label">Hesla se neshodují</span>
+      <input type="text" [(ngModel)]="fieldCode" formControlName="code" class="form-control" required="" placeholder="l7d8w9">
+    <span *ngIf="codeForm.controls['code'].hasError('required') && formCode.submitted"
+          class="error-label">Required field</span>
+    <span *ngIf="codeForm.controls['code'].hasError('maxlength') && formCode.submitted"
+          class="error-label">The maximum number of characters 64</span>
+    <span *ngIf="codeForm.controls['code'].hasError('invalid') && formCode.submitted"
+          class="error-label">The code is invalid</span>
     </label>
 
     <div class="form-btn between-children">
-      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default">Back</a>
-
+      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
       <label>
-        <a href="#" class="btn btn-accent rippler rippler-default is-disabled">Verify e-mail</a>
-        <input type="submit" hidden>
+        <button class="btn btn-accent rippler rippler-default" [disabled]="codeForm.controls['code'].hasError('required') || codeForm.controls['code'].hasError('maxlength')" >Verify e-mail</button>
       </label>
     </div>
-
   </form>
+
+
+
+  <div class="loadingSuccess" *ngIf="successSendSms">
+    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="-263.5 236.5 26 26">
+      <g class="svg-success">
+        <circle cx="-250.5" cy="249.5" r="12"/>
+        <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+      </g>
+    </svg>
+  </div>
 </div>

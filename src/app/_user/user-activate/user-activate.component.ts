@@ -27,6 +27,7 @@ export class UserActivateComponent implements OnInit {
       this.userService.activateUser(this.hashActivate).subscribe(
         (data) => {
           console.log(data);
+          console.log('Пользователь активирован!');
           this.userActivateOkay = true;
           this.loading = false;
         },

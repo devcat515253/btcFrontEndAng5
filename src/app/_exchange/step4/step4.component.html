@@ -28,7 +28,7 @@
       <input type="text" [(ngModel)]="user.email" formControlName="email" class="form-control" placeholder="example@gmail.com">
       <span *ngIf="step4Form.controls['email'].hasError('required') && form4.submitted"
             class="error-label">Required field</span>
-      <span *ngIf="step4Form.controls['email'].hasError('email') && !step4Form.controls['email'].hasError('required') && form4.submitted"
+      <span *ngIf="step4Form.controls['email'].hasError('email') && !step4Form.controls['email'].hasError('required') && !step4Form.controls['email'].hasError('minlength') && !step4Form.controls['email'].hasError('maxlength') && form4.submitted"
             class="error-label">Incorrect email</span>
       <span *ngIf="(step4Form.controls['email'].hasError('minlength') || step4Form.controls['email'].hasError('maxlength')) && form4.submitted" class="error-label">The field  must be between 5 and 64 characters</span>
 

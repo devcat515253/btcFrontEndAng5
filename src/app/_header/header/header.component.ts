@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {DialogRegistrationComponent} from '../../_dialog/dialog-registration/dialog-registration.component';
 import {MatDialog} from '@angular/material';
 import {EffectBlurService} from '../../_services/effect-blur.service';
@@ -18,7 +18,8 @@ export class HeaderComponent implements OnInit {
 
   loggedUser: boolean = false;
 
-  constructor(public dialog: MatDialog,
+  constructor(private cdr: ChangeDetectorRef,
+              public dialog: MatDialog,
               private blurService: EffectBlurService,
               private translate: TranslateService,
               private userService: UserService) {
@@ -30,6 +31,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.userService.token$.subscribe(logged => {
       this.loggedUser = logged;
+      this.cdr.detectChanges();
     });
   }
 
@@ -43,9 +45,8 @@ export class HeaderComponent implements OnInit {
   btnLogout(event) {
     event.preventDefault();
     this.userService.logout();
+    this.cdr.detectChanges();
   }
-
-
 
 
 

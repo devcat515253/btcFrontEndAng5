@@ -36,7 +36,8 @@ export class Step1Component implements OnInit {
     this.getUserDiscount();
   }
 
-  handleCorrectCaptcha() {
+  handleCorrectCaptcha(event) {
+    event.preventDefault();
     let token = this.captcha.getResponse();
     console.log(token);
   }

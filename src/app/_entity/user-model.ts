@@ -16,11 +16,13 @@ export class UserModel {
   name: string;
   online: string;
   refer: string;
+  phone: string;
   total_exchange: string;
   verification_image: string;
   verification_kyc: string;
   verification_ok: boolean;
   verification_kyc_ok: boolean;
+  verification_phone_ok: boolean;
 
   constructor() {
     this.activation = false;
@@ -39,11 +41,13 @@ export class UserModel {
     this.name = '';
     this.online = '';
     this.refer = '';
+    this.phone = '';
     this.total_exchange = '';
     this.verification_image = '';
     this.verification_kyc = '';
     this.verification_ok = false;
     this.verification_kyc_ok = false;
+    this.verification_phone_ok = false;
   }
 }
 
