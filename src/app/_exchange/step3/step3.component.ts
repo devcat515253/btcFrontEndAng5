@@ -65,38 +65,26 @@ export class Step3Component implements OnInit {
 
     this.loading = true;
 
-    this.userService.auth(this.userAuth).subscribe(
-      (data) => {
-        this.userService.getUserProfile().subscribe((result) => {
-          this.userModel = result.data;
-          this.userService.user$.next(this.userModel);
 
-          this.exchangeService.getLimit(this.selectedFrom, this.inputFrom).subscribe((limitResult) => {
-            this.userNotFound = false;
-            this.loading = false;
-            this.successAuth = true;
-            // console.log(result);
-            setTimeout((() => this.successAuth = false), 1000);
-            setTimeout((() =>  this.exchangeSubmitResult.emit(limitResult)), 1000);
-            this.cdr.detectChanges();
-          }, (error) => {
-            console.log(error);
-            this.successAuth = false;
-            this.loading = false;
-          });
-
-        }, (error) => {
-          console.log(error);
-          this.loading = false;
-        });
-      },
-      error => {
-        console.log(error);
-        this.userNotFound = true;
-        this.loading = false;
-        this.successAuth = false;
-      }
-    );
+    this.userService.auth(this.userAuth).flatMap((authResult) => {
+      return this.userService.getUserProfile();
+    }).flatMap((userResult) => {
+      this.userModel = userResult.data;
+      this.userService.user$.next(this.userModel);
+      return this.exchangeService.getLimit(this.selectedFrom, this.inputFrom);
+    }).subscribe((limitResult) => {
+      this.userNotFound = false;
+      this.loading = false;
+      this.successAuth = true;
+      setTimeout((() => this.successAuth = false), 1000);
+      setTimeout((() => this.exchangeSubmitResult.emit(limitResult)), 1000);
+      this.cdr.detectChanges();
+    }, (error) => {
+      console.log(error);
+      this.userNotFound = true;
+      this.successAuth = false;
+      this.loading = false;
+    });
   }
 
   goToBack(event) {

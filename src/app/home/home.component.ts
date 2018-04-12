@@ -79,6 +79,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.goToStart();
     this.getAuth();
     this.readRouteHash();
     this.exchangeFromValidator();
