@@ -34,7 +34,6 @@ export class Step5Component implements OnInit {
   ngOnInit() {
     this.getUserDiscount();
 
-    console.log('==============================================')
     console.log(this.Wallet);
     console.log(this.BankEur);
     console.log(this.BankCzk);
