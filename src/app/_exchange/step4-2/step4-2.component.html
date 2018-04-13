@@ -2,7 +2,7 @@
   <div class="step-title"><h3 class="h3">3. Personal info and wallet</h3></div>
 
   <div class="text-center tip-link">
-    <a href="#" class="link tt-uppercase">Fill from last</a>
+    <a href="#" class="link tt-uppercase" (click)="fillLastData($event)">Fill from last</a>
   </div>
 
   <form action="#" class="form" [ngClass]="{'custom-loader disabled': loading}" (submit)="submit($event)" [formGroup]="step4_2Form"  #form4_2="ngForm" novalidate>
@@ -12,7 +12,7 @@
            || step4_2Form.controls['name'].hasError('maxlength'))
            && form4_2.submitted}">
       <span class="form-title">{{ 'exchange.PersonalInfo.Name' | translate }}:</span>
-      <input type="text" [(ngModel)]="controlsName" formControlName="name" class="form-control" placeholder="john.doe@gmail.com">
+      <input type="text" [(ngModel)]="formModel.controlsName" formControlName="name" class="form-control" placeholder="john.doe@gmail.com">
       <span *ngIf="step4_2Form.controls['name'].hasError('required') && form4_2.submitted"
             class="error-label">Required field</span>
       <span *ngIf="step4_2Form.controls['name'].hasError('maxlength') && form4_2.submitted"
@@ -25,7 +25,7 @@
            || step4_2Form.controls['bank'].hasError('maxlength'))
            && form4_2.submitted}">
         <span class="form-title">{{ 'exchange.PersonalInfo.BankAccount' | translate }}:</span>
-        <input type="text" [(ngModel)]="controlsBank" formControlName="bank" class="form-control" placeholder="1112003761">
+        <input type="text" [(ngModel)]="formModel.controlsBank" formControlName="bank" class="form-control" placeholder="1112003761">
         <span *ngIf="step4_2Form.controls['bank'].hasError('required') && form4_2.submitted"
               class="error-label">Required field</span>
         <span *ngIf="step4_2Form.controls['bank'].hasError('maxlength') && form4_2.submitted"
@@ -37,7 +37,7 @@
            || step4_2Form.controls['bank_code'].hasError('maxlength'))
            && form4_2.submitted}">
         <span class="form-title">{{ 'exchange.PersonalInfo.BankCode' | translate }}:</span>
-        <input type="text" [(ngModel)]="controlsBankCode" formControlName="bank_code" class="form-control" placeholder="0600">
+        <input type="text" [(ngModel)]="formModel.controlsBankCode" formControlName="bank_code" class="form-control" placeholder="0600">
         <span *ngIf="step4_2Form.controls['bank_code'].hasError('required') && form4_2.submitted"
               class="error-label">Required field</span>
         <span *ngIf="step4_2Form.controls['bank_code'].hasError('maxlength') && form4_2.submitted" class="error-label">The maximum number of characters 4</span>
@@ -61,7 +61,7 @@
 
     <label class="checkbox" [ngClass]="{'has-error': (step4_2Form.controls['checkbox'].hasError('required')
            && form4_2.submitted )}">
-      <input [(ngModel)]="checkboxForm" formControlName="checkbox" type="checkbox" name="policeAgree" class="checkbox-control" required>
+      <input [(ngModel)]="formModel.checkboxForm" formControlName="checkbox" type="checkbox" name="policeAgree" class="checkbox-control" required>
       <span class="checkbox-icons"></span>
       <span class="checkbox-title">I agree to the <a href="#" class="link">Terms and Conditions</a> and <a href="#" class="link">Privacy Policy</a></span>
     </label>

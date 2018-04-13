@@ -28,33 +28,44 @@
 
     <div class="exchange-info__descr">
       <div class="item">
-        <span>{{ 'process5.bank-holder' | translate }}</span>
-        <b>Společnost, s.r.o.</b>
+        <span>{{ 'exchange.PersonalInfo.Name' | translate }}</span>
+        <b>{{dataBank.name}}</b>
       </div>
 
       <div class="item">
-        <span>{{ 'process5.bank-holder-address' | translate }}</span>
-        <b>Příčná ulice 12/845 <br>100 00 Bradavice 16</b>
+        <span>{{ 'exchange.PersonalInfo.Address' | translate }}</span>
+        <b>{{dataBank.address}}</b>
       </div>
+
+      <div class="item">
+        <span>{{ 'exchange.PersonalInfo.Country' | translate }}</span>
+        <b>{{dataBank.country}}</b>
+      </div>
+
 
       <div class="item">
         <span>IBAN:</span>
-        <b>CZ6508000000192000145399</b>
+        <b>{{dataBank.iban}}</b>
       </div>
 
       <div class="item">
         <span>BIC/SWIFT:</span>
-        <b>CEKOCZPP</b>
+        <b>{{dataBank.bic_swift}}</b>
       </div>
 
       <div class="item">
-        <span>{{ 'process5.bank-name' | translate }}</span>
-        <b>Moneta Money Bank, a.s.</b>
+        <span>{{ 'exchange.PersonalInfo.BankName' | translate }}</span>
+        <b>{{dataBank.bank_name}}</b>
       </div>
 
       <div class="item">
-        <span>{{ 'process5.bank-address' | translate }}</span>
-        <b>Hitlerstrasse 1/422 <br>100 00 Deutchland 4</b>
+        <span>{{ 'exchange.PersonalInfo.BankAddress' | translate }}</span>
+        <b>{{dataBank.bank_address}}</b>
+      </div>
+
+      <div class="item">
+        <span>{{ 'exchange.PersonalInfo.Country' | translate }}</span>
+        <b>{{dataBank.bank_country}}</b>
       </div>
     </div>
   </div>

@@ -35,7 +35,7 @@
         </td>
         <td align="right">
           <span>{{ 'process4.amount' | translate }}</span>
-          <b  class="tt-uppercase"><strong>{{inputFrom}}</strong> {{selectedFrom?.currency}}</b>
+          <b class="tt-uppercase"><strong>{{inputFrom}}</strong> {{selectedFrom?.currency}}</b>
         </td>
       </tr>
 
@@ -53,24 +53,90 @@
 
     <div class="line-sides">{{ 'process4.personal-information' | translate }}</div>
 
-    <div class="exchange-info__descr">
+
+    <div class="exchange-info__descr" *ngIf="Wallet?.controlsId !== ''">
       <div class="item">
         <span>Your wallet ID:</span>
-        <b>{{dataWallet.id}}</b>
+        <b>{{Wallet.controlsId}}</b>
       </div>
-
-      <!--<div class="item">-->
-        <!--<span>{{ 'process4.first-name' | translate }}</span>-->
-        <!--<b>John Doe</b>-->
-      <!--</div>-->
 
       <div class="item">
         <span>Contact e-mail:</span>
-        <b>{{dataWallet.email}}</b>
+        <b>{{Wallet.controlsEmail}}</b>
       </div>
     </div>
 
+    <table class="exchange-info__direction" *ngIf="BankCzk?.controlsBank !== ''">
+      <tr>
+        <td>
+          <span>{{ 'exchange.PersonalInfo.Name' | translate }}</span>
+          <b><strong>{{BankCzk?.controlsEmail}}</strong></b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span>{{ 'exchange.PersonalInfo.BankAccount' | translate }}</span>
+          <b><strong>{{BankCzk?.controlsBank}}</strong></b>
+        </td>
+        <td>
+          <span>{{ 'exchange.PersonalInfo.BankCode' | translate }}</span>
+          <b><strong>{{BankCzk?.controlsBankCode}}</strong></b>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <span>Contact e-mail:</span>
+          <b><strong>{{BankCzk?.controlsEmail}}</strong></b>
+        </td>
+      </tr>
+    </table>
+
+    <div class="exchange-info__descr" *ngIf="BankEur?.address !== ''">
+      <div class="item">
+        <span>{{ 'exchange.PersonalInfo.Name' | translate }}</span>
+        <b>{{BankEur.name}}</b>
+      </div>
+
+      <div class="item">
+        <span>{{ 'exchange.PersonalInfo.Address' | translate }}</span>
+        <b>{{BankEur.address}}</b>
+      </div>
+
+      <div class="item">
+        <span>{{ 'exchange.PersonalInfo.Country' | translate }}</span>
+        <b>{{BankEur.country}}</b>
+      </div>
+
+
+      <div class="item">
+        <span>IBAN:</span>
+        <b>{{BankEur.iban}}</b>
+      </div>
+
+      <div class="item">
+        <span>BIC/SWIFT:</span>
+        <b>{{BankEur.bic_swift}}</b>
+      </div>
+
+      <div class="item">
+        <span>{{ 'exchange.PersonalInfo.BankName' | translate }}</span>
+        <b>{{BankEur.bank_name}}</b>
+      </div>
+
+      <div class="item">
+        <span>{{ 'exchange.PersonalInfo.BankAddress' | translate }}</span>
+        <b>{{BankEur.bank_address}}</b>
+      </div>
+
+      <div class="item">
+        <span>{{ 'exchange.PersonalInfo.Country' | translate }}</span>
+        <b>{{BankEur.bank_country}}</b>
+      </div>
+    </div>
   </div>
+
+
 
   <div class="between-children">
     <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>

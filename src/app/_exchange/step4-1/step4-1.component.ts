@@ -1,8 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserModel} from '../../_entity/user-model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../_services/user.service';
-import {ExchangeStep4and2} from '../../_entity/steps-models';
+import {ExchangeStep4and1} from '../../_entity/steps-models';
 
 @Component({
   selector: 'app-step4-1',
@@ -12,15 +12,17 @@ import {ExchangeStep4and2} from '../../_entity/steps-models';
 export class Step41Component implements OnInit {
 
   @Output() goBack = new EventEmitter<any>();
+  @Output() goNext = new EventEmitter<any>();
 
   user: UserModel = new UserModel();
-  formModel: ExchangeStep4and2 = new ExchangeStep4and2();
+  formModel: ExchangeStep4and1 = new ExchangeStep4and1();
   step4_1Form: FormGroup;
   loading: boolean = false;
 
 
 
-  constructor(private userService: UserService) {
+  constructor(private cdr: ChangeDetectorRef,
+              private userService: UserService) {
     this.initValidator();
   }
 
@@ -92,22 +94,10 @@ export class Step41Component implements OnInit {
       return;
     }
     console.log("Форма пошла на отправку");
-    console.log(this.step4_1Form);
-    localStorage.setItem('FS_Step4_1', JSON.stringify(this.step4_1Form.value));
+    localStorage.setItem('FS_Step4_1', JSON.stringify(this.formModel));
 
-    // this.loading = true;
 
-    // return this.userService.registration().subscribe( (data) => {
-    //   console.log(data);
-    //   console.log(data.status);
-    //   this.loading = false;
-    // },
-    //   error => {
-    //     console.log(error);
-    //     console.log(error.status);
-    //     this.loading = false;
-    //     return of();
-    // });
+    this.goNext.emit(this.formModel);
   }
 
   fillLastData(event) {
@@ -115,6 +105,7 @@ export class Step41Component implements OnInit {
 
     this.formModel = JSON.parse(localStorage.getItem('FS_Step4_1')) || '';
     this.user.email = this.formModel.email;
+    this.cdr.detectChanges();
     console.log(this.formModel);
   }
 

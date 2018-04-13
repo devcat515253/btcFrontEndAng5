@@ -1,4 +1,15 @@
-export class ExchangeStep4and2 {
+export class ExchangeStep4 {
+  controlsId: string;
+  controlsEmail: string;
+  checkboxForm: boolean;
+  constructor() {
+    this.controlsId = '';
+    this.controlsEmail = '';
+    this.checkboxForm = false;
+  }
+}
+
+export class ExchangeStep4and1 {
   name: string;
   address: string;
   country: string;
@@ -20,5 +31,20 @@ export class ExchangeStep4and2 {
     this.bank_country = '';
     this.email = '';
     this.checkbox = false;
+  }
+}
+
+export class ExchangeStep4and2 {
+  controlsName: string;
+  controlsBank: string;
+  controlsEmail: string;
+  controlsBankCode: number;
+  checkboxForm: boolean;
+  constructor() {
+    this.controlsName = '';
+    this.controlsBank = '';
+    this.controlsEmail = '';
+    this.controlsBankCode = null;
+    this.checkboxForm = false;
   }
 }

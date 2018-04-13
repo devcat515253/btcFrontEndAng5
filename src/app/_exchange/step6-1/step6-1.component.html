@@ -11,43 +11,37 @@
     <div class="select-amount">
       <label class="input-exchange">
         <div class="input">
-          <input type="text">
-          <span class="currency">USD</span>
+          <input type="text" [attr.value]="inputFrom" readonly>
+          <span class="currency">{{selectedFrom.currency}}</span>
         </div>
-
-        <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
-        <!-- <span class="error-label">
-                                            Zadaná částka přesahuje limit 9,999 USD
-                                            <a href="#"> kontact us</a>
-                                        </span> -->
       </label>
     </div>
-
     <div class="line-sides">{{ 'process5.payment-information' | translate }}</div>
   </div>
+
 
   <table class="exchange-info__direction">
     <tr>
       <td>
-        <span>{{ 'process5.bank-holder' | translate }}</span>
-        <b><strong>Společnost, s.r.o.</strong></b>
+        <span>{{ 'exchange.PersonalInfo.Name' | translate }}</span>
+        <b><strong>{{dataBank.controlsEmail}}</strong></b>
       </td>
     </tr>
     <tr>
       <td>
-        <span>{{ 'process5.bank-number' | translate }}</span>
-        <b><strong>1112003761</strong></b>
+        <span>{{ 'exchange.PersonalInfo.BankAccount' | translate }}</span>
+        <b><strong>{{dataBank.controlsBank}}</strong></b>
       </td>
       <td>
-        <span>{{ 'process5.bank-code' | translate }}</span>
-        <b><strong>0600</strong></b>
+        <span>{{ 'exchange.PersonalInfo.BankCode' | translate }}</span>
+        <b><strong>{{dataBank.controlsBankCode}}</strong></b>
       </td>
     </tr>
 
     <tr>
       <td>
-        <span>{{ 'process5.order-number' | translate }}</span>
-        <b><strong>2017003</strong></b>
+        <span>Contact e-mail:</span>
+        <b><strong>{{dataBank.controlsEmail}}</strong></b>
       </td>
     </tr>
   </table>
@@ -55,5 +49,9 @@
   <p class="p_small pre-line" [innerHTML]="'process5.info-instruction' | translate">
   </p>
 
-  <a href="#" class="btn btn-accent rippler rippler-default full-width">Money sent</a>
+  <div class="between-children">
+    <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
+    <a href="#" class="btn btn-accent rippler rippler-default" (click)="goToPay($event)">Pay</a>
+  </div>
 </div>
+

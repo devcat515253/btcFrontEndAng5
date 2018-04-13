@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angul
 import {UserModel} from '../../_entity/user-model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../_services/user.service';
+import {ExchangeStep4and2} from '../../_entity/steps-models';
 
 @Component({
   selector: 'app-step4-2',
@@ -11,14 +12,15 @@ import {UserService} from '../../_services/user.service';
 export class Step42Component implements OnInit {
 
   @Output() goBack = new EventEmitter<any>();
+  @Output() goNext = new EventEmitter<any>();
+  @Output() formFlag = new EventEmitter<any>();
 
   user: UserModel = new UserModel();
-  controlsName: string = '';
-  controlsBank: string = '';
-  controlsBankCode: number = null;
-  checkboxForm: boolean = false;
+  formModel: ExchangeStep4and2 = new ExchangeStep4and2();
+
   step4_2Form: FormGroup;
   loading: boolean = false;
+
 
 
   constructor(private userService: UserService,
@@ -39,15 +41,15 @@ export class Step42Component implements OnInit {
 
   initValidator() {
     this.step4_2Form = new FormGroup({
-      name: new FormControl(this.controlsName, [
+      name: new FormControl(this.formModel.controlsName, [
         Validators.required,
         Validators.maxLength(64),
       ]),
-      bank: new FormControl(this.controlsBank, [
+      bank: new FormControl(this.formModel.controlsBank, [
         Validators.required,
         Validators.maxLength(10),
       ]),
-      bank_code: new FormControl(this.controlsBankCode, [
+      bank_code: new FormControl(this.formModel.controlsBankCode, [
         Validators.required,
         Validators.maxLength(4),
       ]),
@@ -56,7 +58,7 @@ export class Step42Component implements OnInit {
         Validators.email,
         Validators.maxLength(64)
       ]),
-      checkbox: new FormControl(this.checkboxForm, [
+      checkbox: new FormControl(this.formModel.checkboxForm, [
         Validators.required
       ])
     });
@@ -72,20 +74,11 @@ export class Step42Component implements OnInit {
       return;
     }
     console.log("Форма пошла на отправку");
+    this.formModel.controlsEmail = this.user.email;
+    localStorage.setItem('FS_Step4_2', JSON.stringify(this.formModel));
 
-    // this.loading = true;
-
-    // return this.userService.registration().subscribe( (data) => {
-    //   console.log(data);
-    //   console.log(data.status);
-    //   this.loading = false;
-    // },
-    //   error => {
-    //     console.log(error);
-    //     console.log(error.status);
-    //     this.loading = false;
-    //     return of();
-    // });
+    this.goNext.emit(this.formModel);
+    this.formFlag.emit('BankEur');
   }
 
   goToBack(event) {
@@ -99,5 +92,14 @@ export class Step42Component implements OnInit {
       this.cdr.detectChanges();
       console.log(this.user);
     });
+  }
+
+  fillLastData(event) {
+    event.preventDefault();
+
+    this.formModel = JSON.parse(localStorage.getItem('FS_Step4_2')) || '';
+    this.user.email = this.formModel.controlsEmail;
+    this.cdr.detectChanges();
+    console.log(this.step4_2Form);
   }
 }

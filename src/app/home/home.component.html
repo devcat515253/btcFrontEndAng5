@@ -231,18 +231,20 @@
                   <!-- STEP 4 -->
                   <div class="step4" *ngIf="stepsArray[9].status">
                     <app-step4 (goBack)="goToStart()"
-                               (goNext)="goToForm5($event)" ></app-step4>
+                               (goNext)="goToForm5Wallet($event)" ></app-step4>
                   </div>
 
 
                   <!-- STEP 4-1 -->
                   <div class="step4-1" *ngIf="stepsArray[10].status">
-                    <app-step4-1 (goBack)="goToStart()"></app-step4-1>
+                    <app-step4-1 (goBack)="goToStart()"
+                                 (goNext)="goToForm5Eur($event)"></app-step4-1>
                   </div>
 
                   <!-- STEP 4-2 -->
                   <div class="step4-2" *ngIf="stepsArray[11].status">
-                    <app-step4-2 (goBack)="goToStart()"></app-step4-2>
+                    <app-step4-2 (goNext)="goToForm5Czk($event)"
+                                 (goBack)="goToStart()"></app-step4-2>
                   </div>
 
                   <!-- STEP 4-3 -->
@@ -250,52 +252,69 @@
                     <app-step4-3></app-step4-3>
                   </div>
 
-
                   <!-- STEP 5 -->
                   <div class="step5" *ngIf="stepsArray[13].status">
                     <app-step5 [inputFrom]="inputExchangeFrom"
                                [selectedFrom]="selectedExchangeFrom"
                                [inputTo]="inputExchangeTo"
-                               [dataWallet]="dataFormWallet"
                                [selectedTo]="selectedExchangeTo"
+
+
+                               [Wallet]="dataFormWallet"
+                               [BankEur]="dataBankEur"
+                               [BankCzk]="dataBankCzk"
                                (goBack)="goToForm4()"
+                               (goForm4_1)="goToForm4_1()"
+                               (goForm4_2)="goToForm4_2()"
                                (goStart)="goToStart()" ></app-step5>
                   </div>
 
+
+
+
                   <!-- STEP 6 -->
                   <div class="step6" *ngIf="stepsArray[14].status">
-                    <app-step6></app-step6>
+                    <app-step6 [dataBank]="dataBankEur"
+                               (goBack)="goToForm4_1()"></app-step6>
                   </div>
 
                   <!-- STEP 6-1 -->
                   <div class="step6-1" *ngIf="stepsArray[15].status">
-                    <app-step6-1></app-step6-1>
+                    <app-step6-1 [inputFrom]="inputExchangeFrom"
+                                 [selectedFrom]="selectedExchangeFrom"
+                                 [dataBank]="dataBankCzk"
+                                 (goBack)="goToForm4_2()"></app-step6-1>
                   </div>
 
                   <!-- STEP 6-2 -->
-                  <div class="step6-2" *ngIf="stepsArray[15].status">
+                  <div class="step6-2" *ngIf="stepsArray[16].status">
                     <app-step6-2></app-step6-2>
                   </div>
 
-
-                  <!-- STEP 5 -->
-
-                  <!-- STEP 5-1 -->
-
-
-                  <!-- STEP 5-1 -->
-
                   <div class="steps-footer">
                     <div class="dots line-sides">
-                      <a href="#" class="dot"></a>
-                      <a href="#" class="dot"></a>
-                      <a href="#" class="dot is-active"></a>
-                      <a href="#" class="dot"></a>
-                      <a href="#" class="dot"></a>
+                      <a href="#" class="dot" [ngClass]="{'is-active': stepsArray[0].status}"></a>
+                      <a href="#" class="dot" [ngClass]="{'is-active': stepsArray[1].status
+                                                                    || stepsArray[2].status
+                                                                    || stepsArray[3].status
+                                                                    || stepsArray[4].status
+                                                                    || stepsArray[5].status
+                                                                    || stepsArray[6].status
+                                                                    || stepsArray[7].status
+                                                                    || stepsArray[8].status}"></a>
+
+                      <a href="#" class="dot" [ngClass]="{'is-active': stepsArray[9].status
+                                                                    || stepsArray[10].status
+                                                                    || stepsArray[11].status}"></a>
+
+                      <a href="#" class="dot" [ngClass]="{'is-active': stepsArray[13].status}"></a>
+
+
+                      <a href="#" class="dot" [ngClass]="{'is-active': stepsArray[14].status
+                                                                    || stepsArray[15].status
+                                                                    || stepsArray[16].status}"></a>
                     </div>
                   </div>
-
-
                 </div>
               </div>
             </div>

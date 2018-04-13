@@ -18,6 +18,7 @@ import {Observable} from 'rxjs/Observable';
 import {currencyArray} from '../_entity/currency';
 import {stepsArray} from '../_entity/stepsArray';
 import {UserModel} from '../_entity/user-model';
+import {ExchangeStep4, ExchangeStep4and1, ExchangeStep4and2} from '../_entity/steps-models';
 
 @Component({
   selector: 'app-home',
@@ -66,7 +67,9 @@ export class HomeComponent implements OnInit {
 
 
   // DATA
-  dataFormWallet: any;
+  dataFormWallet: ExchangeStep4 = new ExchangeStep4();
+  dataBankEur: ExchangeStep4and1 = new ExchangeStep4and1();
+  dataBankCzk: ExchangeStep4and2 = new ExchangeStep4and2();
   // needVerification: boolean = false;
 
 
@@ -89,6 +92,12 @@ export class HomeComponent implements OnInit {
     console.log(this.stepsArray);
     this.checkGoToStart();
     this.getUser();
+  }
+
+  clearFormData() {
+    this.dataFormWallet = new ExchangeStep4();
+    this.dataBankEur = new ExchangeStep4and1();
+    this.dataBankCzk = new ExchangeStep4and2();
   }
 
   getStatusLoading(event) {
@@ -198,14 +207,59 @@ export class HomeComponent implements OnInit {
   goToForm4() {
     this.checkStepShow('4');
   }
+  goToForm4_1() {
+    this.checkStepShow('4-1');
+  }
+  goToForm4_2() {
+    this.checkStepShow('4-2');
+  }
 
 
   // PRINT WALLET INFO
-  goToForm5(event) {
+  goToForm5Wallet(event) {
     console.log(event)
-    this.dataFormWallet = event.value;
+    this.clearFormData();
+    this.dataFormWallet = event;
     this.checkStepShow('5');
   }
+
+  goToForm5Eur(event) {
+    console.log(event)
+    this.clearFormData();
+    this.dataBankEur = event;
+    this.checkStepShow('5');
+  }
+
+  goToForm5Czk(event) {
+    console.log(event)
+    this.clearFormData();
+    this.dataBankCzk = event;
+    this.checkStepShow('5');
+  }
+
+  // goToForm5Flag(event) {
+  //   console.log(event)
+  //   this.dataFormWallet = event;
+  //   this.checkStepShow('5');
+  // }
+
+
+
+  // PRINT BANK EUR INFO
+  goToForm6(event) {
+    console.log(event)
+    this.dataBankEur = event.value;
+    this.checkStepShow('6');
+  }
+
+  // PRINT BANK EUR INFO
+  goToForm6_1(event) {
+    console.log(event)
+    this.dataBankCzk = event;
+    this.checkStepShow('6-1');
+  }
+
+
 
 
 

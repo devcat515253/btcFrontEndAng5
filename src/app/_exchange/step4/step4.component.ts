@@ -1,9 +1,10 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserService} from '../../_services/user.service';
 import {UserModel} from '../../_entity/user-model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {matchOtherValidator} from '../../_validators/validator';
 import {of} from 'rxjs/observable/of';
+import {ExchangeStep4} from '../../_entity/steps-models';
 
 @Component({
   selector: 'app-step4',
@@ -13,8 +14,7 @@ import {of} from 'rxjs/observable/of';
 export class Step4Component implements OnInit {
 
   user: UserModel = new UserModel();
-  controlsId: string = '';
-  checkboxForm: boolean = false;
+  formModel4: ExchangeStep4 = new ExchangeStep4;
   step4Form: FormGroup;
   loading: boolean = false;
 
@@ -24,7 +24,8 @@ export class Step4Component implements OnInit {
   @Output() goNext = new EventEmitter<any>();
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private cdr: ChangeDetectorRef) {
     this.initValidator();
   }
 
@@ -42,7 +43,7 @@ export class Step4Component implements OnInit {
   initValidator() {
     this.step4Form = new FormGroup({
 
-      id: new FormControl(this.controlsId, [
+      id: new FormControl(this.formModel4.controlsId, [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(64),
@@ -53,7 +54,7 @@ export class Step4Component implements OnInit {
         Validators.minLength(5),
         Validators.maxLength(64)
       ]),
-      checkbox: new FormControl(this.checkboxForm, [
+      checkbox: new FormControl(this.formModel4.checkboxForm, [
         Validators.required
       ])
     });
@@ -68,22 +69,28 @@ export class Step4Component implements OnInit {
         .forEach(controlName => controls[controlName].markAsTouched());
       return;
     }
-    console.log("Форма пошла на отправку");
-    this.goNext.emit(this.step4Form);
+    this.formModel4.controlsEmail = this.user.email;
+    localStorage.setItem('FS_Step4', JSON.stringify(this.formModel4));
+    this.goNext.emit(this.formModel4);
   }
-
-
 
   goToBack(event) {
     event.preventDefault();
     this.goBack.emit();
   }
 
-
   getUser() {
     this.userService.user$.subscribe((result) => {
       this.user = result;
       console.log(this.user);
     });
+  }
+
+  fillLastData(event) {
+    event.preventDefault();
+
+    this.formModel4 = JSON.parse(localStorage.getItem('FS_Step4')) || '';
+    this.user.email = this.formModel4.controlsEmail;
+    this.cdr.detectChanges();
   }
 }

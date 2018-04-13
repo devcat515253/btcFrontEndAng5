@@ -2,7 +2,7 @@
   <div class="step-title"><h3 class="h3">3. Personal info and wallet</h3></div>
 
   <div class="text-center tip-link">
-    <a href="#" class="link tt-uppercase">Fill from last</a>
+    <a href="#" class="link tt-uppercase" (click)="fillLastData($event)">Fill from last</a>
   </div>
 
   <form class="form" [ngClass]="{'custom-loader disabled': loading}" (submit)="submit($event)" [formGroup]="step4Form"  #form4="ngForm" novalidate>
@@ -13,7 +13,7 @@
            || step4Form.controls['id'].hasError('maxlength'))
            && form4.submitted}">
       <span class="form-title">Your wallet ID:</span>
-      <input type="text" [(ngModel)]="controlsId" formControlName="id" class="form-control" value="" required="">
+      <input type="text" [(ngModel)]="formModel4.controlsId" formControlName="id" class="form-control" value="" required="">
       <span *ngIf="step4Form.controls['id'].hasError('required') && form4.submitted"
             class="error-label">Required field</span>
       <span *ngIf="(step4Form.controls['id'].hasError('minlength') || step4Form.controls['id'].hasError('maxlength')) && form4.submitted" class="error-label">The field  must be between 3 and 64 characters</span>
@@ -36,7 +36,7 @@
 
     <label class="checkbox" [ngClass]="{'has-error': (step4Form.controls['checkbox'].hasError('required')
            && form4.submitted )}">
-      <input [(ngModel)]="checkboxForm" formControlName="checkbox" type="checkbox" name="policeAgree" class="checkbox-control" required>
+      <input [(ngModel)]="formModel4.checkboxForm" formControlName="checkbox" type="checkbox" name="policeAgree" class="checkbox-control" required>
       <span class="checkbox-icons"></span>
       <span class="checkbox-title">I agree to the <a href="#" class="link">Terms and Conditions</a> and <a href="#" class="link">Privacy Policy</a></span>
     </label>
