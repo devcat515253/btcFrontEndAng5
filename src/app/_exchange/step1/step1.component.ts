@@ -50,6 +50,7 @@ export class Step1Component implements OnInit {
   }
 
   exchangeSwap(event) {
+    event.preventDefault();
     if  (this.exchangeTo && this.exchangeFrom) {
       this.onExchangeSwap.emit();
     }

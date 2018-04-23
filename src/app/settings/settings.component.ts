@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {UserService} from '../_services/user.service';
 import {EmailModel} from '../_entity/email-model';
 import {UserModel} from '../_entity/user-model';
@@ -54,7 +54,8 @@ export class SettingsComponent implements OnInit {
   logsArray: UserLogs[] = [];
 
 
-  constructor(private userService: UserService) {
+  constructor(private cdr: ChangeDetectorRef,
+              private userService: UserService) {
     this.passwordValidator();
     this.idCardFormValidator();
     this.KycFormValidator();
@@ -95,13 +96,20 @@ export class SettingsComponent implements OnInit {
   submitMainForm(event) {
     event.preventDefault();
     this.loadingMain = true;
+
     this.userService.updateUserProfile(this.userModel).subscribe((data) => {
       // console.log(data);
       console.log(this.userModel);
       this.userService.user$.next(this.userModel);
+
+
       this.loadingMain = false;
       this.successMain = true;
-      setTimeout((() => this.successMain = false), 1000);
+      setTimeout(() => {
+        this.successMain = false;
+        this.cdr.detectChanges();
+      }, 1000);
+
     }, (error) => {
       console.log(error);
       this.loadingMain = false;

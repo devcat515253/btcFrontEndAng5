@@ -17,7 +17,13 @@ export class ExchangeService {
     return other_header;
   }
 
-// ?filters={"all":5}
+  sendDataPay(data: any) {
+    let query = `${this.baseUrl}/api/exchanges/add?commission_id=${ data.commission }&in_amount=${ data.in_amount }&email=${ data.email }&out_payee=${ data.out }`;
+    return this.http.post<any>(query,  {}, {headers:  this.getAuthHeader()} );
+  }
+
+
+
   getExchangeListFrom() {
     return this.http.get<any>(`${this.baseUrl}/api/payment-systems/from`);
   }

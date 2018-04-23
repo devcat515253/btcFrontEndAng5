@@ -5,7 +5,7 @@
         <div class="item-icons" [style.background-image]="'url(' + exchangeFrom?.logo +')'"></div>
         <div class="item-value" value="Advanced Cash">{{exchangeFrom?.name || 'From'}} <span class="ttu">{{exchangeFrom?.currency}}</span></div>
       </div>
-      <div class="switch-btn" (click)="exchangeSwap($event)"></div>
+      <a href="#" class="switch-btn" (click)="exchangeSwap($event)"></a>
 
       <div class="switch-stats">
         <div class="tape">Fee: {{exchangeTo?.commission || '0.00'}} %</div>

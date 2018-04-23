@@ -22,6 +22,7 @@ export class PartnersComponent implements OnInit {
   getPartnersList() {
     this.userService.getPartnersList().subscribe(result => {
       this.refArray = result.data as UserModel[];
+      console.log(this.refArray);
       this.loadingRefList = false;
     });
   }

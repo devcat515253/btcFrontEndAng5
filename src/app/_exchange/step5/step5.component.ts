@@ -1,7 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Exchange} from '../../_entity/exchange';
 import {UserService} from '../../_services/user.service';
 import {ExchangeStep4, ExchangeStep4and1, ExchangeStep4and2} from '../../_entity/steps-models';
+import {ExchangeService} from '../../_services/exchange.service';
+import {PayWallet} from '../../_entity/pay-wallet';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-step5',
@@ -9,6 +12,9 @@ import {ExchangeStep4, ExchangeStep4and1, ExchangeStep4and2} from '../../_entity
   styleUrls: ['./step5.component.sass']
 })
 export class Step5Component implements OnInit {
+
+  @ViewChild('hiddenForm')
+  private hiddenForm: HTMLFormElement;
 
 
   @Input() inputFrom: number;
@@ -21,7 +27,10 @@ export class Step5Component implements OnInit {
   @Input() BankCzk: ExchangeStep4and2;
 
 
+  loading: boolean = false;
   userDiscount: number = 0;
+  PayWallet: PayWallet = new PayWallet();
+  // hiddenForm: FormGroup = new FormGroup({});
 
   @Output() goBack = new EventEmitter<any>();
   @Output() goForm4_1 = new EventEmitter<any>();
@@ -29,7 +38,8 @@ export class Step5Component implements OnInit {
   @Output() goStart = new EventEmitter<any>();
   @Output() goPay = new EventEmitter<any>();
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private exchangeService: ExchangeService) { }
 
   ngOnInit() {
     this.getUserDiscount();
@@ -62,6 +72,29 @@ export class Step5Component implements OnInit {
 
   goToPay(event) {
     event.preventDefault();
-    // this.goPay.emit();
+    this.loading = true;
+
+    let data = {
+      commission: this.selectedTo.commission_id,
+      in_amount: this.inputFrom,
+      email: this.Wallet.controlsEmail || this.BankEur.email || this.BankCzk.controlsEmail,
+      out: this.Wallet.controlsId || this.BankEur || this.BankCzk,
+    };
+
+    console.log(data);
+
+    this.exchangeService.sendDataPay(data).subscribe( (result) => {
+       console.log(result);
+      this.PayWallet = result.data;
+      console.log(this.PayWallet);
+      console.log(this.hiddenForm);
+      setTimeout(() => {
+        this.hiddenForm.nativeElement.submit();
+      }, 50);
+      this.loading = false;
+    }, (error) => {
+      console.log(error);
+    });
   }
+
 }

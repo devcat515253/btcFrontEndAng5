@@ -89,7 +89,8 @@ export class Step4Component implements OnInit {
   fillLastData(event) {
     event.preventDefault();
 
-    this.formModel4 = JSON.parse(localStorage.getItem('FS_Step4')) || '';
+    this.formModel4 = JSON.parse(localStorage.getItem('FS_Step4'));
+    if  (this.formModel4 == null) { this.formModel4 = new ExchangeStep4; }
     this.user.email = this.formModel4.controlsEmail;
     this.cdr.detectChanges();
   }

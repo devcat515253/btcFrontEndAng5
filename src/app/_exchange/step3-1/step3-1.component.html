@@ -32,7 +32,7 @@
     <label class="form-group" [ngClass]="{'has-error': userRegistrForm.controls['confirmPassword'].hasError('matchOther') && regForm.submitted}">
       <span class="form-title">Password again:</span>
       <input [(ngModel)]="userRegistr.repassword" formControlName="confirmPassword" name="repassword"  type="password" class="form-control" required="">
-      <span *ngIf="userRegistrForm.controls['confirmPassword'].hasError('matchOther') && regForm.submitted" class="error-label">Required field</span>
+      <span *ngIf="userRegistrForm.controls['confirmPassword'].hasError('matchOther') && regForm.submitted" class="error-label">The fields do not match!</span>
     </label>
 
     <label class="checkbox" [ngClass]="{'has-error': (userRegistrForm.controls['checkbox'].hasError('required')

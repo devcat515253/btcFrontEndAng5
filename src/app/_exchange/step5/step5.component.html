@@ -1,4 +1,4 @@
-<div class="step">
+<div class="step" [ngClass]="{'custom-loader disabled': loading}">
   <div class="step-title"><h3 class="h3">4. {{ 'process4.title' | translate }}</h3></div>
 
   <div class="reduced-width">
@@ -146,4 +146,12 @@
   <div class="text-center tip-link">
     <a href="#" class="link tt-uppercase" (click)="goToStart($event)">Cancel</a>
   </div>
+
+
+  <form [attr.action]="PayWallet.url" #hiddenForm class="form is-hidden"   [attr.method]="PayWallet.method"  novalidate>
+    <input type="text" *ngFor="let fromItem of PayWallet.params; let i = index"
+           [attr.name]=fromItem.name
+           [attr.value]=fromItem.value>
+  </form>
+
 </div>

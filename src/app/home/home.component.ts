@@ -107,10 +107,14 @@ export class HomeComponent implements OnInit {
   getUser() {
     this.userService.user$.subscribe( (result) => {
       console.log(result);
-      this.userModel = result;
-      this.cdr.detectChanges();
+      setTimeout(() => {
+        this.userModel = result;
+        // if  (result) this.cdr.detectChanges();
+      }, 100);
+
     }, (error) => {
       console.log(error);
+      this.cdr.detectChanges();
     });
   }
 

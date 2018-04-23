@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {ChangeDetectorRef, EventEmitter, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {UserRegistr} from '../_entity/user-registr';
 import {UserAuth} from '../_entity/user-auth';
@@ -42,8 +42,11 @@ export class UserService {
     this.http.get<any>(`${this.baseUrl}/api/me`, {headers: this.getAuthHeader()}).subscribe(result => {
       console.log(result);
       this.userModel = result.data;
-      this.user$.next(this.userModel);
-      this.loading$.next(false);
+      setTimeout(() => {
+        this.user$.next(this.userModel);
+        this.loading$.next(false);
+      }, 100);
+
     }, (error) => {
       this.loading$.next(false);
       console.log(error);
