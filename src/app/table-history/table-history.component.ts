@@ -13,7 +13,7 @@ declare var $: any;
   templateUrl: './table-history.component.html',
   styleUrls: ['./table-history.component.sass']
 })
-export class TableHistoryComponent implements OnInit, AfterViewInit {
+export class TableHistoryComponent implements OnInit {
 
   transactionArray: TransactionHistory[] = [];
   transactionArrayCount: any[] = [];

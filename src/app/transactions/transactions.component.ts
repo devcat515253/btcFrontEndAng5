@@ -19,7 +19,9 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
 
   routeHash: string;
   localHash: string;
-  lastEmail: string;
+  lastEmail: {
+    controlsEmail: string;
+  };
   transaction: Transaction = new Transaction();
 
   loading: boolean = true;
