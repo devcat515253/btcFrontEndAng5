@@ -6,6 +6,7 @@ import {Transaction} from '../_entity/transaction';
 import {startTimeRange} from '@angular/core/src/profile/wtf_impl';
 import {of} from 'rxjs/observable/of';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserModel} from '../_entity/user-model';
 
 declare var $: any;
 
@@ -18,6 +19,7 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
 
   routeHash: string;
   localHash: string;
+  lastEmail: string;
   transaction: Transaction = new Transaction();
 
   loading: boolean = true;
@@ -27,12 +29,14 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
   reviewForm: FormGroup;
   rating: number;
   isLogged: boolean = false;
+  userModel: UserModel = new UserModel();
 
   constructor(private activatedRoute: ActivatedRoute,
               private userService: UserService,
               private router: Router) {
     this.reviewValidator();
     this.localHash = JSON.parse(localStorage.getItem('last_transaction')) || '';
+    this.lastEmail = JSON.parse(localStorage.getItem('FS_Step4')) || '';
     this.rating = 0;
   }
 
@@ -56,6 +60,10 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
       }, 100);
     });
 
+    this.userService.user$.subscribe( (result) => {
+      this.userModel = result;
+      console.log(this.userModel);
+    });
   }
 
   reviewValidator() {
@@ -66,7 +74,6 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
       ])
     });
   }
-
 
   setRating(count: number) {
     this.rating = count;

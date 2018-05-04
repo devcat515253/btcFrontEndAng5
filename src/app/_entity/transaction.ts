@@ -1,5 +1,6 @@
 export class Transaction {
   comment: string;
+  clear_comment: string;
   date: Date;
   id: number;
   in_amount: number;
@@ -45,6 +46,7 @@ export class Transaction {
 
 
   constructor() {
+    this.clear_comment = '';
     this.comment = '';
     this.date = new Date();
     this.id = 0;

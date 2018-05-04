@@ -10,7 +10,9 @@
 
         <div class="blank tape-top">
           <div class="blank-content">
-            <div class="transcations-status">Waiting for payment</div>
+            <div class="transcations-status" *ngIf="transaction.status === 1">Waiting your payment</div>
+            <div class="transcations-status" *ngIf="transaction.status === 2">Pay</div>
+            <div class="transcations-status" *ngIf="transaction.status === 3">Successfully processed</div>
 
             <div class="transcations-process">
               <div class="step">
@@ -20,11 +22,9 @@
                 <div class="step-content">
                   <label class="input-exchange">
                     <div class="input">
-                      <input type="text" value="150.00">
-                      <span class="currency">USD</span>
+                      <input type="text" [attr.value]="transaction.in_amount">
+                      <span class="currency">{{transaction.in_payment}}</span>
                     </div>
-
-                    <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
                   </label>
                 </div>
               </div>
@@ -32,7 +32,7 @@
               <div class="step-info">
                 <div class="line-sides">{{ 'exchange.TransactionID' | translate }}</div>
 
-                <div class="step-info__title">ADVUSD-PM-1031</div>
+                <div class="step-info__title">{{transaction.id}}</div>
 
                 <div class="step-info__direction">
                   <img src="../assets/img/svg/arrow-big.svg" alt="">
@@ -46,11 +46,9 @@
                 <div class="step-content">
                   <label class="input-exchange">
                     <div class="input">
-                      <input type="text" value="0.08040">
-                      <span class="currency">BTC</span>
+                      <input type="text" [attr.value]="transaction.out_amount">
+                      <span class="currency">{{transaction.out_payment}}</span>
                     </div>
-
-                    <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
                   </label>
                 </div>
               </div>
@@ -59,18 +57,18 @@
               <div class="switch">
                 <div class="currencies currencies_small">
                   <div class="item">
-                    <div class="item-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    <div class="item-value" value="Advanced Cash">Advanced Cash</div>
+                    <div class="item-icons" [style.background-image]="'url(' + transaction.inPayment?.data.paymentSystem.data.logo_link +')'"></div>
+                    <div class="item-value">{{transaction.inPayment?.data.paymentSystem.data.name}}</div>
                   </div>
 
                   <div class="switch-stats">
-                    <div class="tape">Fee: 1.00 %</div>
-                    <div class="tape tape-accent">Discount: 0.00 %</div>
+                    <div class="tape">Fee: {{transaction.in_fee}} %</div>
+                    <div class="tape tape-accent">Discount: {{userModel.discount || 0}} %</div>
                   </div>
 
                   <div class="item">
-                    <div class="item-icons" style="background-image: url(../assets/img/bitcoin.png);"></div>
-                    <div class="item-value" value="Bitcoin">Bitcoin</div>
+                    <div class="item-icons" [style.background-image]="'url(' + transaction.outPayment?.data.paymentSystem.data.logo_link +')'"></div>
+                    <div class="item-value">{{transaction.outPayment?.data.paymentSystem.data.name}}</div>
                   </div>
                 </div>
               </div>
@@ -85,18 +83,11 @@
                   <tr>
                     <td>
                       <span>Your wallet ID:</span>
-                      <b><strong>1BvBMSEYstWetqTFn5Au4</strong></b>
+                      <b><strong>{{transaction.out_payee}}</strong></b>
                     </td>
-
-                    <td>
-                      <span>Our Bitcoin address:</span>
-                      <b><strong>1GoBTCTiC8TEVoLmr</strong></b>
-                    </td>
-                  </tr>
-                  <tr>
                     <td>
                       <span>Your e-mail:</span>
-                      <b><strong>john.doe@gmail.com</strong></b>
+                      <b><strong>{{lastEmail.controlsEmail}}</strong></b>
                     </td>
                   </tr>
                   </tbody>
@@ -106,15 +97,19 @@
               <div class="line-sides">{{ 'exchange.CurrentStatus' | translate }}</div>
 
               <div class="stages">
-                <div class="progress-bar green animate">
-                  <span style="width: 80%"><span statusText="2 of 3 confirmations"></span></span>
+                <div class="progress-bar green animate" *ngIf="transaction.status === 1">
+                  <span style="width: 33.33%"><span style="color: #333;" statusText="1 of 3 confirmations"></span></span>
                 </div>
 
-                <div class="progress-bar red">
-                  <span style="width: 100%"><span statusText="Error"></span></span>
+                <div class="progress-bar green animate" *ngIf="transaction.status === 2">
+                  <span style="width: 66.66%"><span style="color: #333;" statusText="2 of 3 confirmations"></span></span>
                 </div>
 
-                <div class="item">
+                <div class="progress-bar green animate" *ngIf="transaction.status === 3">
+                  <span style="width: 100%"><span statusText="3 of 3 confirmations"></span></span>
+                </div>
+
+                <div class="item" *ngIf="transaction.status === 3">
                   <b class="item-title">1. Done</b>
                   <div class="item-descr">
                     <i class="ic ic-success"></i>
@@ -122,50 +117,66 @@
                   </div>
                 </div>
 
-                <div class="item">
-                  <b class="item-title">2. Pending</b>
+                <div class="item" *ngIf="transaction.status === 1">
+                  <b class="item-title">1. Pending</b>
                   <div class="item-descr">
                     <div class="loader"><div class="loader-inside"></div></div>
                     <p class="p_small">
-                      Checking the transaction
+                      Waiting to receive your payment
                       <small>Should be completed in <b>7 minutes</b> while online</small>
                     </p>
                   </div>
                 </div>
 
-                <div class="item">
-                  <b class="item-title">1. Failed</b>
+                <div class="item" *ngIf="transaction.status === 2">
+                  <b class="item-title">2. Pay</b>
                   <div class="item-descr">
-                    <i class="ic ic-warning">!</i>
-                    <p class="p_small">Transaction failed - <a href="#" class="link">contact us!</a></p>
+                    <div class="loader"><div class="loader-inside"></div></div>
+                    <p class="p_small">
+                      We pay money to your account
+                      <small>Should be completed in <b>3 minutes</b> while online</small>
+                    </p>
                   </div>
                 </div>
+
+
               </div>
 
               <div class="btn-wrapper text-center">
-                <a href="#" class="btn btn-accentSecond rippler rippler-default">Go back</a>
+                <a routerLink="/home" class="btn btn-accentSecond rippler rippler-default">Go back</a>
               </div>
 
-              <div class="review">
-                <form class="form">
+              <div id="review-wrapper">
+                <div class="review" *ngIf="isLogged && transaction.clear_comment === ''">
+                  <form class="form" [ngClass]="{'custom-loader disabled': loadingReview}" (submit)="submitReviews($event)" [formGroup]="reviewForm"  #reviewsForm="ngForm" novalidate>
                   <div class="rating">
-                    <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                    <div class="star" [ngClass]="{'is-active': rating === 5}" (click)="setRating(5)"><img
+                      src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                    <div class="star" [ngClass]="{'is-active': rating === 4 || rating === 5}" (click)="setRating(4)">
+                      <img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                    <div class="star" [ngClass]="{'is-active': rating === 3 || rating === 4 || rating === 5}" (click)="setRating(3)">
+                      <img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                    <div class="star" [ngClass]="{'is-active': rating === 2 || rating === 3 || rating === 4 || rating === 5}" (click)="setRating(2)">
+                      <img src="../assets/img/svg/star.svg" alt="" class="img-svg">
+                    </div>
+                    <div class="star"
+                         [ngClass]="{'is-active': rating === 1 || rating === 2 || rating === 3 || rating === 4 || rating === 5  }" (click)="setRating(1)">
+                      <img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
                   </div>
 
-                  <label class="form-group">
+                  <label class="form-group" [ngClass]="{'has-error': (reviewForm.controls['review'].hasError('required')
+                              || reviewForm.controls['review'].hasError('minlength'))
+                              && reviewsForm.submitted}">
                     <span class="form-title">Your comment</span>
-                    <textarea class="form-control" placeholder="Lorem ipsum dolor sit amet, consectetuer adipiscing elit aenean id metu…"></textarea>
-                    <span class="error-label">Not valid phone number format</span>
+                    <textarea class="form-control" [(ngModel)]="fieldReview" formControlName="review" name="review" placeholder="Lorem ipsum dolor sit amet, consectetuer adipiscing elit aenean id metu…"></textarea>
+                    <span *ngIf="reviewForm.controls['review'].hasError('required') && reviewsForm.submitted" class="error-label">Required field</span>
+                    <span *ngIf="reviewForm.controls['review'].hasError('maxlength') && reviewsForm.submitted" class="error-label">The maximum number of characters 640</span>
                   </label>
+
 
                   <div class="form-btn">
                     <label class="text-center">
-                      <a href="#" class="btn btn-accentSecond rippler rippler-default">Send rating and go back</a>
-                      <input type="submit" hidden="">
+                      <button class="btn btn-accentSecond rippler rippler-default" [disabled]="reviewForm.invalid && reviewsForm.submitted">Send rating and go back</button>
                     </label>
                   </div>
 
@@ -173,7 +184,18 @@
                     <a href="#" class="btn btn-accentSecond rippler rippler-default">{{ 'exchange.NewExchange' | translate }}</a>
                   </div>
                 </form>
+                  <div class="loadingSuccess" *ngIf="successAddReview">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="-263.5 236.5 26 26">
+                      <g class="svg-success">
+                        <circle cx="-250.5" cy="249.5" r="12"/>
+                        <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+
               </div>
+
             </div>
           </div>
         </div>

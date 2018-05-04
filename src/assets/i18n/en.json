@@ -123,8 +123,9 @@
     },
 
     "status": {
-      "Verifying": "Verifying the amount",
+      "Verifying": "Expectation of receipt of funds",
       "Waiting": "Waiting to receive <br />your payment",
+      "Pay": "Pay",
       "Successfully": "Successfully processed",
       "Failed": "Payment failed",
       "NoRating": "No Rating"

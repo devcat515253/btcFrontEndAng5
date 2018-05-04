@@ -46,28 +46,20 @@
                     <b>{{transactionItem.out_prefix}}</b>
                   </td>
                   <td>
-                    <div class="transfer-status">
-                      <div class="loader"><div class="loader-inside"></div></div>
-                      {{ 'table.status.Verifying' | translate }}
-                    </div>
-
-                    <div class="transfer-status">
-                      <span class="circle circle-red"></span>
-                      {{ 'table.status.Failed' | translate }}
-                    </div>
-
-                    <div class="transfer-status">
+                    <div class="transfer-status" *ngIf="transactionItem.status === 1">
                       <div class="loader"><div class="loader-inside"></div></div>
                       <div [innerHTML]="'table.status.Waiting' | translate"></div>
                     </div>
 
-                    <div class="transfer-status">
-                      <span class="circle circle-green"></span>
-                      Úspěšně proběhlo
+                    <div class="transfer-status" *ngIf="transactionItem.status === 2">
+                      <div class="loader"><div class="loader-inside"></div></div>
+                      <div [innerHTML]="'table.status.Pay' | translate"></div>
                     </div>
 
-
-
+                    <div class="transfer-status" *ngIf="transactionItem.status === 3">
+                      <span class="circle circle-green"></span>
+                      <div [innerHTML]="'table.status.Successfully' | translate"></div>
+                    </div>
                   </td>
                   <td align="center">
                     <div class="rating rating-statick" *ngIf="transactionItem.rating > 0">
@@ -95,43 +87,47 @@
           </div>
         </div>
 
-        <div class="paginator__wr">
-          <div class="paginator">
-            <div class="paginator__status"><span class=""><b>3</b> {{ 'exchange.PaginationOf' | translate }} <b>15</b></span></div>
+        <div class="paginator__wr" *ngIf="pager.pages && pager.pages.length">
+          <div class="paginator" >
+            <div class="paginator__status"><span class=""><b>{{pager.currentPage}}</b> {{ 'exchange.PaginationOf' | translate }} <b>{{pager.totalPages}}</b>  </span></div>
             <div class="paginator__btns">
 
               <ul class="pages pages_desktop">
-                <li class="page rippler rippler-default is-disabled"><a >First</a></li>
-                <li class="page rippler rippler-default is-disabled"><a >Previous</a></li>
-                <li class="page rippler rippler-default is-selected"><a>1</a></li>
-                <li class="page rippler rippler-default"><a>2</a></li>
-                <li class="page rippler rippler-default"><a >3</a></li>
-                <li class="page rippler rippler-default"><a >4</a></li>
-                <li class="page rippler rippler-default"><a >5</a></li>
-                <li class="page is-skip"><span>...</span></li>
-                <li class="page rippler rippler-default"><a >9</a></li>
-                <li class="page rippler rippler-default"><a >10</a></li>
-                <li class="page rippler rippler-default"><a >Next</a></li>
-                <li class="page rippler rippler-default"><a >Last</a></li>
+                <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === 1}">
+                  <a (click)="setPage(1)">First</a>
+                </li>
+                <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === 1}">
+                  <a (click)="setPage(pager.currentPage - 1)" >Previous</a>
+                </li>
+
+                <li class="page rippler rippler-default" *ngFor="let page of pager.pages" [ngClass]="{'is-selected':pager.currentPage === page}">
+                  <a (click)="setPage(page)">{{page}}</a>
+                </li>
+
+
+                <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === pager.totalPages}"><a (click)="setPage(pager.currentPage + 1)">Next</a></li>
+                <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === pager.totalPages}"><a (click)="setPage(pager.totalPages)">Last</a></li>
 
               </ul>
 
-              <ul class="pages pages_mobile">
-                <li class="page rippler rippler-default is-disabled"><a >First</a></li>
-                <li class="page rippler rippler-default is-selected"><a>1</a></li>
-                <li class="page rippler rippler-default"><a>2</a></li>
-                <li class="page rippler rippler-default"><a >3</a></li>
-                <li class="page is-skip"><span>...</span></li>
-                <li class="page rippler rippler-default"><a >10</a></li>
-                <li class="page rippler rippler-default"><a >Last</a></li>
 
+              <ul class="pages pages_mobile">
+                <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === 1}">
+                  <a (click)="setPageMobile(1)">First</a>
+                </li>
+
+                <li class="page rippler rippler-default" *ngFor="let page of pager.pages" [ngClass]="{'is-selected':pager.currentPage === page}">
+                  <a (click)="setPageMobile(page)">{{page}}</a>
+                </li>
+
+                <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === pager.totalPages}"><a (click)="setPageMobile(pager.totalPages)">Last</a></li>
               </ul>
             </div>
           </div>
         </div>
 
         <div class="fixed-head desktop-only">
-          <a href="#" class="btn btn-accentSecond rippler rippler-default">{{ 'exchange.NewExchange' | translate }}</a>
+          <a routerLink="/home" class="btn btn-accentSecond rippler rippler-default">{{ 'exchange.NewExchange' | translate }}</a>
         </div>
       </div>
     </div>
