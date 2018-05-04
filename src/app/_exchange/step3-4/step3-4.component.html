@@ -55,7 +55,7 @@
             </g>
           </svg>
         </div>
-        <button type="submit" class="btn btn-accentSecond rippler rippler-default" *ngIf="!userModel.verification_image" [disabled]="idCardForm.invalid && ngIdCardForm.submitted">Verify ID</button>
+        <button type="submit" class="btn btn-accent rippler rippler-default" *ngIf="!userModel.verification_image" [disabled]="idCardForm.invalid && ngIdCardForm.submitted">Verify ID</button>
         <button type="submit" class="btn btn-accentSecond rippler rippler-default" *ngIf="userModel.verification_image" (click)="goToNext($event)">Next</button>
       </label>
     </div>

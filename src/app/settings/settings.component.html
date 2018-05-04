@@ -58,9 +58,7 @@
                     <div class="item">
                       <div class="item__head title-inner opened">Personal Information</div>
                       <div class="item__content">
-                        <!--<form class="form" (submit)="submitMainForm($event)" [formGroup]="mainInfoForm"  #mainInfo="ngForm" novalidate>-->
                         <form class="form" (submit)="submitMainForm($event)"  #mainInfo="ngForm" novalidate>
-                        <!--<form action="#" class="form" (submit)="submit($event)" novalidate>-->
                           <label class="form-group">
                             <span class="form-title">{{ 'exchange.PersonalInfo.Name' | translate }}:</span>
                             <input [(ngModel)]="userModel.name" name="name"  type="text" class="form-control" required="">
@@ -82,8 +80,7 @@
 
                             <div class="form-btn">
                               <label>
-                                <!--<button class="btn btn-accentSecond rippler rippler-default" [disabled]="userAuthForm.invalid && mainInfo.submitted">Apply changes</button>-->
-                                <div class="loadingSuccess" *ngIf="successMain">
+                               <div class="loadingSuccess" *ngIf="successMain">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="-263.5 236.5 26 26">
                                     <g class="svg-success">
                                       <circle cx="-250.5" cy="249.5" r="12"/>
@@ -127,48 +124,113 @@
                         <div class="settings-tip p_small desktop-only">You need to verify your <b>e-mail address</b> and <br> <b>phone number</b> to exchange 250 - 999 €.</div>
                       </div>
 
-                      <form action="#" class="form">
-                        <div class="form-group">
+                      <form class="form" *ngIf="userModel.verification_phone_ok && !verification_phone_form">
+                        <div class="form-group is-disabled no-opacity">
                           <span class="form-title">Your phone number:</span>
                           <label class="phone-send">
-                            <input type="text" class="form-control" value="+380993056563" required="">
-                            <a href="#" class="btn btn-accent rippler rippler-default js-phone-send">Send code</a>
+                            <int-phone-prefix class='country-prefix' [(ngModel)]="userModel.phone" [ngModelOptions]="{standalone: true}" [locale]="'en'"></int-phone-prefix>
+                            <button class="btn btn-accent rippler rippler-default is-disabled"> Send code</button>
                           </label>
-                          <span class="error-label">Not valid phone number format</span>
-                          <div class="settings-tip p_small mobile-only">You need to verify your <b>e-mail address</b> and <br> <b>phone number</b> to exchange 250 - 999 €.</div>
                         </div>
-
-                        <div class="between-children">
-                          <label class="form-group">
-                            <span class="form-title">Activation code:</span>
-                            <input type="text" class="form-control" required="" value="l7d8w9">
-                            <span class="error-label">Hesla se neshodují</span>
-                          </label>
-
-                          <div class="form-group small-indent mobile-only">
-                            <div class="text-center tip-link">
-                              <a href="#" class="link tt-uppercase">Send Again</a>
-                            </div>
-                          </div>
-
-                          <div class="form-btn">
-                            <label>
-                              <a href="#" class="btn btn-accentSecond rippler rippler-default">{{ 'Settings.ConfirmBtn' | translate }}</a>
-                              <input type="submit" hidden>
-                            </label>
-                          </div>
-                        </div>
-
-                        <div class="form-group small-indent desktop-only">
+                        <div class="form-group small-indent">
                           <div class="text-center tip-link">
-                            <a href="#" class="link tt-uppercase">Send Again</a>
+                            <a href="#" class="link tt-uppercase" (click)="display_phone_form($event)">Change phone</a>
+                            <div class="timer"></div>
                           </div>
                         </div>
                       </form>
+
+                      <div *ngIf="!userModel.verification_phone_ok || verification_phone_form">
+                        <form class="form" [ngClass]="{'custom-loader disabled': loadingSms}"
+                              (submit)="submitSms($event)"
+                              [formGroup]="phoneForm" #formPhone="ngForm" novalidate>
+
+                          <div class="form-group" [ngClass]="{'has-error':
+                           (phoneForm.controls['phone'].hasError('required')
+                           || phoneForm.controls['phone'].hasError('invalid')
+                           || phoneForm.controls['phone'].hasError('minlength'))
+                           && formPhone.submitted}">
+                            <span class="form-title">Your phone number:</span>
+                            <label class="phone-send">
+                              <int-phone-prefix class='country-prefix' [(ngModel)]="fieldPhone" formControlName="phone"
+                                                [locale]="'en'"></int-phone-prefix>
+                              <!--<input type="text" [(ngModel)]="fieldPhone" formControlName="phone" mask="(000)-000-00-00" class="form-control" placeholder="(000)-000-00-00" required="">-->
+                              <button class="btn btn-accent rippler rippler-default"
+                                      [disabled]="formPhone.invalid && formPhone.submitted || btnDisabled">Send code
+                              </button>
+                            </label>
+                            <span *ngIf="phoneForm.controls['phone'].hasError('required') && formPhone.submitted"
+                                  class="error-label">Required field</span>
+                            <span *ngIf="phoneForm.controls['phone'].hasError('invalid') && formPhone.submitted"
+                                  class="error-label">Not valid phone number format</span>
+                            <span *ngIf="phoneForm.controls['phone'].hasError('minlength') && formPhone.submitted"
+                                  class="error-label">The minimum number of characters 10</span>
+                          </div>
+                        </form>
+
+                        <form class="form" [ngClass]="{'custom-loader disabled': loadingCode}"
+                              (submit)="verififcationCode($event)"
+                              [formGroup]="codeForm" #formCode="ngForm" novalidate>
+                          <div class="between-children">
+                            <label class="form-group" [ngClass]="{'has-error':
+                           (codeForm.controls['code'].hasError('required')
+                           || codeForm.controls['code'].hasError('maxlength')
+                           || codeForm.controls['code'].hasError('invalid'))
+                           && formCode.submitted}">
+                              <span class="form-title">Activation code:</span>
+                              <input type="text" [(ngModel)]="fieldCode" formControlName="code" class="form-control"
+                                     required="" placeholder="l7d8w9">
+                              <span *ngIf="codeForm.controls['code'].hasError('required') && formCode.submitted"
+                                    class="error-label">Required field</span>
+                              <span *ngIf="codeForm.controls['code'].hasError('maxlength') && formCode.submitted"
+                                    class="error-label">The maximum number of characters 64</span>
+                              <span *ngIf="codeForm.controls['code'].hasError('invalid') && formCode.submitted"
+                                    class="error-label">The code is invalid</span>
+                            </label>
+
+                            <div class="form-group small-indent mobile-only">
+                              <div class="text-center tip-link">
+                                <a href="#" class="link tt-uppercase" [ngClass]="{'is-disabled': sendAgainDisabled}"
+                                   (click)="submitSms($event)">Send Again</a>
+                                <div class="timer"></div>
+                              </div>
+                            </div>
+
+                            <div class="form-btn">
+                              <label>
+                                <button class="btn btn-accentSecond rippler rippler-default"
+                                        [disabled]="codeForm.controls['code'].hasError('required') || codeForm.controls['code'].hasError('maxlength')">
+                                  {{ 'Settings.ConfirmBtn' | translate }}
+                                </button>
+                              </label>
+                            </div>
+                          </div>
+
+                          <div class="form-group small-indent desktop-only">
+                            <div class="text-center tip-link">
+                              <a href="#" class="link tt-uppercase" [ngClass]="{'is-disabled': sendAgainDisabled}"
+                                 (click)="submitSms($event)">Send Again</a>
+                              <div class="timer"></div>
+                            </div>
+                          </div>
+
+                        </form>
+
+                        <div class="loadingSuccess" *ngIf="successSendSms">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="-263.5 236.5 26 26">
+                            <g class="svg-success">
+                              <circle cx="-250.5" cy="249.5" r="12"/>
+                              <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+                            </g>
+                          </svg>
+                        </div>
+                      </div>
+
                     </div>
 
+
                     <!--<div class="item is-disabled">-->
-                    <div class="item" [ngClass]="{'is-disabled': !step3Show}"  >
+                    <div class="item" [ngClass]="{'is-disabled': !userModel.verification_phone_ok}"  >
                       <div class="line-sides">{{ 'Settings.NextLevel' | translate }}</div>
 
                       <div class="item__head title-inner">

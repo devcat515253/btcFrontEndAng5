@@ -23,279 +23,72 @@
                 </tr>
                 </thead>
 
+
                 <tbody>
-                <tr>
-                  <td class="transfer-name"><b>26.12</b>.2017</td>
+                <tr *ngFor="let transactionItem of pagedItems; let i = index">
+                  <td class="transfer-name"><b>{{transactionItem.date | date: 'dd.MM.'}}</b>{{transactionItem.date | date: 'yyyy'}}</td>
                   <td>
                     <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
+                      <div class="currency-name">{{transactionItem.inPayment.data.paymentSystem.data.name}}</div>
+                      <div class="currency-icons" [style.background-image]="'url(' + transactionItem.inPayment.data.paymentSystem.data.logo_link +')'"></div>
                     </div>
                   </td>
-                  <td align="right">10.00 <b>USD</b></td>
+                  <td align="right">{{transactionItem.in_amount}}
+                    <b>{{transactionItem.in_prefix}}</b>
+                  </td>
                   <td>
                     <div class="currency">
-                      <div class="currency-name">Bitcoin</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/bitcoin.png);"></div>
+                      <div class="currency-name">{{transactionItem.outPayment.data.paymentSystem.data.name}}</div>
+                      <div class="currency-icons" [style.background-image]="'url(' + transactionItem.outPayment.data.paymentSystem.data.logo_link +')'"></div>
                     </div>
                   </td>
-                  <td align="right">0.00018 <b>BTC</b></td>
+                  <td align="right">{{transactionItem.out_amount}}
+                    <b>{{transactionItem.out_prefix}}</b>
+                  </td>
                   <td>
                     <div class="transfer-status">
                       <div class="loader"><div class="loader-inside"></div></div>
                       {{ 'table.status.Verifying' | translate }}
                     </div>
-                  </td>
-                  <td align="center">
-                    <div class="rating rating-static">
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
 
-                <tr>
-                  <td class="transfer-name"><b>26.12</b>.2017</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">10.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Bitcoin</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/bitcoin.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00018 <b>BTC</b></td>
-                  <td>
-                    <div class="transfer-status">
-                      <span class="circle circle-green"></span>
-                      {{ 'table.status.Successfully' | translate }}
-                    </div>
-                  </td>
-                  <td align="center">
-                    <div class="rating rating-static">
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="transfer-name"><b>26.12</b>.2017</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">8.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Ethereum</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/etherium.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00000013 <b>ETH</b></td>
-                  <td>
                     <div class="transfer-status">
                       <span class="circle circle-red"></span>
                       {{ 'table.status.Failed' | translate }}
                     </div>
-                  </td>
-                  <td align="center">{{ 'table.status.NoRating' | translate }}</td>
-                </tr>
 
-                <tr>
-                  <td class="transfer-name"><b>26.12</b>.2017</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">10.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Bitcoin</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/bitcoin.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00018 <b>BTC</b></td>
-                  <td>
                     <div class="transfer-status">
                       <div class="loader"><div class="loader-inside"></div></div>
                       <div [innerHTML]="'table.status.Waiting' | translate"></div>
                     </div>
-                  </td>
-                  <td align="center">
-                    <div class="rating rating-static">
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
 
-                <tr>
-                  <td class="transfer-name"><b>26.12</b>.2017</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">10.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Bitcoin</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/bitcoin.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00018 <b>BTC</b></td>
-                  <td>
                     <div class="transfer-status">
                       <span class="circle circle-green"></span>
                       Úspěšně proběhlo
                     </div>
+
+
+
                   </td>
                   <td align="center">
-                    <div class="rating rating-static">
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                    <div class="rating rating-statick" *ngIf="transactionItem.rating > 0">
+                      <div class="star" [ngClass]="{'is-active': transactionItem.rating === 5}"><img
+                        src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                      <div class="star" [ngClass]="{'is-active': transactionItem.rating === 4 || transactionItem.rating === 5}">
+                        <img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                      <div class="star" [ngClass]="{'is-active': transactionItem.rating === 3 || transactionItem.rating === 4 || transactionItem.rating === 5}">
+                        <img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                      <div class="star" [ngClass]="{'is-active': transactionItem.rating === 2 || transactionItem.rating === 3 || transactionItem.rating === 4 || transactionItem.rating === 5}">
+                        <img src="../assets/img/svg/star.svg" alt="" class="img-svg">
+                      </div>
+                      <div class="star"
+                           [ngClass]="{'is-active': transactionItem.rating === 1 || transactionItem.rating === 2 || transactionItem.rating === 3 || transactionItem.rating === 4 || transactionItem.rating === 5  }">
+                        <img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
                     </div>
+                    <div *ngIf="transactionItem.rating === 0">No Rating</div>
                   </td>
                 </tr>
 
-                <tr>
-                  <td class="transfer-name"><b>26.12</b>.2017</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">8.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Ethereum</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/etherium.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00000013 <b>ETH</b></td>
-                  <td>
-                    <div class="transfer-status">
-                      <span class="circle circle-red"></span>
-                      Platba se nezdařila
-                    </div>
-                  </td>
-                  <td align="center">{{ 'table.status.NoRating' | translate }}</td>
-                </tr>
 
-                <tr>
-                  <td class="transfer-name"><b>26.12</b>.2017</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">10.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Bitcoin</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/bitcoin.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00018 <b>BTC</b></td>
-                  <td>
-                    <div class="transfer-status">
-                      <div class="loader"><div class="loader-inside"></div></div>
-                      Částka se ověřuje
-                    </div>
-                  </td>
-                  <td align="center">
-                    <div class="rating rating-static">
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="transfer-name"><b>26.12</b>.2017</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">10.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Bitcoin</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/bitcoin.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00018 <b>BTC</b></td>
-                  <td>
-                    <div class="transfer-status">
-                      <span class="circle circle-green"></span>
-                      Úspěšně proběhlo
-                    </div>
-                  </td>
-                  <td align="center">
-                    <div class="rating rating-static">
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="transfer-name"><b>26.12</b>.2017</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">8.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Ethereum</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/etherium.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00000013 <b>ETH</b></td>
-                  <td>
-                    <div class="transfer-status">
-                      <span class="circle circle-red"></span>
-                      Platba se nezdařila
-                    </div>
-                  </td>
-                  <td align="center">{{ 'table.status.NoRating' | translate }}</td>
-                </tr>
                 </tbody>
               </table>
             </div>

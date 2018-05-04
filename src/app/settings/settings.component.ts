@@ -7,6 +7,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {FileValidator, matchOtherValidator} from '../_validators/validator';
 import {UserLogs} from '../_entity/user-logs';
 import {ICustomFile} from 'file-input-accessor';
+import {ExchangeService} from '../_services/exchange.service';
+import {stepsArray} from '../_entity/stepsArray';
 
 @Component({
   selector: 'app-settings',
@@ -54,11 +56,28 @@ export class SettingsComponent implements OnInit {
   logsArray: UserLogs[] = [];
 
 
+  fieldPhone: string = '';
+  fieldCode: string = '';
+
+  phoneForm: FormGroup;
+  codeForm: FormGroup;
+
+  loadingSms: boolean = false;
+  loadingCode: boolean = false;
+
+  verification_phone_form: boolean = false;
+  successSendSms: boolean = false;
+  btnDisabled: boolean = false;
+  sendAgainDisabled: boolean = true;
+
   constructor(private cdr: ChangeDetectorRef,
-              private userService: UserService) {
+              private userService: UserService,
+              private exchangeService: ExchangeService) {
     this.passwordValidator();
     this.idCardFormValidator();
     this.KycFormValidator();
+    this.initValidator();
+    this.codeValidator();
   }
 
 
@@ -114,6 +133,141 @@ export class SettingsComponent implements OnInit {
       console.log(error);
       this.loadingMain = false;
     });
+  }
+
+  // ================================
+  // MOBILE PHONE VERIFICATION
+  // ================================
+
+  initValidator() {
+    this.phoneForm = new FormGroup({
+      phone: new FormControl(this.fieldPhone, [
+        Validators.required,
+        Validators.minLength(11)
+      ])
+    });
+  }
+  codeValidator() {
+    this.codeForm = new FormGroup({
+      code: new FormControl(this.fieldCode, [
+        Validators.required,
+        Validators.maxLength(64)
+      ])
+    });
+  }
+
+  display_phone_form(event) {
+    event.preventDefault();
+
+    this.verification_phone_form = true;
+  }
+
+  submitSms(event) {
+    event.preventDefault();
+
+    const controls = this.phoneForm.controls;
+    if (this.phoneForm.invalid) {
+      Object.keys(controls)
+        .forEach(controlName => controls[controlName].markAsTouched());
+      return;
+    }
+    console.log('Форма пошла на отправку');
+
+    this.loadingSms = true;
+
+    this.exchangeService.exchangeSendSms(this.fieldPhone).subscribe((data) => {
+        console.log(data);
+        this.loadingSms = false;
+        this.successSendSms = true;
+        setTimeout((() => this.successSendSms = false), 1000);
+        this.btnDisabled = true;
+
+        this.startTimer();
+      },
+      error => {
+        console.log(error);
+        this.loadingSms = false;
+      });
+  }
+  startTimer() {
+    const duration = 60 / 3;
+    const display: NodeListOf<Element> = document.querySelectorAll('.timer');
+    console.log(display);
+
+    var start = Date.now(),
+      diff,
+      minutes,
+      seconds;
+
+    let smsInterval = setInterval(() => {
+      // get the number of seconds that have elapsed since
+      // startTimer() was called
+      diff = duration - (((Date.now() - start) / 1000) | 0);
+
+      // does the same job as parseInt truncates the float
+      minutes = (diff / 60) | 0;
+      seconds = (diff % 60) | 0;
+
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+
+      for (let i = 0; i < display.length; i++) {
+        const element = display[i];
+        element.textContent = minutes + ':' + seconds;
+      }
+
+      if (diff <= 0) {
+        // add one second so that the count down starts at the full duration
+        // example 05:00 not 04:59
+        // start = Date.now() + 1000;
+
+        for (let i = 0; i < display.length; i++) {
+          const element = display[i];
+          element.textContent = '';
+        }
+
+        this.btnDisabled = false;
+        this.sendAgainDisabled = false;
+        clearInterval(smsInterval);
+      }
+    }, 1000);
+  }
+
+  verififcationCode(event) {
+    event.preventDefault();
+
+    const controls = this.codeForm.controls;
+    if (this.codeForm.invalid) {
+      Object.keys(controls)
+        .forEach(controlName => controls[controlName].markAsTouched());
+      return;
+    }
+    console.log('Форма пошла на отправку');
+
+    this.loadingCode = true;
+
+    this.exchangeService.exchangeSendCode(this.fieldPhone, this.fieldCode).subscribe((data) => {
+        console.log(data);
+        this.codeForm.controls['code'].setErrors(null);
+        this.userModel.phone = this.fieldPhone;
+        this.userModel.verification_phone_ok = true;
+
+        this.userService.updateUserProfile(this.userModel).subscribe(() => {
+          this.userService.user$.next(this.userModel);
+          this.verification_phone_form = false;
+          this.loadingCode = false;
+          this.successSendSms = true;
+        }, (error) => {
+          console.log(error);
+          this.loadingCode = false;
+        });
+      },
+      error => {
+        console.log(error);
+        this.loadingCode = false;
+        this.codeForm.controls['code'].setErrors({'invalid': true});
+
+      });
   }
 
   isImage(file) {

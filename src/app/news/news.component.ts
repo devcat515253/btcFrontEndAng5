@@ -42,6 +42,7 @@ export class NewsComponent implements OnInit {
 
         this.initSetPage();
         this.loadingNews = false;
+        console.log(data);
       },
       error => {
         console.log(error);

@@ -31,8 +31,8 @@
                   <div class="items ">
 
                     <div class="item" *ngIf="newsArray.length > 0">
-                      <div class="item__head title-inner opened" [attr.dataDate]="newsArray[0].date | date: 'dd/MM/yyyy'" >{{newsArray[0].title}}</div>
-                      <div class="item__content"><p class="pre-line">{{newsArray[0].text}}</p></div>
+                      <div class="item__head title-inner opened" [attr.dataDate]="newsArray[newsArray.length - 1].date | date: 'dd/MM/yyyy'" >{{newsArray[newsArray.length - 1].title}}</div>
+                      <div class="item__content"><p class="pre-line" [innerHTML]="newsArray[newsArray.length - 1].text"></p></div>
                     </div>
                   </div>
 

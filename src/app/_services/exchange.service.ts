@@ -23,6 +23,11 @@ export class ExchangeService {
   }
 
 
+  getTransactionsList() {
+    return this.http.get<any>(`${this.baseUrl}/api/exchanges/view`);
+  }
+
+
 
   getExchangeListFrom() {
     return this.http.get<any>(`${this.baseUrl}/api/payment-systems/from`);

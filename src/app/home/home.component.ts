@@ -72,6 +72,7 @@ export class HomeComponent implements OnInit {
   dataBankCzk: ExchangeStep4and2 = new ExchangeStep4and2();
   // needVerification: boolean = false;
 
+  limitNotAuth: boolean = false;
 
   constructor(public dialog: MatDialog,
               private cdr: ChangeDetectorRef,
@@ -143,6 +144,10 @@ export class HomeComponent implements OnInit {
     this.userService.exchangeGoStart.subscribe( () => {
       this.goToStart();
     });
+  }
+
+  deleteLimitNotAuth() {
+    this.limitNotAuth = false;
   }
 
 
@@ -262,7 +267,6 @@ export class HomeComponent implements OnInit {
     this.dataBankCzk = event;
     this.checkStepShow('6-1');
   }
-
 
 
 
@@ -467,10 +471,25 @@ export class HomeComponent implements OnInit {
   }
 
   inputFromChanged() {
-
     if (!this.selectedExchangeFrom || !this.selectedExchangeTo) {
       return;
     }
+
+    this.exchangeService.getLimit(this.selectedExchangeFrom, this.inputExchangeFrom).subscribe( (result) => {
+      if (result.data) {
+        if (result.data.code === 1 || result.data.code === 2) {
+          this.limitNotAuth = true;
+        }
+        return;
+      } else {
+        this.limitNotAuth = false;
+      }
+    }, (error) => {
+      console.log(error);
+      // this.loading.emit(false);
+    });
+
+
 
     // console.log(this.inputExchangeFrom);
     // console.log(this.selectedExchangeFrom);

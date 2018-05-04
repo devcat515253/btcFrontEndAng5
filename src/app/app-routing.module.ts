@@ -33,7 +33,12 @@ const routes: Routes = [
   { path: 'tablehistory', component: TableHistoryComponent},
   { path: 'tablehistoryreviews', component: TableHistoryReviewsComponent},
   { path: 'testimonials', component: TestimonialsComponent},
-  { path: 'payment', component: TransactionsComponent},
+  { path: 'payment',
+    children: [
+      { path: '', component: TransactionsComponent},
+      { path: ':hash' ,  component: TransactionsComponent},
+    ]
+  },
   { path: 'prepaid-card', component: PrepaidCardComponent},
   { path: 'discount', component: DiscountComponent},
   { path: 'user',

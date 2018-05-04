@@ -3,10 +3,9 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {UserAuth} from '../../_entity/user-auth';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../_services/user.service';
-import {HttpResponse} from '@angular/common/http';
 import {EmailModel} from '../../_entity/email-model';
-import {of} from 'rxjs/observable/of';
 import {ActivatedRoute, Router} from '@angular/router';
+import {LocationStrategy, PlatformLocation, Location} from '@angular/common';
 
 @Component({
   selector: 'app-dialog-auth',
@@ -40,14 +39,16 @@ export class DialogAuthComponent implements OnInit {
 
   ngOnInit() {
     // reset login status
-    this.userService.logout();
+    this.userService.logoutNoForwarding();
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    console.log(window.location.pathname);
 
+    if  (this.returnUrl === '/') {  this.returnUrl = window.location.pathname; }
+
+    console.log(this.returnUrl);
   }
-
-
 
   onNoClick(event): void {
     event.preventDefault();

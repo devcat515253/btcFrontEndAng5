@@ -25,7 +25,7 @@
       <div class="content">
         <div class="blank tape-top no-padding">
           <div class="blank-content">
-            <div class="hard-table hz-scroll">
+            <div class="hard-table hz-scroll" [ngClass]="{'custom-loader disabled': loadingTransaction}">
               <table>
                 <thead>
                 <tr>
@@ -34,624 +34,128 @@
                   <th>Vstupní částka:</th>
                   <th>Výstupní systém:</th>
                   <th>Výstupní částka:</th>
-                  <th>ID transakce:</th>
                   <th>Hodnocení:</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <tr class="tr-default">
-                  <td class="transfer-name">P*** N******</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">10.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Bitcoin</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/bitcoin.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00018 <b>BTC</b></td>
-                  <td><div class="transfer-id">74deedefda69b7046d</div></td>
-                  <td align="center">
-                    <div class="rating">
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="tr-content">
-                  <td colspan="7">
-                    <div class="tr-review">
-                      <div class="tr-review__name"><b>P*** D****</b> říká o této transakci:</div>
-                      <div class="tr-review__text">
-                        <div class="rating rating-static">
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                        </div>
-                        <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
-                          Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
-                      </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
-                    </div>
-                  </td>
-                </tr>
+                    <tr class="tr-default" *ngFor="let transactionItem of pagedItems; let i = index">
 
-                <!-- LINE2 -->
-                <tr class="tr-default">
-                  <td class="transfer-name">L*** K******</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Dash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/dash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">128.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Ethereum</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/etherium.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.0048 <b>ETH</b></td>
-                  <td><div class="transfer-id">4a84c4fab98fde</div></td>
-                  <td align="center">
-                    <div class="rating">
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="tr-content">
-                  <td colspan="7">
-                    <div class="tr-review">
-                      <div class="tr-review__name"><b>L*** K******</b> říká o této transakci:</div>
-                      <div class="tr-review__text">
-                        <div class="rating rating-static">
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                        </div>
-                        <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
-                          Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
-                      </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
-                    </div>
-                  </td>
-                </tr>
+                      <td class="transfer-name">{{transactionItem.id}}</td>
 
-                <!-- LINE3 -->
-                <tr class="tr-default">
-                  <td class="transfer-name">T***** N******</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">8.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Ethereum</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/etherium.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00000013 <b>ETH</b></td>
-                  <td><div class="transfer-id">d40617172258939a</div></td>
-                  <td align="center">
-                    <div class="rating">
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="tr-content">
-                  <td colspan="7">
-                    <div class="tr-review">
-                      <div class="tr-review__name"><b>T***** N******</b> říká o této transakci:</div>
-                      <div class="tr-review__text">
-                        <div class="rating rating-static">
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                      <td>
+                        <div class="currency">
+                          <div class="currency-name">{{transactionItem.inPayment.data.paymentSystem.data.name}}</div>
+                          <div class="currency-icons" [style.background-image]="'url(' + transactionItem.inPayment.data.paymentSystem.data.logo_link +')'"></div>
                         </div>
-                        <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
-                          Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
-                      </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
-                    </div>
-                  </td>
-                </tr>
+                      </td>
+                      <td align="right">{{transactionItem.in_amount}}
+                        <b>{{transactionItem.in_prefix}}</b>
+                      </td>
+                      <td>
+                        <div class="currency">
+                          <div class="currency-name">{{transactionItem.outPayment.data.paymentSystem.data.name}}</div>
+                          <div class="currency-icons" [style.background-image]="'url(' + transactionItem.outPayment.data.paymentSystem.data.logo_link +')'"></div>
+                        </div>
+                      </td>
+                      <td align="right">{{transactionItem.out_amount}}
+                        <b>{{transactionItem.out_prefix}}</b>
+                      </td>
+                      <td align="center">
 
-                <!-- LINE4 -->
-                <tr class="tr-default">
-                  <td class="transfer-name">Danilka Kabak</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">8.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Ethereum</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/etherium.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00000013 <b>ETH</b></td>
-                  <td><div class="transfer-id">b04d9f689dc5a4ad5e60b</div></td>
-                  <td align="center">
-                    <div class="rating">
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="tr-content">
-                  <td colspan="7">
-                    <div class="tr-review">
-                      <div class="tr-review__name"><b>T***** N******</b> říká o této transakci:</div>
-                      <div class="tr-review__text">
-                        <div class="rating rating-static">
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                        <div class="rating rating-statick" *ngIf="transactionItem.rating > 0">
+                          <div class="star" [ngClass]="{'is-active': transactionItem.rating === 5}"><img
+                            src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                          <div class="star" [ngClass]="{'is-active': transactionItem.rating === 4 || transactionItem.rating === 5}">
+                            <img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                          <div class="star" [ngClass]="{'is-active': transactionItem.rating === 3 || transactionItem.rating === 4 || transactionItem.rating === 5}">
+                             <img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                          <div class="star" [ngClass]="{'is-active': transactionItem.rating === 2 || transactionItem.rating === 3 || transactionItem.rating === 4 || transactionItem.rating === 5}">
+                             <img src="../assets/img/svg/star.svg" alt="" class="img-svg">
+                          </div>
+                          <div class="star"
+                               [ngClass]="{'is-active': transactionItem.rating === 1 || transactionItem.rating === 2 || transactionItem.rating === 3 || transactionItem.rating === 4 || transactionItem.rating === 5  }">
+                             <img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
                         </div>
-                        <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
-                          Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
-                      </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
-                    </div>
-                  </td>
-                </tr>
+                        <div *ngIf="transactionItem.rating === 0">No Rating</div>
 
-                <tr class="tr-default">
-                  <td class="transfer-name">P*** N******</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">10.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Bitcoin</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/bitcoin.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00018 <b>BTC</b></td>
-                  <td><div class="transfer-id">74deedefda69b7046d</div></td>
-                  <td align="center">
-                    <div class="rating">
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="tr-content">
-                  <td colspan="7">
-                    <div class="tr-review">
-                      <div class="tr-review__name"><b>P*** D****</b> říká o této transakci:</div>
-                      <div class="tr-review__text">
-                        <div class="rating rating-static">
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                      </td>
+                    </tr>
+                    <tr class="tr-content" *ngFor="let transactionItem of pagedItems; let i = index" >
+                      <td colspan="7" [attr.tr-id]="transactionItem.id">
+                        <div class="tr-review">
+                          <!--<div class="tr-review__name">-->
+                            <!--<b>{{transactionItem.id}}</b></div>-->
+                          <div class="tr-review__text">
+                            <div class="rating rating-statick">
+                              <div class="star" [ngClass]="{'is-active': transactionItem.rating === 5}"><img
+                                src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                              <div class="star" [ngClass]="{'is-active': transactionItem.rating === 4 || transactionItem.rating === 5}">
+                                <img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                              <div class="star" [ngClass]="{'is-active': transactionItem.rating === 3 || transactionItem.rating === 4 || transactionItem.rating === 5}">
+                                <img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                              <div class="star" [ngClass]="{'is-active': transactionItem.rating === 2 || transactionItem.rating === 3 || transactionItem.rating === 4 || transactionItem.rating === 5}">
+                                <img src="../assets/img/svg/star.svg" alt="" class="img-svg">
+                              </div>
+                              <div class="star"
+                                   [ngClass]="{'is-active': transactionItem.rating === 1 || transactionItem.rating === 2 || transactionItem.rating === 3 || transactionItem.rating === 4 || transactionItem.rating === 5  }">
+                                <img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
+                            </div>
+                            <div class="quote">{{transactionItem.comment}}</div>
+                          </div>
+                          <!--<div class="tr-review__autor">-->
+                            <!--<a href="#" class="link tt-uppercase">Sbalit komentář</a>-->
+                          <!--</div>-->
                         </div>
-                        <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
-                          Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
-                      </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
-                    </div>
-                  </td>
-                </tr>
+                      </td>
+                    </tr>
 
-                <!-- LINE2 -->
-                <tr class="tr-default">
-                  <td class="transfer-name">L*** K******</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Dash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/dash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">128.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Ethereum</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/etherium.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.0048 <b>ETH</b></td>
-                  <td><div class="transfer-id">4a84c4fab98fde</div></td>
-                  <td align="center">
-                    <div class="rating">
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="tr-content">
-                  <td colspan="7">
-                    <div class="tr-review">
-                      <div class="tr-review__name"><b>L*** K******</b> říká o této transakci:</div>
-                      <div class="tr-review__text">
-                        <div class="rating rating-static">
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                        </div>
-                        <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
-                          Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
-                      </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
-                    </div>
-                  </td>
-                </tr>
 
-                <!-- LINE3 -->
-                <tr class="tr-default">
-                  <td class="transfer-name">T***** N******</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">8.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Ethereum</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/etherium.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00000013 <b>ETH</b></td>
-                  <td><div class="transfer-id">d40617172258939a</div></td>
-                  <td align="center">
-                    <div class="rating">
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="tr-content">
-                  <td colspan="7">
-                    <div class="tr-review">
-                      <div class="tr-review__name"><b>T***** N******</b> říká o této transakci:</div>
-                      <div class="tr-review__text">
-                        <div class="rating rating-static">
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                        </div>
-                        <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
-                          Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
-                      </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- LINE4 -->
-                <tr class="tr-default">
-                  <td class="transfer-name">Danilka Kabak</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">8.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Ethereum</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/etherium.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00000013 <b>ETH</b></td>
-                  <td><div class="transfer-id">b04d9f689dc5a4ad5e60b</div></td>
-                  <td align="center">
-                    <div class="rating">
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="tr-content">
-                  <td colspan="7">
-                    <div class="tr-review">
-                      <div class="tr-review__name"><b>T***** N******</b> říká o této transakci:</div>
-                      <div class="tr-review__text">
-                        <div class="rating rating-static">
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                        </div>
-                        <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
-                          Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
-                      </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr class="tr-default">
-                  <td class="transfer-name">P*** N******</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">10.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Bitcoin</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/bitcoin.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00018 <b>BTC</b></td>
-                  <td><div class="transfer-id">74deedefda69b7046d</div></td>
-                  <td align="center">
-                    <div class="rating">
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="tr-content">
-                  <td colspan="7">
-                    <div class="tr-review">
-                      <div class="tr-review__name"><b>P*** D****</b> říká o této transakci:</div>
-                      <div class="tr-review__text">
-                        <div class="rating rating-static">
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                        </div>
-                        <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
-                          Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
-                      </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- LINE2 -->
-                <tr class="tr-default">
-                  <td class="transfer-name">L*** K******</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Dash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/dash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">128.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Ethereum</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/etherium.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.0048 <b>ETH</b></td>
-                  <td><div class="transfer-id">4a84c4fab98fde</div></td>
-                  <td align="center">
-                    <div class="rating">
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="tr-content">
-                  <td colspan="7">
-                    <div class="tr-review">
-                      <div class="tr-review__name"><b>L*** K******</b> říká o této transakci:</div>
-                      <div class="tr-review__text">
-                        <div class="rating rating-static">
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                        </div>
-                        <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
-                          Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
-                      </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- LINE3 -->
-                <tr class="tr-default">
-                  <td class="transfer-name">T***** N******</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">8.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Ethereum</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/etherium.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00000013 <b>ETH</b></td>
-                  <td><div class="transfer-id">d40617172258939a</div></td>
-                  <td align="center">
-                    <div class="rating">
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="tr-content">
-                  <td colspan="7">
-                    <div class="tr-review">
-                      <div class="tr-review__name"><b>T***** N******</b> říká o této transakci:</div>
-                      <div class="tr-review__text">
-                        <div class="rating rating-static">
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                        </div>
-                        <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
-                          Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
-                      </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- LINE4 -->
-                <tr class="tr-default">
-                  <td class="transfer-name">Danilka Kabak</td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Adv Cash</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/adv-cash.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">8.00 <b>USD</b></td>
-                  <td>
-                    <div class="currency">
-                      <div class="currency-name">Ethereum</div>
-                      <div class="currency-icons" style="background-image: url(../assets/img/etherium.png);"></div>
-                    </div>
-                  </td>
-                  <td align="right">0.00000013 <b>ETH</b></td>
-                  <td><div class="transfer-id">b04d9f689dc5a4ad5e60b</div></td>
-                  <td align="center">
-                    <div class="rating">
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                      <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="tr-content">
-                  <td colspan="7">
-                    <div class="tr-review">
-                      <div class="tr-review__name"><b>T***** N******</b> říká o této transakci:</div>
-                      <div class="tr-review__text">
-                        <div class="rating rating-static">
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                          <div class="star is-active"><img src="../assets/img/svg/star.svg" alt="" class="img-svg"></div>
-                        </div>
-                        <div class="quote">Vše proběhlo v naprostém pořádku, peníze přišly opravdu rychle. Vážně nemám, co bych mohl k transakci namítat.
-                          Zvláštní poděkování patří vašemu designérovi, který udělal příjemné a intuitivní rozhraní. :D”</div>
-                      </div>
-                      <div class="tr-review__autor"><a href="#" class="link tt-uppercase">Sbalit komentář</a></div>
-                    </div>
-                  </td>
-                </tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
 
-        <div class="paginator__wr">
-          <div class="paginator">
-            <div class="paginator__status"><span class="">Zobrazeno <b>3</b> z <b>15</b></span></div>
+        <div class="paginator__wr" *ngIf="pager.pages && pager.pages.length">
+          <div class="paginator" >
+            <div class="paginator__status"><span class=""><b>{{pager.currentPage}}</b> {{ 'exchange.PaginationOf' | translate }} <b>{{pager.totalPages}}</b>  </span></div>
             <div class="paginator__btns">
 
               <ul class="pages pages_desktop">
-                <li class="page rippler rippler-default is-disabled"><a >First</a></li>
-                <li class="page rippler rippler-default is-disabled"><a >Previous</a></li>
-                <li class="page rippler rippler-default is-selected"><a>1</a></li>
-                <li class="page rippler rippler-default"><a>2</a></li>
-                <li class="page rippler rippler-default"><a >3</a></li>
-                <li class="page rippler rippler-default"><a >4</a></li>
-                <li class="page rippler rippler-default"><a >5</a></li>
-                <li class="page is-skip"><span>...</span></li>
-                <li class="page rippler rippler-default"><a >9</a></li>
-                <li class="page rippler rippler-default"><a >10</a></li>
-                <li class="page rippler rippler-default"><a >Next</a></li>
-                <li class="page rippler rippler-default"><a >Last</a></li>
+                <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === 1}">
+                  <a (click)="setPage(1)">First</a>
+                </li>
+                <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === 1}">
+                  <a (click)="setPage(pager.currentPage - 1)" >Previous</a>
+                </li>
+
+                <li class="page rippler rippler-default" *ngFor="let page of pager.pages" [ngClass]="{'is-selected':pager.currentPage === page}">
+                  <a (click)="setPage(page)">{{page}}</a>
+                </li>
+
+
+                <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === pager.totalPages}"><a (click)="setPage(pager.currentPage + 1)">Next</a></li>
+                <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === pager.totalPages}"><a (click)="setPage(pager.totalPages)">Last</a></li>
 
               </ul>
 
-              <ul class="pages pages_mobile">
-                <li class="page rippler rippler-default is-disabled"><a >First</a></li>
-                <li class="page rippler rippler-default is-selected"><a>1</a></li>
-                <li class="page rippler rippler-default"><a>2</a></li>
-                <li class="page rippler rippler-default"><a >3</a></li>
-                <li class="page is-skip"><span>...</span></li>
-                <li class="page rippler rippler-default"><a >10</a></li>
-                <li class="page rippler rippler-default"><a >Last</a></li>
 
+              <ul class="pages pages_mobile">
+                <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === 1}">
+                  <a (click)="setPageMobile(1)">First</a>
+                </li>
+
+                <li class="page rippler rippler-default" *ngFor="let page of pager.pages" [ngClass]="{'is-selected':pager.currentPage === page}">
+                  <a (click)="setPageMobile(page)">{{page}}</a>
+                </li>
+
+                <li class="page rippler rippler-default" [ngClass]="{'is-disabled':pager.currentPage === pager.totalPages}"><a (click)="setPageMobile(pager.totalPages)">Last</a></li>
               </ul>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>

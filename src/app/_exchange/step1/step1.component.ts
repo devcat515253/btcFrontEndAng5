@@ -24,6 +24,8 @@ export class Step1Component implements OnInit {
   @Output() onExchangeSwap = new EventEmitter<any>();
   @Output() loading = new EventEmitter<boolean>();
   @Output() exchangeSubmitResult = new EventEmitter<any>();
+
+  @Output() onLimitNotAuth = new EventEmitter<any>();
   @ViewChild(ReCaptchaComponent) captcha: ReCaptchaComponent;
 
   userDiscount: number = 0;
@@ -62,6 +64,7 @@ export class Step1Component implements OnInit {
       // console.log(result);
       this.loading.emit(false);
       this.exchangeSubmitResult.emit(result);
+      this.onLimitNotAuth.emit();
     }, (error) => {
       console.log(error);
       this.loading.emit(false);

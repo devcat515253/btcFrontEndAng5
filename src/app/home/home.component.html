@@ -27,8 +27,7 @@
                 <label class="input-exchange"
                        [ngClass]="{'has-error':
                                       exchangeFromForm.controls['inputFrom'].hasError('maxlength'),
-                                      'has-warn':
-                                      exchangeFromForm.controls['inputFrom'].hasError('email') }">
+                                      'has-warn': limitNotAuth }">
 
                   <div class="input">
                     <input type="text" [(ngModel)]="inputExchangeFrom" (keydown)='inputExchangeChanged($event)'
@@ -40,6 +39,9 @@
                         *ngIf="(exchangeFromForm.controls['inputFrom'].hasError('email')
                                || exchangeFromForm.controls['inputFrom'].hasError('maxlength'))
                                && fromForm.submitted">{{ 'errors.ExchangeLimit' | translate }}</span>
+
+                  <span class="error-label"
+                        *ngIf="limitNotAuth">The output limit for the guest has been exceeded. <br><a href="#" (click)="openDialogAuth($event); $event.preventDefault(); "> Auth</a></span>
                 </label>
               </form>
 
@@ -166,6 +168,7 @@
                       [exchangeFromForm]="exchangeFromForm"
                       [exchangeToForm]="exchangeToForm"
                       [inputExchangeFrom]="inputExchangeFrom"
+                      (onLimitNotAuth)="deleteLimitNotAuth()"
                       (onExchangeSwap)="exchangeSwap($event)"
                       (loading)="getStatusLoading($event)"
                       (exchangeSubmitResult)="checkExchangeSubmitResult($event)">

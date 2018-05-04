@@ -91,22 +91,22 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  openDSus() {
-      this.blurService.toggleBlur(true);
-
-      const dialogRef = this.dialog.open(DialogSuccessComponent, {
-        width: '60rem',
-        data: { title: `${ this.translate.instant('popup-question.title') }` , subtitle: 'SUBTITLE SUCCESS MESSAGE' }
-      });
-
-    //   console.log(this.translate.instant('popup-question.title'));
-    // this.translate.get('popup-question.title').subscribe(res => {
-    //   console.log(res);
-    // });
-
-      dialogRef.beforeClose().subscribe(result => {
-        this.blurService.toggleBlur(false);
-      });
-  }
+  // openDSus() {
+  //     this.blurService.toggleBlur(true);
+  //
+  //     const dialogRef = this.dialog.open(DialogSuccessComponent, {
+  //       width: '60rem',
+  //       data: { title: `${ this.translate.instant('popup-question.title') }` , subtitle: 'SUBTITLE SUCCESS MESSAGE' }
+  //     });
+  //
+  //   //   console.log(this.translate.instant('popup-question.title'));
+  //   // this.translate.get('popup-question.title').subscribe(res => {
+  //   //   console.log(res);
+  //   // });
+  //
+  //     dialogRef.beforeClose().subscribe(result => {
+  //       this.blurService.toggleBlur(false);
+  //     });
+  // }
 
 }

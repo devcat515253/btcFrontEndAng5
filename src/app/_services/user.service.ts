@@ -8,13 +8,14 @@ import {UserModel} from '../_entity/user-model';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Router} from '@angular/router';
 import {UserLogs} from '../_entity/user-logs';
+import {IntervalObservable} from 'rxjs/observable/IntervalObservable';
+
 
 @Injectable()
 export class UserService {
 
   baseUrl = 'http://api.smartex.info';
   userModel: UserModel = new UserModel();
-
 
 
   isLogged: boolean = false;
@@ -122,6 +123,16 @@ export class UserService {
     this.exchangeGoStart.emit();
   }
 
+  logoutNoForwarding() {
+    localStorage.removeItem('access_token');
+    this.getAuthToken();
+    this.discount = 0;
+    this.getUserDiscount();
+    this.userModel = new UserModel();
+    this.user$.next(this.userModel);
+    this.exchangeGoStart.emit();
+  }
+
   getUserDiscount() {
      this.http.get<any>(`${this.baseUrl}/api/me`, {headers: this.getAuthHeader()}).subscribe( (result) => {
        this.discount = result.data.discount;
@@ -133,7 +144,24 @@ export class UserService {
      });
   }
 
+  getTransactionInfoFirst(hash: string) {
+    if ( hash === 'null') { return this.http.get<any>(`${this.baseUrl}/api/user/not-auth/exchanges/`); }
+    return this.http.get<any>(`${this.baseUrl}/api/user/not-auth/exchanges/${hash}`);
+  }
 
+
+
+  getTransactionInfo(hash: string) {
+    return IntervalObservable
+      .create(5000)
+      .flatMap((i) => this.http.get<any>(`${this.baseUrl}/api/user/not-auth/exchanges/${hash}`));
+  }
+
+
+  // ADD REVIEWS
+  addReview(text: string, rating: number, id: number) {
+    return this.http.put<any>(`${this.baseUrl}/api/user/exchanges/${id}/comment`, {'comment': text, 'rating': rating}, {headers: this.getAuthHeader()});
+  }
 
 
   activateUser(hash: string) {
