@@ -1,15 +1,14 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ExchangeService} from '../../_services/exchange.service';
-import {Exchange} from '../../_entity/exchange';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-step2',
-  templateUrl: './step2.component.html',
-  styleUrls: ['./step2.component.sass']
+  selector: 'app-step1-1',
+  templateUrl: './step1-1.component.html',
+  styleUrls: ['./step1-1.component.sass']
 })
-export class Step2Component implements OnInit {
+export class Step11Component implements OnInit {
 
   @Output() goBack = new EventEmitter<any>();
+  @Output() goNext = new EventEmitter<any>();
   @Output() goAuth = new EventEmitter<any>();
   @Output() goRegistration = new EventEmitter<any>();
 
@@ -23,16 +22,19 @@ export class Step2Component implements OnInit {
     this.goBack.emit();
   }
 
+  goToNext(event) {
+    event.preventDefault();
+    this.goNext.emit();
+  }
+
   goToAuth(event) {
     event.preventDefault();
     this.goAuth.emit();
   }
+
   goToRegistr(event) {
     event.preventDefault();
     this.goRegistration.emit();
   }
-
-
-
 
 }

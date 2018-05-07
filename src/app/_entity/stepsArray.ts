@@ -83,5 +83,10 @@ export let stepsArray = [
       name: 'step6-2Show',
       count: '6-2',
       status: false
+    },
+    {
+      name: 'step1-1Show',
+      count: '1-1',
+      status: false
     }
 ];

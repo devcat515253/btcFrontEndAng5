@@ -29,19 +29,19 @@
               <table>
                 <thead>
                 <tr>
-                  <th align="center">Uživatel:</th>
-                  <th>Vstupní systém:</th>
-                  <th>Vstupní částka:</th>
-                  <th>Výstupní systém:</th>
-                  <th>Výstupní částka:</th>
-                  <th>Hodnocení:</th>
+                  <th align="center">{{ 'table.HistoryReviews.col1' | translate }}:</th>
+                  <th>{{ 'table.HistoryReviews.col2' | translate }}:</th>
+                  <th>{{ 'table.HistoryReviews.col3' | translate }}:</th>
+                  <th>{{ 'table.HistoryReviews.col4' | translate }}:</th>
+                  <th>{{ 'table.HistoryReviews.col5' | translate }}:</th>
+                  <th>{{ 'table.HistoryReviews.col7' | translate }}:</th>
                 </tr>
                 </thead>
 
                 <tbody>
                     <tr class="tr-default" *ngFor="let transactionItem of pagedItems; let i = index">
 
-                      <td class="transfer-name">{{transactionItem.id}}</td>
+                      <td align="center" class="transfer-name">{{transactionItem.id}}</td>
 
                       <td>
                         <div class="currency">

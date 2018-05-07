@@ -20,7 +20,7 @@
           <div class="column__head">
             <h2 class="title-great">You send</h2>
           </div>
-          <div class="column__content">
+          <div class="column__content" [ngClass]="{'is-disabled': processFill}">
             <div class="select-amount subblock">
               <form [formGroup]="exchangeFromForm" #fromForm="ngForm" novalidate>
 
@@ -175,6 +175,14 @@
                     </app-step1>
                   </div>
 
+                  <div class="step1-1" *ngIf="stepsArray[17].status">
+                    <app-step1-1 (goBack)="goToStart()"
+                                 (goNext)="goToForm4()"
+                                 (goAuth)="goToAuth()"
+                                 (goRegistration)="goToRegistr()">
+                    </app-step1-1>
+                  </div>
+
                   <!-- STEP12 -->
                   <div class="step2" *ngIf="stepsArray[1].status">
                     <app-step2 (goBack)="goToStart()"
@@ -183,15 +191,19 @@
                   </div>
                   <!-- STEP 3 -->
                   <div class="step3" *ngIf="stepsArray[2].status">
-                    <app-step3 [inputFrom]="inputExchangeFrom"
+                    <app-step3 [exchangeFrom]="selectedExchangeFrom"
+                               [inputExchangeFrom]="inputExchangeFrom"
+                               [inputFrom]="inputExchangeFrom"
                                [selectedFrom]="selectedExchangeFrom"
                                (exchangeSubmitResult)="checkExchangeSubmitResult($event)"
-                               (goBack)="goToForm2()"></app-step3>
+                               (goBack)="checkExchangeSubmitResult($event)"></app-step3>
                   </div>
 
                   <!-- STEP 3-1 -->
                   <div class="step3-1" *ngIf="stepsArray[3].status">
-                    <app-step3-1 (goBack)="goToForm2()"
+                    <app-step3-1 [exchangeFrom]="selectedExchangeFrom"
+                                 [inputExchangeFrom]="inputExchangeFrom"
+                                 (goBack)="checkExchangeSubmitResult($event)"
                                  (goNext)="goToForm3_2()"></app-step3-1>
                   </div>
 
@@ -328,7 +340,7 @@
           <div class="column__head">
             <h2 class="title-great">You receive</h2>
           </div>
-          <div class="column__content">
+          <div class="column__content" [ngClass]="{'is-disabled': processFill}">
             <div class="select-amount subblock">
 
               <form [formGroup]="exchangeToForm" #toForm="ngForm" novalidate>

@@ -63,6 +63,7 @@ import { NumberOnlyDirective } from './_directives/number-only.directive';
 import { ReCaptchaModule } from 'angular2-recaptcha';
 import {NgxMaskModule} from 'ngx-mask';
 import { InternationalPhoneModule } from 'ng4-country-phone-select';
+import { Step11Component } from './_exchange/step1-1/step1-1.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
@@ -112,7 +113,8 @@ export function createTranslateLoader(http: HttpClient) {
     Step6Component,
     Step61Component,
     Step62Component,
-    NumberOnlyDirective
+    NumberOnlyDirective,
+    Step11Component
   ],
   imports: [
     BrowserModule,

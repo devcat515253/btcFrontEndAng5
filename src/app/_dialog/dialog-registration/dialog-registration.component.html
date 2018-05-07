@@ -53,6 +53,16 @@
       <span class="checkbox-title">I agree to the <a href="#" class="link">Terms and Conditions</a> and <a href="#" class="link">Privacy Policy</a></span>
     </label>
 
+
+    <div class="text-center">
+      <div class="captcha">
+        <!--<re-captcha site_key="6Lfc51AUAAAAAJ300SFIWTq0vij-jtxbxomKE0et"></re-captcha>-->
+        <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" site_key="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
+      </div>
+    </div>
+
+
+
     <div class="form-btn between-children">
       <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="onNoClick($event)">Back</a>
 

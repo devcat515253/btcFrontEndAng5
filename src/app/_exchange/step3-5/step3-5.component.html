@@ -4,7 +4,7 @@
 
   <p class="p_small" *ngIf="!userModel.verification_kyc">
     Congratulations! Your identity card was <br>
-    verified. Let’s <b>continue</b> with your <b>KYC questionnaire</b>.
+    uploaded. Let’s <b>continue</b> with your <b>KYC questionnaire</b>.
   </p>
 
   <form class="form" (submit)="submitKycForm($event)" [formGroup]="KycForm" #ngKycForm="ngForm" novalidate [ngClass]="{'custom-loader disabled': loadingKyc}">
@@ -15,7 +15,7 @@
       <li><b>Upload</b> photo of filled KYC</li>
     </ul>
 
-    <a href="#" class="btn btn-accent rippler rippler-default js-file-upload full-width" *ngIf="!userModel.verification_kyc">Downlaod KYC</a>
+    <a href="#" class="btn btn-accent rippler rippler-default js-file-upload full-width" *ngIf="!userModel.verification_kyc">Download KYC</a>
 
     <div *ngIf="!userModel.verification_kyc">
       <br>
@@ -67,7 +67,7 @@
             </g>
           </svg>
         </div>
-        <button class="btn btn-accent rippler rippler-default" *ngIf="!userModel.verification_kyc" [disabled]="KycForm.invalid && ngKycForm.submitted">Verify KYC</button>
+        <button class="btn btn-accent rippler rippler-default" *ngIf="!userModel.verification_kyc" [disabled]="KycForm.invalid && ngKycForm.submitted">Upload KYC</button>
         <button type="submit" class="btn btn-accentSecond rippler rippler-default" *ngIf="userModel.verification_kyc" (click)="goToNext($event)">Next</button>
       </label>
     </div>

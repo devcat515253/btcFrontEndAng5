@@ -25,7 +25,7 @@
            || step4Form.controls['email'].hasError('maxlength'))
            && form4.submitted}">
       <span class="form-title">Contact e-mail:</span>
-      <input type="text" [(ngModel)]="user.email" formControlName="email" class="form-control" placeholder="example@gmail.com">
+      <input type="text" [(ngModel)]="user.email" formControlName="email" class="form-control" placeholder="your@email.com">
       <span *ngIf="step4Form.controls['email'].hasError('required') && form4.submitted"
             class="error-label">Required field</span>
       <span *ngIf="step4Form.controls['email'].hasError('email') && !step4Form.controls['email'].hasError('required') && !step4Form.controls['email'].hasError('minlength') && !step4Form.controls['email'].hasError('maxlength') && form4.submitted"
@@ -47,7 +47,7 @@
 
 
       <label>
-        <button class="btn btn-accent rippler rippler-default" [disabled]="step4Form.invalid && form4.submitted">Exhange</button>
+        <button class="btn btn-accent rippler rippler-default" [disabled]="step4Form.invalid && form4.submitted">Exchange</button>
       </label>
     </div>
   </form>

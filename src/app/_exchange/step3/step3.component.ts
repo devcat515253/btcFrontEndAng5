@@ -26,6 +26,10 @@ export class Step3Component implements OnInit {
   successAuth: boolean = false;
   userModel: UserModel = new UserModel();
 
+  @Input() inputExchangeFrom: number;
+  @Input() exchangeFrom: Exchange;
+
+
 
   constructor(private cdr: ChangeDetectorRef,
               private userService: UserService,
@@ -89,9 +93,13 @@ export class Step3Component implements OnInit {
 
   goToBack(event) {
     event.preventDefault();
-    this.goBack.emit();
+    this.exchangeService.getLimit(this.exchangeFrom, this.inputExchangeFrom).subscribe( (result) => {
+      this.goBack.emit(result);
+    }, (error) => {
+      console.log(error);
+      this.goBack.emit();
+    });
   }
 
-  // ПРОВЕРКА НА needVerif
 
 }

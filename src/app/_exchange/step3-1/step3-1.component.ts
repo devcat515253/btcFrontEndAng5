@@ -12,6 +12,8 @@ import {DialogRegistrationComponent} from '../../_dialog/dialog-registration/dia
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {DialogSuccessComponent} from '../../_dialog/dialog-success/dialog-success.component';
 import {UserAuth} from '../../_entity/user-auth';
+import {ExchangeService} from '../../_services/exchange.service';
+import {Exchange} from '../../_entity/exchange';
 
 @Component({
   selector: 'app-step3-1',
@@ -23,6 +25,9 @@ export class Step31Component implements OnInit {
   @Output() goBack = new EventEmitter<any>();
   @Output() goNext = new EventEmitter<any>();
 
+  @Input() inputExchangeFrom: number;
+  @Input() exchangeFrom: Exchange;
+
   userRegistr: UserRegistr = new UserRegistr();
   userAuth: UserAuth = new UserAuth();
   emailModel: EmailModel = new EmailModel();
@@ -31,7 +36,8 @@ export class Step31Component implements OnInit {
   successRegistr: boolean = false;
 
   constructor(private userService: UserService,
-              private referralService: ReferralService) {
+              private referralService: ReferralService,
+              private exchangeService: ExchangeService) {
     this.initValidator();
   }
 
@@ -121,7 +127,12 @@ export class Step31Component implements OnInit {
 
   goToBack(event) {
     event.preventDefault();
-    this.goBack.emit();
+    this.exchangeService.getLimit(this.exchangeFrom, this.inputExchangeFrom).subscribe( (result) => {
+      this.goBack.emit(result);
+    }, (error) => {
+      console.log(error);
+      this.goBack.emit();
+    });
   }
 
 

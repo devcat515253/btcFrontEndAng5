@@ -2,27 +2,23 @@
   <div class="step-title"><h3 class="h3">2. Login</h3></div>
 
   <p class="p_small">
-    <b>Fill</b> your <b>login information</b> into the <br>form bellow.
+    <b>Fill</b> your <b>login information</b> into the <br>form below.
   </p>
-
-  <div class="text-center js-deleteParent" *ngIf="userNotFound">
-    <div class="alert alert-error">
-      <p>Error: Email or password is incorrect</p>
-      <a href="#" class="btn-close js-deleteBlock">x</a>
-    </div>
-  </div>
 
   <form action="#" class="form" [ngClass]="{'custom-loader disabled': loading}"  [formGroup]="userAuthForm" (submit)="submit($event)"  #authForm="ngForm" novalidate>
     <label class="form-group"
            [ngClass]="{'has-error': (userAuthForm.controls['email'].hasError('email')
-           || userAuthForm.controls['email'].hasError('maxlength'))
+           || userAuthForm.controls['email'].hasError('maxlength')
+           || userNotFound)
            && authForm.submitted}">
       <span class="form-title">Your e-mail (account login):</span>
       <input [(ngModel)]="userAuth.email" formControlName="email" name="email" type="text" class="form-control">
       <span
         *ngIf="(userAuthForm.controls['email'].hasError('email')
         || userAuthForm.controls['email'].hasError('maxlength'))
-        && authForm.submitted" class="error-label">{{ 'errors.Email' | translate }}</span>
+        && authForm.submitted" class="error-label">{{ 'errors.EmailError' | translate }}</span>
+      <span
+        *ngIf="userNotFound && authForm.submitted" class="error-label">{{ 'errors.Email' | translate }}</span>
     </label>
 
     <label class="form-group" [ngClass]="{'has-error': (userAuthForm.controls['password'].hasError('required')
@@ -34,7 +30,7 @@
       <span
         *ngIf="(userAuthForm.controls['password'].hasError('required')
         || userAuthForm.controls['password'].hasError('maxlength'))
-        && authForm.submitted" class="error-label">{{ 'errors.Password' | translate }}</span>
+        && authForm.submitted" class="error-label">{{ 'errors.PasswordError' | translate }}</span>
     </label>
 
 

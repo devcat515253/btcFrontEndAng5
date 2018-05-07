@@ -24,6 +24,8 @@ export class PartnersComponent implements OnInit {
       this.refArray = result.data as UserModel[];
       console.log(this.refArray);
       this.loadingRefList = false;
+    }, (error) => {
+      this.loadingRefList = false;
     });
   }
 

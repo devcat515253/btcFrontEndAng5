@@ -80,7 +80,9 @@
     "ExchangeAmount": "Amount not available",
     "ExchangeWarningVerify": "To continue, please verify your account first",
     "Email": "The e-mail doesn’t match any account",
-    "Password": "Passwords do not match"
+    "Password": "Passwords do not match",
+    "EmailError": "Wrong email",
+    "PasswordError": "Wrong password"
   },
 
   "Contacts": {
@@ -99,7 +101,7 @@
 
   "table": {
     "HistoryReviews": {
-      "col1": "User",
+      "col1": "Id",
       "col2": "Input System",
       "col3": "Input Amount",
       "col4": "Output Method",
@@ -109,7 +111,7 @@
     },
 
     "Testimonials": {
-      "col1": "Input Amount",
+      "col1": "Id",
       "col2": "Input System",
       "col3": "Input Amount",
       "col4": "Output System",
@@ -178,7 +180,7 @@
     "first-name": "First and Last Name",
     "status": "Status",
     "refferal-link": "Refferal link",
-    "select-commission": "Select a commission"
+    "select-commission": "Withdraw a commission"
   },
 
 
@@ -189,7 +191,7 @@
   },
 
   "discount-program": {
-    "sub-head": "Register and get dynamic disccount.\nThe more you change, the greater discount.",
+    "sub-head": "Register and get dynamic disccount.\nThe more you exchange, the greater discount.",
     "title": "We Have 5 Level Discount Levels",
     "total": "Total amount:",
     "info": "<b class='h2'>2 USD</b> to exchange left to get <b class='h2'>3%</b> discount."

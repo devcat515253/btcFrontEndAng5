@@ -14,7 +14,7 @@
               <div class="item__title ">General</div>
               <div class="item__nav">
                 <ol>
-                  <li><a href="#ddd">Personal Information</a></li>
+                  <li><a href="#step1">Personal Information</a></li>
                 </ol>
               </div>
             </div>
@@ -23,10 +23,10 @@
               <div class="item__title">Verification</div>
               <div class="item__nav">
                 <ol>
-                  <li><a href="#">Limit1 - default</a></li>
-                  <li><a href="#">Limit2 - phone number</a></li>
-                  <li><a href="#">Limit3 - ID verification</a></li>
-                  <li><a href="#">Limit4 - KYC</a></li>
+                  <li><a href="#step2">Limit1 - default</a></li>
+                  <li><a href="#step3">Limit2 - phone number</a></li>
+                  <li><a href="#step4">Limit3 - ID verification</a></li>
+                  <li><a href="#step5">Limit4 - KYC</a></li>
                 </ol>
               </div>
             </div>
@@ -35,8 +35,8 @@
               <div class="item__title">Security</div>
               <div class="item__nav">
                 <ol>
-                  <li><a href="#">Poslední přihlášení</a></li>
-                  <li><a href="#">Změna hesla</a></li>
+                  <li><a href="#step6">Last logins</a></li>
+                  <li><a href="#step7">Change my password</a></li>
                 </ol>
               </div>
             </div>
@@ -47,7 +47,7 @@
 
           <div class="settings">
 
-            <div class="blank-self tape-top" [ngClass]="{'custom-loader disabled': loadingMain}">
+            <div class="blank-self tape-top" id="step1" [ngClass]="{'custom-loader disabled': loadingMain}">
               <div class="blank-self__head">
                 <h2 class="title-great">General</h2>
               </div>
@@ -102,7 +102,7 @@
             </div>
 
 
-            <div class="blank-self">
+            <div class="blank-self" id="step2">
 
               <div class="blank-self__head">
                 <h2 class="title-great">Verification <span class="title-status">{{ 'Settings.VerificationTitle' | translate }}</span></h2>
@@ -116,7 +116,7 @@
                       <div class="item__head title-inner opened">{{ 'Settings.VerificationLimit1' | translate }}</div>
                     </div>
 
-                    <div class="item">
+                    <div class="item" id="step3">
                       <div class="line-sides">{{ 'Settings.NextLevel' | translate }}</div>
 
                       <div class="item__head title-inner">
@@ -229,8 +229,7 @@
                     </div>
 
 
-                    <!--<div class="item is-disabled">-->
-                    <div class="item" [ngClass]="{'is-disabled': !userModel.verification_phone_ok}"  >
+                    <div class="item" id="step4" [ngClass]="{'is-disabled': !userModel.verification_phone_ok}"  >
                       <div class="line-sides">{{ 'Settings.NextLevel' | translate }}</div>
 
                       <div class="item__head title-inner">
@@ -291,7 +290,7 @@
                       </form>
                     </div>
 
-                    <div class="item" [ngClass]="{'is-disabled': !step4Show}">
+                    <div class="item" id="step5" [ngClass]="{'is-disabled': !step4Show}">
                       <div class="line-sides">{{ 'Settings.NextLevel' | translate }}</div>
 
                       <div class="item__head title-inner">
@@ -309,7 +308,7 @@
                           </ul>
 
                           <div class="form-btn">
-                            <a href="#" class="btn btn-accent rippler rippler-default js-file-upload full-width">Downlaod KYC</a>
+                            <a href="#" class="btn btn-accent rippler rippler-default js-file-upload full-width">Download KYC</a>
                           </div>
 
                           <div class="settings-tip p_small mobile-only">You need to verify <b>KYC questionnaire</b> <br>to exchange unlimited €.</div>
@@ -380,8 +379,8 @@
                 <div class="content">
                   <div class="items list-numeric">
 
-                    <div class="item" [ngClass]="{'custom-loader disabled': loadingLogs}">
-                      <div class="item__head title-inner opened">Poslední přihlášení</div>
+                    <div class="item" id="step6" [ngClass]="{'custom-loader disabled': loadingLogs}">
+                      <div class="item__head title-inner opened">Last logins</div>
                       <div class="item__content">
                         <div class="hz-scroll">
                           <table class="default-table ">
@@ -411,7 +410,7 @@
                       <hr>
                     </div>
 
-                    <div class="item" [ngClass]="{'custom-loader disabled': loadingPass}">
+                    <div class="item" id="step7" [ngClass]="{'custom-loader disabled': loadingPass}">
                       <div class="item__head title-inner">Change my password</div>
                       <div class="item__content">
                         <form class="form" (submit)="submitPassForm($event)" [formGroup]="passwordForm"  #passForm="ngForm">
@@ -433,7 +432,7 @@
                           <label class="form-group" [ngClass]="{'has-error': (passwordForm.controls['passwordNew'].hasError('required')
                                  || passwordForm.controls['passwordNew'].hasError('minlength'))
                                  && passForm.submitted}">
-                            <span class="form-title">New password again:</span>
+                            <span class="form-title">New password:</span>
                             <input [(ngModel)]="passwordNew" type="password" formControlName="passwordNew" class="form-control" value="">
                             <span
                               *ngIf="(passwordForm.controls['passwordNew'].hasError('required')

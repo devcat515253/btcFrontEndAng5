@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {UserRegistr} from '../../_entity/user-registr';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -11,6 +11,7 @@ import {of} from 'rxjs/observable/of';
 import {EffectBlurService} from '../../_services/effect-blur.service';
 import {DialogSuccessComponent} from '../dialog-success/dialog-success.component';
 import {ReferralService} from '../../referral/referral.service';
+import { ReCaptchaComponent } from 'angular2-recaptcha';
 
 @Component({
   selector: 'app-dialog-registration',
@@ -19,11 +20,14 @@ import {ReferralService} from '../../referral/referral.service';
 })
 export class DialogRegistrationComponent implements OnInit {
 
+
   userRegistr: UserRegistr = new UserRegistr();
   emailModel: EmailModel = new EmailModel();
   userRegistrForm: FormGroup;
-  loading: boolean = false;
+  loading: boolean;
+  captchaAccess: boolean;
 
+  // @ViewChild(this.ReCaptchaComponent) captcha: ReCaptchaComponent;
 
 
 
@@ -32,7 +36,7 @@ export class DialogRegistrationComponent implements OnInit {
               private referralService: ReferralService,
               public dialog: MatDialog, private blurService: EffectBlurService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
-
+    this.loading = false;
     this.initValidator();
   }
 
@@ -86,18 +90,29 @@ export class DialogRegistrationComponent implements OnInit {
     });
   }
 
+  handleCorrectCaptcha(event) {
+    event.preventDefault();
+    let token = this.captcha.getResponse();
+    if  (token === '') {
+      this.captchaAccess = false;
+      console.log(token);
+    }
+  }
+
 
   submit(event) {
     event.preventDefault();
 
     const controls = this.userRegistrForm.controls;
 
-
     if (this.userRegistrForm.invalid) {
       Object.keys(controls)
         .forEach(controlName => controls[controlName].markAsTouched());
       return;
     }
+
+    // if  (this.captcha === '') { return; }
+
     this.emailModel.email = this.userRegistr.email;
     this.userRegistr.refer = this.referralService.getReferralId();
 

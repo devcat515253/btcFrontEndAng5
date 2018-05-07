@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {UserService} from '../_services/user.service';
 import {EmailModel} from '../_entity/email-model';
 import {UserModel} from '../_entity/user-model';
@@ -10,12 +10,14 @@ import {ICustomFile} from 'file-input-accessor';
 import {ExchangeService} from '../_services/exchange.service';
 import {stepsArray} from '../_entity/stepsArray';
 
+declare var $: any;
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.sass']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements OnInit, AfterViewInit {
 
   loadingMain: boolean = true;
   successMain: boolean = false;
@@ -85,6 +87,10 @@ export class SettingsComponent implements OnInit {
     // console.log(JSON.parse(localStorage.getItem('currentUser')));
     this.getLogs();
     this.getUserProfile();
+  }
+
+  ngAfterViewInit() {
+    this.initJS();
   }
 
 
@@ -500,6 +506,17 @@ export class SettingsComponent implements OnInit {
 
   }
 
+
+  initJS() {
+    $('.navbars li a').bind('click', function(e) {
+      e.preventDefault();
+      var anchor = $(this);
+      $('html, body').stop().animate({
+        scrollTop: $(anchor.attr('href')).offset().top
+      }, 500);
+      return false;
+    });
+  }
 
   // user/login-logs
 

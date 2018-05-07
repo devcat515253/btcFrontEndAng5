@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
   param: string = '';
   loggedUser: boolean = false;
   loading: boolean = true;
+  processFill: boolean = true;
   noSuchFilterFrom: boolean = false;
   noSuchFilterTo: boolean = false;
 
@@ -156,6 +157,12 @@ export class HomeComponent implements OnInit {
   // =====================================================
 
   checkStepShow(countStep: string) {
+    if (countStep === '1') {
+      this.processFill = false;
+    } else {
+      this.processFill = true;
+    }
+
     for (let i of stepsArray) {
       if (i.count === countStep) {
         i.status = true;
@@ -298,7 +305,6 @@ export class HomeComponent implements OnInit {
     // от 10 > 25
     if (statusCode === 2) {
       console.log(this.inputExchangeFrom);
-      // this.needVerification = true;
       this.checkStepShow('2');
       return;
     }
@@ -312,7 +318,7 @@ export class HomeComponent implements OnInit {
       return;
     }
     // до 10
-    this.checkStepShow('4');
+    this.checkStepShow('1-1');
   }
 
   // =====================================================
