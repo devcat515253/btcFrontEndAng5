@@ -39,7 +39,7 @@
 	.header-btn
 		margin-left: 3rem
 	.magazine .item-image img
-		max-width: 110%
+		max-width: 100%
 	.header-menu .nav-menu>li
 		margin-right: 4rem
 	.input-exchange .input
@@ -836,8 +836,6 @@
 		margin-top: 3.5rem
 	.magazine .item-image, .magazine .item_reverse .item-image
 		order: 1
-		margin-left: -3rem;
-		width: calc(100% + 6rem);
 	.footer
 		font-size: 18px
 		line-height: 24px
@@ -981,26 +979,12 @@
 		font-size: 9px
 	body.menu-mobile__opened .header .transform-to-mobile
 		padding: 8.5rem 2rem 0
-	.footer
-		text-align: center
-		.content__one
-			margin-bottom: 3rem
-		li a
-			font-size: 2rem
-			line-height: 2.6rem
-		.content__two
-			margin-bottom: 3rem
-			&:before
-				display: none
 	.blank-self, .blank
 		padding: 2.5rem
-	.magazine .item-image, .magazine .item_reverse .item-image
-		margin-left: -2.5rem
-		width: calc(100% + 5rem)
 	.header-menu .nav-menu li
 		font-size: 2.6rem
 	.steps .btn-border
-		min-width: 12rem
+		min-width: 10rem
 	.phone-send .btn
 		min-width: 9rem
 	.steps .btn
@@ -1010,7 +994,7 @@
 	.btn
 		padding: 0.9rem 2.5rem 1rem
 	.currencies .item
-		font-size: 16px
+		font-size: 14px
 	.currencies .item-icons
 		width: 5rem
 		height: 5rem
@@ -1023,94 +1007,6 @@
 		height: 5rem
 	.phone-send .btn, .upload-file .btn
 		margin-top: 0
-	.footer
-		text-align: center
-		.content__one
-			margin-bottom: 3rem
-		li a
-			font-size: 2rem
-			line-height: 2.6rem
-		.content__two
-			margin-bottom: 3rem
-			&:before
-				display: none
-	.footer
-		&__content
-			flex-wrap: wrap
-		.item
-			width: 100%
-			flex: none
-			text-align: center
-			padding: 0
-			margin-bottom: 3rem
-		.item:nth-child(2)
-			border: none
-			padding-left: 0
-		.item:last-child
-			margin-bottom: 0
-			margin-top: 2rem
-			padding: 0 2.5rem
-			.share
-				width: 100%
-				padding: 0
-				text-align: center
-		.nav-menu>li .dropdown-data
-			position: relative
-			height: 0
-			padding: 0
-			margin: 0 auto
-			left: 0
-			top: 0
-			background-color: transparent
-			transition: padding-top .5s ease, opacity .5s ease, transform .5s ease
-			transform: translateY(30px)
-			box-shadow: none
-			font-family: $serif
-			&:before, &:after
-				display: none
-			& > *
-				height: 0
-				+mt(.25s)
-			li
-				opacity: 0
-				transition: opacity .5s ease
-				font-size: 2rem
-				line-height: 2.7rem
-				position: relative
-				&:last-child
-					&:after
-						content: '...'
-						position: absolute
-						bottom: -30px
-						left: 0
-						width: 100%
-						text-align: center
-						color: #fff
-						font-size: 3.5rem
-						display: block
-						transform: none
-			&:after
-				content: '...'
-				color: #fff
-				font-size: 2rem
-		.dropdown._opened
-			.dropdown-link
-				margin-right: 0
-				font-weight: bold
-			.dropdown-data
-				width: 100%
-				height: auto
-				background-color: transparent
-				padding-top: 0
-				margin-top: 0
-				transform: translateY(0)
-				padding-bottom: 2rem
-				& > *
-					height: auto
-				li
-					opacity: 1
-					a
-						color: #fff
 	.step .p_small br
 		display: none
 	.error-label

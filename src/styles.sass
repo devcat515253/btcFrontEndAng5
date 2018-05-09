@@ -6,6 +6,8 @@
 
 main
   min-height: 50vh
+  &.is-blur
+    filter: blur(2px)
 .rc-anchor-alert
   display: none
 
@@ -100,6 +102,8 @@ main
     white-space: nowrap
     -ms-text-overflow: ellipsis
     text-overflow: ellipsis
+  .steps .captcha
+    transform: scale(0.745)
 
 .contact-page #map
   border: 1px solid #D2A884
@@ -126,9 +130,106 @@ main
   margin-right: auto
 .header .transform-to-mobile .header-menu
   margin-left: auto
+.currencies .item-value span
+  max-width: 145px
 
-@media only screen and (max-width : 360px)
+.tip-list
+  font-family: "PT Sans", sans-serif
+
+
+
+@media only screen and (max-width : 991px)
+  .form-group .dropbtn.btn
+    min-width: 1rem
+  .steps .captcha
+    transform: scale(1)
+    margin-top: 2.5rem
+    margin-left: auto
+    margin-right: auto
+    display: table
+  .exchange
+    padding-top: 0
+  .currencies-hidden .item-wrapper:first-child
+    margin-top: 0
+  .exchange .process-wr
+    margin-top: 1.5rem
+  .exchange .process
+    position: relative
+    .process-arrow
+      width: 3.3rem
+      height: 3.3rem
+      position: absolute
+      left: 50%
+      top: -3rem
+      transform: translateX(-50%)
+  .currencies .item
+    margin-bottom: 1.5rem
+  .exchange .column .subblock
+    margin-bottom: 2.5rem
+  .column
+    &:nth-child(1), &:nth-child(3)
+      display: none
+    &.is-visible
+      display: block
+
+  .exchange.is-check
+    .subblock.is-check-hidden
+      display: none
+      margin-bottom: 0
+    .process-arrow
+      transform: translateX(-50%) scaleY(-1)
+    .column .subblock
+      margin-bottom: 0
+    .process-wr
+      margin-top: 2rem
+  .dots
+    margin-left: -1.3rem
+    width: calc(100% + 2.6rem)
+  .invite p
+    white-space: pre-line
+@media only screen and (max-width : 639px)
+  body.menu-mobile__opened .header .transform-to-mobile
+    padding: 8.5rem 2rem 0
+  body.menu-mobile__opened .header .header-btn .btn
+    padding-right: 2rem
+    padding-left: 2rem
+    width: 16.5rem
+@media only screen and (max-width : 480px)
+  .steps .captcha
+    transform: scale(0.82)
+    display: block
+  .steps .btn-border
+    min-width: 12rem
+  .currencies .item
+    font-size: 1.8rem
+@media only screen and (max-width : 479px)
+  .advantages .item-title span
+    white-space: pre-line
+
+@media only screen and (max-width : 375px)
+  .steps .captcha
+    transform: scale(0.74)
+  .form-control
+    font-size: 16px
+  .input-exchange input
+    font-size: 2rem
+  .currencies .item
+    font-size: 1.6rem
   .header-btn .btn
     margin-right: 1rem
     margin-left: 1rem
     margin-bottom: 1rem
+@media only screen and (max-width : 355px)
+  .steps .phone-send .btn.btn-accent
+    min-width: 8rem
+  .steps .upload-file .btn.btn-accent
+    min-width: 10rem
+  .steps .upload-file__name
+    padding-left: 10px
+    padding-right: 13rem
+    font-size: 16px
+  .steps .btn
+    min-width: 13rem
+    font-size: 16px
+  .steps .btn-border
+    min-width: 10rem

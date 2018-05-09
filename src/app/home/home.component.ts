@@ -111,7 +111,7 @@ export class HomeComponent implements OnInit {
       console.log(result);
       setTimeout(() => {
         this.userModel = result;
-        // if  (result) this.cdr.detectChanges();
+        this.inputFromChanged();
       }, 100);
 
     }, (error) => {
@@ -132,6 +132,7 @@ export class HomeComponent implements OnInit {
       // console.log(this.userDiscount);
     });
   }
+
 
   checkMaxBalance() {
     if (this.inputExchangeTo > this.selectedExchangeTo.balance) {
@@ -318,7 +319,12 @@ export class HomeComponent implements OnInit {
       return;
     }
     // до 10
-    this.checkStepShow('1-1');
+    console.log(this.loggedUser);
+    if  (this.loggedUser) {
+      this.checkStepShow('4');
+    } else {
+      this.checkStepShow('1-1');
+    }
   }
 
   // =====================================================
@@ -481,19 +487,25 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    this.exchangeService.getLimit(this.selectedExchangeFrom, this.inputExchangeFrom).subscribe( (result) => {
-      if (result.data) {
-        if (result.data.code === 1 || result.data.code === 2) {
-          this.limitNotAuth = true;
+
+
+
+    this.limitNotAuth = false;
+    if  (!this.loggedUser) {
+
+      this.exchangeService.getLimit(this.selectedExchangeFrom, this.inputExchangeFrom).subscribe( (result) => {
+        if (result.data) {
+          if (result.data.code === 1 || result.data.code === 2) {
+            this.limitNotAuth = true;
+          }
+          return;
+        } else {
+          this.limitNotAuth = false;
         }
-        return;
-      } else {
-        this.limitNotAuth = false;
-      }
-    }, (error) => {
-      console.log(error);
-      // this.loading.emit(false);
-    });
+      }, (error) => {
+        console.log(error);
+      });
+    }
 
 
 

@@ -173,7 +173,7 @@
     "total": "Total Commission Earned:",
     "how-work": "How Does It Work?",
     "btn-withdraw-commission": "Withdraw commission",
-    "send-generated-link": "Send the generated link to your friends as an invitation to our exchange platform.\n\nOur system will recognize that your partner has come to a page through your link and will automatically give you commission that you can withdraw to any wallet.\n\nDo you have any other questions? Check <a href='#' class='link'>FAQ</a>\nsection or contact <a href='#' class='link'>technical support</a>.",
+    "send-generated-link": "Send the generated link to your <b>friends</b> as an invitation to our exchange platform.\n\nOur system will <b>recognize that your partner</b> has come to a page through your link and will automatically <b>give you commission</b> that you can withdraw to any wallet.\n\nDo you have any other questions? Check <a href='#' class='link'>FAQ</a>\nsection or contact <a href='#' class='link'>technical support</a>.",
     "list-of-all": "List of All Registered Partners",
     "amount": "Amount",
     "registration-date": "Registration date",

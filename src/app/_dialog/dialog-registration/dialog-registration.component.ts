@@ -90,14 +90,14 @@ export class DialogRegistrationComponent implements OnInit {
     });
   }
 
-  handleCorrectCaptcha(event) {
-    event.preventDefault();
-    let token = this.captcha.getResponse();
-    if  (token === '') {
-      this.captchaAccess = false;
-      console.log(token);
-    }
-  }
+  // handleCorrectCaptcha(event) {
+  //   event.preventDefault();
+  //   let token = this.captcha.getResponse();
+  //   if  (token === '') {
+  //     this.captchaAccess = false;
+  //     console.log(token);
+  //   }
+  // }
 
 
   submit(event) {

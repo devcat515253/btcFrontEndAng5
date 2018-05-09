@@ -14,9 +14,9 @@
     <div class="content blank tape-top no-padding welcome-page" [ngClass]="{'custom-loader': loading}">
       <div class="color-loader" *ngIf="loading"></div>
 
-      <div class="exchange">
+      <div class="exchange" [ngClass]="{'is-check': stepsArray[17].status || stepsArray[1].status}">
 
-        <div class="column">
+        <div class="column" [ngClass]="{'is-visible': stepsArray[17].status || stepsArray[1].status || stepsArray[0].status}">
           <div class="column__head">
             <h2 class="title-great">You send</h2>
           </div>
@@ -71,7 +71,7 @@
               <!--<br>-->
             </div>
 
-            <div class="subblock">
+            <div class="subblock mobile-hidden">
               <div class="subblock-title">
                 <p class="p_middle">{{ 'exchange.choose' | translate }}:</p>
               </div>
@@ -94,7 +94,7 @@
               </div>
             </div>
 
-            <div class="subblock">
+            <div class="subblock" [ngClass]="{'is-check-hidden': stepsArray[17].status || stepsArray[1].status}">
               <div class="subblock-title">
                 <p class="p_middle">{{ 'exchange.PaymentMethod' | translate }}:</p>
               </div>
@@ -116,25 +116,40 @@
                 <div class="currencies js-select-currencies">
 
 
-                  <div class="item-wrapper" *ngFor="let fromItem of exchangeFromArray; let i = index">
+                  <div class="item-wrapper mobile-hidden" *ngFor="let fromItem of exchangeFromArray; let i = index">
                     <div class="item" [ngClass]="{'is-selected': selectedExchangeFrom === fromItem}" *ngIf="i <= 5"
                          (click)="selectExchangeFrom(fromItem)">
                       <div class="item-icons" [style.background-image]="'url(' + fromItem.logo +')'"></div>
-                      <div class="item-value" value="Advanced Cash">{{fromItem.name}} <span class="ttu">{{fromItem.currency}}</span>
+                      <div class="item-value" value="Advanced Cash"><span>{{fromItem.name}}</span> <span class="ttu">{{fromItem.currency}}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div class="currencies-other js-view-other" *ngIf="exchangeFromArray.length > 5">
+                  <div class="currencies-other js-view-other mobile-hidden" *ngIf="exchangeFromArray.length > 5">
                     <div class="item" text="Select other payment" replaceText="Hidden other payment">
                       <span>Select other payment </span>
                       <img src="../../assets/img/svg/arrow-down.svg" alt="View other"></div>
                   </div>
 
+                  <div class="currencies-other js-view-other mobile-only">
+                    <div class="item" text="Select other payment" replaceText="Hidden payment method">
+                      <span>Select payment method </span>
+                      <img src="../../assets/img/svg/arrow-down.svg" alt="View other"></div>
+                  </div>
+
                   <div class="currencies-hidden">
 
-                    <div class="item-wrapper" *ngFor="let fromItem of exchangeFromArray; let i = index">
+                    <div class="item-wrapper mobile-hidden" *ngFor="let fromItem of exchangeFromArray; let i = index">
                       <div class="item" [ngClass]="{'is-selected': selectedExchangeFrom === fromItem}" *ngIf="i > 5"
+                           (click)="selectExchangeFrom(fromItem)">
+                        <div class="item-icons" [style.background-image]="'url(' + fromItem.logo +')'"></div>
+                        <div class="item-value" value="Advanced Cash">{{fromItem.name}} <span class="ttu">{{fromItem.currency}}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="item-wrapper mobile-only" *ngFor="let fromItem of exchangeFromArray; let i = index">
+                      <div class="item" [ngClass]="{'is-selected': selectedExchangeFrom === fromItem}"
                            (click)="selectExchangeFrom(fromItem)">
                         <div class="item-icons" [style.background-image]="'url(' + fromItem.logo +')'"></div>
                         <div class="item-value" value="Advanced Cash">{{fromItem.name}} <span class="ttu">{{fromItem.currency}}</span>
@@ -153,6 +168,7 @@
 
           <div class="process-wr">
             <div class="process">
+              <img src="../../assets/img/svg/ic-angle.svg" alt="" class="svg process-arrow mobile-only">
               <div class="process__content">
                 <div class="column__head">
                   <h2 class="title-great">Process</h2>
@@ -308,8 +324,8 @@
 
                   <div class="steps-footer">
                     <div class="dots line-sides">
-                      <a href="#" class="dot" [ngClass]="{'is-active': stepsArray[0].status}"></a>
-                      <a href="#" class="dot" [ngClass]="{'is-active': stepsArray[1].status
+                      <a class="dot" [ngClass]="{'is-active': stepsArray[0].status}"></a>
+                      <a class="dot" [ngClass]="{'is-active': stepsArray[1].status
                                                                     || stepsArray[2].status
                                                                     || stepsArray[3].status
                                                                     || stepsArray[4].status
@@ -318,14 +334,14 @@
                                                                     || stepsArray[7].status
                                                                     || stepsArray[8].status}"></a>
 
-                      <a href="#" class="dot" [ngClass]="{'is-active': stepsArray[9].status
+                      <a class="dot" [ngClass]="{'is-active': stepsArray[9].status
                                                                     || stepsArray[10].status
                                                                     || stepsArray[11].status}"></a>
 
-                      <a href="#" class="dot" [ngClass]="{'is-active': stepsArray[13].status}"></a>
+                      <a class="dot" [ngClass]="{'is-active': stepsArray[13].status}"></a>
 
 
-                      <a href="#" class="dot" [ngClass]="{'is-active': stepsArray[14].status
+                      <a class="dot" [ngClass]="{'is-active': stepsArray[14].status
                                                                     || stepsArray[15].status
                                                                     || stepsArray[16].status}"></a>
                     </div>
@@ -336,7 +352,7 @@
           </div>
         </div>
 
-        <div class="column">
+        <div class="column" [ngClass]="{'is-visible': stepsArray[17].status || stepsArray[1].status || stepsArray[0].status}">
           <div class="column__head">
             <h2 class="title-great">You receive</h2>
           </div>
@@ -365,7 +381,7 @@
               </form>
             </div>
 
-            <div class="subblock">
+            <div class="subblock mobile-hidden">
               <div class="subblock-title">
                 <p class="p_middle">{{ 'exchange.choose' | translate }}:</p>
               </div>
@@ -388,7 +404,7 @@
               </div>
             </div>
 
-            <div class="subblock">
+            <div class="subblock" [ngClass]="{'is-check-hidden': stepsArray[17].status || stepsArray[1].status}">
               <div class="subblock-title">
                 <p class="p_middle">{{ 'exchange.PaymentMethod' | translate }}:</p>
               </div>
@@ -409,7 +425,7 @@
                 <div class="currencies js-select-currencies">
 
 
-                  <div class="item-wrapper" *ngFor="let toItem of exchangeToArray; let i = index">
+                  <div class="item-wrapper mobile-hidden" *ngFor="let toItem of exchangeToArray; let i = index">
                     <div class="item" [ngClass]="{'is-selected': selectedExchangeTo === toItem}" *ngIf="i <= 5"
                          (click)="selectExchangeTo(toItem)">
                       <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
@@ -418,9 +434,15 @@
                     </div>
                   </div>
 
-                  <div class="currencies-other js-view-other" *ngIf="exchangeToArray.length > 5">
+                  <div class="currencies-other js-view-other mobile-hidden" *ngIf="exchangeToArray.length > 5">
                     <div class="item" text="Select other payment" replaceText="Hidden other payment">
                       <span>Select other payment </span>
+                      <img src="../../assets/img/svg/arrow-down.svg" alt="View other"></div>
+                  </div>
+
+                  <div class="currencies-other js-view-other mobile-only">
+                    <div class="item" text="Select other payment" replaceText="Hidden payment method">
+                      <span>Select payment method </span>
                       <img src="../../assets/img/svg/arrow-down.svg" alt="View other"></div>
                   </div>
 
@@ -428,6 +450,15 @@
 
                     <div class="item-wrapper" *ngFor="let toItem of exchangeToArray; let i = index">
                       <div class="item" [ngClass]="{'is-selected': selectedExchangeTo === toItem}" *ngIf="i > 5"
+                           (click)="selectExchangeTo(toItem)">
+                        <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
+                        <div class="item-value" [attr.value]="toItem.name">{{toItem.name}} <span class="ttu">{{toItem.currency}}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="item-wrapper mobile-only" *ngFor="let toItem of exchangeToArray; let i = index">
+                      <div class="item" [ngClass]="{'is-selected': selectedExchangeTo === toItem}"
                            (click)="selectExchangeTo(toItem)">
                         <div class="item-icons" [style.background-image]="'url(' + toItem.logo +')'"></div>
                         <div class="item-value" [attr.value]="toItem.name">{{toItem.name}} <span class="ttu">{{toItem.currency}}</span>

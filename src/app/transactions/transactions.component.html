@@ -22,7 +22,7 @@
                 <div class="step-content">
                   <label class="input-exchange">
                     <div class="input">
-                      <input type="text" [attr.value]="transaction.in_amount">
+                      <input type="text" [attr.value]="transaction.in_amount" readonly>
                       <span class="currency">{{transaction.in_payment}}</span>
                     </div>
                   </label>
@@ -46,7 +46,7 @@
                 <div class="step-content">
                   <label class="input-exchange">
                     <div class="input">
-                      <input type="text" [attr.value]="transaction.out_amount">
+                      <input type="text" [attr.value]="transaction.out_amount" readonly>
                       <span class="currency">{{transaction.out_payment}}</span>
                     </div>
                   </label>

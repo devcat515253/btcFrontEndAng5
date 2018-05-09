@@ -58,3 +58,14 @@
   &:hover
     background-color: #fff
 
+
+@media only screen and (max-width : 991px)
+  .mobile-hidden
+    display: none !important
+  .exchange .column, .exchange .column:first-child
+    order: 1
+  .exchange .column, .exchange .column:nth-child(2)
+    order: 3
+  .exchange .column, .exchange .column:last-child
+    order: 2
+
