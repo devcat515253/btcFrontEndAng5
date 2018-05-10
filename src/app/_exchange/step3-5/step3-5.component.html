@@ -22,7 +22,11 @@
       <hr class="full-width" *ngIf="!userModel.verification_kyc">
     </div>
 
-    <div class="form-group" *ngIf="!userModel.verification_kyc">
+    <div class="form-group" *ngIf="!KycForm.verification_kyc" [ngClass]="{'has-error':
+            (KycForm.controls['file'].hasError('required')
+           || KycForm.controls['file'].hasError('maxsize')
+           || KycForm.controls['file'].hasError('badformat'))
+           && ngKycForm.submitted}">
       <span class="form-title">Upload image of your KYC:</span>
       <label class="upload-file">
         <input type="file" (change)="fileChangeKyc($event)" formControlName="file" class="form-control" placeholder="Upload file" accept="image/*">

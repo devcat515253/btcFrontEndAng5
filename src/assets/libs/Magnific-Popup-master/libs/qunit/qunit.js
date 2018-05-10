@@ -248,7 +248,7 @@ Test.prototype = {
 
 				li = document.createElement( "li" );
 				li.className = assertion.result ? "pass" : "fail";
-				li.innerHTML = assertion.message || ( assertion.result ? "okay" : "failed" );
+				li.innerHTML = assertion.message || ( assertion.result ? "Change my password" : "failed" );
 				ol.appendChild( li );
 
 				if ( assertion.result ) {

@@ -35,6 +35,7 @@
     "all": "All",
     "PaymentMethod": "Payment Method",
     "InputErrorLink": "CONTACT US",
+    "ProcessLoginOffer": "We <b>suggest you to register</b> that your exchange took place even faster. It won't take more than a minute.",
     "ProcessLogin": "The entered <b>amount exceeded</b> the limit. Please login. If you don't have an account, you can create a free one by pressing “<b>Create free account</b>” button.",
     "ProcessReg": "The entered amount exceeded the limit. It is required to be <b>registred</b> and <b>verified</b>. Continue by filling your password below.",
     "ProcessRegAndExchange": {
@@ -72,7 +73,7 @@
   "Testimonials": {
     "title": "Testimonials",
     "subtitle": "What do our satisfied customers say? <br>Take a look at the reviews they left us.",
-    "gratitude": "Over <span class='accentColor'>4149 customers</span> have left us a <span class='accentColor'>5/5 star</span> rating. Thank you."
+    "gratitude": "Over <span class='accentColorDarken'>4149 customers</span> have left us a <span class='accentColorDarken'>5/5 star</span> rating. Thank you."
   },
 
   "errors": {

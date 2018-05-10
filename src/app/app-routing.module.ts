@@ -30,9 +30,8 @@ const routes: Routes = [
   { path: 'feesdiscount', component: FeesDiscountComponent},
   { path: 'landingmagazine', component: LandingMagazineComponent},
   { path: 'partners', component: PartnersComponent},
-  { path: 'tablehistory', component: TableHistoryComponent},
   { path: 'tablehistoryreviews', component: TableHistoryReviewsComponent},
-  { path: 'testimonials', component: TestimonialsComponent},
+  { path: 'testimonials', component: TableHistoryComponent},
   { path: 'payment',
     children: [
       { path: '', component: TransactionsComponent},

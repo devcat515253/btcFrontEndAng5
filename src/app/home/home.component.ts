@@ -487,8 +487,7 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-
-
+    if  (this.inputExchangeFrom > 20000) { console.log('больше 20000'); }
 
     this.limitNotAuth = false;
     if  (!this.loggedUser) {

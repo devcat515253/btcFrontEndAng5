@@ -3,13 +3,25 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css"
 
 
+.exchange
+  .btn-border
+    background-color: #fff
+.exchange, .popup
+  .btn:not(.dropbtn.btn)
+    min-width: 14rem
 
+.accentColorDarken
+  color: #AD8059
+.upload-file .btn
+  top: -1px
+  height: calc(100% + 2px)
 main
   min-height: 50vh
   &.is-blur
     filter: blur(2px)
 .rc-anchor-alert
   display: none
+
 
 .form-group
   .dropbtn.btn
@@ -51,7 +63,7 @@ main
     overflow: hidden
     text-overflow: ellipsis
 
-.p_large
+.p_large, .sans-serif
   font-family: sans-serif
 .steps .captcha
   transform: scale(0.82)
@@ -83,6 +95,15 @@ main
   padding: 0
 .alert
   line-height: 24px
+  p
+    text-align: left
+  br
+    display: none
+
+.exchange .column .form-group.has-error .upload-file
+  border-color: #D01D02
+  color: #D01D02
+
 .exchange-info__direction span, .exchange-info__descr span
   font-family: sans-serif
 .header-btn .dropdown-data

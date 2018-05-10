@@ -1,10 +1,8 @@
 <div id="medium-dialog" class="popup popup-user blank tape-top" *ngIf="userAuthPopup" >
   <div class="popup-title">
-    <h2 class="h2 text-center">Auth</h2>
+    <h2 class="h2 text-center">Login</h2>
   </div>
-  <div class="popup-subtitle">
-    <p class="p_middle mobile-small">Stav transakce můžete <b>sledovat</b> přes tento <b>odkaz</b>.</p>
-  </div>
+
 
   <div class="text-center js-deleteParent" *ngIf="userNotFound">
     <div class="alert alert-error">
@@ -21,7 +19,7 @@
            [ngClass]="{'has-error': (userAuthForm.controls['email'].hasError('email')
            || userAuthForm.controls['email'].hasError('maxlength'))
            && authForm.submitted}">
-      <span class="form-title">Your e-mail (account login):</span>
+      <span class="form-title">Your e-mail:</span>
       <input [(ngModel)]="userAuth.email" formControlName="email" name="email" type="text" class="form-control">
       <span
         *ngIf="(userAuthForm.controls['email'].hasError('email')
@@ -50,7 +48,7 @@
     <div class="form-btn between-children">
       <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="onNoClick($event)">Back</a>
       <label>
-        <button class="btn btn-accent rippler rippler-default" [disabled]="userAuthForm.invalid && authForm.submitted">auth</button>
+        <button class="btn btn-accent rippler rippler-default" [disabled]="userAuthForm.invalid && authForm.submitted">Login</button>
         <!--<a class="btn btn-accent rippler rippler-default">auth</a>-->
         <!--<input type="submit" hidden>-->
       </label>

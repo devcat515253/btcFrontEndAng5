@@ -90,7 +90,7 @@ export class Step5Component implements OnInit {
       console.log(this.hiddenForm);
       localStorage.setItem('last_transaction', JSON.stringify(this.PayWallet.hash));
       setTimeout(() => {
-        // this.hiddenForm.nativeElement.submit();
+        this.hiddenForm.nativeElement.submit();
       }, 50);
       this.loading = false;
     }, (error) => {
