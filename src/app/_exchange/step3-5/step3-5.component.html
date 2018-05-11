@@ -22,7 +22,7 @@
       <hr class="full-width" *ngIf="!userModel.verification_kyc">
     </div>
 
-    <div class="form-group" *ngIf="!KycForm.verification_kyc" [ngClass]="{'has-error':
+    <div class="form-group" *ngIf="!userModel.verification_kyc" [ngClass]="{'has-error':
             (KycForm.controls['file'].hasError('required')
            || KycForm.controls['file'].hasError('maxsize')
            || KycForm.controls['file'].hasError('badformat'))

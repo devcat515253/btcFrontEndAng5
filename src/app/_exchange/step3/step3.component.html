@@ -33,6 +33,12 @@
         && authForm.submitted" class="error-label">{{ 'errors.PasswordError' | translate }}</span>
     </label>
 
+    <div class="forgot">
+      <div class="text-center tip-link">
+        <a href="#" (click)="goToForgotComp($event)" class="link sans-serif">Forgot password?</a>
+      </div>
+    </div>
+
 
     <div class="form-btn between-children">
       <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
@@ -53,5 +59,3 @@
     </svg>
   </div>
 </div>
-
-

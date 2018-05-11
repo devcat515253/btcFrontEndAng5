@@ -1,0 +1,52 @@
+<div class="step">
+  <div class="step-title"><h3 class="h3">2. Forgot password</h3></div>
+
+  <p class="p_small">Stav transakce můžete <b>sledovat</b> přes tento <b>odkaz</b>.</p>
+
+  <div class="text-center js-deleteParent" *ngIf="forgotSendSuccess">
+    <div class="alert alert-success">
+      <p>Success! An email with a new password was sent to the specified mailbox.</p>
+    </div>
+  </div>
+
+  <div class="text-center js-deleteParent" *ngIf="forgotSendError">
+    <div class="alert alert-error">
+      <p>Error! A server-side error has occurred. Please try again.</p>
+    </div>
+  </div>
+
+
+  <form action="#" class="form" [ngClass]="{'custom-loader disabled': loading}" (submit)="forgot($event)" [formGroup]="userForgotForm"  #forgotForm="ngForm" novalidate>
+
+    <label class="form-group"
+           [ngClass]="{'has-error': ((userForgotForm.controls['email'].hasError('email')
+           || userForgotForm.controls['email'].hasError('maxLength'))
+           && forgotForm.submitted) || userForgotForm.controls['email'].hasError('notfounduser') }">
+      <span class="form-title">Your e-mail (account login):</span>
+      <input [(ngModel)]="userForgot.email" formControlName="email" name="email" type="text" class="form-control">
+      <span
+        *ngIf="userForgotForm.controls['email'].hasError('required')
+        && forgotForm.submitted" class="error-label">Required field</span>
+
+      <span
+        *ngIf="userForgotForm.controls['email'].hasError('email') && !userForgotForm.controls['email'].hasError('required') && !userForgotForm.controls['email'].hasError('maxlength')
+        && forgotForm.submitted" class="error-label">Incorrect email</span>
+
+      <span
+        *ngIf="userForgotForm.controls['email'].hasError('maxlength') && !userForgotForm.controls['email'].hasError('required')
+        && forgotForm.submitted" class="error-label">The maximum number of characters 64</span>
+
+
+      <span *ngIf="(userForgotForm.controls['email'].hasError('notfounduser')
+        && forgotForm.submitted)" class="error-label">User not found</span>
+    </label>
+
+    <div class="form-btn between-children">
+      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
+      <label>
+        <a class="btn btn-accent rippler rippler-default">Send pass</a>
+        <input type="submit" hidden>
+      </label>
+    </div>
+  </form>
+</div>

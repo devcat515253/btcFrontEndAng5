@@ -26,8 +26,9 @@
 
                 <label class="input-exchange"
                        [ngClass]="{'has-error':
-                                      exchangeFromForm.controls['inputFrom'].hasError('maxlength'),
-                                      'has-warn': limitNotAuth }">
+                                      exchangeFromForm.controls['inputFrom'].hasError('maxlength')
+                                      || exchangeFromForm.controls['inputFrom'].hasError('minCountLimit')
+                                      || exchangeFromForm.controls['inputFrom'].hasError('maxCountLimit')}">
 
                   <div class="input">
                     <input type="text" [(ngModel)]="inputExchangeFrom" (keydown)='inputExchangeChanged($event)'
@@ -40,9 +41,16 @@
                                || exchangeFromForm.controls['inputFrom'].hasError('maxlength'))
                                && fromForm.submitted">{{ 'errors.ExchangeLimit' | translate }}</span>
 
-                  <span class="error-label"
-                        *ngIf="limitNotAuth">The output limit for the guest has been exceeded. <br><a href="#" (click)="openDialogAuth($event); $event.preventDefault(); "> Auth</a></span>
-                </label>
+                  <span class="error-label" *ngIf="exchangeFromForm.controls['inputFrom'].hasError('maxCountLimit')">
+                      {{ 'errors.ExchangeAmount' | translate }}
+                      <a routerLink="/contacts"> {{ 'exchange.InputErrorLink' | translate }}</a>
+                    </span>
+
+                  <span class="error-label" *ngIf="exchangeFromForm.controls['inputFrom'].hasError('minCountLimit')">
+                      {{ 'errors.minCountLimit' | translate }}
+                    </span>
+
+                  </label>
               </form>
 
               <!--<br>-->
@@ -184,7 +192,6 @@
                       [exchangeFromForm]="exchangeFromForm"
                       [exchangeToForm]="exchangeToForm"
                       [inputExchangeFrom]="inputExchangeFrom"
-                      (onLimitNotAuth)="deleteLimitNotAuth()"
                       (onExchangeSwap)="exchangeSwap($event)"
                       (loading)="getStatusLoading($event)"
                       (exchangeSubmitResult)="checkExchangeSubmitResult($event)">
@@ -212,8 +219,15 @@
                                [inputFrom]="inputExchangeFrom"
                                [selectedFrom]="selectedExchangeFrom"
                                (exchangeSubmitResult)="checkExchangeSubmitResult($event)"
+                               (goForgot)="goToForgot()"
                                (goBack)="checkExchangeSubmitResult($event)"></app-step3>
                   </div>
+
+                  <div class="step3-0" *ngIf="stepsArray[18].status">
+                    <app-step3-0 (goBack)="goToAuth($event)"></app-step3-0>
+                  </div>
+
+
 
                   <!-- STEP 3-1 -->
                   <div class="step3-1" *ngIf="stepsArray[3].status">

@@ -64,6 +64,7 @@ import { ReCaptchaModule } from 'angular2-recaptcha';
 import {NgxMaskModule} from 'ngx-mask';
 import { InternationalPhoneModule } from 'ng4-country-phone-select';
 import { Step11Component } from './_exchange/step1-1/step1-1.component';
+import { Step30Component } from './_exchange/step3-0/step3-0.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
@@ -114,7 +115,8 @@ export function createTranslateLoader(http: HttpClient) {
     Step61Component,
     Step62Component,
     NumberOnlyDirective,
-    Step11Component
+    Step11Component,
+    Step30Component
   ],
   imports: [
     BrowserModule,

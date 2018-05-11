@@ -17,6 +17,7 @@ import {Subject} from 'rxjs/Subject';
 export class HeaderComponent implements OnInit {
 
   loggedUser: boolean = false;
+  lastTransaction: string;
 
   constructor(private cdr: ChangeDetectorRef,
               public dialog: MatDialog,
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
     translate.addLangs(['en', 'cz']);
     translate.setDefaultLang('en');
     translate.use('en');
+    this.lastTransaction = localStorage.getItem('last_transaction') || '';
   }
 
   ngOnInit() {
@@ -33,8 +35,8 @@ export class HeaderComponent implements OnInit {
       this.loggedUser = logged;
       this.cdr.detectChanges();
     });
+    console.log(this.lastTransaction);
   }
-
 
 
 

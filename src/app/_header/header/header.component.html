@@ -11,30 +11,15 @@
           <li><a routerLink="/testimonials" routerLinkActive="active">{{ 'header.testimonials' | translate }}</a></li>
           <li><a routerLink="/contacts" routerLinkActive="active">{{ 'header.contacts' | translate }}</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-link js-dropdown-link">{{ 'header.dropdown-link' | translate }}</a>
+            <a routerLink="/more" routerLinkActive="active" class="dropdown-link js-dropdown-link">{{ 'header.dropdown-link' | translate }}</a>
             <ul class="dropdown-data">
-              <li><a routerLink="/faq">{{ 'header.faq' | translate }}</a></li>
-              <li><a routerLink="/news">{{ 'header.news' | translate }}</a></li>
-              <li><a routerLink="/prepaid-card">{{ 'header.prepaid-card' | translate }}</a></li>
-              <li><a routerLink="/partners">{{ 'header.partners' | translate }}</a></li>
-              <li><a routerLink="/payment">{{ 'header.transactions' | translate }}</a></li>
-              <li><a routerLink="/landingmagazine">{{ 'header.landingmagazine' | translate }}</a></li>
-              <li><a routerLink="/discount">{{ 'header.discount' | translate }}</a></li>
-
-
-              <!--<li><a href="#">{{ 'header.dropdown-data1' | translate }}</a></li>-->
-              <!--<li><a href="#">{{ 'header.dropdown-data2' | translate }}</a></li>-->
-              <!--<li><a href="#">{{ 'header.dropdown-data3' | translate }}</a></li>-->
-              <!--<li><a routerLink="/feesdiscount">{{ 'feesdiscount' | translate }}</a></li>-->
-
-              <!--<li></li>-->
-              <!--<li><a routerLink="/landingmagazine">{{ 'header.landingmagazine' | translate }}</a></li>-->
-              <!--<li><a routerLink="/tablehistory">{{ 'header.tablehistory' | translate }}</a></li>-->
-              <!--<li><a routerLink="/tablehistoryreviews">{{ 'header.tablehistoryreviews' | translate }}</a></li>-->
-              <!--<li><a routerLink="/partners">{{ 'header.partners' | translate }}</a></li>-->
-              <!--<li><a routerLink="/user/settings">{{ 'header.user-settings' | translate }}</a></li>-->
-              <!--<li><a routerLink="/prepaid-card">{{ 'header.prepaid-card' | translate }}</a></li>-->
-              <!--<li><a (click)="openDSus()">диалог success</a></li>-->
+              <li><a routerLink="/more/faq">{{ 'header.faq' | translate }}</a></li>
+              <li><a routerLink="/more/news">{{ 'header.news' | translate }}</a></li>
+              <li><a routerLink="/more/prepaid-card">{{ 'header.prepaid-card' | translate }}</a></li>
+              <li><a routerLink="/more/partners">{{ 'header.partners' | translate }}</a></li>
+              <li *ngIf="lastTransaction !== ''"><a routerLink="/more/payment">{{ 'header.transactions' | translate }}</a></li>
+              <li><a routerLink="/more/landingmagazine">{{ 'header.landingmagazine' | translate }}</a></li>
+              <li><a routerLink="/more/discount">{{ 'header.discount' | translate }}</a></li>
             </ul>
           </li>
         </ul>

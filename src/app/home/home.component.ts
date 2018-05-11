@@ -73,7 +73,6 @@ export class HomeComponent implements OnInit {
   dataBankCzk: ExchangeStep4and2 = new ExchangeStep4and2();
   // needVerification: boolean = false;
 
-  limitNotAuth: boolean = false;
 
   constructor(public dialog: MatDialog,
               private cdr: ChangeDetectorRef,
@@ -148,10 +147,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  deleteLimitNotAuth() {
-    this.limitNotAuth = false;
-  }
-
 
   // =====================================================
   // ПЕРВАЯ ПРОВЕРКА ОБМЕНА В ЗАВИСИМОСТИ ОТ СУММЫ ВЫВОДА
@@ -181,6 +176,10 @@ export class HomeComponent implements OnInit {
   // Форма входа
   goToAuth() {
     this.checkStepShow('3');
+  }
+
+  goToForgot() {
+    this.checkStepShow('3-0');
   }
 
   // Форма регистрации
@@ -487,25 +486,15 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    if  (this.inputExchangeFrom > 20000) { console.log('больше 20000'); }
-
-    this.limitNotAuth = false;
-    if  (!this.loggedUser) {
-
-      this.exchangeService.getLimit(this.selectedExchangeFrom, this.inputExchangeFrom).subscribe( (result) => {
-        if (result.data) {
-          if (result.data.code === 1 || result.data.code === 2) {
-            this.limitNotAuth = true;
-          }
-          return;
-        } else {
-          this.limitNotAuth = false;
-        }
-      }, (error) => {
-        console.log(error);
-      });
+    if  (this.inputExchangeFrom > 20000) {
+      console.log('больше 20000');
+      this.exchangeFromForm.controls['inputFrom'].setErrors({'maxCountLimit': true});
     }
 
+    if  (this.inputExchangeFrom < 0.01) {
+      console.log('меньше 0.01');
+      this.exchangeFromForm.controls['inputFrom'].setErrors({'minCountLimit': true});
+    }
 
 
     // console.log(this.inputExchangeFrom);

@@ -25,21 +25,28 @@ const routes: Routes = [
   // { path: 'referral/:referral-id', component: ReferralComponent },
   // { path: 'referral/:referral-id/:action', component: ReferralComponent },
   { path: 'contacts', component: ContactsComponent },
-  { path: 'news', component: NewsComponent },
-  { path: 'faq', component: FaqComponent},
   { path: 'feesdiscount', component: FeesDiscountComponent},
-  { path: 'landingmagazine', component: LandingMagazineComponent},
-  { path: 'partners', component: PartnersComponent},
   { path: 'tablehistoryreviews', component: TableHistoryReviewsComponent},
   { path: 'testimonials', component: TableHistoryComponent},
-  { path: 'payment',
+  { path: 'more',
     children: [
-      { path: '', component: TransactionsComponent},
-      { path: ':hash' ,  component: TransactionsComponent},
+      { path: '', redirectTo: '/home', pathMatch: 'full'},
+      { path: 'faq', component: FaqComponent},
+      { path: 'news', component: NewsComponent },
+      { path: 'prepaid-card', component: PrepaidCardComponent},
+      { path: 'partners', component: PartnersComponent},
+      { path: 'discount', component: DiscountComponent},
+      { path: 'landingmagazine', component: LandingMagazineComponent},
+      { path: 'payment',
+        children: [
+          { path: '', component: TransactionsComponent},
+          { path: ':hash' ,  component: TransactionsComponent},
+        ]
+      },
     ]
   },
-  { path: 'prepaid-card', component: PrepaidCardComponent},
-  { path: 'discount', component: DiscountComponent},
+
+
   { path: 'user',
     children: [
       // { path: '', redirectTo: '/home', pathMatch: 'full'},

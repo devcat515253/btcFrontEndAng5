@@ -15,6 +15,7 @@ import {UserModel} from '../../_entity/user-model';
 export class Step3Component implements OnInit {
 
   @Output() goBack = new EventEmitter<any>();
+  @Output() goForgot = new EventEmitter<any>();
   @Output() exchangeSubmitResult = new EventEmitter<any>();
   @Input() inputFrom: number;
   @Input() selectedFrom: Exchange;
@@ -99,6 +100,11 @@ export class Step3Component implements OnInit {
       console.log(error);
       this.goBack.emit();
     });
+  }
+
+  goToForgotComp(event) {
+    event.preventDefault();
+    this.goForgot.emit();
   }
 
 

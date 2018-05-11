@@ -7,7 +7,6 @@
   <div class="text-center js-deleteParent" *ngIf="userNotFound">
     <div class="alert alert-error">
       <p>Error: Email or password is incorrect</p>
-      <a href="#" class="btn-close js-deleteBlock">x</a>
     </div>
   </div>
 
@@ -24,7 +23,7 @@
       <span
         *ngIf="(userAuthForm.controls['email'].hasError('email')
         || userAuthForm.controls['email'].hasError('maxlength'))
-        && authForm.submitted" class="error-label">Hesla se neshodují</span>
+        && authForm.submitted" class="error-label">Incorrect email</span>
     </label>
 
     <label class="form-group" [ngClass]="{'has-error': (userAuthForm.controls['password'].hasError('required')
@@ -35,7 +34,7 @@
       <span
         *ngIf="(userAuthForm.controls['password'].hasError('required')
         || userAuthForm.controls['password'].hasError('maxlength'))
-        && authForm.submitted" class="error-label">Hesla se neshodují</span>
+        && authForm.submitted" class="error-label">Incorrect password</span>
     </label>
 
     <div class="forgot">
@@ -78,7 +77,6 @@
   <div class="text-center js-deleteParent" *ngIf="forgotSendError">
     <div class="alert alert-error">
       <p>Error! A server-side error has occurred. Please try again.</p>
-      <a href="#" class="btn-close js-deleteBlock">x</a>
     </div>
   </div>
 
@@ -93,9 +91,16 @@
       <span class="form-title">Your e-mail (account login):</span>
       <input [(ngModel)]="userForgot.email" formControlName="email" name="email" type="text" class="form-control">
       <span
-        *ngIf="(userForgotForm.controls['email'].hasError('email')
-        || userForgotForm.controls['email'].hasError('maxLength'))
-        && forgotForm.submitted" class="error-label">Hesla se neshodují</span>
+        *ngIf="userForgotForm.controls['email'].hasError('required')
+        && forgotForm.submitted" class="error-label">Required field</span>
+
+      <span
+        *ngIf="userForgotForm.controls['email'].hasError('email') && !userForgotForm.controls['email'].hasError('required') && !userForgotForm.controls['email'].hasError('maxlength')
+        && forgotForm.submitted" class="error-label">Incorrect email</span>
+
+      <span
+        *ngIf="userForgotForm.controls['email'].hasError('maxlength') && !userForgotForm.controls['email'].hasError('required')
+        && forgotForm.submitted" class="error-label">The maximum number of characters 64</span>
 
       <span *ngIf="(userForgotForm.controls['email'].hasError('notfounduser')
         && forgotForm.submitted)" class="error-label">User not found</span>

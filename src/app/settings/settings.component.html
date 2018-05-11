@@ -138,6 +138,19 @@
                             <div class="timer"></div>
                           </div>
                         </div>
+
+                        <div class="checkbox checkbox-success" *ngIf="userModel.verification_phone_ok && !verification_phone_form">
+                          <input type="checkbox" class="checkbox-cotrol" checked>
+                          <span class="checkbox-icons"></span>
+                          <span class="checkbox-title">
+                            <span class="verified">
+                              <span class="verified-success">
+                                  Congratulations! Your phone number was <br>
+                                  verified. Let’s <b>continue</b> and <b>upload</b> your <b>identity card</b>.
+                              </span>
+                            </span>
+                          </span>
+                        </div>
                       </form>
 
                       <div *ngIf="!userModel.verification_phone_ok || verification_phone_form">

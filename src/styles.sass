@@ -3,6 +3,41 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css"
 
 
+.header:after
+  background-color: #1B2C58
+
+
+.mat-dialog-container
+  color: #464950
+
+.cdk-overlay-pane, .mat-dialog-container
+  &::-webkit-scrollbar-button
+    width: 5px
+    height: 0px
+
+
+.cdk-overlay-pane, .mat-dialog-container
+  &::-webkit-scrollbar-track
+    background-color: #ecedee
+
+
+.cdk-overlay-pane, .mat-dialog-container
+  &::-webkit-scrollbar-thumb
+    -webkit-border-radius: 0px
+    border-radius: 0px
+    background-color: #2F4171
+    &:hover
+      background-color: #41568c
+
+.cdk-overlay-pane, .mat-dialog-container
+  &::-webkit-resizer
+    width: 4px
+    height: 0px
+
+.cdk-overlay-pane, .mat-dialog-container
+  &::-webkit-scrollbar
+    width: 4px
+
 .exchange
   .btn-border
     background-color: #fff
@@ -10,11 +45,18 @@
   .btn:not(.dropbtn.btn)
     min-width: 14rem
 
+.popup
+  .btn
+    min-width: 14rem
+
+
+
 .accentColorDarken
   color: #AD8059
 .upload-file .btn
   top: -1px
   height: calc(100% + 2px)
+  right: -1px
 main
   min-height: 50vh
   &.is-blur
@@ -84,8 +126,8 @@ main
   margin-bottom: 9rem
 .exchange-info .line-sides
   font-family: serif
-.exchange .column:nth-child(2) .error-label
-  margin-left: 1px
+//.exchange .column:nth-child(2) .error-label
+//  margin-left: 1px
 .verified-success
   color: #464950
 .alert-info
@@ -125,6 +167,11 @@ main
     text-overflow: ellipsis
   .steps .captcha
     transform: scale(0.745)
+  .checkbox-icons:after
+    top: 2px
+    height: 8px
+    width: 16px
+    margin-left: -1px
 
 .contact-page #map
   border: 1px solid #D2A884
@@ -134,11 +181,21 @@ main
 .level__info .h2 b
   font-size: 3rem
 
+.cdk-global-overlay-wrapper
+  pointer-events: auto !important
+  overflow-y: scroll !important
+  align-items: start !important
+  z-index: auto !important
 
-.exchange .column .alert-error
+.cdk-overlay-pane
+  margin: 1rem
+  z-index: 1002
+
+
+.alert-error
   padding: 1rem
   border-radius: 4px
-  color: #FFFFFF;
+  color: #FFFFFF
   font-family: "PT Sans", sans-serif;
   font-size: 14px;
   font-style: italic;
