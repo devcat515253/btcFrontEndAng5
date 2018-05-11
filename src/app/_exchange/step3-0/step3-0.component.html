@@ -23,7 +23,7 @@
            || userForgotForm.controls['email'].hasError('maxLength'))
            && forgotForm.submitted) || userForgotForm.controls['email'].hasError('notfounduser') }">
       <span class="form-title">Your e-mail (account login):</span>
-      <input [(ngModel)]="userForgot.email" formControlName="email" name="email" type="text" class="form-control">
+      <input [(ngModel)]="userForgot.email" formControlName="email" name="email" type="text" class="form-control" placeholder="your@email.com">
       <span
         *ngIf="userForgotForm.controls['email'].hasError('required')
         && forgotForm.submitted" class="error-label">Required field</span>

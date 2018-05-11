@@ -55,6 +55,9 @@ export class Step3Component implements OnInit {
     });
   }
 
+  inputPassChanged() {
+    this.userNotFound = false;
+  }
 
   submit(event) {
     event.preventDefault();

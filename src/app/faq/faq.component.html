@@ -15,32 +15,53 @@
         <div class="navbars" >
           <nav class="navbars-nav">
             <div class="item">
-              <div class="item__title ">General</div>
+              <div class="item__title" [innerHTML]="'FAQ.category.General.name' | translate">Title</div>
               <div class="item__nav">
                 <ol>
-                  <li><a href="#account">What is account</a></li>
-                  <li><a href="#check_order">How can I check order</a></li>
-                  <li><a href="#cancel_order">Can I cancel order</a></li>
+                  <li><a href="#category1-item1" [innerHTML]="'FAQ.category.General.question1.title' | translate">Title</a></li>
+                  <li><a href="#category1-item2" [innerHTML]="'FAQ.category.General.question2.title' | translate">Title</a></li>
+                  <li><a href="#category1-item3" [innerHTML]="'FAQ.category.General.question3.title' | translate">Title</a></li>
+                  <li><a href="#category1-item4" [innerHTML]="'FAQ.category.General.question4.title' | translate">Title</a></li>
                 </ol>
               </div>
             </div>
 
             <div class="item">
-              <div class="item__title">Verification</div>
+              <div class="item__title" [innerHTML]="'FAQ.category.auth.name' | translate">Title</div>
               <div class="item__nav">
                 <ol>
-                  <li><a href="#registration">Is registration obligatory</a></li>
-                  <li><a href="#verification">What is verification</a></li>
+                  <li><a href="#category2-item1" [innerHTML]="'FAQ.category.auth.question1.title' | translate">Title</a></li>
+                  <li><a href="#category2-item2" [innerHTML]="'FAQ.category.auth.question2.title' | translate">Title</a></li>
+                  <li><a href="#category2-item3" [innerHTML]="'FAQ.category.auth.question3.title' | translate">Title</a></li>
+                  <li><a href="#category2-item4" [innerHTML]="'FAQ.category.auth.question4.title' | translate">Title</a></li>
+                  <li><a href="#category2-item5" [innerHTML]="'FAQ.category.auth.question5.title' | translate">Title</a></li>
                 </ol>
               </div>
             </div>
 
             <div class="item">
-              <div class="item__title">How the system works</div>
+              <div class="item__title" [innerHTML]="'FAQ.category.Finance.name' | translate">Title</div>
               <div class="item__nav">
                 <ol>
-                  <li><a href="#receive">How long it take to receive</a></li>
-                  <li><a href="#payment">I did not recieve the payment</a></li>
+                  <li><a href="#category3-item1" [innerHTML]="'FAQ.category.Finance.question1.title' | translate">Title</a></li>
+                  <li><a href="#category3-item2" [innerHTML]="'FAQ.category.Finance.question2.title' | translate">Title</a></li>
+                  <li><a href="#category3-item3" [innerHTML]="'FAQ.category.Finance.question3.title' | translate">Title</a></li>
+                  <li><a href="#category3-item4" [innerHTML]="'FAQ.category.Finance.question4.title' | translate">Title</a></li>
+                  <li><a href="#category3-item5" [innerHTML]="'FAQ.category.Finance.question5.title' | translate">Title</a></li>
+                  <li><a href="#category3-item6" [innerHTML]="'FAQ.category.Finance.question6.title' | translate">Title</a></li>
+                  <li><a href="#category3-item7" [innerHTML]="'FAQ.category.Finance.question7.title' | translate">Title</a></li>
+                  <li><a href="#category3-item8" [innerHTML]="'FAQ.category.Finance.question8.title' | translate">Title</a></li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="item__title" [innerHTML]="'FAQ.category.Affiliate.name' | translate">Title</div>
+              <div class="item__nav">
+                <ol>
+                  <li><a href="#category4-item1" [innerHTML]="'FAQ.category.Affiliate.question1.title' | translate">Title</a></li>
+                  <li><a href="#category4-item2" [innerHTML]="'FAQ.category.Affiliate.question2.title' | translate">Title</a></li>
+                  <li><a href="#category4-item3" [innerHTML]="'FAQ.category.Affiliate.question3.title' | translate">Title</a></li>
                 </ol>
               </div>
             </div>
@@ -55,7 +76,7 @@
             <div class="blank-self tape-top">
 
               <div class="blank-self__head">
-                <h2 class="title-great">General</h2>
+                <h2 class="title-great" [innerHTML]="'FAQ.category.General.name' | translate">General</h2>
               </div>
 
               <div class="blank-self__content"></div>
@@ -63,20 +84,24 @@
               <div class="content">
                 <div class="items list-numeric drop">
 
-                  <div class="item" id="account">
-                    <div class="item__head title-inner ">What is account in Smartex Exchange and why do I need it?</div>
-                    <div class="item__content"><p class="pre-line">Account in Smartex Exchange is your virtual offcie where you can see everything about your activity on Smartex.info. You need to have an account to connect your payments with your person according to relevant laws.</p></div>
+                  <div class="item" id="category1-item1">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.General.question1.title' | translate">title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.General.question1.text' | translate">text</p></div>
                   </div>
 
-                  <div class="item" id="check_order">
-                    <div class="item__head title-inner">How can I check order status?</div>
-                    <div class="item__content"><p class="pre-line">You can easily check status of the order here.
-                      In order to check order status you need to enter email address (which was used for the order), order ID and Captcha.</p> </div>
+                  <div class="item" id="category1-item2">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.General.question2.title' | translate">title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.General.question2.text' | translate">text</p></div>
                   </div>
 
-                  <div class="item" id="cancel_order">
-                    <div class="item__head title-inner">Can I cancel my order?</div>
-                    <div class="item__content"><p class="pre-line">If the order is not completed, you can cancel it by contacting support. Please provide the reason you wish to cancel the order. Once the order is completed and payment is sent, it is not possible to cancel the order and refund it.</p></div>
+                  <div class="item" id="category1-item3">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.General.question3.title' | translate">title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.General.question3.text' | translate">text</p></div>
+                  </div>
+
+                  <div class="item" id="category1-item4">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.General.question4.title' | translate">title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.General.question4.text' | translate">text</p></div>
                   </div>
 
                 </div>
@@ -88,7 +113,7 @@
             <div class="blank-self">
 
               <div class="blank-self__head">
-                <h2 class="title-great">Verification</h2>
+                <h2 class="title-great" [innerHTML]="'FAQ.category.auth.name' | translate">Auth</h2>
               </div>
 
               <div class="blank-self__content"></div>
@@ -96,19 +121,28 @@
               <div class="content">
                 <div class="items list-numeric drop">
 
-                  <div class="item" id="registration">
-                    <div class="item__head title-inner ">Is it obligatory to register and verify account on Smartex?</div>
-                    <div class="item__content"><p class="pre-line">No, it is not. A lot of exchange directions are available without registration or
-                      verification.
-
-                      - On the other hand, there are exchange directions where registration and verification are required and there are also other benefits for all registered accounts.
-                      - Registered user can see all list of his transactions.
-                      - Registered user is a part of our discount programme!</p></div>
+                  <div class="item" id="category2-item1">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.auth.question1.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.auth.question1.text' | translate">text</p></div>
                   </div>
 
-                  <div class="item" id="verification">
-                    <div class="item__head title-inner">What is verification and why it is required for certain transactions?</div>
-                    <div class="item__content"><p class="pre-line">Verification is a process.</p> </div>
+                  <div class="item" id="category2-item2">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.auth.question2.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.auth.question2.text' | translate">text</p></div>
+                  </div>
+
+                  <div class="item" id="category2-item3">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.auth.question3.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.auth.question3.text' | translate">text</p></div>
+                  </div>
+
+                  <div class="item" id="category2-item4">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.auth.question4.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.auth.question4.text' | translate">text</p></div>
+                  </div>
+                  <div class="item" id="category2-item5">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.auth.question5.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.auth.question5.text' | translate">text</p></div>
                   </div>
 
                 </div>
@@ -120,7 +154,7 @@
             <div class="blank-self">
 
               <div class="blank-self__head">
-                <h2 class="title-great title-great_smaller">How the system works</h2>
+                <h2 class="title-great" [innerHTML]="'FAQ.category.Finance.name' | translate">Auth</h2>
               </div>
 
               <div class="blank-self__content"></div>
@@ -128,24 +162,80 @@
               <div class="content">
                 <div class="items list-numeric drop">
 
-                  <div class="item" id="receive">
-                    <div class="item__head title-inner">How long it takes to receive the payout?</div>
-                    <div class="item__content"><p class="pre-line">If you are considering purchasing a new grill, or barbecue, you will be faced with a multitude of options to choose between.
-                      However, there is one choice which you will need to make fairly quickly in your quest for the perfect grill for you. That decision is whether to buy
-                      a charcoal or gas grill.</p></div>
+                  <div class="item" id="category3-item1">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.Finance.question1.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.Finance.question1.text' | translate">text</p></div>
                   </div>
 
-                  <div class="item" id="payment">
-                    <div class="item__head title-inner">What should I do if I did not recieved the payment?</div>
-                    <div class="item__content"><p class="pre-line">In case you didn’t receive payment or something got delayed immediately contact our Support team.</p> </div>
+                  <div class="item" id="category3-item2">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.Finance.question2.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.Finance.question2.text' | translate">text</p></div>
                   </div>
 
+                  <div class="item" id="category3-item3">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.Finance.question3.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.Finance.question3.text' | translate">text</p></div>
+                  </div>
+
+                  <div class="item" id="category3-item4">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.Finance.question4.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.Finance.question4.text' | translate">text</p></div>
+                  </div>
+                  <div class="item" id="category3-item5">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.Finance.question5.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.Finance.question5.text' | translate">text</p></div>
+                  </div>
+
+                  <div class="item" id="category3-item6">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.Finance.question6.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.Finance.question6.text' | translate">text</p></div>
+                  </div>
+
+                  <div class="item" id="category3-item7">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.Finance.question7.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.Finance.question7.text' | translate">text</p></div>
+                  </div>
+
+                  <div class="item" id="category3-item8">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.Finance.question8.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.Finance.question8.text' | translate">text</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blank-self">
+
+              <div class="blank-self__head">
+                <h2 class="title-great" [innerHTML]="'FAQ.category.Affiliate.name' | translate">Auth</h2>
+              </div>
+
+              <div class="blank-self__content"></div>
+
+              <div class="content">
+                <div class="items list-numeric drop">
+
+                  <div class="item" id="category4-item1">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.Affiliate.question1.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.Affiliate.question1.text' | translate">text</p></div>
+                  </div>
+
+                  <div class="item" id="category4-item2">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.Affiliate.question2.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.Affiliate.question2.text' | translate">text</p></div>
+                  </div>
+
+                  <div class="item" id="category4-item3">
+                    <div class="item__head title-inner" [innerHTML]="'FAQ.category.Affiliate.question3.title' | translate">Title</div>
+                    <div class="item__content"><p class="pre-line" [innerHTML]="'FAQ.category.Affiliate.question3.text' | translate">text</p></div>
+                  </div>
 
                 </div>
 
               </div>
 
             </div>
+
           </div>
 
         </div>

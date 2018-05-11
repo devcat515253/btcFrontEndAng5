@@ -35,7 +35,7 @@
     "all": "All",
     "PaymentMethod": "Payment Method",
     "InputErrorLink": "CONTACT US",
-    "ProcessLoginOffer": "We <b>suggest you to register</b> that your exchange took place even faster. It won't take more than a minute.",
+    "ProcessLoginOffer": "Still don’t have an <b>account</b>? Create a free one <b>for free</b> and get access to transaction history of all your exchanges and take advantage of other <b>exclusive benefits</b>.",
     "ProcessLogin": "The entered <b>amount exceeded</b> the limit. Please login. If you don't have an account, you can create a free one by pressing “<b>Create free account</b>” button.",
     "ProcessReg": "The entered amount exceeded the limit. It is required to be <b>registred</b> and <b>verified</b>. Continue by filling your password below.",
     "ProcessRegAndExchange": {
@@ -76,12 +76,115 @@
     "gratitude": "Over <span class='accentColorDarken'>4149 customers</span> have left us a <span class='accentColorDarken'>5/5 star</span> rating. Thank you."
   },
 
+
+  "FAQ": {
+    "subtitle": "We will be happy to answer any questions. <br/>Interested in partnership? Contact us and we will get back to you.",
+    "category": {
+      "General": {
+        "name": "General questions",
+        "question1": {
+          "title": "What is a Smartex Exchange account and why do I need it?",
+          "text": "Smartex Exchange account is your virtual office where you can see everything that has to do with your activity. You need to have an account so the system can assign all your transactions to your identity. These requirements are based on relevant laws and may vary depending on transaction amount."
+        },
+        "question2": {
+          "title": "I have lost my password. What should I do?",
+          "text": "If you have forgot your password you can request a new one. Just click on “Login” button, select “Forgot your password” in the very bottom of the pop up menu and type in the email that you used when registering your Smartex account. You will be able to finish resetting your password by following instructions in the email that you receive in your inbox."
+        },
+        "question3": {
+          "title": "Does the system work automatically?",
+          "text": "The system is mostly automated. However, some transactions are manually confirmed for security reasons. All transactions are processed as fast as possible."
+        },
+        "question4": {
+          "title": "How to ask you a question?",
+          "text": "You can fill our support ticket or send us an email here: support@smartex.info"
+        }
+      },
+
+      "auth": {
+        "name": "Registration and verification",
+        "question1": {
+          "title": "How to make a registration?",
+          "text": "To create an account, click on the 'Register' button in the upper right corner of the main page. Enter your e-mail and password and then enter CAPTCHA and click on the 'Register' button."
+        },
+        "question2": {
+          "title": "Why is good to make a registration?",
+          "text": "When you create a free account, you get access to a transaction history of all your exchanges and you also take advantage of other exclusive benefits such as discounts."
+
+        },
+        "question3": {
+          "title": "Is it compulsory to register and verify account on Smartex?",
+          "text": "No, it is not. A lot of exchange directions are available without registration or verification."
+        },
+        "question4": {
+          "title": "Why do I need to verify my account?",
+          "text": "Account verification is necessary at 1000 EUR because of anti-money laundering (AML) and combating the financing of terrorism (CFT) policy. If you want to withdraw money to your bank account or buy cryptocurrency using your bank account, you need to verify your account."
+        },
+        "question5": {
+          "title": "How to make a verification?",
+          "text": "In order to verify your account, you need to follow the instructions while registering your account during the exchange process. If you have not verified your account during the exchange process, you can continue in the settings of your account. Choose “My Account”, then “Settings”. "
+        }
+      },
+
+      "Finance": {
+        "name": "Finance",
+        "question1": {
+          "title": "How to make an exchange?",
+          "text": "On the main page choose what currency you want to send and what currency you want to receive. Choose input and output payment systems and type in the amount you would like to exchange and click on the “Exchange” button. Then fill your wallet and email address (in case you are not signed in) and click on the “Exchange” button. You will be automatically redirected to a transaction page, where you can check your transaction status."
+        },
+        "question2": {
+          "title": "How long does the transition usually take?",
+          "text": "The transaction usually takes from 10 to 30 minutes."
+        },
+        "question3": {
+          "title": "When does the value get fixed?",
+          "text": "Value of the cryptocurrency is fixed as soon as we receive the money on our account."
+        },
+        "question4": {
+          "title": "How can I check my transaction status?",
+          "text": "In order to check your transaction status, sign in and click on “Transactions” button at the top right corner. You will able to see all transactions that you have made since registering your account. If you wish to view “Transaction Detail”, click on any transaction."
+        },
+        "question5": {
+          "title": "What should I do when status of my transaction is still pending and it takes longer then 30 minutes?",
+          "text": "If such issue occurs, please contact our technical support on this email address: info@smartex.info. In the email, provide us your Transaction ID, so we can solve your problem as fast as possible."
+        },
+        "question6": {
+          "title": "What is Transaction ID and where can I find it?",
+          "text": "Transaction ID is a unique number that is assigned to every transaction that has been or is being carried out. It allows us to trace individual transactions. Transaction ID can be found in “Transactions”. Simply click on any of the listed transaction and you will be redirected to Transaction Detail, where you will find Transaction ID."
+        },
+        "question7": {
+          "title": "What if I sent money to the wrong wallet address?",
+          "text": "Due to the irreversible nature of digital currency protocols, transactions can neither be cancelled nor reversed once sent. We are not responsible for such mistakes. Thus, make sure you double-check that the address you are sending to exactly matches the address of the recipient before sending."
+        },
+        "question8": {
+          "title": "Can I send money from one Smartex account to another?",
+          "text": "No. Money can be send from any payment system that is only available on the site. If you want to use bank account, you can use any. However, the person who is carrying out the exchange has to be the account holder. Otherwise, the transaction may be considered as a suspicious and it may be a reason to freeze your Smartex account."
+        }
+      },
+
+      "Affiliate": {
+        "name": "Affiliate",
+        "question1": {
+          "title": "What does affiliate link mean?",
+          "text": "Affiliate link is a unique link that you can send to your friends as an invitation to our exchange."
+        },
+        "question2": {
+          "title": "What happens when someone accepts my invitation?",
+          "text": "Our system recognizes when your friend comes to the page through your affiliate link and automatically sends you a commission based on all exchanges that your partner carries out. You can always withdraw the commission to any wallet."
+        },
+        "question3": {
+          "title": "Where can I find my affiliate link?",
+          "text": "To find you affiliate link, you must be signed in. Then you will be able to see “My Account” button at the top right corner. As soon as you click on it and select “Invite Friends”, you will be redirected to the page, where you will find your affiliate link."
+        }
+      }
+    }
+  },
+
   "errors": {
     "ExchangeLimit": "Entered amount exceeds {{balance}} {{currency}} limit",
     "ExchangeAmount": "Amount not available",
     "ExchangeWarningVerify": "To continue, please verify your account first",
     "Email": "The e-mail doesn’t match any account",
-    "Password": "Passwords do not match",
+    "AuthError": "The email or password you entered is incorrect.",
     "EmailError": "Wrong email",
     "minCountLimit": "Minimum amount is 0.01 USD",
     "PasswordError": "Wrong password"
@@ -90,10 +193,6 @@
   "Contacts": {
     "subtitle": "We will be happy to answer any questions. <br/>Interested in partnership? Contact us, we will get back to you.",
     "partofUnicash": "We are part of <span class='colorAccentOne'>Unicash</span> exchange network!"
-  },
-
-  "FAQ": {
-    "subtitle": "We will be happy to answer any questions. <br/>Interested in partnership? Contact us and we will get back to you."
   },
 
   "News": {

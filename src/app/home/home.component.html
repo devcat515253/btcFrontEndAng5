@@ -378,7 +378,8 @@
                 <label class="input-exchange"
                        [ngClass]="{'has-error':
                                       (exchangeToForm.controls['inputTo'].hasError('maxlength') ||
-                                      exchangeToForm.controls['inputTo'].hasError('maxbalance')),
+                                      (exchangeToForm.controls['inputTo'].hasError('maxbalance')
+                                      && !exchangeFromForm.controls['inputFrom'].hasError('maxCountLimit')) ),
                                      'has-warn':
                                       exchangeToForm.controls['inputTo'].hasError('email')}">
                   <div class="input">
@@ -390,7 +391,8 @@
                   </div>
 
                   <span class="error-label"
-                        *ngIf="exchangeToForm.controls['inputTo'].hasError('maxbalance')">{{ 'errors.ExchangeLimit' | translate:selectedExchangeTo }}</span>
+                        *ngIf="(exchangeToForm.controls['inputTo'].hasError('maxbalance')
+                                && !exchangeFromForm.controls['inputFrom'].hasError('maxCountLimit'))">{{ 'errors.ExchangeLimit' | translate:selectedExchangeTo }}</span>
                 </label>
               </form>
             </div>

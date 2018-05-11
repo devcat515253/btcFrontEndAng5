@@ -6,7 +6,7 @@
 
   <div class="text-center js-deleteParent" *ngIf="userNotFound">
     <div class="alert alert-error">
-      <p>Error: Email or password is incorrect</p>
+      <p>{{ 'errors.AuthError' | translate }}</p>
     </div>
   </div>
 
