@@ -11,18 +11,12 @@
         <div class="blank-self tape-top">
 
           <div class="blank-self__content">
-
             <div class="invite">
               <div class="col">
                 <h2 class="title-inner">{{ 'invite-friends.how-work' | translate }}</h2>
 
-                <p class="pre-line p_small" [innerHTML]="'invite-friends.send-generated-link' | translate">Použijte vygenerovaný odkaz a <b>pošlete jej přátelům</b> jako pozvánku do naší směnárny.
-
-                  Náš systém rozpozná,  že váš partner
-                  přišel na stránku skrze váš odkaz a automaticky vám <b>přičte provizi</b>, kterou můžete vybrat na jakoukoliv peněženku.
-
-                  Máte další otázky? Podívejte se do sekce <a routerLink="/faq" class="link">FAQ</a>
-                  nebo kontaktujte <a href="#" class="link">technickou podporu</a>.
+                <p class="pre-line p_small">
+                  <span *dynamicComponent="'invite-friends.send-generated-link' | translate"></span>
                 </p>
 
                 <h2 class="title-inner">{{ 'invite-friends.refferal-link' | translate }}</h2>

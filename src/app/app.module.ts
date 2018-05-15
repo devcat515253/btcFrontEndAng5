@@ -58,13 +58,17 @@ import { Step5Component } from './_exchange/step5/step5.component';
 import { Step6Component } from './_exchange/step6/step6.component';
 import { Step61Component } from './_exchange/step6-1/step6-1.component';
 import { Step62Component } from './_exchange/step6-2/step6-2.component';
-import {ExchangeService} from './_services/exchange.service';
+import { ExchangeService } from './_services/exchange.service';
 import { NumberOnlyDirective } from './_directives/number-only.directive';
 import { ReCaptchaModule } from 'angular2-recaptcha';
-import {NgxMaskModule} from 'ngx-mask';
+import { NgxMaskModule } from 'ngx-mask';
 import { InternationalPhoneModule } from 'ng4-country-phone-select';
 import { Step11Component } from './_exchange/step1-1/step1-1.component';
 import { Step30Component } from './_exchange/step3-0/step3-0.component';
+import { RouteTransformerDirective } from './_directives/route-transformer.directive';
+import { DynamicComponentModule } from 'ng-dynamic';
+import { RouterModule } from '@angular/router';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
@@ -116,7 +120,8 @@ export function createTranslateLoader(http: HttpClient) {
     Step62Component,
     NumberOnlyDirective,
     Step11Component,
-    Step30Component
+    Step30Component,
+    RouteTransformerDirective
   ],
   imports: [
     BrowserModule,
@@ -136,7 +141,8 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
-    })
+    }),
+    DynamicComponentModule.forRoot({imports: [RouterModule]})
   ],
   entryComponents: [
     DialogRegistrationComponent,

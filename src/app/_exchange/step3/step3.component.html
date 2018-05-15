@@ -11,7 +11,7 @@
            || userAuthForm.controls['email'].hasError('email')
            || userAuthForm.controls['email'].hasError('maxlength'))
            && authForm.submitted}">
-      <span class="form-title">Your e-mail (account login):</span>
+      <span class="form-title">Your e-mail:</span>
       <input [(ngModel)]="userAuth.email" formControlName="email" name="email" type="text" class="form-control">
 
       <span
@@ -50,7 +50,7 @@
 
     <div class="forgot">
       <div class="text-center tip-link">
-        <a href="#" (click)="goToForgotComp($event)" class="link sans-serif">Forgot password?</a>
+        <a href="#" (click)="goToForgotComp($event)" class="link sans-serif tt-uppercase">Forgot password?</a>
       </div>
     </div>
 

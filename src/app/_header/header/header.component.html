@@ -11,7 +11,7 @@
           <li><a routerLink="/testimonials" routerLinkActive="active">{{ 'header.testimonials' | translate }}</a></li>
           <li><a routerLink="/contacts" routerLinkActive="active">{{ 'header.contacts' | translate }}</a></li>
           <li class="dropdown">
-            <a routerLink="/more" routerLinkActive="active" class="dropdown-link js-dropdown-link">{{ 'header.dropdown-link' | translate }}</a>
+            <a href="#" [ngClass]="{'active': router.isActive('/more', null)}" class="dropdown-link js-dropdown-link link-more">{{ 'header.dropdown-link' | translate }}</a>
             <ul class="dropdown-data">
               <li><a routerLink="/more/faq">{{ 'header.faq' | translate }}</a></li>
               <li><a routerLink="/more/news">{{ 'header.news' | translate }}</a></li>
@@ -36,7 +36,7 @@
             <ul>
               <li><a routerLink="/user/settings">{{ 'header.user-dropdownlist.link1' | translate }}</a></li>
               <li><a routerLink="/tablehistory">{{ 'header.user-dropdownlist.link2' | translate }}</a></li>
-              <li><a routerLink="/partners">{{ 'header.user-dropdownlist.link3' | translate }}</a></li>
+              <li><a routerLink="/more/partners">{{ 'header.user-dropdownlist.link3' | translate }}</a></li>
               <!--<li><a href="#">{{ 'header.user-dropdownlist.link4' | translate }}</a></li>-->
             </ul>
             <hr class="full-width">

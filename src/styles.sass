@@ -6,6 +6,173 @@
 .header:after
   background-color: #1B2C58
 
+.discount-program
+  padding: 50px 0
+  .stairs
+    display: flex
+    align-items: flex-start
+    margin: 0 auto
+    padding: 55px 60px 34px 70px
+    width: 800px
+    height: 432px
+    background-color: #FFFFFF
+    background-color: rgba(255,255,255, .94)
+    box-shadow: 0 30px 100px 0 rgba(0,0,0,0.08)
+    font-family: 'PT Sans', sans-serif
+    .item
+      display: flex
+      flex-direction: column
+      color: #464950
+      font-size: 16px
+      line-height: 2.4rem
+      position: relative
+      width: 100px
+      height: 100%
+      flex-shrink: 0
+      margin-right: 45px
+      &:last-child
+        margin-right: 0
+      .item-name
+        font-weight: bold
+        display: block
+        white-space: nowrap
+        margin-bottom: 2.4rem
+      .item-title
+        strong
+          display: block
+          width: 100%
+          text-align: center
+          color: #D2A884
+          font-size: 4.8rem
+          line-height: 6.4rem
+          font-weight: bold
+          font-family: 'PT Serif', serif
+        span
+          display: block
+          text-align: center
+          margin-top: -1.1rem
+      .item-level
+        text-align: center
+        margin-top: auto
+        position: relative
+        &__icons
+          display: inline-block
+        &__graph
+          position: absolute
+          bottom: 40px
+          left: 50%
+          transform: translateX(-50%)
+          width: 100px
+          height: 0
+          background-color: #2F4171
+        &__name
+          font-size: 2rem
+          line-height: 2.7rem
+          font-weight: bold
+          font-family: 'PT Serif', serif
+      &.level-1
+        .item-level .item-level__icons
+          margin-bottom: 25px
+        .item-level .item-level__graph
+          height: 4px
+      &.level-2
+        .item-level .item-level__graph
+          height: 57px
+      &.level-3
+        .item-level .item-level__graph
+          height: 100px
+      &.level-4
+        .item-level .item-level__graph
+          height: 133px
+      &.level-5
+        .item-title
+          position: relative
+          z-index: 1
+          strong, span
+            color: #fff
+        .item-level .item-level__graph
+          height: 263px
+
+@media only screen and (max-width : 992px)
+  .discount-program .stairs
+    width: 700px
+    height: 405px
+    padding: 35px 30px 25px 40px
+  .discount-program .stairs .item
+    margin-right: auto
+  .discount-program .stairs .item .item-title strong
+    font-size: 4.4rem
+  .discount-program .stairs .item .item-name
+    font-size: 14px
+    text-align: center
+  .discount-program .stairs .item .item-title span
+    font-size: 14px
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px)
+  .discount .info__value .h2_mobile b
+    font-size: 2rem
+    line-height: 2.7rem
+  .discount-program .stairs
+    transform: scale(1.5)
+    width: 320px
+    height: 186px
+    padding: 11px 20.6px 16px  27px
+  .discount-program .stairs .item .item-name
+    font-size: 10px
+    line-height: 9px
+    white-space: pre-wrap
+    width: 50px
+    margin-left: -5px
+    margin-bottom: 10.2px
+  .discount-program .stairs .item
+    width: 40px
+    margin-right: 18px
+  .discount-program .stairs .item.level-1 .item-level .item-level__graph
+    height: 1.6px
+  .discount-program .stairs .item.level-2 .item-level .item-level__graph
+    height: 22.8px
+  .discount-program .stairs .item.level-3 .item-level .item-level__graph
+    height: 40px
+  .discount-program .stairs .item.level-4 .item-level .item-level__graph
+    height: 53.2px
+  .discount-program .stairs .item.level-5 .item-level .item-level__graph
+    height: 105.2px
+  .discount-program .stairs .item .item-level__graph
+    width: 100%
+    bottom: 26.4px
+  .discount-program .stairs .item .item-title strong
+    font-size: 19.2px
+    line-height: 25px
+  .discount-program .stairs .item .item-title span
+    font-size: 9px
+    line-height: 9px
+    margin-top: 0
+  .discount-program .stairs .item.level-1 .item-level .item-level__icons
+    margin-bottom: 1.5rem
+  .discount-program .stairs .item.level-1 .item-level .item-level__icons img
+    height: 25.6px
+  .discount-program .stairs .item .item-level__name
+    font-size: 14px
+    line-height: 19px
+    white-space: nowrap
+    position: relative
+    left: 50%
+    transform: translateX(-50%)
+@media only screen and (max-width : 639px)
+  .discount-program .stairs
+    transform: scale(1.3)
+@media only screen and (max-width : 539px)
+  .discount-program .stairs
+    transform: scale(1.2)
+@media only screen and (max-width : 479px)
+  .discount-program .stairs
+    transform: scale(1)
+@media only screen and (max-width : 350px)
+  .discount-program .stairs
+    transform: scale(0.87)
+    transform-origin: 0 0
+  .discount-program .stairs .item .item-name
+    line-height: 12px
 
 .mat-dialog-container
   color: #464950
@@ -46,16 +213,23 @@
     min-width: 14rem
 
 .mat-dialog-container .popup .btn
-  min-width: 14rem
+  min-width: 14rem !important
+.popup .btn
+  min-width: 14rem !important
+.cdk-global-overlay-wrapper .mat-dialog-container .popup .btn
+  min-width: 14rem !important
+.pt-sans
+  font-family: 'PT Sans', sans-serif
 
-
-
+.header-menu .nav-menu > li > a.link-more.active:before
+  margin-left: -8px
 .accentColorDarken
   color: #AD8059
 .upload-file .btn
   top: -1px
   height: calc(100% + 2px)
   right: -1px
+  border-radius: 0 4px 4px 0
 main
   min-height: 50vh
   &.is-blur
@@ -104,8 +278,10 @@ main
     overflow: hidden
     text-overflow: ellipsis
 
+
 .p_large, .sans-serif
-  font-family: sans-serif
+  font-family: 'PT Sans', sans-serif
+
 .steps .captcha
   transform: scale(0.82)
   transform-origin: 0 0
@@ -125,8 +301,7 @@ main
   margin-bottom: 9rem
 .exchange-info .line-sides
   font-family: serif
-//.exchange .column:nth-child(2) .error-label
-//  margin-left: 1px
+
 .verified-success
   color: #464950
 .alert-info
@@ -196,12 +371,12 @@ main
   padding: 1rem
   border-radius: 4px
   color: #FFFFFF
-  font-family: "PT Sans", sans-serif;
-  font-size: 14px;
-  font-style: italic;
-  font-weight: bold;
-  line-height: 19px;
-  top: calc(100% - 1px);
+  font-family: "PT Sans", sans-serif
+  font-size: 14px
+  font-style: italic
+  font-weight: bold
+  line-height: 19px
+  top: calc(100% - 1px)
   background-color: #D01D02
   border: none
 .header-logo
@@ -213,7 +388,6 @@ main
 
 .tip-list
   font-family: "PT Sans", sans-serif
-
 
 
 @media only screen and (max-width : 991px)

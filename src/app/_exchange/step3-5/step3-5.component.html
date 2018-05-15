@@ -1,5 +1,5 @@
 <div class="step">
-  <div class="step-title" *ngIf="!userModel.verification_image"><h3 class="h3">2. ID verified!</h3></div>
+  <div class="step-title" *ngIf="!userModel.verification_image"><h3 class="h3">2. Awaiting ID moderation</h3></div>
   <div class="step-title" *ngIf="userModel.verification_image"><h3 class="h3">2. Awaiting KYC moderation</h3></div>
 
   <p class="p_small" *ngIf="!userModel.verification_kyc">
@@ -72,7 +72,7 @@
           </svg>
         </div>
         <button class="btn btn-accent rippler rippler-default" *ngIf="!userModel.verification_kyc" [disabled]="KycForm.invalid && ngKycForm.submitted">Upload KYC</button>
-        <button type="submit" class="btn btn-accentSecond rippler rippler-default" *ngIf="userModel.verification_kyc" (click)="goToNext($event)">Next</button>
+        <button type="submit" class="btn btn-accent rippler rippler-default" *ngIf="userModel.verification_kyc" (click)="goToNext($event)">Next</button>
       </label>
     </div>
   </form>

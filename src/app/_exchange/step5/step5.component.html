@@ -1,157 +1,217 @@
 <div class="step" [ngClass]="{'custom-loader disabled': loading}">
   <div class="step-title"><h3 class="h3">4. {{ 'process4.title' | translate }}</h3></div>
 
-  <div class="reduced-width">
-    <div class="switch">
-      <div class="currencies currencies_small">
-        <div class="item">
-          <div class="item-icons" [style.background-image]="'url(' + selectedFrom?.logo +')'"></div>
-          <div class="item-value">{{selectedFrom?.name}} <span class="ttu">{{selectedFrom?.currency}}</span></div>
-        </div>
+  <div *ngIf="otherChange">
+    <div class="reduced-width">
+      <div class="switch">
+        <div class="currencies currencies_small">
+          <div class="item">
+            <div class="item-icons" [style.background-image]="'url(' + selectedFrom?.logo +')'"></div>
+            <div class="item-value">{{selectedFrom?.name}} <span class="ttu">{{selectedFrom?.currency}}</span></div>
+          </div>
 
-        <div class="switch-btn"></div>
+          <div class="switch-btn"></div>
 
-        <div class="switch-stats">
-          <div class="tape">Fee: {{selectedTo?.commission || '0.00'}} %</div>
-          <div class="tape tape-accent">Discount: {{userDiscount || '0.00'}} %</div>
-        </div>
+          <div class="switch-stats">
+            <div class="tape">Fee: {{selectedTo?.commission || '0.00'}} %</div>
+            <div class="tape tape-accent">Discount: {{userDiscount || '0.00'}} %</div>
+          </div>
 
-        <div class="item">
-          <div class="item-icons" [style.background-image]="'url(' + selectedTo?.logo +')'"></div>
-          <div class="item-value">{{selectedTo?.name}} <span class="ttu">{{selectedTo?.currency}}</span></div>
+          <div class="item">
+            <div class="item-icons" [style.background-image]="'url(' + selectedTo?.logo +')'"></div>
+            <div class="item-value">{{selectedTo?.name}} <span class="ttu">{{selectedTo?.currency}}</span></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="exchange-info">
-    <div class="line-sides">{{ 'process4.transfer' | translate }}</div>
+    <div class="exchange-info">
+      <div class="line-sides">{{ 'process4.transfer' | translate }}</div>
 
-    <table class="exchange-info__direction">
-      <tr>
-        <td>
-          <span>{{ 'process4.input-system' | translate }}</span>
-          <b>{{selectedFrom?.name}}</b>
-        </td>
-        <td align="right">
-          <span>{{ 'process4.amount' | translate }}</span>
-          <b class="tt-uppercase"><strong>{{inputFrom}}</strong> {{selectedFrom?.currency}}</b>
-        </td>
-      </tr>
+      <table class="exchange-info__direction">
+        <tr>
+          <td>
+            <span>{{ 'process4.input-system' | translate }}</span>
+            <b>{{selectedFrom?.name}}</b>
+          </td>
+          <td align="right">
+            <span>{{ 'process4.amount' | translate }}</span>
+            <b class="tt-uppercase"><strong>{{inputFrom}}</strong> {{selectedFrom?.currency}}</b>
+          </td>
+        </tr>
 
-      <tr>
-        <td>
-          <span>{{ 'process4.output-system' | translate }}</span>
-          <b>{{selectedTo?.name}}</b>
-        </td>
-        <td align="right">
-          <span>{{ 'process4.amount' | translate }}</span>
-          <b class="tt-uppercase"><strong>{{inputTo}}</strong> {{selectedTo?.currency}}</b>
-        </td>
-      </tr>
-    </table>
+        <tr>
+          <td>
+            <span>{{ 'process4.output-system' | translate }}</span>
+            <b>{{selectedTo?.name}}</b>
+          </td>
+          <td align="right">
+            <span>{{ 'process4.amount' | translate }}</span>
+            <b class="tt-uppercase"><strong>{{inputTo}}</strong> {{selectedTo?.currency}}</b>
+          </td>
+        </tr>
+      </table>
 
-    <div class="line-sides">{{ 'process4.personal-information' | translate }}</div>
+      <div class="line-sides">{{ 'process4.personal-information' | translate }}</div>
 
 
-    <div class="exchange-info__descr" *ngIf="Wallet?.controlsId !== ''">
-      <div class="item">
-        <span>Your wallet ID:</span>
-        <b>{{Wallet.controlsId}}</b>
-      </div>
+      <div class="exchange-info__descr" *ngIf="Wallet?.controlsId !== ''">
+        <div class="item">
+          <span>Your wallet ID:</span>
+          <b>{{Wallet.controlsId}}</b>
+        </div>
 
-      <div class="item">
-        <span>Contact e-mail:</span>
-        <b>{{Wallet.controlsEmail}}</b>
-      </div>
-    </div>
-
-    <table class="exchange-info__direction" *ngIf="BankCzk?.controlsBank !== ''">
-      <tr>
-        <td>
-          <span>{{ 'exchange.PersonalInfo.Name' | translate }}</span>
-          <b><strong>{{BankCzk?.controlsEmail}}</strong></b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <span>{{ 'exchange.PersonalInfo.BankAccount' | translate }}</span>
-          <b><strong>{{BankCzk?.controlsBank}}</strong></b>
-        </td>
-        <td>
-          <span>{{ 'exchange.PersonalInfo.BankCode' | translate }}</span>
-          <b><strong>{{BankCzk?.controlsBankCode}}</strong></b>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
+        <div class="item">
           <span>Contact e-mail:</span>
-          <b><strong>{{BankCzk?.controlsEmail}}</strong></b>
-        </td>
-      </tr>
-    </table>
-
-    <div class="exchange-info__descr" *ngIf="BankEur?.address !== ''">
-      <div class="item">
-        <span>{{ 'exchange.PersonalInfo.Name' | translate }}</span>
-        <b>{{BankEur.name}}</b>
+          <b>{{Wallet.controlsEmail}}</b>
+        </div>
       </div>
 
-      <div class="item">
-        <span>{{ 'exchange.PersonalInfo.Address' | translate }}</span>
-        <b>{{BankEur.address}}</b>
+      <table class="exchange-info__direction" *ngIf="BankCzk?.controlsBank !== ''">
+        <tr>
+          <td>
+            <span>{{ 'exchange.PersonalInfo.Name' | translate }}</span>
+            <b><strong>{{BankCzk?.controlsEmail}}</strong></b>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>{{ 'exchange.PersonalInfo.BankAccount' | translate }}</span>
+            <b><strong>{{BankCzk?.controlsBank}}</strong></b>
+          </td>
+          <td>
+            <span>{{ 'exchange.PersonalInfo.BankCode' | translate }}</span>
+            <b><strong>{{BankCzk?.controlsBankCode}}</strong></b>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <span>Contact e-mail:</span>
+            <b><strong>{{BankCzk?.controlsEmail}}</strong></b>
+          </td>
+        </tr>
+      </table>
+
+      <div class="exchange-info__descr" *ngIf="BankEur?.address !== ''">
+        <div class="item">
+          <span>{{ 'exchange.PersonalInfo.Name' | translate }}</span>
+          <b>{{BankEur.name}}</b>
+        </div>
+
+        <div class="item">
+          <span>{{ 'exchange.PersonalInfo.Address' | translate }}</span>
+          <b>{{BankEur.address}}</b>
+        </div>
+
+        <div class="item">
+          <span>{{ 'exchange.PersonalInfo.Country' | translate }}</span>
+          <b>{{BankEur.country}}</b>
+        </div>
+
+
+        <div class="item">
+          <span>IBAN:</span>
+          <b>{{BankEur.iban}}</b>
+        </div>
+
+        <div class="item">
+          <span>BIC/SWIFT:</span>
+          <b>{{BankEur.bic_swift}}</b>
+        </div>
+
+        <div class="item">
+          <span>{{ 'exchange.PersonalInfo.BankName' | translate }}</span>
+          <b>{{BankEur.bank_name}}</b>
+        </div>
+
+        <div class="item">
+          <span>{{ 'exchange.PersonalInfo.BankAddress' | translate }}</span>
+          <b>{{BankEur.bank_address}}</b>
+        </div>
+
+        <div class="item">
+          <span>{{ 'exchange.PersonalInfo.Country' | translate }}</span>
+          <b>{{BankEur.bank_country}}</b>
+        </div>
       </div>
 
-      <div class="item">
-        <span>{{ 'exchange.PersonalInfo.Country' | translate }}</span>
-        <b>{{BankEur.country}}</b>
-      </div>
+
+    </div>
 
 
-      <div class="item">
-        <span>IBAN:</span>
-        <b>{{BankEur.iban}}</b>
-      </div>
 
-      <div class="item">
-        <span>BIC/SWIFT:</span>
-        <b>{{BankEur.bic_swift}}</b>
-      </div>
+    <div class="between-children">
+      <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
+      <a href="#" class="btn btn-accent rippler rippler-default" (click)="goToPay($event)">Pay</a>
+    </div>
 
-      <div class="item">
-        <span>{{ 'exchange.PersonalInfo.BankName' | translate }}</span>
-        <b>{{BankEur.bank_name}}</b>
-      </div>
-
-      <div class="item">
-        <span>{{ 'exchange.PersonalInfo.BankAddress' | translate }}</span>
-        <b>{{BankEur.bank_address}}</b>
-      </div>
-
-      <div class="item">
-        <span>{{ 'exchange.PersonalInfo.Country' | translate }}</span>
-        <b>{{BankEur.bank_country}}</b>
-      </div>
+    <div class="text-center tip-link">
+      <a href="#" class="link tt-uppercase" (click)="goToStart($event)">Cancel</a>
     </div>
   </div>
 
+  <div *ngIf="cryptoChange">
+    <div class="exchange-info">
+      <div class="line-sides">{{ 'process5.amount-transfer' | translate }}</div>
 
+      <div class="select-amount">
+        <label class="input-exchange">
+          <div class="input">
+            <input type="text" [attr.value]="inputTo">
+            <span class="currency">{{this.selectedTo.currency}}</span>
+          </div>
 
-  <div class="between-children">
-    <a href="#" class="btn btn-border btn-border_accent rippler rippler-default" (click)="goToBack($event)">Back</a>
-    <a href="#" class="btn btn-accent rippler rippler-default" (click)="goToPay($event)">Pay</a>
+          <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
+          <!-- <span class="error-label">
+                                              Zadaná částka přesahuje limit 9,999 USD
+                                              <a href="#"> kontact us</a>
+                                          </span> -->
+        </label>
+      </div>
+
+      <div class="line-sides">{{ 'process5.payment-information' | translate }}</div>
+    </div>
+
+    <div class="exchange-info__descr text-center">
+      <div class="item">
+        <span>{{ 'process5.bitcoin-qr' | translate }}</span>
+        <b>{{ 'process5.scan-pay' | translate }}</b>
+      </div>
+
+      <div class="item">
+        <div class="qr-code">
+          <img src="../../assets/img/qr-code.png" alt="">
+        </div>
+      </div>
+
+      <div class="item">
+        <span>{{ 'process5.wallet-address' | translate }}</span>
+        <span><b>1GoBTCTiC8TEVoLmrGk4CQFXiVbRr7ktoz</b></span>
+      </div>
+
+      <div class="item">
+        <span>{{ 'process5.time-to-pay-left' | translate }}</span>
+        <b>7 minut a 69 vteřin</b>
+      </div>
+    </div>
+
+    <hr>
+    <p class="p_small pre-line" [innerHTML]="'process5.info-instruction' | translate">
+
+    </p>
+
+    <a href="#" class="btn btn-accent rippler rippler-default full-width">Money sent</a>
   </div>
-
-  <div class="text-center tip-link">
-    <a href="#" class="link tt-uppercase" (click)="goToStart($event)">Cancel</a>
-  </div>
-
 
   <form [attr.action]="PayWallet.url" #hiddenForm class="form is-hidden"   [attr.method]="PayWallet.method"  novalidate>
     <input type="text" *ngFor="let fromItem of PayWallet.params; let i = index"
            [attr.name]=fromItem.name
            [attr.value]=fromItem.value>
   </form>
+
+
+
+
 
 </div>

@@ -8,6 +8,7 @@ import {DialogSuccessComponent} from '../../_dialog/dialog-success/dialog-succes
 import {UserService} from '../../_services/user.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Subject} from 'rxjs/Subject';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private cdr: ChangeDetectorRef,
               public dialog: MatDialog,
+              public  router: Router,
               private blurService: EffectBlurService,
               private translate: TranslateService,
               private userService: UserService) {
@@ -35,6 +37,7 @@ export class HeaderComponent implements OnInit {
       this.loggedUser = logged;
       this.cdr.detectChanges();
     });
+    console.log(this.router);
     console.log(this.lastTransaction);
   }
 

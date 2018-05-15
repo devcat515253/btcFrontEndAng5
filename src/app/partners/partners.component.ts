@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../_services/user.service';
 import {UserModel} from '../_entity/user-model';
-import {News} from '../_entity/news';
+
+
 
 @Component({
   selector: 'app-partners',
@@ -18,6 +19,8 @@ export class PartnersComponent implements OnInit {
   ngOnInit() {
     this.getPartnersList();
   }
+
+
 
   getPartnersList() {
     this.userService.getPartnersList().subscribe(result => {

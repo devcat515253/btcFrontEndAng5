@@ -12,7 +12,7 @@
            || step4_2Form.controls['name'].hasError('maxlength'))
            && form4_2.submitted}">
       <span class="form-title">{{ 'exchange.PersonalInfo.Name' | translate }}:</span>
-      <input type="text" [(ngModel)]="formModel.controlsName" formControlName="name" class="form-control" placeholder="john.doe@gmail.com">
+      <input type="text" [(ngModel)]="formModel.controlsName" formControlName="name" class="form-control" placeholder="your@email.com">
       <span *ngIf="step4_2Form.controls['name'].hasError('required') && form4_2.submitted"
             class="error-label">Required field</span>
       <span *ngIf="step4_2Form.controls['name'].hasError('maxlength') && form4_2.submitted"
@@ -50,7 +50,7 @@
            || step4_2Form.controls['email'].hasError('maxlength'))
            && form4_2.submitted}">
       <span class="form-title">Contact e-mail:</span>
-      <input type="email" [(ngModel)]="user.email" formControlName="email" class="form-control" placeholder="john.doe@gmail.com">
+      <input type="email" [(ngModel)]="user.email" formControlName="email" class="form-control" placeholder="your@email.com">
       <span *ngIf="step4_2Form.controls['email'].hasError('required') && form4_2.submitted"
             class="error-label">Required field</span>
       <span *ngIf="step4_2Form.controls['email'].hasError('email') && !step4_2Form.controls['email'].hasError('required') && form4_2.submitted"

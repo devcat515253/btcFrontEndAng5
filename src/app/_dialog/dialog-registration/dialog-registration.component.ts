@@ -149,7 +149,7 @@ export class DialogRegistrationComponent implements OnInit {
 
     const dialogRef = this.dialog.open(DialogSuccessComponent, {
       width: '60rem',
-      data: { title: 'Successful registration!', subtitle: 'A pleasant and profitable exchange for You!' }
+      data: { title: 'Successful registration!', subtitle: '<b> Check your email</b>, click on the activation link </br>and <b>continue</b> the process.' }
     });
 
 

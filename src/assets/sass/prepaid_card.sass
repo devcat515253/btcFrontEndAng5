@@ -35,7 +35,6 @@
     margin-bottom: 1rem
   .blank-self
     padding-top: 2.7rem
-    overflow: hidden
     .content
       display: flex
       justify-content: center
@@ -161,6 +160,10 @@
     top: 15%
   .prepaid_card-page .mini-cards
     margin-top: -8rem
+
+@media only screen and (max-width : 767px)
+  .prepaid_card-page .blank-self
+    overflow: hidden
 
 @media only screen and (max-width : 767px) and (min-width : 640px)
   .prepaid_card-page .mini-cards .item

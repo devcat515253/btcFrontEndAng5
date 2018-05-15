@@ -17,7 +17,7 @@
     "partners": "Partners",
     "user-settings": "Settings",
     "prepaid-card": "Prepaid cards",
-    "discount": "Discount",
+    "discount": "Discount program",
     "user-transactions-btn": "Transactions",
     "user-login-btn": "My Account",
     "guest-registr-btn": "Register",
@@ -263,7 +263,7 @@
 
 
     "block3-title": "Become a Large Customer of Unicash or Other Currency Under Special Condition",
-    "block3-text": "Do you already work as a currency or trading exchange?The fundamental task of such exchanges is to resolve the cash flow. Unicash can help you with connecting wide network of payment services.\n\nExplore how Unicash works and contact us if you are interested in wholesale prices.",
+    "block3-text": "Do you already work as a currency or trading exchange? The fundamental task of such exchanges is to resolve the cash flow. Unicash can help you with connecting wide network of payment services.\n\nExplore how Unicash works and contact us if you are interested in wholesale prices.",
 
     "block4-title": "Start Your Own Exchange Platform, We’ll Help You.",
     "block4-text": "Every exchange on the global market is an important service for cryptocurrency users, as it helps to build infrastructure and compare price level.\n\nThe requested service is a guarantee of an interesting profit.\n\nWe offer an opportunity of setting up a partner exchange platform that would be our partner, as the demand for our services often exceeds our capacity.\n\nRead more about our partner exchange platform here and if interested, write us here:"
@@ -274,7 +274,7 @@
     "total": "Total Commission Earned:",
     "how-work": "How Does It Work?",
     "btn-withdraw-commission": "Withdraw commission",
-    "send-generated-link": "Send the generated link to your <b>friends</b> as an invitation to our exchange platform.\n\nOur system will recognize that your partner has come to a page through your link and will automatically <b>give you commission</b> that you can withdraw to any wallet.\n\nDo you have any other questions? Check <a href='#' class='link'>FAQ</a>\nsection or contact <a href='#' class='link'>technical support</a>.",
+    "send-generated-link": "Send the generated link to <b> your friends</b> as an invitation to our exchange platform.\n\nOur system will recognize that your partner has come to a page through your link and will automatically give you <b>commission</b> that you can withdraw to any wallet.\n\nDo you have any other questions? Check <a routerLink='/more/faq' class='link'>FAQ</a>\nsection or contact <a href='#' class='link'>technical support</a>.",
     "list-of-all": "List of All Registered Partners",
     "amount": "Amount",
     "registration-date": "Registration date",
