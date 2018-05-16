@@ -93,11 +93,14 @@ export class Step41Component implements OnInit {
         .forEach(controlName => controls[controlName].markAsTouched());
       return;
     }
-    console.log("Форма пошла на отправку");
+    console.log('Форма пошла на отправку');
     localStorage.setItem('FS_Step4_1', JSON.stringify(this.formModel));
 
-
-    this.goNext.emit(this.formModel);
+    let dataForm = {
+      formData: this.formModel,
+      formName: 'bank'
+    };
+    this.goNext.emit(dataForm);
   }
 
   fillLastData(event) {

@@ -197,9 +197,10 @@
                   </div>
 
                   <div class="step1-1" *ngIf="stepsArray[17].status">
-                    <app-step1-1 (goBack)="goToStart()"
-                                 (goNext)="goToForm4()"
+                    <app-step1-1 (goBack)="offerGoToCheckBack($event)"
+                                 (goNext)="offerGoToCheckNext($event)"
                                  (goAuth)="goToAuth()"
+                                 [tempData]="tempOfferData"
                                  (goRegistration)="goToRegistr()">
                     </app-step1-1>
                   </div>
@@ -274,14 +275,14 @@
                   <!-- STEP 4 -->
                   <div class="step4" *ngIf="stepsArray[9].status">
                     <app-step4 (goBack)="goToStart()"
-                               (goNext)="goToForm5Wallet($event)" ></app-step4>
+                               (goNext)="checkRegistrStep($event)" ></app-step4>
                   </div>
 
 
                   <!-- STEP 4-1 -->
                   <div class="step4-1" *ngIf="stepsArray[10].status">
                     <app-step4-1 (goBack)="goToStart()"
-                                 (goNext)="goToForm5Eur($event)"></app-step4-1>
+                                 (goNext)="checkRegistrStep($event)"></app-step4-1>
                   </div>
 
                   <!-- STEP 4-2 -->

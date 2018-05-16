@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
   // needVerification: boolean = false;
 
 
-  viewDirectMobile: boolean = false;
+  tempOfferData: any;
 
   constructor(public dialog: MatDialog,
               private cdr: ChangeDetectorRef,
@@ -236,6 +236,35 @@ export class HomeComponent implements OnInit {
     this.checkStepShow('4-2');
   }
 
+  // проверка что открыть после back
+  offerGoToCheckBack(event) {
+    console.log(event);
+    if (event.formName === 'wallet') { this.goToForm4(); return; }
+    if (event.formName === 'bank') { this.goToForm4_1(); return; }
+    // if (event === 'wallet') { this.goToForm5Wallet(event); return; }
+  }
+
+  offerGoToCheckNext(event) {
+    console.log(event);
+    if (event.formName === 'wallet') { this.goToForm5Wallet(event.formData); return; }
+    if (event.formName === 'bank') { this.goToForm5Eur(event.formData); return; }
+    // if (event === 'wallet') { this.goToForm5Wallet(event); return; }
+  }
+
+  // проверка на предложение
+
+  checkRegistrStep(event) {
+    console.log(this.loggedUser);
+    console.log(event);
+    this.tempOfferData = event;
+
+    if  (this.loggedUser) {
+      this.goToForm5Wallet(event.formData);
+    } else {
+      this.checkStepShow('1-1');
+    }
+  }
+
 
   // PRINT WALLET INFO
   goToForm5Wallet(event) {
@@ -324,12 +353,8 @@ export class HomeComponent implements OnInit {
       return;
     }
     // до 10
-    console.log(this.loggedUser);
-    if  (this.loggedUser) {
-      this.checkStepShow('4');
-    } else {
-      this.checkStepShow('1-1');
-    }
+    this.checkStepShow('4');
+
   }
 
   // =====================================================

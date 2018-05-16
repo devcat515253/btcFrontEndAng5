@@ -71,7 +71,11 @@ export class Step4Component implements OnInit {
     }
     this.formModel4.controlsEmail = this.user.email;
     localStorage.setItem('FS_Step4', JSON.stringify(this.formModel4));
-    this.goNext.emit(this.formModel4);
+    let dataForm = {
+      formData: this.formModel4,
+      formName: 'wallet'
+    };
+    this.goNext.emit(dataForm);
   }
 
   goToBack(event) {

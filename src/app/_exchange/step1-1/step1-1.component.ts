@@ -1,4 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Exchange} from '../../_entity/exchange';
 
 @Component({
   selector: 'app-step1-1',
@@ -12,6 +13,9 @@ export class Step11Component implements OnInit {
   @Output() goAuth = new EventEmitter<any>();
   @Output() goRegistration = new EventEmitter<any>();
 
+
+  @Input() tempData: any;
+
   constructor() { }
 
   ngOnInit() {
@@ -19,12 +23,12 @@ export class Step11Component implements OnInit {
 
   goToBack(event) {
     event.preventDefault();
-    this.goBack.emit();
+    this.goBack.emit(this.tempData);
   }
 
   goToNext(event) {
     event.preventDefault();
-    this.goNext.emit();
+    this.goNext.emit(this.tempData);
   }
 
   goToAuth(event) {
