@@ -116,7 +116,9 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
       return;
     }
     const subscription =  this.userService.getTransactionInfoFirst(this.localHash).flatMap(result => {
+
       this.transaction = result.data;
+      console.log(this.transaction.out_payee);
       setTimeout(() => {
         this.updateStatusBar();
       }, 100);

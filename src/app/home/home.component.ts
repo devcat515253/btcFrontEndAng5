@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit {
   dataFormWallet: ExchangeStep4 = new ExchangeStep4();
   dataBankEur: ExchangeStep4and1 = new ExchangeStep4and1();
   dataBankCzk: ExchangeStep4and2 = new ExchangeStep4and2();
+  dataCoin: any;
   // needVerification: boolean = false;
 
 
@@ -240,14 +241,16 @@ export class HomeComponent implements OnInit {
   offerGoToCheckBack(event) {
     console.log(event);
     if (event.formName === 'wallet') { this.goToForm4(); return; }
-    if (event.formName === 'bank') { this.goToForm4_1(); return; }
+    if (event.formName === 'bank-eur') { this.goToForm4_1(); return; }
+    if (event.formName === 'bank-czk') { this.goToForm4_2(); return; }
     // if (event === 'wallet') { this.goToForm5Wallet(event); return; }
   }
 
   offerGoToCheckNext(event) {
     console.log(event);
     if (event.formName === 'wallet') { this.goToForm5Wallet(event.formData); return; }
-    if (event.formName === 'bank') { this.goToForm5Eur(event.formData); return; }
+    if (event.formName === 'bank-eur') { this.goToForm5Eur(event.formData); return; }
+    if (event.formName === 'bank-czk') { this.goToForm5Czk(event.formData); return; }
     // if (event === 'wallet') { this.goToForm5Wallet(event); return; }
   }
 
@@ -259,7 +262,13 @@ export class HomeComponent implements OnInit {
     this.tempOfferData = event;
 
     if  (this.loggedUser) {
-      this.goToForm5Wallet(event.formData);
+      // this.goToForm5Wallet(event.formData);
+
+      if (event.formName === 'wallet') { this.goToForm5Wallet(event.formData); return; }
+      if (event.formName === 'bank-eur') { this.goToForm5Eur(event.formData); return; }
+      if (event.formName === 'bank-czk') { this.goToForm5Czk(event.formData); return; }
+
+
     } else {
       this.checkStepShow('1-1');
     }
@@ -308,6 +317,12 @@ export class HomeComponent implements OnInit {
     console.log(event)
     this.dataBankCzk = event;
     this.checkStepShow('6-1');
+  }
+
+  goToForm6_2(event) {
+    console.log(event)
+    this.dataCoin = event;
+    this.checkStepShow('6-2');
   }
 
 

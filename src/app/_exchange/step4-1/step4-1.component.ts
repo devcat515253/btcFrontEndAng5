@@ -94,11 +94,13 @@ export class Step41Component implements OnInit {
       return;
     }
     console.log('Форма пошла на отправку');
+    console.log(this.formModel);
+    this.formModel.email = this.user.email;
     localStorage.setItem('FS_Step4_1', JSON.stringify(this.formModel));
 
     let dataForm = {
       formData: this.formModel,
-      formName: 'bank'
+      formName: 'bank-eur'
     };
     this.goNext.emit(dataForm);
   }

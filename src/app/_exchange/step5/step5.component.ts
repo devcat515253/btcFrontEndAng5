@@ -5,6 +5,7 @@ import {ExchangeStep4, ExchangeStep4and1, ExchangeStep4and2} from '../../_entity
 import {ExchangeService} from '../../_services/exchange.service';
 import {PayWallet} from '../../_entity/pay-wallet';
 import {FormGroup} from '@angular/forms';
+import {currencyArray} from '../../_entity/currency';
 
 @Component({
   selector: 'app-step5',
@@ -37,7 +38,7 @@ export class Step5Component implements OnInit {
   @Output() goForm4_1 = new EventEmitter<any>();
   @Output() goForm4_2 = new EventEmitter<any>();
   @Output() goStart = new EventEmitter<any>();
-  @Output() goPay = new EventEmitter<any>();
+  @Output() goPayBTC = new EventEmitter<any>();
 
   constructor(private userService: UserService,
               private exchangeService: ExchangeService) { }
@@ -84,18 +85,36 @@ export class Step5Component implements OnInit {
 
     console.log(data);
 
+    console.log(this.selectedFrom);
+
+    let tempArray = currencyArray.filter(item => {
+      return item.indexOf(this.selectedFrom.currency) >= 0;
+    });
+
+    console.log(tempArray);
+
+
+
     this.exchangeService.sendDataPay(data).subscribe( (result) => {
        console.log(result);
       this.PayWallet = result.data;
       console.log(this.PayWallet);
       console.log(this.hiddenForm);
       localStorage.setItem('last_transaction', JSON.stringify(this.PayWallet.hash));
+
+      this.loading = false;
+      if (tempArray.length === 0) {
+        this.goPayBTC.emit(this.PayWallet);
+        return;
+      }
+
       setTimeout(() => {
         // this.hiddenForm.nativeElement.submit();
       }, 50);
-      this.loading = false;
+
     }, (error) => {
       console.log(error);
+      this.loading = false;
     });
   }
 

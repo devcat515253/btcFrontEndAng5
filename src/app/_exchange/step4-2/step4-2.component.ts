@@ -77,7 +77,12 @@ export class Step42Component implements OnInit {
     this.formModel.controlsEmail = this.user.email;
     localStorage.setItem('FS_Step4_2', JSON.stringify(this.formModel));
 
-    this.goNext.emit(this.formModel);
+    let dataForm = {
+      formData: this.formModel,
+      formName: 'bank-czk'
+    };
+
+    this.goNext.emit(dataForm);
     this.formFlag.emit('BankEur');
   }
 

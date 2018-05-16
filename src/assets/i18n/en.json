@@ -50,7 +50,8 @@
       "BankName": "Bank name",
       "BankAddress": "Bank address",
       "BankAccount": "Bank account",
-      "BankCode": "Bank code"
+      "BankCode": "Bank code",
+      "Email": "E-mail"
     },
     "NewExchange": "New Exchange",
     "PaginationOf": "of",

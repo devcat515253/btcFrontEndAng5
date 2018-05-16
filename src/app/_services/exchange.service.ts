@@ -22,6 +22,11 @@ export class ExchangeService {
     return this.http.post<any>(query,  {}, {headers:  this.getAuthHeader()} );
   }
 
+  sendPayBTC(id: number) {
+    let query = `${this.baseUrl}/api/user/exchanges/${ id }/income/confirm`;
+    return this.http.put<any>(query,  {}, {headers:  this.getAuthHeader()} );
+  }
+
 
   getTransactionsList() {
     return this.http.get<any>(`${this.baseUrl}/api/exchanges/view`);

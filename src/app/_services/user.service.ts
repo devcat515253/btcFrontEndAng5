@@ -145,7 +145,7 @@ export class UserService {
   }
 
   getTransactionInfoFirst(hash: string) {
-    if ( hash === 'null') { return this.http.get<any>(`${this.baseUrl}/api/user/not-auth/exchanges/`); }
+    if ( hash === '') { return this.http.get<any>(`${this.baseUrl}/api/user/not-auth/exchanges/`); }
     return this.http.get<any>(`${this.baseUrl}/api/user/not-auth/exchanges/${hash}`);
   }
 

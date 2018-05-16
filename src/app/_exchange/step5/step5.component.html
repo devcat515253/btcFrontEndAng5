@@ -134,6 +134,11 @@
           <span>{{ 'exchange.PersonalInfo.Country' | translate }}</span>
           <b>{{BankEur.bank_country}}</b>
         </div>
+
+        <div class="item">
+          <span>{{ 'exchange.PersonalInfo.Email' | translate }}</span>
+          <b>{{BankEur.email}}</b>
+        </div>
       </div>
 
 
@@ -151,58 +156,6 @@
     </div>
   </div>
 
-  <div *ngIf="cryptoChange">
-    <div class="exchange-info">
-      <div class="line-sides">{{ 'process5.amount-transfer' | translate }}</div>
-
-      <div class="select-amount">
-        <label class="input-exchange">
-          <div class="input">
-            <input type="text" [attr.value]="inputTo">
-            <span class="currency">{{this.selectedTo.currency}}</span>
-          </div>
-
-          <span class="error-label">Zadaná částka přesahuje limit 9,999 USD</span>
-          <!-- <span class="error-label">
-                                              Zadaná částka přesahuje limit 9,999 USD
-                                              <a href="#"> kontact us</a>
-                                          </span> -->
-        </label>
-      </div>
-
-      <div class="line-sides">{{ 'process5.payment-information' | translate }}</div>
-    </div>
-
-    <div class="exchange-info__descr text-center">
-      <div class="item">
-        <span>{{ 'process5.bitcoin-qr' | translate }}</span>
-        <b>{{ 'process5.scan-pay' | translate }}</b>
-      </div>
-
-      <div class="item">
-        <div class="qr-code">
-          <img src="../../assets/img/qr-code.png" alt="">
-        </div>
-      </div>
-
-      <div class="item">
-        <span>{{ 'process5.wallet-address' | translate }}</span>
-        <span><b>1GoBTCTiC8TEVoLmrGk4CQFXiVbRr7ktoz</b></span>
-      </div>
-
-      <div class="item">
-        <span>{{ 'process5.time-to-pay-left' | translate }}</span>
-        <b>7 minut a 69 vteřin</b>
-      </div>
-    </div>
-
-    <hr>
-    <p class="p_small pre-line" [innerHTML]="'process5.info-instruction' | translate">
-
-    </p>
-
-    <a href="#" class="btn btn-accent rippler rippler-default full-width">Money sent</a>
-  </div>
 
   <form [attr.action]="PayWallet.url" #hiddenForm class="form is-hidden"   [attr.method]="PayWallet.method"  novalidate>
     <input type="text" *ngFor="let fromItem of PayWallet.params; let i = index"
