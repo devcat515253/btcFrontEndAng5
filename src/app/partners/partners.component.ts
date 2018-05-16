@@ -1,6 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {UserService} from '../_services/user.service';
 import {UserModel} from '../_entity/user-model';
+import {DomSanitizer} from '@angular/platform-browser';
+import {TranslateService} from '@ngx-translate/core';
+import {Router} from '@angular/router';
 
 
 
@@ -9,16 +12,25 @@ import {UserModel} from '../_entity/user-model';
   templateUrl: './partners.component.html',
   styleUrls: ['./partners.component.sass']
 })
-export class PartnersComponent implements OnInit {
+export class PartnersComponent implements OnInit{
 
   refArray: UserModel[] = [];
   loadingRefList: boolean = true;
 
-  constructor(private userService: UserService) { }
+
+  constructor(private userService: UserService,
+              private sanitizer: DomSanitizer,
+              private router: Router,
+              private translate: TranslateService) {
+
+  }
 
   ngOnInit() {
     this.getPartnersList();
   }
+
+
+
 
 
 

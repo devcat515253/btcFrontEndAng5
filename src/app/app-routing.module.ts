@@ -25,7 +25,6 @@ const routes: Routes = [
   // { path: 'referral/:referral-id', component: ReferralComponent },
   // { path: 'referral/:referral-id/:action', component: ReferralComponent },
   { path: 'contacts', component: ContactsComponent },
-  { path: 'feesdiscount', component: FeesDiscountComponent},
   { path: 'tablehistoryreviews', component: TableHistoryReviewsComponent},
   { path: 'testimonials', component: TableHistoryComponent},
   { path: 'more',
@@ -36,6 +35,7 @@ const routes: Routes = [
       { path: 'prepaid-card', component: PrepaidCardComponent},
       { path: 'partners', component: PartnersComponent},
       { path: 'discount', component: DiscountComponent},
+      { path: 'feesdiscount', component: FeesDiscountComponent},
       { path: 'landingmagazine', component: LandingMagazineComponent},
       { path: 'payment',
         children: [

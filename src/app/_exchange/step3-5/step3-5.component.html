@@ -1,6 +1,6 @@
 <div class="step">
-  <div class="step-title" *ngIf="!userModel.verification_image"><h3 class="h3">2. Awaiting ID moderation</h3></div>
-  <div class="step-title" *ngIf="userModel.verification_image"><h3 class="h3">2. Awaiting KYC moderation</h3></div>
+  <div class="step-title" *ngIf="userModel.verification_image && !userModel.verification_kyc"><h3 class="h3">2. Awaiting ID moderation</h3></div>
+  <div class="step-title" *ngIf="userModel.verification_kyc"><h3 class="h3">2. Awaiting KYC moderation</h3></div>
 
   <p class="p_small" *ngIf="!userModel.verification_kyc">
     Congratulations! Your identity card was <br>

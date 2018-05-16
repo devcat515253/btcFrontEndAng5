@@ -16,8 +16,10 @@
                 <h2 class="title-inner">{{ 'invite-friends.how-work' | translate }}</h2>
 
                 <p class="pre-line p_small">
-                  <span *dynamicComponent="'invite-friends.send-generated-link' | translate"></span>
+                  <span [innerHtml]="'invite-friends.send-generated-link' | translate" appRouteTransformer></span>
                 </p>
+
+
 
                 <h2 class="title-inner">{{ 'invite-friends.refferal-link' | translate }}</h2>
                 <div class="copy">

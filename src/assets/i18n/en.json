@@ -31,6 +31,7 @@
   },
 
   "exchange": {
+    "exchangeSuccess": "Congratulations! <b>You will be able to continue</b> the exchange of the specified amount <b>after moderation</b> of all documents.",
     "choose": "Choose the Currency",
     "all": "All",
     "PaymentMethod": "Payment Method",
@@ -180,7 +181,6 @@
   },
 
   "errors": {
-    "ExchangeLimit": "Entered amount exceeds {{balance}} {{currency}} limit",
     "ExchangeAmount": "Amount not available",
     "ExchangeWarningVerify": "To continue, please verify your account first",
     "Email": "The e-mail doesn’t match any account",
@@ -274,7 +274,7 @@
     "total": "Total Commission Earned:",
     "how-work": "How Does It Work?",
     "btn-withdraw-commission": "Withdraw commission",
-    "send-generated-link": "Send the generated link to <b> your friends</b> as an invitation to our exchange platform.\n\nOur system will recognize that your partner has come to a page through your link and will automatically give you <b>commission</b> that you can withdraw to any wallet.\n\nDo you have any other questions? Check <a routerLink='/more/faq' class='link'>FAQ</a>\nsection or contact <a href='#' class='link'>technical support</a>.",
+    "send-generated-link": "Send the generated link to <b> your friends</b> as an invitation to our exchange platform.\n\nOur system will recognize that your partner has come to a page through your link and will automatically give you <b>commission</b> that you can withdraw to any wallet.\n\nDo you have any other questions? Check <a href='/more/faq' class='link'>FAQ</a> section or contact <a href='#' class='link'>technical support</a>.",
     "list-of-all": "List of All Registered Partners",
     "amount": "Amount",
     "registration-date": "Registration date",

@@ -446,18 +446,41 @@ main
     padding-right: 2rem
     padding-left: 2rem
     width: 16.5rem
+  .paginator
+    align-items: center
 @media only screen and (max-width : 480px)
   .steps .captcha
     transform: scale(0.82)
     display: block
   .steps .btn-border
-    min-width: 12rem
+    min-width: 14rem
   .currencies .item
     font-size: 1.8rem
+  .exchange .process:after, .exchange .process:before
+    width: 18px
+    height: 18px
+    border-radius: 0
+    top: 125px
+  .exchange .process:before
+    left: -2px
+  .exchange .process:after
+    right: 10px
+  .exchange .process__content
+    padding-right: 3rem
+    padding-left: 3rem
 @media only screen and (max-width : 479px)
   .advantages .item-title span
     white-space: pre-line
-
+  .cdk-overlay-pane
+    margin: 7rem 0
+  .cdk-overlay-pane
+    max-width: 100% !important
+    padding: 0 1rem
+  .header .dropdown-data
+    text-align: center
+    padding: 1.5rem
+  .footer ul > li > a
+    white-space: normal
 @media only screen and (max-width : 375px)
   .steps .captcha
     transform: scale(0.74)
@@ -471,6 +494,21 @@ main
     margin-right: 1rem
     margin-left: 1rem
     margin-bottom: 1rem
+  .footer ul > li > a.active
+    padding-right: 0
+  .footer__content .item
+    padding-right: 1.5rem
+  .footer__content .item:nth-child(2)
+    padding-left: 1.5rem
+  .footer ul > li > a.active:before
+    right: -10px
+    flex-shrink: 0
+    -webkit-border-radius: 50%
+    -moz-border-radius: 50%
+    border-radius: 50%
+    width: 6px
+    height: 6px
+
 @media only screen and (max-width : 355px)
   .steps .phone-send .btn.btn-accent
     min-width: 8rem
@@ -485,3 +523,9 @@ main
     font-size: 16px
   .steps .btn-border
     min-width: 10rem
+  .exchange .process__content
+    padding-right: 4rem
+    padding-left: 4rem
+  .checkbox-icons:after
+    top: 0
+    margin-left: -2px

@@ -66,8 +66,6 @@ import { InternationalPhoneModule } from 'ng4-country-phone-select';
 import { Step11Component } from './_exchange/step1-1/step1-1.component';
 import { Step30Component } from './_exchange/step3-0/step3-0.component';
 import { RouteTransformerDirective } from './_directives/route-transformer.directive';
-import { DynamicComponentModule } from 'ng-dynamic';
-import { RouterModule } from '@angular/router';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -129,9 +127,9 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule,
     HttpClientModule,
     MatDialogModule,
+    CommonModule,
     ReCaptchaModule,
     NgxMaskModule.forRoot(),
     InternationalPhoneModule,
@@ -142,7 +140,6 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    DynamicComponentModule.forRoot({imports: [RouterModule]})
   ],
   entryComponents: [
     DialogRegistrationComponent,
