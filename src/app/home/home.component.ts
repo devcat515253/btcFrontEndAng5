@@ -74,6 +74,8 @@ export class HomeComponent implements OnInit {
   // needVerification: boolean = false;
 
 
+  viewDirectMobile: boolean = false;
+
   constructor(public dialog: MatDialog,
               private cdr: ChangeDetectorRef,
               private blurService: EffectBlurService,
@@ -147,7 +149,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
+  viewDirectionChangeMobile(event) {
+    event.preventDefault();
+    this.viewDirectMobile = !this.viewDirectMobile;
+    console.log(this.viewDirectMobile);
+  }
   // =====================================================
   // ПЕРВАЯ ПРОВЕРКА ОБМЕНА В ЗАВИСИМОСТИ ОТ СУММЫ ВЫВОДА
   // =====================================================

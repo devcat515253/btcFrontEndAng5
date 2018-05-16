@@ -68,3 +68,29 @@
     order: 3
   .exchange .column, .exchange .column:last-child
     order: 2
+  .is-viewDirection
+    .column:first-child,
+    .column:last-child
+      display: block
+      opacity: .45
+    .column
+      .currencies
+        display: none
+      .input-exchange
+        margin-bottom: 0 !important
+      .is-disabled
+        opacity: 1
+      .process-arrow
+        transform: scaleY(-1) translateX(-50%)
+  .subblock .subblock-content .currencies .item
+    margin-top: 1.5rem
+  .exchange .column .subblock
+    margin-bottom: 0
+  .exchange .column .subblock .input-exchange
+    margin-bottom: 4rem
+  .exchange .column .subblock-title
+    display: none
+  .currencies .item
+    margin-bottom: 0
+  .exchange .column .alert
+    margin-bottom: 0

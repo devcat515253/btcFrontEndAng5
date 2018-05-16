@@ -14,7 +14,7 @@
     <div class="content blank tape-top no-padding welcome-page" [ngClass]="{'custom-loader': loading}">
       <div class="color-loader" *ngIf="loading"></div>
 
-      <div class="exchange" [ngClass]="{'is-check': stepsArray[17].status || stepsArray[1].status}">
+      <div class="exchange" [ngClass]="{'is-check': stepsArray[17].status || stepsArray[1].status, 'is-viewDirection': viewDirectMobile && !stepsArray[13].status}">
 
         <div class="column" [ngClass]="{'is-visible': stepsArray[17].status || stepsArray[1].status || stepsArray[0].status}">
           <div class="column__head">
@@ -170,7 +170,7 @@
 
           <div class="process-wr">
             <div class="process">
-              <img src="../../assets/img/svg/ic-angle.svg" alt="" class="svg process-arrow mobile-only">
+              <!--<img src="../../assets/img/svg/ic-angle.svg" alt="" class="svg process-arrow mobile-only">-->
               <div class="process__content">
                 <div class="column__head">
                   <h2 class="title-great">Process</h2>
@@ -178,6 +178,10 @@
 
 
                 <div class="steps" id="steps">
+
+                  <a href="#" (click)="viewDirectionChangeMobile($event)" *ngIf="!stepsArray[0].status && !stepsArray[13].status">
+                    <img src="../../assets/img/svg/ic-angle.svg" alt="" class="svg process-arrow mobile-only">
+                  </a>
 
                   <div class="step1" *ngIf="stepsArray[0].status">
                     <app-step1

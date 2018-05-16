@@ -282,9 +282,7 @@ main
 .p_large, .sans-serif
   font-family: 'PT Sans', sans-serif
 
-.steps .captcha
-  transform: scale(0.82)
-  transform-origin: 0 0
+
 
 
 .switch-btn
@@ -340,8 +338,6 @@ main
     white-space: nowrap
     -ms-text-overflow: ellipsis
     text-overflow: ellipsis
-  .steps .captcha
-    transform: scale(0.745)
   .checkbox-icons:after
     top: 2px
     height: 8px
@@ -439,6 +435,11 @@ main
     width: calc(100% + 2.6rem)
   .invite p
     white-space: pre-line
+  .exchange .column .alert
+    padding: 5px 1rem
+    font-weight: normal
+
+
 @media only screen and (max-width : 639px)
   body.menu-mobile__opened .header .transform-to-mobile
     padding: 8.5rem 2rem 0
@@ -449,9 +450,6 @@ main
   .paginator
     align-items: center
 @media only screen and (max-width : 480px)
-  .steps .captcha
-    transform: scale(0.82)
-    display: block
   .steps .btn-border
     min-width: 14rem
   .currencies .item
@@ -482,8 +480,6 @@ main
   .footer ul > li > a
     white-space: normal
 @media only screen and (max-width : 375px)
-  .steps .captcha
-    transform: scale(0.74)
   .form-control
     font-size: 16px
   .input-exchange input
