@@ -17,7 +17,7 @@
             [ngClass]="{'has-error': ((userRegistrForm.controls['email'].hasError('required')
             || userRegistrForm.controls['email'].hasError('email'))
             && regForm.submitted) || userRegistrForm.controls['email'].hasError('notunique')}">
-      <span class="form-title">Your e-mail (account login):</span>
+      <span class="form-title">Your e-mail:</span>
       <input [(ngModel)]="userRegistr.email" formControlName="email" (blur)="checkEmailExist()"  name="email"  type="text" class="form-control">
        <span *ngIf="userRegistrForm.controls['email'].hasError('required') && regForm.submitted" class="error-label">Required field</span>
        <span *ngIf="userRegistrForm.controls['email'].hasError('email') && !userRegistrForm.controls['email'].hasError('required') && !userRegistrForm.controls['email'].hasError('notunique') && regForm.submitted"

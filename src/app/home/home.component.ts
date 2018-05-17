@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   stepsArray = stepsArray;
   // END STEPS
 
+  exchangeStatusCode: number;
   userModel: UserModel = new UserModel();
 
   param: string = '';
@@ -76,6 +77,7 @@ export class HomeComponent implements OnInit {
 
 
   tempOfferData: any;
+  viewDirectMobile: boolean = false;
 
   constructor(public dialog: MatDialog,
               private cdr: ChangeDetectorRef,
@@ -334,14 +336,14 @@ export class HomeComponent implements OnInit {
   // ПРОВЕРКА на дальнейшие шаги
   checkExchangeSubmitResult(event) {
 
-    let statusCode = 0;
+    this.exchangeStatusCode = 0;
     try {
-      statusCode = event.data.code;
+      this.exchangeStatusCode = event.data.code;
     } catch (error) {}
-    console.log(statusCode);
+    console.log(this.exchangeStatusCode);
 
     // > 25 ВЕРИФИКАЦИЯ
-    if (statusCode === 1) {
+    if (this.exchangeStatusCode === 1) {
       let phone = this.userModel.verification_phone_ok;
       let id = this.userModel.verification_ok;
       let kyc = this.userModel.verification_kyc_ok;
@@ -353,7 +355,7 @@ export class HomeComponent implements OnInit {
     }
 
     // от 10 > 25
-    if (statusCode === 2) {
+    if (this.exchangeStatusCode === 2) {
       console.log(this.inputExchangeFrom);
       this.checkStepShow('2');
       return;

@@ -38,6 +38,7 @@
     "InputErrorLink": "CONTACT US",
     "ProcessLoginOffer": "Still don’t have an <b>account</b>? Create a free one <b>for free</b> and get access to transaction history of all your exchanges and take advantage of other <b>exclusive benefits</b>.",
     "ProcessLogin": "The entered <b>amount exceeded</b> the limit. Please login. If you don't have an account, you can create a free one by pressing “<b>Create free account</b>” button.",
+    "ProcessRegNotAuth": "Fill all your <b>registration</b> details below and click register button to continue.",
     "ProcessReg": "The entered amount exceeded the limit. It is required to be <b>registred</b> and <b>verified</b>. Continue by filling your password below.",
     "ProcessRegAndExchange": {
       "title": "Register and get exchange benefits.",

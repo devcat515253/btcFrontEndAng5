@@ -232,6 +232,7 @@
                   <div class="step3-1" *ngIf="stepsArray[3].status">
                     <app-step3-1 [exchangeFrom]="selectedExchangeFrom"
                                  [inputExchangeFrom]="inputExchangeFrom"
+                                 [exchangeLimitStatusCode]="exchangeStatusCode"
                                  (goBack)="checkExchangeSubmitResult($event)"
                                  (goNext)="goToForm3_2()"></app-step3-1>
                   </div>
@@ -346,7 +347,9 @@
                                                                     || stepsArray[5].status
                                                                     || stepsArray[6].status
                                                                     || stepsArray[7].status
-                                                                    || stepsArray[8].status}"></a>
+                                                                    || stepsArray[8].status
+                                                                    || stepsArray[17].status}"></a>
+
 
                       <a class="dot" [ngClass]="{'is-active': stepsArray[9].status
                                                                     || stepsArray[10].status

@@ -10,6 +10,11 @@
   max-width: 185px
   max-height: 185px
 
+.steps .captcha
+  transform: scale(0.825)
+  transform-origin: 0 0
+
+
 .discount-program
   padding: 50px 0
   .stairs
@@ -337,6 +342,8 @@ main
   .header-logo
     margin-right: 10rem
 @media only screen and (max-width : 1200px)
+  .steps .captcha
+    transform: scale(0.735)
   .currencies .item-value
     overflow: hidden
     white-space: nowrap
@@ -424,6 +431,7 @@ main
     &.is-visible
       display: block
 
+
   .exchange.is-check
     .subblock.is-check-hidden
       display: none
@@ -434,6 +442,23 @@ main
       margin-bottom: 0
     .process-wr
       margin-top: 2rem
+    .column:first-child,
+    .column:last-child
+      display: block
+      opacity: .45
+    .column
+      .input-exchange
+        margin-bottom: 0 !important
+      .currencies
+        display: none
+      .is-disabled
+        opacity: 1
+    &.is-viewDirection
+      .column:first-child,
+      .column:last-child
+        display: none !important
+      .process-arrow
+        transform: translateX(-50%) scaleY(1) !important
   .dots
     margin-left: -1.3rem
     width: calc(100% + 2.6rem)
@@ -483,6 +508,12 @@ main
     padding: 1.5rem
   .footer ul > li > a
     white-space: normal
+  .popup
+    max-width: 100%
+  .steps .captcha
+    transform: scale(0.825)
+
+
 @media only screen and (max-width : 375px)
   .form-control
     font-size: 16px
@@ -508,6 +539,9 @@ main
     border-radius: 50%
     width: 6px
     height: 6px
+  .steps .captcha
+    transform: scale(0.74)
+
 
 @media only screen and (max-width : 355px)
   .steps .phone-send .btn.btn-accent

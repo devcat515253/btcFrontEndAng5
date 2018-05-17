@@ -14,6 +14,7 @@ import {DialogSuccessComponent} from '../../_dialog/dialog-success/dialog-succes
 import {UserAuth} from '../../_entity/user-auth';
 import {ExchangeService} from '../../_services/exchange.service';
 import {Exchange} from '../../_entity/exchange';
+import {ExchangeStep4} from '../../_entity/steps-models';
 
 @Component({
   selector: 'app-step3-1',
@@ -26,6 +27,7 @@ export class Step31Component implements OnInit {
   @Output() goNext = new EventEmitter<any>();
 
   @Input() inputExchangeFrom: number;
+  @Input() exchangeLimitStatusCode: number;
   @Input() exchangeFrom: Exchange;
 
   userRegistr: UserRegistr = new UserRegistr();
@@ -42,6 +44,18 @@ export class Step31Component implements OnInit {
   }
 
   ngOnInit() {
+    this.fillLastEmail();
+  }
+
+  fillLastEmail() {
+
+    // this.emailModel
+    let localTepmpData = JSON.parse(localStorage.getItem('FS_Step4'));
+    console.log(localTepmpData);
+    this.userRegistr.email = localTepmpData.controlsEmail;
+    // if  (this.formModel4 == null) { this.formModel4 = new ExchangeStep4; }
+    // this.user.email = this.formModel4.controlsEmail;
+    // this.cdr.detectChanges();
   }
 
   checkEmailExist() {

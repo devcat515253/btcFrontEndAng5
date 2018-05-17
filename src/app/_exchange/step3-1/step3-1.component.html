@@ -1,15 +1,17 @@
 <div class="step">
   <div class="step-title"><h3 class="h3">2. Registration</h3></div>
 
-  <p class="p_small"  [innerHTML]="'exchange.ProcessReg' | translate">
-  </p>
+  <p class="p_small"  *ngIf="exchangeLimitStatusCode > 0" [innerHTML]="'exchange.ProcessReg' | translate"></p>
+  <p class="p_small" *ngIf="exchangeLimitStatusCode === 0" [innerHTML]="'exchange.ProcessRegNotAuth' | translate"></p>
+
+
 
   <form action="#" class="form" [ngClass]="{'custom-loader disabled': loading}"  [formGroup]="userRegistrForm" (submit)="submit($event)"  #regForm="ngForm" novalidate>
     <label class="form-group"
            [ngClass]="{'has-error': ((userRegistrForm.controls['email'].hasError('required')
             || userRegistrForm.controls['email'].hasError('email'))
             && regForm.submitted) || userRegistrForm.controls['email'].hasError('notunique')}">
-      <span class="form-title">Your e-mail (account login):</span>
+      <span class="form-title">Your e-mail:</span>
       <input [(ngModel)]="userRegistr.email" formControlName="email" (blur)="checkEmailExist()"  name="email"  type="text" class="form-control">
       <span *ngIf="userRegistrForm.controls['email'].hasError('required') && regForm.submitted" class="error-label">Required field</span>
       <span *ngIf="userRegistrForm.controls['email'].hasError('email') && !userRegistrForm.controls['email'].hasError('required') && !userRegistrForm.controls['email'].hasError('notunique') && regForm.submitted"
