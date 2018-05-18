@@ -134,7 +134,7 @@
                   </div>
 
                   <div class="currencies-other js-view-other mobile-only">
-                    <div class="item" text="Select other payment" replaceText="Hidden payment method">
+                    <div class="item" text="Select other payment" replaceText="Hide payment method">
                       <span>Select payment method </span>
                       <img src="../../assets/img/svg/arrow-down.svg" alt="View other"></div>
                   </div>
@@ -347,13 +347,13 @@
                                                                     || stepsArray[5].status
                                                                     || stepsArray[6].status
                                                                     || stepsArray[7].status
-                                                                    || stepsArray[8].status
-                                                                    || stepsArray[17].status}"></a>
+                                                                    || stepsArray[8].status}"></a>
 
 
                       <a class="dot" [ngClass]="{'is-active': stepsArray[9].status
                                                                     || stepsArray[10].status
-                                                                    || stepsArray[11].status}"></a>
+                                                                    || stepsArray[11].status
+                                                                    || stepsArray[17].status }"></a>
 
                       <a class="dot" [ngClass]="{'is-active': stepsArray[13].status}"></a>
 
@@ -399,7 +399,7 @@
                   <span class="error-label" *ngIf="exchangeFromForm.controls['inputFrom'].hasError('maxCountLimit')
                       || exchangeToForm.controls['inputTo'].hasError('maxbalance')">
                       {{ 'errors.ExchangeAmount' | translate }}
-                      <a routerLink="/contacts">Contuct us</a>
+                      <a routerLink="/contacts">Contact us</a>
                   </span>
 
 
@@ -467,7 +467,7 @@
                   </div>
 
                   <div class="currencies-other js-view-other mobile-only">
-                    <div class="item" text="Select other payment" replaceText="Hidden payment method">
+                    <div class="item" text="Select other payment" replaceText="Hide payment method">
                       <span>Select payment method </span>
                       <img src="../../assets/img/svg/arrow-down.svg" alt="View other"></div>
                   </div>

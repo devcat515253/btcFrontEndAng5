@@ -288,10 +288,8 @@ main
     text-overflow: ellipsis
 
 
-.p_large, .sans-serif
+.p_large, .sans-serif, .column .link
   font-family: 'PT Sans', sans-serif
-
-
 
 
 .switch-btn
@@ -411,7 +409,7 @@ main
   .currencies-hidden .item-wrapper:first-child
     margin-top: 0
   .exchange .process-wr
-    margin-top: 1.5rem
+    margin-top: 2.5rem
   .exchange .process
     position: relative
     .process-arrow
@@ -419,7 +417,7 @@ main
       height: 3.3rem
       position: absolute
       left: 50%
-      top: -3rem
+      top: -4rem
       transform: translateX(-50%)
   .currencies .item
     margin-bottom: 1.5rem
@@ -539,6 +537,8 @@ main
     border-radius: 50%
     width: 6px
     height: 6px
+
+@media only screen and (max-width : 374px)
   .steps .captcha
     transform: scale(0.74)
 

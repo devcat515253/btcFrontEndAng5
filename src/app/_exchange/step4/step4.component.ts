@@ -32,6 +32,7 @@ export class Step4Component implements OnInit {
   ngOnInit() {
     this.getUser();
     this.checkLoadingProcess();
+    this.autofillLastData();
   }
 
   checkLoadingProcess() {
@@ -93,6 +94,14 @@ export class Step4Component implements OnInit {
   fillLastData(event) {
     event.preventDefault();
 
+    this.formModel4 = JSON.parse(localStorage.getItem('FS_Step4'));
+    if  (this.formModel4 == null) { this.formModel4 = new ExchangeStep4; }
+    // this.formModel4.controlsId = this.formModel4.controlsEmail;
+    this.user.email = this.formModel4.controlsEmail;
+    this.cdr.detectChanges();
+  }
+
+  autofillLastData() {
     this.formModel4 = JSON.parse(localStorage.getItem('FS_Step4'));
     if  (this.formModel4 == null) { this.formModel4 = new ExchangeStep4; }
     this.user.email = this.formModel4.controlsEmail;

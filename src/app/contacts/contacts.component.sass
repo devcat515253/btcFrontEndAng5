@@ -1,0 +1,200 @@
+@font-face
+  font-family: 'NunitoSans'
+  src: url('../../assets/fonts/NunitoSans/Nunitosansblack.woff2') format("woff2"),
+  url('../../assets/fonts/NunitoSans/Nunitosansblack.woff') format("woff")
+  font-weight: 900
+  font-style: normal
+  font-stretch: normal
+  unicode-range: U+0020-007E
+
+@font-face
+  font-family: 'NunitoSans'
+  src: url('../../assets/fonts/NunitoSans/Nunitosansregular.woff2') format("woff2"),
+  url('../../assets/fonts/NunitoSans/Nunitosansregular.woff') format("woff")
+  font-weight: normal
+  font-style: normal
+  font-stretch: normal
+  unicode-range: U+0020-007E
+
+
+
+.iframe
+  position: relative
+  margin-top: 5rem
+  bottom: -5.5rem
+  font-family: 'NunitoSans', sans-serif
+  &:after
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    background: url('../../assets/img/iframe/logo.svg')
+    background-size:  333px 333px
+    background-position: 45% 50%
+    background-repeat: no-repeat
+    opacity: 0.1
+  .site
+    display: flex
+    flex-direction: column
+    align-items: center
+    height: 352px
+    width: 1052px
+    border: 1px solid #D2A884
+    background: linear-gradient(130.3deg, #7070FF 0%, #7384F9 14.25%, #7AB8E9 50.63%, #83FFD4 100%)
+    box-shadow: 0 22px 75px 0 rgba(179,209,219,0.2)
+    position: relative
+    overflow: hidden
+    padding: 15px 0 5px
+    color: #ffffff
+    &:before, &:after
+      content: ''
+      position: absolute
+      height: 100%
+      width: 100%
+      background-size: auto
+      background-repeat: no-repeat
+      background-position: left top
+    &:before
+      left: -17rem
+      bottom: -2rem
+      background-image: url('.../../assets/img/iframe/Polygon.svg')
+      transform: scaleY(-1)
+    &:after
+      top: 0
+      right: 0
+      background-image: url('../../assets/img/iframe/Polygon-top.svg')
+      background-repeat: no-repeat
+      background-position: right top
+    &-header, &-content, &-footer
+      position: relative
+      z-index: 2
+    &-header
+      display: flex
+      align-items: center
+      .logo
+        img
+          display: inline-block
+          vertical-align: middle
+          width: 56px
+          height: 63px
+        span
+          display: inline-block
+          vertical-align: middle
+          font-size: 2.2rem
+          line-height: 2.6rem
+          display: inline-block
+          color: #fff
+          margin-left: 3px
+          font-family: 'Ubuntu', sans-serif
+      .slogan
+        display: flex
+        flex-direction: column
+        position: relative
+        padding-left: 16px
+        margin-left: 15px
+        &:before
+          content: ''
+          position: absolute
+          top: 0
+          left: 0
+          height: 60px
+          width: 1px
+          background-color: #fff
+          opacity: 0.5
+        &-title
+          font-size: 2.8rem
+          line-height: 3.8rem
+          font-weight: 900
+        &-subtitle
+          font-size: 17px
+          line-height: 23px
+    &-content
+      display: flex
+      align-items: center
+      margin: 0 auto
+      margin-top: -2.5rem
+      ul
+        li
+          position: relative
+          padding-left: 14px
+          font-size: 17px
+          line-height: 3.2rem
+          &:before
+            content: ''
+            position: absolute
+            top: 50%
+            transform: translateY(-50%)
+            left: 0
+            height: 8px
+            width: 8px
+            margin-top: -1px
+            border-radius: 50%
+            background-color: #FFFFFF
+    &-footer
+      display: flex
+      justify-content: center
+      font-size: 17px
+      line-height: 3.2rem
+      position: relative
+      width: 32rem
+      margin-top: -4rem
+      margin-left: -7rem
+      p
+        display: flex
+        align-items: flex-start
+        width: 100%
+        margin: 0
+        padding-top: 5px
+      &:before, &:after
+        content: ''
+        position: absolute
+        top: 0
+        height: 1px
+        background-color: #fff
+      &:before
+        content: ''
+        left: 0
+        width: 207px
+      &:after
+        width: 64px
+        right: 0
+      b
+        font-weight: 900
+        margin-left: auto
+
+@media only screen and (max-width : 1200px)
+  .iframe
+    .site
+      width: 100%
+@media only screen and (max-width : 767px)
+  .iframe
+    margin-top: -14rem
+    bottom: -12rem
+    transform: scale(.7)
+    transform-origin: right
+    .site
+      width: 700px
+      transform: translateX(-25%)
+
+@media only screen and (max-width : 639px)
+  .iframe
+    transform: scale(0.625)
+    transform-origin: center
+    .site
+      transform: translateX(-50%)
+      left: 50%
+
+@media only screen and (max-width : 539px)
+  .iframe
+    transform: scale(0.6)
+
+@media only screen and (max-width : 479px)
+  .iframe
+    margin-top: -18rem
+    transform: scale(0.5)
+@media only screen and (max-width : 374px)
+  .iframe
+    margin-top: -21rem
+    transform: scale(0.4)
