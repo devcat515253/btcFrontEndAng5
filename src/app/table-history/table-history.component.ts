@@ -40,6 +40,7 @@ export class TableHistoryComponent implements OnInit {
   getList() {
     this.userService.getTransactionInfoFirst('null').subscribe(
       (data) => {
+        console.log(data);
         this.transactionArray = data.data;
         this.transactionArrayCount = data.meta.count + 1;
 
@@ -48,7 +49,6 @@ export class TableHistoryComponent implements OnInit {
         setTimeout( () => {
           this.initJS();
         }, 500);
-        console.log(data);
       },
       error => {
         console.log(error);

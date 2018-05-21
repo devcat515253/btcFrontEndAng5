@@ -136,12 +136,11 @@
                     </div>
                   </div>
 
-                  <div class="level__info">
+                  <div class="level__info" *ngIf="loggedUser">
                     <div class="info__title title-inner"> {{ 'discount-program.total' | translate }}</div>
                     <div class="info__value">
                       <span class="title-great">8 USD</span>
                       <span class="h2 h2_mobile" [innerHTML]="'discount-program.info' | translate">
-                        <!--Do nabytí slevy <b class="h2">3%</b> stačí směnit <b class="h2">2 USD</b>-->
                       </span>
 
                     </div>

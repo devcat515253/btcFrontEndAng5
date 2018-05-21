@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../_services/user.service';
 
 @Component({
   selector: 'app-discount',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiscountComponent implements OnInit {
 
-  constructor() { }
+  loggedUser: boolean = false;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.getAuth();
+    console.log(this.loggedUser);
+  }
+
+  getAuth() {
+    this.userService.token$.subscribe(logged => {
+      this.loggedUser = logged;
+    });
   }
 
 }
